@@ -1,0 +1,21 @@
+export interface UserModel {
+    businessName: String,
+    RFC: String,
+    firstNameTitular: String,
+    lastNameTitular: String,
+    email: String,
+    street: String,
+    innerNumber: String,
+    outdoorNumber: String,
+    zipCode: String,
+    suburb: String,
+    city: String,
+    state: String,
+    officePhoneNumber: String,
+    mobilePhoneNumber: String,
+    totalEmployees: String,
+    totalRFC: String,
+    monthlyDebt: String,
+    userAssigned: String,
+    passwordAssigned: String
+}

@@ -1,0 +1,292 @@
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+
+      <c-card-header>
+        Expediente laboral de Ruben Soto
+      </c-card-header>
+
+      <c-card-body>
+
+        <c-row>
+          <c-col>
+            <c-avatar
+              cTextColor="primary"
+              shape="rounded-1"
+              size="xl"
+              src="./assets/img/avatars/8.jpg"
+          ></c-avatar>
+          </c-col>
+          <c-col>
+            aaa
+          </c-col>
+        </c-row>
+
+
+
+        <div class="progress-group">
+          <div class="progress-group-header">
+            <i class="cil-user progress-group-icon me-2"></i>
+            <div>Cumplimiento laboral</div>
+            <div class="ms-auto font-weight-bold">87%</div>
+          </div>
+          <div class="progress-group-bars">
+            <div class="progress progress-xs">
+              <div class="progress-bar bg-info"
+               role="progressbar"
+               style="width: 87%"
+               aria-valuenow="87"
+               aria-valuemin="0"
+               aria-valuemax="100">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        
+
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+<c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+        <c-card-header>1. Proceso de contratación de personal</c-card-header>
+  
+        <c-card-body>
+          <table
+            [hover]="true"
+            [responsive]="true"
+            [striped]="true"
+            align="middle"
+            cTable
+            class="mb-0 border"
+          >
+            <thead cTableColor="light">
+              <tr>
+                <th width="30%">Documento</th>
+  
+                <th class="text-center">Calificación</th>
+  
+                <th class="text-center">Fecha de alta</th>
+  
+                <th class="text-center">Vigencia</th>
+  
+                <th class="text-center">Control de versiones</th>
+  
+                <th class="text-center">Estatus</th>
+  
+                <th class="text-center">Inhabilitar</th>
+              </tr>
+            </thead>
+  
+  
+            <tbody>
+              <tr *ngFor="let doc of documents; index as i">
+                <!-- documento -->
+                <td width="30%">Documento>
+                  {{ doc.document }}
+                </td>
+  
+                <!-- Foto y estatus empleado -->
+                <td class="text-center">
+                {{ doc.qualification }}
+                
+                </td>
+  
+                <!-- Fecha de alta -->
+                <td class="text-center">
+                  {{ doc.enrollmentDate }}
+                </td>
+  
+                <!-- Vigencia -->
+                <td class="text-center">
+                  {{ doc.validity }}
+                </td>
+  
+                <!-- Control de versiones -->
+                <td class="text-center">
+                    {{ doc.versionControl }}                  
+                </td>
+  
+                <!-- Estatus -->
+                <td class="text-center">
+                  {{ doc.status }}
+                  
+                </td>
+  
+                <!-- Inhabilitar boton -->
+                <td class="text-center">
+                    <button cButton color="danger">Inhabilitar</button>
+                </td>  
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+  
+  <!-- ----------------------------------------------------------------------------------------------------------------- -->
+
+  <c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+        <c-card-header>2. Documentos laborales complementarios</c-card-header>
+  
+        <c-card-body>
+          <table
+            [hover]="true"
+            [responsive]="true"
+            [striped]="true"
+            align="middle"
+            cTable
+            class="mb-0 border"
+          >
+            <thead cTableColor="light">
+              <tr>
+                <th width="30%">Documento</th>
+  
+                <th class="text-center">Calificación</th>
+  
+                <th class="text-center">Fecha de alta</th>
+  
+                <th class="text-center">Vigencia</th>
+  
+                <th class="text-center">Control de versiones</th>
+  
+                <th class="text-center">Estatus</th>
+  
+                <th class="text-center">Inhabilitar</th>
+              </tr>
+            </thead>
+  
+  
+            <tbody>
+              <tr *ngFor="let doc2 of documents2; index as i">
+                <!-- documento -->
+                <td>
+                  {{ doc2.document }}
+                </td>
+  
+                <!-- Foto y estatus empleado -->
+                <td class="text-center">
+                {{ doc2.qualification }}
+                
+                </td>
+  
+                <!-- Fecha de alta -->
+                <td class="text-center">
+                  {{ doc2.enrollmentDate }}
+                </td>
+  
+                <!-- Vigencia -->
+                <td class="text-center">
+                  {{ doc2.validity }}
+                </td>
+  
+                <!-- Control de versiones -->
+                <td class="text-center">
+                    {{ doc2.versionControl }}                  
+                </td>
+  
+                <!-- Estatus -->
+                <td class="text-center">
+                  {{ doc2.status }}
+                  
+                </td>
+  
+                <!-- Inhabilitar boton -->
+                <td class="text-center">
+                    <button cButton color="danger">Inhabilitar</button>
+                </td>  
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+  
+  <!-- ------------------------------------------------------------------------------------------------------------------- -->
+
+  <c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+        <c-card-header>3. Sanciones y medidas disciplinarias</c-card-header>
+  
+        <c-card-body>
+          <table
+            [hover]="true"
+            [responsive]="true"
+            [striped]="true"
+            align="middle"
+            cTable
+            class="mb-0 border"
+          >
+            <thead cTableColor="light">
+              <tr>
+                <th width="30%">Documento</th>
+  
+                <th class="text-center">Calificación</th>
+  
+                <th class="text-center">Fecha de alta</th>
+  
+                <th class="text-center">Vigencia</th>
+  
+                <th class="text-center">Control de versiones</th>
+  
+                <th class="text-center">Estatus</th>
+  
+                <th class="text-center">Inhabilitar</th>
+              </tr>
+            </thead>
+  
+  
+            <tbody>
+              <tr *ngFor="let doc3 of documents3; index as i">
+                <!-- documento -->
+                <td width="30%">
+                  {{ doc3.document }}
+                </td>
+  
+                <!-- Foto y estatus empleado -->
+                <td class="text-center">
+                {{ doc3.qualification }}
+                
+                </td>
+  
+                <!-- Fecha de alta -->
+                <td class="text-center">
+                  {{ doc3.enrollmentDate }}
+                </td>
+  
+                <!-- Vigencia -->
+                <td class="text-center">
+                  {{ doc3.validity }}
+                </td>
+  
+                <!-- Control de versiones -->
+                <td class="text-center">
+                    {{ doc3.versionControl }}                  
+                </td>
+  
+                <!-- Estatus -->
+                <td class="text-center">
+                  {{ doc3.status }}
+                  
+                </td>
+  
+                <!-- Inhabilitar boton -->
+                <td class="text-center">
+                    <button cButton color="danger">Inhabilitar</button>
+                </td>  
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>

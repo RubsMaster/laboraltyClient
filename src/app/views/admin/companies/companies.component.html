@@ -1,0 +1,264 @@
+<c-row>
+    <c-col xs>
+        <c-card clas="mb-4">
+            <c-card-header>
+                <h3 style="float: left">Documentos laborales</h3>
+              </c-card-header>
+        
+              <c-card-body>
+                <form cForm class="row g-3">
+                    <h4>Información de la empresa</h4>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Nombre comercial</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Nombre comercial">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Razón social</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Razón social">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">RFC</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="RFC">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Giro</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Giro">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Fecha de inicio de operaciones</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="date" class="form-control" id="autoSizingInputGroup"
+                                placeholder="Fecha de inicio de operacionesiro">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Correo electronico</label>
+                        <div class="input-group">
+                            <div class="input-group-text">@</div>
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Correo electrónico">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Teléfono</label>
+                        <div class="input-group">
+                            <div class="input-group-text">(000) 000-000</div>
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup"
+                                placeholder="Teléfono">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Teléfono celular</label>
+                        <div class="input-group">
+                            <!-- <div></div> -->
+                            <span class="input-group-text"><i class="cil-phone icon"></i></span>
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup"
+                                placeholder="Teléfono ">
+                
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Calle</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup" placeholder="Calle">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="2">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Número exterior</label>
+                        <div class="input-group">
+                            <div class="input-group-text">#</div>
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup"
+                                placeholder="Número exterior">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="2">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Número interior</label>
+                        <div class="input-group">
+                            <div class="input-group-text">#</div>
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup"
+                                placeholder="Número exterior">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Colonia</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup" placeholder="Colonia">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">País</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup" placeholder="País">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="3">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Estado</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <select cSelect id="inputState">
+                                <option>Seleccione estado</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="3">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Ciudad</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <select cSelect id="inputState">
+                                <option>Seleccione ciudad</option>
+                                <option>...</option>
+                            </select>
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="2">
+                        <label class="visually-hidden" for="autoSizingInputGroup">CP</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="tel"  class="form-control" id="autoSizingInputGroup" placeholder="CP">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Sitio web</label>
+                        <div class="input-group">
+                            <div class="input-group-text">https://ejemplo.com/</div>
+                            <input type="tel" mask="(000) 000-000" class="form-control" id="autoSizingInputGroup"
+                                placeholder="Sitio web">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Logo de la empresa</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">https://ejemplo.com/</div> -->
+                            <input type="file" class="form-control" id="autoSizingInputGroup" placeholder="Logo de la empresa">
+                        </div>
+                    </c-col>
+                
+                <h4>Información de la empresa</h4>.
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Nombre Ccompleto</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="Nombre Ccompleto">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">RFC</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="RFC">
+                        </div>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label class="visually-hidden" for="autoSizingInputGroup">Nombre Ccompleto</label>
+                        <div class="input-group">
+                            <!-- <div class="input-group-text">@</div> -->
+                            <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="País">
+                        </div>
+                    </c-col>
+                
+                
+                    <c-col [xs]="12">
+                        <button cButton type="submit" color="info" style="color:white">Agregar Reporesentante</button>
+                    </c-col>
+                
+                    <!-- <c-col [md]="4">
+                    <label cLabel for="inputState">Seleccione el documento laboral</label>
+                    <select cSelect id="inputState">
+                    <option>Seleccione...</option>
+                    <option>...</option>
+                    </select>
+                    </c-col>
+                
+                    <c-col [md]="4">
+                        <label cLabel for="inputState">Módulo</label>
+                        <select cSelect id="inputState">
+                        <option>Seleccione...</option>
+                        <option>...</option>
+                        </select>
+                        </c-col>
+                
+                        <c-col [md]="4">
+                            <label cLabel for="inputState">Nombre del tipo de documento</label>
+                            <select cSelect id="inputState">
+                            <option>Seleccione...</option>
+                            <option>...</option>
+                            </select>
+                            </c-col>
+                            
+                            <c-col [md]="2">
+                                <label cLabel for="inputState">Obligatorio</label>
+                                </c-col>
+                                <c-col [md]="10">
+                                    <input class="form-check-input" style="height: 30px; width: 30px; margin-left: 20px;" type="checkbox" value="" id="">
+                                    </c-col>
+                
+                                    <c-col [md]="2">
+                                        <label cLabel for="inputState">¿Disponible?</label>
+                                    </c-col>
+                                        <c-col [md]="10">
+                                            <input class="form-check-input" style="height: 30px; width: 30px; margin-left: 20px;" type="checkbox" value="" id="">
+                                            </c-col>
+                
+                                            <c-col [md]="2">
+                                                <label cLabel for="inputState">¿Implementación inmediata?</label>
+                                            </c-col>
+                                                <c-col [md]="10">
+                                                    <input class="form-check-input" style="height: 30px; width: 30px; margin-left: 20px;" type="checkbox" value="" id="">
+                                                    </c-col> -->
+                
+                    <c-col [xs]="12">
+                        <button cButton type="submit">Guardar</button>
+                    </c-col>
+                </form>
+            </c-card-body>
+
+            <c-card-footer>
+                <button cButton color="success" style="float: right">+ Agregar</button>
+              </c-card-footer>
+
+        </c-card>
+    </c-col>
+</c-row>
+
+
+
+<script>
+
+</script>

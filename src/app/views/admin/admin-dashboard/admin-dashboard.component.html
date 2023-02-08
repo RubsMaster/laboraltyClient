@@ -1,0 +1,95 @@
+<app-widgets-dropdown></app-widgets-dropdown>
+
+<!-- Tabla empleados  -->
+<c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+  
+        <c-card-header> 
+          <h3 style="float: left;">Licenciatario</h3> 
+        </c-card-header>
+  
+        <c-card-body>
+          <table
+            [hover]="true"
+            [responsive]="true"
+            [striped]="true"
+            align="middle"
+            cTable
+            class="mb-0 border"            
+          >
+            <thead cTableColor="dark">
+              <tr>
+  
+                <th>Nombre del titular</th>
+  
+                <th>RFC asignados</th>
+  
+                <th>Empleados asignados</th>
+  
+                <th>Pago mensual</th>
+  
+                <th>Acciones</th>
+                
+              </tr>
+            </thead>
+  
+  <!-- ------------------------------------------------------------------------------------------------ -->
+  
+            <tbody>
+              <tr *ngFor="let user of ListUsers | slice:0:10; index as i">
+                
+                <!-- nombre del titular -->
+                <td class="text-center">
+                  <p>{{user.firstNameTitular}} {{ user.lastNameTitular }}</p>
+                </td>
+  
+                <!-- RFC asignados -->
+                <td>
+                  {{ user.totalRFC }}
+                  
+                </td>
+  
+                <!-- Empleados asignados -->
+                <td class="text-center">
+                  {{ user.totalEmployees }}
+                  
+                </td>
+  
+                <!-- Pago mensual -->
+                <td>
+                  ${{ user.monthlyDebt }}
+                </td>
+  
+                <!-- Acciones -->
+                <td>
+                  <button cButton color="info"><svg cIcon name="cil-pencil" size="xl"></svg></button>
+                  <!-- <button (click)="deleteEmployee(user.idEmployee!)" cButton color="danger" style="float: right;"><svg cIcon name="cil-trash" size="xl"></svg></button> -->
+                </td>
+  
+              </tr>
+            </tbody>
+          </table>
+        </c-card-body>
+
+        <c-card-footer >
+          <c-button-group aria-label="First group" class="me-2" role="group" style="float: right;">
+            <button cButton color="secondary" variant="outline">
+              1
+            </button>
+            <button cButton color="secondary" variant="outline">
+              2
+            </button>
+            <button cButton color="secondary" variant="outline">
+              3
+            </button>
+            <button cButton color="secondary" variant="outline">
+              4
+            </button>
+          </c-button-group>
+        </c-card-footer>
+
+      </c-card>
+    </c-col>
+  </c-row>
+  

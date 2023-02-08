@@ -1,0 +1,244 @@
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>
+        <h3 style="float: left">Crear Usuario</h3>
+      </c-card-header>
+
+      <c-card-body>
+        <form cForm class="row g-3" [formGroup]="createUserForm" (ngSubmit)="saveUser()" novalidate>
+          <c-row style="margin-bottom: 2%; margin-top: 1%">
+            <h4>Informacion del usuario</h4>
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="firstNameTitular" formControlName="firstNameTitular"
+                  name="firstNameTitular" placeholder="Nombres" />
+                <label for="firstNameTitular">Nombre(s)</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched">
+                  El nombre del documento <strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input cFormControl type="text" class="form-control" id="lastNameTitular" name="lastNameTitular"
+                  formControlName="lastNameTitular" placeholder="Apellidos" />
+                <label for="lastNameTitular">Apellidos</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input cFormControl id="businessName" type="text" class="form-control" formControlName="businessName"
+                  name="businessName" placeholder="Razón Social" />
+                <label for="businessName">Razón Social</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input cFormControl id="RFC" type="text" class="form-control" name="RFC" formControlName="RFC"
+                  placeholder="RFC" />
+                <label for="businessName">RFC</label>
+              </div>
+            </c-col>
+          </c-row>
+
+
+
+          <c-row style="margin-bottom: 2%">
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input cFormControl id="email" type="text" class="form-control" name="email"
+                  formControlName="email" placeholder="email" />
+                <label for="email">Email</label>
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createUserForm.get('email')?.errors?.['required'] && this.createUserForm.get('email')?.touched">
+                El email <strong> es obligatorio</strong>
+              </div>
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createUserForm.get('email')?.errors?.['email'] && this.createUserForm.get('email')?.touched">
+                El email debe ser <strong> valido </strong>
+              </div>
+            </div>
+            </c-col>
+
+            <c-col [md]="4" class="form-floating mb-3">
+        
+               
+                <input type="text" class="form-control" id="mobilePhoneNumber" placeholder="Teléfono móvil"
+                  formControlName="mobilePhoneNumber" />
+                  <label for="email">Teléfono movil</label>
+            
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="
+                  this.createUserForm.get('mobilePhoneNumber')?.errors?.['required'] && 
+                  
+                  (this.createUserForm.get('mobilePhoneNumber')?.dirty || this.createUserForm.get('mobilePhoneNumber')?.touched)">
+                <div *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['required']">
+                  El numero telefonico<strong> es obligatorio</strong>
+                </div>
+                <div *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['minlength']">
+                  Fisrt Name must be at least 10 characters long.
+                </div>
+                <div *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['maxlength']">
+                  Fisrt Name must be at least 10 characters long.
+                </div>
+              </div> 
+              
+              
+            </c-col>
+            <c-col [md]="4" class="form-floating mb-3">
+        
+               
+              <input type="text" class="form-control" id="officePhoneNumber" placeholder="Teléfono de oficina"
+                formControlName="officePhoneNumber" />
+                <label for="officePhoneNumber">Teléfono de oficina</label>
+          
+            <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+              *ngIf="
+                this.createUserForm.get('officePhoneNumber')?.errors?.['required'] && 
+                (this.createUserForm.get('officePhoneNumber')?.dirty || this.createUserForm.get('officePhoneNumber')?.touched)">
+              <div *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['required']">
+                El numero telefonico<strong> es obligatorio</strong>
+              </div>
+              <div *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['minlength']">
+                Fisrt Name must be at least 10 characters long.
+              </div>
+              <div *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['maxlegth']">
+                Fisrt Name must be at least 10 characters long.
+              </div>
+            </div> 
+            
+          </c-col>
+          </c-row>
+
+          <c-row>
+            <hr />
+            <h4>Domicilio fiscal</h4>
+          </c-row>
+
+          <c-row style="margin-bottom: 2%">
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="street" placeholder="Calle" formControlName="street" />
+                <label for="street">Calle</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="suburb" placeholder="Colonia" formControlName="suburb" />
+                <label for="suburb">Colonia</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <select class="form-select" id="city" formControlName="city" placeholder="Ciudad">
+                  <option selected>Chihuahua</option>
+                  <option>...</option>
+                </select>
+                <label for="city">Seleccione ciudad</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating">
+                <select cSelect id="state" formControlName="state" placeholder="Estado">
+                  <option>Chihuahua</option>
+                  <option>...</option>
+                </select>
+                <label for="state">Estado</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="4">
+              <label for="autoSizingInputGroup">Codigo Postal</label>
+              <div class="input-group">
+                <div class="input-group-text">#</div>
+                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
+                  formControlName="zipCode" />
+              </div>
+            </c-col>
+
+            <c-col [md]="4">
+              <label for="autoSizingInputGroup">No. Exterior</label>
+              <div class="input-group">
+                <div class="input-group-text">#</div>
+                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
+                  formControlName="outdoorNumber" />
+              </div>
+            </c-col>
+
+            <c-col [md]="4">
+              <label for="autoSizingInputGroup">No. Interior</label>
+              <div class="input-group">
+                <div class="input-group-text">#</div>
+                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
+                  formControlName="innerNumber" />
+              </div>
+            </c-col>
+          </c-row>
+
+          <c-row style="margin-bottom: 2%">
+            <hr />
+            <h4>Atributos en sistema</h4>
+          </c-row>
+
+          <c-row>
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="totalEmployees" placeholder="Empleados asignables"
+                  formControlName="totalEmployees" />
+                <label for="street">Empleados Asignables</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="totalRFC" placeholder="" formControlName="totalRFC" />
+                <label for="totalRFC">RFC asignables</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="userAssigned" placeholder="Nombre de usuario"
+                  formControlName="userAssigned" />
+                <label for="userAssigned">Nombre de usuario</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="passwordAssigned" placeholder="passwordAssigned"
+                  formControlName="passwordAssigned" />
+                <label for="passwordAssigned">Contraseña</label>
+              </div>
+            </c-col>
+
+            <c-col [md]="2">
+              <div class="input-group">
+                <div class="input-group-text">$</div>
+                <input type="text" class="form-control" id="monthlyDebt" name="monthlyDebt"
+                  formControlName="monthlyDebt" />
+              </div>
+            </c-col>
+          </c-row>
+        </form>
+      </c-card-body>
+
+      <c-card-footer>
+        <button cButton (click)="saveUser()" color="info" style="float: right" id="btnSubmit" type="submit"
+          [disabled]="!createUserForm.valid">
+          + Agregar
+        </button>
+      </c-card-footer>
+    </c-card>
+  </c-col>
+</c-row>

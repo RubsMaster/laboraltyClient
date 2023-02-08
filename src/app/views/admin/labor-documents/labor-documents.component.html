@@ -1,0 +1,134 @@
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>
+        <h3 style="float: left">Crear Documentos laborales</h3>
+      </c-card-header>
+
+      <c-card-body>
+        <form cForm class="row g-3" [formGroup]="laborDocumentForm" (ngSubmit)="saveDoc()">
+          <c-row style="margin-bottom: 2%">
+            <c-col [md]="12" style="margin-top: 15px;">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  formControlName="name"
+                  name="name"
+                  placeholder="name" 
+                  required
+                />
+                <label for="name">Nombre</label>
+                <div class="alert alert-danger" role="alert" style="margin-top:3px"
+                *ngIf="this.laborDocumentForm.get('name')?.errors?.['required'] && this.laborDocumentForm.get('name')?.touched"
+                  >
+                  El nombre del documento <strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <c-col [md]="4">
+              <div class="form-floating">
+                <select cSelect id="docType" class="form-control" name="docType" formControlName="type">
+                  <option>Empleado</option>
+                  <option>Empresa</option>
+                </select>
+                <label for="docType">Tipo de documento</label>
+                <div class="alert alert-danger" *ngIf="this.laborDocumentForm.get('type')?.errors?.['required'] && this.laborDocumentForm.get('type')?.touched" style="margin-top: 3px;">
+                  <span>El tipo del documento<strong> es obligatorio</strong></span>
+                </div>
+              </div>
+            </c-col>
+
+            <c-col [md]="2" style="margin-top: 25px;">
+              <c-form-check sizing="xl" switch>
+                <label cFormCheckLabel>Obligatorio</label>
+                <input cFormCheckInput type="checkbox" class="form-control" name="isMandatory"
+                  formControlName="isMandatory" id="isMandatory" />
+              </c-form-check>
+            </c-col>
+
+            <c-col [md]="2" style="margin-top: 25px;">
+              <c-form-check sizing="xl" switch>
+                <label cFormCheckLabel>Aplicación inmediata</label>
+                <input cFormCheckInput type="checkbox" class="form-control" name="isImmediate"
+                  formControlName="isImmediate" id="isImmediate" />
+                <p></p>
+              </c-form-check>
+            </c-col>
+
+            <c-col [md]="2" style="margin-top: 25px;">
+              <c-form-check sizing="xl" switch>
+                <label cFormCheckLabel>Campos únicos</label>
+                <input cFormCheckInput type="checkbox" class="form-control" name="uniqueFields"
+                  formControlName="uniqueFields" id="uniqueFields" />
+              </c-form-check>
+            </c-col>
+          </c-row>
+        </form>
+      </c-card-body>
+
+      <c-card-footer>
+        <button cButton color="info" style="float: right" id="btnSubmit" type="submit" (click)="saveDoc();"
+        [disabled]="laborDocumentForm.invalid"
+          >
+          + Agregar
+        </button>
+      </c-card-footer>
+    </c-card>
+  </c-col>
+</c-row>
+
+<!-- ======================================================================================================================= -->
+
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>
+        <h3 style="float: left">Documentos laborales Existentes</h3>
+      </c-card-header>
+
+      <c-card-body>
+        <table [hover]="true" [responsive]="true" [striped]="false" align="middle" cTable class="mb-0 border">
+          <thead cTableColor="dark">
+            <tr>
+              <th>Documento</th>
+
+              <th>Tipo</th>
+
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let doc of ListDocs | slice : 0 : 10; index as i">
+              <!-- Empleado -->
+              <td>
+                {{ doc.name }}
+              </td>
+
+              <!-- Empresa -->
+              <td>
+                {{ doc.type }}
+              </td>
+
+              <!-- Sucursal -->
+              <td>
+                <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
+                  <button cButton color="dark" variant="outline" (click)="setUpdate(doc)">Editar</button>
+                  <button cButton color="dark" variant="outline">Moral</button>
+                  <button cButton color="dark" variant="outline">Fisica</button>
+                </c-button-group>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+
+      <c-card-footer> </c-card-footer>
+    </c-card>
+  </c-col>
+</c-row>
