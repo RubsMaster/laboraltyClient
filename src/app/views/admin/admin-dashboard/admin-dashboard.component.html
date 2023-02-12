@@ -21,15 +21,15 @@
             <thead cTableColor="dark">
               <tr>
   
-                <th>Nombre del titular</th>
+                <th class="text-center">Nombre del titular</th>
   
-                <th>RFC asignados</th>
+                <th class="text-center">RFC asignados</th>
   
-                <th>Empleados asignados</th>
+                <th class="text-center">Empleados asignados</th>
   
-                <th>Pago mensual</th>
+                <th class="text-center">Pago mensual</th>
   
-                <th>Acciones</th>
+                <th class="text-center">Acciones</th>
                 
               </tr>
             </thead>
@@ -45,7 +45,7 @@
                 </td>
   
                 <!-- RFC asignados -->
-                <td>
+                <td class="text-center">
                   {{ user.totalRFC }}
                   
                 </td>
@@ -57,7 +57,7 @@
                 </td>
   
                 <!-- Pago mensual -->
-                <td>
+                <td class="text-center">
                   ${{ user.monthlyDebt }}
                 </td>
   

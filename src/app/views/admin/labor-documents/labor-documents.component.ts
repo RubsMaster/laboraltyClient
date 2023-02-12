@@ -38,6 +38,7 @@ export class LaborDocumentsComponent implements OnInit {
   }
 
   ListDocs: laborDocuments[] = [];
+  isDisplayed: boolean = false;
 
   ngOnInit(): void {
     this.getDocs();
@@ -58,15 +59,24 @@ export class LaborDocumentsComponent implements OnInit {
       isImmediate: this.laborDocumentForm.get('isImmediate')?.value,
       uniqueFields: this.laborDocumentForm.get('uniqueFields')?.value,
     }
-    
-    console.log(doc);
 
-    // this.DocumentsService.createDoc(doc).subscribe(data => {
-    //  ng 
-    // }, error => {
-    //   console.log(error)
-    // })
+    this.DocumentsService.createDoc(doc).subscribe(data => {
+      this.ngOnInit();
+    }, error => {
+      console.log(error)
+    })
 
+  }
+
+  showUniqueFields(event:any){
+  
+    if(event.target.checked==true){
+      this.isDisplayed = true;
+    }
+    else{
+      this.isDisplayed = false;
+    }
+    // Add other stuff
   }
 
   setUpdate(data: any)

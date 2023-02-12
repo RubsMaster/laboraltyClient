@@ -6,9 +6,14 @@
       </c-card-header>
 
       <c-card-body>
-        <form cForm class="row g-3" [formGroup]="laborDocumentForm" (ngSubmit)="saveDoc()">
+        <form
+          cForm
+          class="row g-3"
+          [formGroup]="laborDocumentForm"
+          (ngSubmit)="saveDoc()"
+        >
           <c-row style="margin-bottom: 2%">
-            <c-col [md]="12" style="margin-top: 15px;">
+            <c-col [md]="6" style="margin-top: 15px">
               <div class="form-floating mb-3">
                 <input
                   type="text"
@@ -16,65 +21,250 @@
                   id="name"
                   formControlName="name"
                   name="name"
-                  placeholder="name" 
+                  placeholder="name"
                   required
                 />
                 <label for="name">Nombre</label>
-                <div class="alert alert-danger" role="alert" style="margin-top:3px"
-                *ngIf="this.laborDocumentForm.get('name')?.errors?.['required'] && this.laborDocumentForm.get('name')?.touched"
-                  >
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.laborDocumentForm.get('name')?.errors?.['required'] && this.laborDocumentForm.get('name')?.touched"
+                >
                   El nombre del documento <strong> es obligatorio</strong>
                 </div>
               </div>
             </c-col>
-          </c-row>
 
-          <c-row>
-            <c-col [md]="4">
+            <c-col [md]="6" style="margin-top: 15px">
               <div class="form-floating">
-                <select cSelect id="docType" class="form-control" name="docType" formControlName="type">
+                <select
+                  cSelect
+                  id="docType"
+                  class="form-control"
+                  name="docType"
+                  formControlName="type"
+                >
                   <option>Empleado</option>
                   <option>Empresa</option>
                 </select>
                 <label for="docType">Tipo de documento</label>
-                <div class="alert alert-danger" *ngIf="this.laborDocumentForm.get('type')?.errors?.['required'] && this.laborDocumentForm.get('type')?.touched" style="margin-top: 3px;">
-                  <span>El tipo del documento<strong> es obligatorio</strong></span>
+                <div
+                  class="alert alert-danger"
+                  *ngIf="this.laborDocumentForm.get('type')?.errors?.['required'] && this.laborDocumentForm.get('type')?.touched"
+                  style="margin-top: 3px"
+                >
+                  <span
+                    >El tipo del documento<strong> es obligatorio</strong></span
+                  >
                 </div>
               </div>
             </c-col>
-
-            <c-col [md]="2" style="margin-top: 25px;">
-              <c-form-check sizing="xl" switch>
-                <label cFormCheckLabel>Obligatorio</label>
-                <input cFormCheckInput type="checkbox" class="form-control" name="isMandatory"
-                  formControlName="isMandatory" id="isMandatory" />
-              </c-form-check>
-            </c-col>
-
-            <c-col [md]="2" style="margin-top: 25px;">
-              <c-form-check sizing="xl" switch>
-                <label cFormCheckLabel>Aplicación inmediata</label>
-                <input cFormCheckInput type="checkbox" class="form-control" name="isImmediate"
-                  formControlName="isImmediate" id="isImmediate" />
-                <p></p>
-              </c-form-check>
-            </c-col>
-
-            <c-col [md]="2" style="margin-top: 25px;">
-              <c-form-check sizing="xl" switch>
-                <label cFormCheckLabel>Campos únicos</label>
-                <input cFormCheckInput type="checkbox" class="form-control" name="uniqueFields"
-                  formControlName="uniqueFields" id="uniqueFields" />
-              </c-form-check>
-            </c-col>
           </c-row>
+
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <c-form-check sizing="xl" switch>
+                  <label cFormCheckLabel>Obligatorio</label>
+                  <input
+                    cFormCheckInput
+                    type="checkbox"
+                    class="form-control"
+                    name="isMandatory"
+                    formControlName="isMandatory"
+                    id="isMandatory"
+                  />
+                </c-form-check>
+              </div>
+              <div class="col">
+                <c-form-check sizing="xl" switch>
+                  <label cFormCheckLabel>Aplicación inmediata</label>
+                  <input
+                    cFormCheckInput
+                    type="checkbox"
+                    class="form-control"
+                    name="isImmediate"
+                    formControlName="isImmediate"
+                    id="isImmediate"
+                  />
+                </c-form-check>
+              </div>
+              <div class="col">
+                <c-form-check sizing="xl" switch>
+                  <label cFormCheckLabel>Campos únicos</label>
+                  <input
+                    cFormCheckInput
+                    type="checkbox"
+                    class="form-control"
+                    name="uniqueFields"
+                    formControlName="uniqueFields"
+                    id="uniqueFields"
+                    (change)="showUniqueFields($event);"
+                  />
+                </c-form-check>
+              </div>
+            </div>
+          </div>
+
+          <!-- ------------------------------------------------------------------------
+           -->
+
+          <hr *ngIf="isDisplayed"/>
+
+          <h4 *ngIf="isDisplayed">Campos únicos</h4>
+          <p *ngIf="isDisplayed">Esta sección permite delimitar campos únicos que serán agregados a <strong>este documento únicamente</strong></p>
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName"
+              formControlName="uniqueName"
+              name="uniqueName"
+              placeholder="Nombre"
+            />
+          </c-col>
+
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <select
+              cSelect
+              id="uniqueType"
+              class="form-control"
+              name="uniqueType"
+              formControlName="uniqueType"
+            >
+              <option>Texto</option>
+              <option>Fecha</option>
+            </select>
+          </c-col>
+          <!--  -->
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName1"
+              formControlName="uniqueName1"
+              name="uniqueName1"
+              placeholder="Nombre"
+            />
+          </c-col>
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <select
+              cSelect
+              id="uniqueType1"
+              class="form-control"
+              name="uniqueType1"
+              formControlName="uniqueType1"
+            >
+              <option>Texto</option>
+              <option>Fecha</option>
+            </select>
+          </c-col>
+          <!--  -->
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName2"
+              formControlName="uniqueName2"
+              name="uniqueName2"
+              placeholder="Nombre"
+            />
+          </c-col>
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <select
+              cSelect
+              id="uniqueType2"
+              class="form-control"
+              name="uniqueType2"
+              formControlName="uniqueType2"
+            >
+              <option>Texto</option>
+              <option>Fecha</option>
+            </select>
+          </c-col>
+          <!--  -->
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName3"
+              formControlName="uniqueName3"
+              name="uniqueName3"
+              placeholder="Nombre"
+            />
+          </c-col>
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <select
+              cSelect
+              id="uniqueType3"
+              class="form-control"
+              name="uniqueType3"
+              formControlName="uniqueType3"
+            >
+              <option>Texto</option>
+              <option>Fecha</option>
+            </select>
+          </c-col>
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName4"
+              formControlName="uniqueName4"
+              name="uniqueName4"
+              placeholder="Nombre"
+            />
+          </c-col>
+          <c-col [md]="6" *ngIf="isDisplayed">
+            <select
+              cSelect
+              id="uniqueType4"
+              class="form-control"
+              name="uniqueType4"
+              formControlName="uniqueType4"
+            >
+              <option>Texto</option>
+              <option>Fecha</option>
+            </select>
+          </c-col>
+
+          <!-- <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName"
+              formControlName="uniqueName"
+              name="uniqueName"
+              placeholder="uniqueName"
+            />
+          </div>
+
+          <div class="form-floating">
+            <select
+              cSelect
+              id="docType"
+              class="form-control"
+              name="docType"
+              formControlName="type"
+            >
+              <option>Empleado</option>
+              <option>Empresa</option>
+            </select>
+          </div> -->
         </form>
       </c-card-body>
 
       <c-card-footer>
-        <button cButton color="info" style="float: right" id="btnSubmit" type="submit" (click)="saveDoc();"
-        [disabled]="laborDocumentForm.invalid"
-          >
+        <button
+          cButton
+          color="info"
+          style="float: right"
+          id="btnSubmit"
+          type="submit"
+          (click)="saveDoc()"
+          [disabled]="laborDocumentForm.invalid"
+        >
           + Agregar
         </button>
       </c-card-footer>
@@ -92,7 +282,14 @@
       </c-card-header>
 
       <c-card-body>
-        <table [hover]="true" [responsive]="true" [striped]="false" align="middle" cTable class="mb-0 border">
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="false"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
           <thead cTableColor="dark">
             <tr>
               <th>Documento</th>
@@ -117,8 +314,20 @@
 
               <!-- Sucursal -->
               <td>
-                <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
-                  <button cButton color="dark" variant="outline" (click)="setUpdate(doc)">Editar</button>
+                <c-button-group
+                  aria-label="Large button group"
+                  class="m-1"
+                  role="group"
+                  sizing="lg"
+                >
+                  <button
+                    cButton
+                    color="dark"
+                    variant="outline"
+                    (click)="setUpdate(doc)"
+                  >
+                    Editar
+                  </button>
                   <button cButton color="dark" variant="outline">Moral</button>
                   <button cButton color="dark" variant="outline">Fisica</button>
                 </c-button-group>
