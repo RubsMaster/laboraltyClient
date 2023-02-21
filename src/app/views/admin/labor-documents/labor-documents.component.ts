@@ -36,6 +36,7 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueFields: ['']
     });
   }
+  
 
   ListDocs: laborDocuments[] = [];
   isDisplayed: boolean = false;

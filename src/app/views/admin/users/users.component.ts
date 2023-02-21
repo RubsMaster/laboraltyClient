@@ -26,29 +26,32 @@ export class UsersComponent implements OnInit {
     private userService: UsersService
   ) {
     this.createUserForm = this.formBuilder.group({
-      firstNameTitular: new FormControl('',Validators.required),
-      lastNameTitular: [''],
-      businessName: [''],
-      RFC: [''],
-      email: new FormControl('', [Validators.required, Validators.email]),
-      mobilePhoneNumber: new FormControl('', [
+      firstNameTitular: new FormControl("", Validators.required),
+      lastNameTitular: [""],
+      businessName: [""],
+      RFC: [""],
+      email: new FormControl("", [Validators.required, Validators.email]),
+      mobilePhoneNumber: new FormControl("", [
         Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(10)
+        Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
       ]),
-      officePhoneNumber: [''],
-      street: [''],
-      innerNumber: [''],
-      outdoorNumber: [''],
-      postalCode: [''],
-      suburb: [''],
-      city: [''],
-      state: [''],
-      totalEmployees: [''],
-      totalRFC: [''],
-      monthlyDebt: [''],
-      userAssigned: [''],
-      passwordAssigned: ['']
+      officePhoneNumber: new FormControl("", [
+        Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+      ]),
+      street: new FormControl("", [Validators.required]),
+      innerNumber: new FormControl("", [
+        Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+      ]),
+      outdoorNumber: new FormControl("", [Validators.required]),
+      postalCode: new FormControl("", [Validators.required, Validators.maxLength(10)]),
+      suburb: new FormControl("", [Validators.required]),
+      city: new FormControl("", [Validators.required]),
+      state: new FormControl("", [Validators.required]),
+      totalEmployees: new FormControl("", [Validators.required]),
+      totalRFC: new FormControl("", [Validators.required]),
+      monthlyDebt: new FormControl("", [Validators.required]),
+      userAssigned: new FormControl("", [Validators.required]),
+      passwordAssigned: new FormControl("", [Validators.required]),
     });
   }
 

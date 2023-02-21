@@ -66,6 +66,7 @@ import { LayoutComponent } from './views/forms/layout/layout.component';
 import { ValidationComponent } from './views/forms/validation/validation.component';
 
 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -121,7 +122,7 @@ const APP_CONTAINERS = [
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
-    ListGroupModule
+    ListGroupModule,
   ],
   providers: [
     {

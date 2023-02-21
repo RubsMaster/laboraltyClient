@@ -50,71 +50,49 @@
 
 
           <c-row style="margin-bottom: 2%">
-
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input cFormControl id="email" type="text" class="form-control" name="email"
-                  formControlName="email" placeholder="email" />
+                <input cFormControl id="email" type="text" class="form-control" name="email" formControlName="email"
+                  placeholder="email" />
                 <label for="email">Email</label>
-              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
-                *ngIf="this.createUserForm.get('email')?.errors?.['required'] && this.createUserForm.get('email')?.touched">
-                El email <strong> es obligatorio</strong>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('email')?.errors?.['required'] && this.createUserForm.get('email')?.touched">
+                  El email <strong> es obligatorio</strong>
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('email')?.errors?.['email'] && this.createUserForm.get('email')?.touched">
+                  El email debe ser <strong> valido </strong>
+                </div>
               </div>
-              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
-                *ngIf="this.createUserForm.get('email')?.errors?.['email'] && this.createUserForm.get('email')?.touched">
-                El email debe ser <strong> valido </strong>
-              </div>
-            </div>
             </c-col>
 
-            <c-col [md]="4" class="form-floating mb-3">
-        
-               
-                <input type="text" class="form-control" id="mobilePhoneNumber" placeholder="Teléfono móvil"
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="mobilePhoneNumber" placeholder="Teléfono móvil"
                   formControlName="mobilePhoneNumber" />
-                  <label for="email">Teléfono movil</label>
-            
-              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
-                *ngIf="
-                  this.createUserForm.get('mobilePhoneNumber')?.errors?.['required'] && 
-                  
-                  (this.createUserForm.get('mobilePhoneNumber')?.dirty || this.createUserForm.get('mobilePhoneNumber')?.touched)">
-                <div *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['required']">
+                <label for="mobilePhoneNumber">Teléfono móvil</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('mobilePhoneNumber')?.hasError?.('required') && this.createUserForm.get('mobilePhoneNumber')?.touched">
                   El numero telefonico<strong> es obligatorio</strong>
                 </div>
-                <div *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['minlength']">
-                  Fisrt Name must be at least 10 characters long.
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['pattern'] && this.createUserForm.get('mobilePhoneNumber')?.touched">
+                  El numero telefonico debe contener <strong> 10 dígitos</strong>
                 </div>
-                <div *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['maxlength']">
-                  Fisrt Name must be at least 10 characters long.
-                </div>
-              </div> 
-              
-              
+              </div>
             </c-col>
-            <c-col [md]="4" class="form-floating mb-3">
-        
-               
-              <input type="text" class="form-control" id="officePhoneNumber" placeholder="Teléfono de oficina"
-                formControlName="officePhoneNumber" />
+
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="officePhoneNumber" placeholder="Teléfono de oficina"
+                  formControlName="officePhoneNumber" />
                 <label for="officePhoneNumber">Teléfono de oficina</label>
-          
-            <div class="alert alert-danger" role="alert" style="margin-top: 3px"
-              *ngIf="
-                this.createUserForm.get('officePhoneNumber')?.errors?.['required'] && 
-                (this.createUserForm.get('officePhoneNumber')?.dirty || this.createUserForm.get('officePhoneNumber')?.touched)">
-              <div *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['required']">
-                El numero telefonico<strong> es obligatorio</strong>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['pattern'] && this.createUserForm.get('officePhoneNumber')?.touched">
+                  El numero telefonico debe contener <strong> 10 dígitos</strong>
+                </div>
               </div>
-              <div *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['minlength']">
-                Fisrt Name must be at least 10 characters long.
-              </div>
-              <div *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['maxlegth']">
-                Fisrt Name must be at least 10 characters long.
-              </div>
-            </div> 
-            
-          </c-col>
+            </c-col>
           </c-row>
 
           <c-row>
@@ -158,31 +136,50 @@
             </c-col>
 
             <c-col [md]="4">
-              <label for="autoSizingInputGroup">Codigo Postal</label>
-              <div class="input-group">
-                <div class="input-group-text">#</div>
-                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
-                  formControlName="zipCode" />
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="zipCode" placeholder="Código postal"
+                  formControlName="postalCode" />
+                <label for="zipCode">Código postal</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('postalCode')?.hasError?.('required') && this.createUserForm.get('postalCode')?.touched">
+                  El código postal<strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
 
             <c-col [md]="4">
-              <label for="autoSizingInputGroup">No. Exterior</label>
-              <div class="input-group">
-                <div class="input-group-text">#</div>
-                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="outdoorNumber" placeholder="Número exterior"
                   formControlName="outdoorNumber" />
+                <label for="outdoorNumber">Número exterior</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched">
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createUserForm.get('outdoorNumber')?.touched">
+                El numero exterior<strong> es muy largo</strong>
+              </div>
               </div>
             </c-col>
 
             <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="innerNumber" placeholder="Número exterior"
+                  formControlName="innerNumber" />
+                <label for="innerNumber">Número interior</label>
+                
+              </div>
+            </c-col>
+
+            <!-- <c-col [md]="4">
               <label for="autoSizingInputGroup">No. Interior</label>
               <div class="input-group">
                 <div class="input-group-text">#</div>
                 <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
                   formControlName="innerNumber" />
               </div>
-            </c-col>
+            </c-col> -->
           </c-row>
 
           <c-row style="margin-bottom: 2%">
@@ -196,13 +193,21 @@
                 <input type="text" class="form-control" id="totalEmployees" placeholder="Empleados asignables"
                   formControlName="totalEmployees" />
                 <label for="street">Empleados Asignables</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('totalEmployees')?.hasError?.('required') && this.createUserForm.get('totalEmployees')?.touched">
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
 
             <c-col [md]="3">
               <div class="form-floating">
-                <input type="text" class="form-control" id="totalRFC" placeholder="" formControlName="totalRFC" />
+                <input type="text" class="form-control" id="totalRFC" placeholder="RFC asignables" formControlName="totalRFC" />
                 <label for="totalRFC">RFC asignables</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('totalRFC')?.hasError?.('required') && this.createUserForm.get('totalRFC')?.touched">
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
 
@@ -211,22 +216,34 @@
                 <input type="text" class="form-control" id="userAssigned" placeholder="Nombre de usuario"
                   formControlName="userAssigned" />
                 <label for="userAssigned">Nombre de usuario</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('userAssigned')?.hasError?.('required') && this.createUserForm.get('userAssigned')?.touched">
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
 
             <c-col [md]="3">
               <div class="form-floating">
-                <input type="text" class="form-control" id="passwordAssigned" placeholder="passwordAssigned"
+                <input type="password" class="form-control" id="passwordAssigned" placeholder="passwordAssigned"
                   formControlName="passwordAssigned" />
                 <label for="passwordAssigned">Contraseña</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('passwordAssigned')?.hasError?.('required') && this.createUserForm.get('passwordAssigned')?.touched">
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
 
             <c-col [md]="2">
-              <div class="input-group">
-                <div class="input-group-text">$</div>
-                <input type="text" class="form-control" id="monthlyDebt" name="monthlyDebt"
+              <div class="form-floating">
+                <input type="number" class="form-control" id="monthlyDebt" name="monthlyDebt"
                   formControlName="monthlyDebt" />
+                  <label for="monthlyDebt">Contraseña</label>
+                  <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched">
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
           </c-row>
