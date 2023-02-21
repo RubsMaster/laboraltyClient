@@ -44,6 +44,11 @@ const routes: Routes = [
             (m) => m.DocumentsModule
           ),
       },
+      { path: 'textEditor',
+        loadChildren: () =>
+          import('./views/admin/text-editor/text-editor.module').then(
+            (m) => m.TextEditorModule) 
+      },
       {
         path: "dashboard",
         loadChildren: () =>
@@ -155,7 +160,7 @@ const routes: Routes = [
   },
 
 
-  { path: "**", redirectTo: "dashboard" },
+  { path: "**", redirectTo: "adminDashboard" },
 ];
 
 @NgModule({

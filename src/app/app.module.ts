@@ -43,8 +43,10 @@ import {
   SharedModule,
   SidebarModule,
   TabsModule,
-  UtilitiesModule,
+  UtilitiesModule
 } from '@coreui/angular';
+
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
@@ -123,6 +125,7 @@ const APP_CONTAINERS = [
     DropdownModule,
     SharedModule,
     ListGroupModule,
+    RichTextEditorAllModule
   ],
   providers: [
     {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
+import { ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
+
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
@@ -9,6 +11,7 @@ import { Title } from '@angular/platform-browser';
   // tslint:disable-next-line:component-selector
   selector: 'body',
   template: '<router-outlet></router-outlet>',
+  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService]
 })
 export class AppComponent implements OnInit {
   title = 'Laboralty';

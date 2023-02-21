@@ -100,7 +100,7 @@
                     name="uniqueFields"
                     formControlName="uniqueFields"
                     id="uniqueFields"
-                    (change)="showUniqueFields($event);"
+                    (change)="showUniqueFields($event)"
                   />
                 </c-form-check>
               </div>
@@ -110,10 +110,13 @@
           <!-- ------------------------------------------------------------------------
            -->
 
-          <hr *ngIf="isDisplayed"/>
+          <hr *ngIf="isDisplayed" />
 
           <h4 *ngIf="isDisplayed">Campos únicos</h4>
-          <p *ngIf="isDisplayed">Esta sección permite delimitar campos únicos que serán agregados a <strong>este documento únicamente</strong></p>
+          <p *ngIf="isDisplayed">
+            Esta sección permite delimitar campos únicos que serán agregados a
+            <strong>este documento únicamente</strong>
+          </p>
           <c-col [md]="6" *ngIf="isDisplayed">
             <input
               type="text"
@@ -320,16 +323,37 @@
                   role="group"
                   sizing="lg"
                 >
+
+
+                
+
+
                   <button
                     cButton
                     color="dark"
                     variant="outline"
-                    (click)="setUpdate(doc)"
+                    cOffcanvasToggle="OffcanvasStart"
                   >
                     Editar
                   </button>
-                  <button cButton color="dark" variant="outline">Moral</button>
-                  <button cButton color="dark" variant="outline">Fisica</button>
+
+                  
+                  <button
+                    cButton
+                    color="dark"
+                    variant="outline"
+                    routerLink="/textEditor"
+                  >
+                    Moral
+                  </button>
+                  <button
+                    cButton
+                    color="dark"
+                    variant="outline"
+                    routerLink="/textEditor"
+                  >
+                    Fisica
+                  </button>
                 </c-button-group>
               </td>
             </tr>
