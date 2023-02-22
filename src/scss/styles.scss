@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import '~quill/dist/quill.bubble.css'; 
+// or
+@import '~quill/dist/quill.snow.css';
+
 // If you want to override variables do it here
 @import "variables";
 

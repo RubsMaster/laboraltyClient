@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from "@angular/common/http";
+import { QuillModule } from 'ngx-quill'
 
 
 // Import routing module
@@ -116,7 +117,8 @@ const APP_CONTAINERS = [
     DropdownModule,
     SharedModule,
     ListGroupModule,
-    RichTextEditorAllModule
+    RichTextEditorAllModule,
+    QuillModule.forRoot()
   ],
   providers: [
     {
