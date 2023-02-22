@@ -34,7 +34,6 @@
     "@syncfusion/ej2-angular-documenteditor": "^20.4.50",
     "@syncfusion/ej2-angular-richtexteditor": "^20.4.50",
     "chart.js": "^3.9.1",
-    "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

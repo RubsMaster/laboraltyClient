@@ -6,11 +6,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from "@angular/common/http";
 
-import {
-  PERFECT_SCROLLBAR_CONFIG,
-  PerfectScrollbarConfigInterface,
-  PerfectScrollbarModule,
-} from 'ngx-perfect-scrollbar';
 
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
@@ -69,9 +64,6 @@ import { ValidationComponent } from './views/forms/validation/validation.compone
 
 
 
-const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true,
-};
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -95,7 +87,6 @@ const APP_CONTAINERS = [
     HeaderModule,
     SidebarModule,
     IconModule,
-    PerfectScrollbarModule,
     NavModule,
     ButtonModule,
     FormModule,
@@ -131,10 +122,6 @@ const APP_CONTAINERS = [
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
-    },
-    {
-      provide: PERFECT_SCROLLBAR_CONFIG,
-      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
     IconSetService,
     Title
