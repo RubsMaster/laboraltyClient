@@ -9,13 +9,6 @@ import { RegisterComponent } from './views/pages/register/register.component';
 import * as path from 'path';
 
 const routes: Routes = [
-  // {
-  //   // path: '/add',
-  //   // component: AddEditEmployeeComponent
-  //   // path: '/add',
-  //   // redirectTo: 'dashboard',
-  //   // pathMatch: 'full'
-  // },
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -30,6 +23,7 @@ const routes: Routes = [
             (m) => m.AdminDashboardModule
           ),
       },
+      { path: 'textEditor', loadChildren: () => import('./views/admin/text-editor/text-editor.module').then(m => m.TextEditorModule) },
       {
         path: "employees",
         loadChildren: () =>
@@ -43,11 +37,6 @@ const routes: Routes = [
           import("./views/documents/documents.module").then(
             (m) => m.DocumentsModule
           ),
-      },
-      { path: 'textEditor',
-        loadChildren: () =>
-          import('./views/admin/text-editor/text-editor.module').then(
-            (m) => m.TextEditorModule) 
       },
       {
         path: "dashboard",
@@ -124,10 +113,12 @@ const routes: Routes = [
             (m) => m.CompaniesModule
           ),
       },
-      { path: 'users', 
-        loadChildren: () => 
-        import('./views/admin/users/users.module').then(
-          m => m.UsersModule) },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./views/admin/users/users.module').then(
+            m => m.UsersModule)
+      },
     ],
   },
   {
@@ -158,8 +149,6 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
-
-
   { path: "**", redirectTo: "adminDashboard" },
 ];
 

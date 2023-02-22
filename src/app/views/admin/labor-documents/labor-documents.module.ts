@@ -7,6 +7,7 @@ import { LaborDocumentsComponent } from './labor-documents.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from '@coreui/icons-angular';
 
+
 import {
   NavModule,
   ProgressModule,
@@ -26,19 +27,11 @@ import {
   SharedModule
 } from '@coreui/angular';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 import { FormsRoutingModule } from '../../forms/forms-routing.module';
-
-
-import { RangesComponent } from '../../../views/forms/ranges/ranges.component';
-import { FloatingLabelsComponent } from '../../../views/forms/floating-labels/floating-labels.component';
-import { FormControlsComponent } from '../../../views/forms/form-controls/form-controls.component';
-import { SelectComponent } from '../../../views/forms/select/select.component';
-import { ChecksRadiosComponent } from '../../../views/forms/checks-radios/checks-radios.component';
-import { InputGroupsComponent } from '../../../views/forms/input-groups/input-groups.component';
-import { LayoutComponent } from '../../../views/forms/layout/layout.component';
-import { ValidationComponent } from '../../../views/forms/validation/validation.component';
 
 
 @NgModule({
@@ -93,7 +86,8 @@ import { ValidationComponent } from '../../../views/forms/validation/validation.
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
-    ListGroupModule
+    ListGroupModule,
+    NgxPaginationModule
   ]
 })
 export class LaborDocumentsModule { 

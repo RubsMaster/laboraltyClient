@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { TextEditorRoutingModule } from './text-editor-routing.module';
 import { TextEditorComponent } from './text-editor.component';
 
+import { QuillModule } from "ngx-quill";
+
 
 @NgModule({
   declarations: [
@@ -11,7 +13,8 @@ import { TextEditorComponent } from './text-editor.component';
   ],
   imports: [
     CommonModule,
-    TextEditorRoutingModule
+    TextEditorRoutingModule,
+    QuillModule
   ]
 })
 export class TextEditorModule { }

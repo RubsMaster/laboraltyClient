@@ -1,4 +1,4 @@
-<app-widgets-dropdown></app-widgets-dropdown>
+<!-- <app-widgets-dropdown></app-widgets-dropdown> -->
 
 <!-- Tabla empleados  -->
 <c-row>
@@ -73,20 +73,13 @@
         </c-card-body>
 
         <c-card-footer >
-          <c-button-group aria-label="First group" class="me-2" role="group" style="float: right;">
-            <button cButton color="secondary" variant="outline">
-              1
-            </button>
-            <button cButton color="secondary" variant="outline">
-              2
-            </button>
-            <button cButton color="secondary" variant="outline">
-              3
-            </button>
-            <button cButton color="secondary" variant="outline">
-              4
-            </button>
-          </c-button-group>
+          <pagination-controls
+            class=""
+            style="float: right"
+            previousLabel=" "
+            nextLabel=" "
+            (pageChange)="p = $event"
+          ></pagination-controls>
         </c-card-footer>
 
       </c-card>

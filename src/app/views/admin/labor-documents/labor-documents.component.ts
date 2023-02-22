@@ -13,7 +13,9 @@ import { LaborDocumentsService } from "../../../services/labor-documents/labor-d
 export class LaborDocumentsComponent implements OnInit {
 
   laborDocumentForm!: FormGroup;
-
+  p:number = 1;
+  itemsPerPage:number = 8;
+  totalDocs:any;
   docName = new FormControl('', Validators.required);
 
   idDoc: string="";
@@ -49,6 +51,7 @@ export class LaborDocumentsComponent implements OnInit {
   getDocs() {
     this.DocumentsService.getDocs().subscribe(data => {
       this.ListDocs = data.reverse();
+      this.totalDocs = data.length;
     })
   }
 

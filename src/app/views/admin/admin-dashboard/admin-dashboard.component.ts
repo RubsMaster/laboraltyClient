@@ -22,6 +22,9 @@ import { AlertsComponent } from '../../notifications/alerts/alerts.component';
   styleUrls: ['./admin-dashboard.component.scss']
 })
 export class AdminDashboardComponent implements OnInit {
+  
+  p:number = 1;
+  itemsPerPage:number = 8;
 
   constructor(
     private userService: UsersService,

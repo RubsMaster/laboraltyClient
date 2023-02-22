@@ -8,6 +8,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { QuillModule } from 'ngx-quill'
 
 
+
+
 // Import routing module
 import { AppRoutingModule } from './app-routing.module';
 
@@ -42,8 +44,6 @@ import {
   UtilitiesModule
 } from '@coreui/angular';
 
-import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
-
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 import { CommonModule } from '@angular/common';
@@ -54,14 +54,14 @@ import { FormsModule } from '@angular/forms';
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 import { FormsRoutingModule } from './views/forms/forms-routing.module';
-import { RangesComponent } from './views/forms/ranges/ranges.component';
-import { FloatingLabelsComponent } from './views/forms/floating-labels/floating-labels.component';
-import { FormControlsComponent } from './views/forms/form-controls/form-controls.component';
-import { SelectComponent } from './views/forms/select/select.component';
-import { ChecksRadiosComponent } from './views/forms/checks-radios/checks-radios.component';
-import { InputGroupsComponent } from './views/forms/input-groups/input-groups.component';
-import { LayoutComponent } from './views/forms/layout/layout.component';
-import { ValidationComponent } from './views/forms/validation/validation.component';
+// import { RangesComponent } from './views/forms/ranges/ranges.component';
+// import { FloatingLabelsComponent } from './views/forms/floating-labels/floating-labels.component';
+// import { FormControlsComponent } from './views/forms/form-controls/form-controls.component';
+// import { SelectComponent } from './views/forms/select/select.component';
+// import { ChecksRadiosComponent } from './views/forms/checks-radios/checks-radios.component';
+// import { InputGroupsComponent } from './views/forms/input-groups/input-groups.component';
+// import { LayoutComponent } from './views/forms/layout/layout.component';
+// import { ValidationComponent } from './views/forms/validation/validation.component';
 
 
 
@@ -117,7 +117,6 @@ const APP_CONTAINERS = [
     DropdownModule,
     SharedModule,
     ListGroupModule,
-    RichTextEditorAllModule,
     QuillModule.forRoot()
   ],
   providers: [

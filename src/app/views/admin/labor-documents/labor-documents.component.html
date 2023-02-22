@@ -231,30 +231,6 @@
               <option>Fecha</option>
             </select>
           </c-col>
-
-          <!-- <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="uniqueName"
-              formControlName="uniqueName"
-              name="uniqueName"
-              placeholder="uniqueName"
-            />
-          </div>
-
-          <div class="form-floating">
-            <select
-              cSelect
-              id="docType"
-              class="form-control"
-              name="docType"
-              formControlName="type"
-            >
-              <option>Empleado</option>
-              <option>Empresa</option>
-            </select>
-          </div> -->
         </form>
       </c-card-body>
 
@@ -304,7 +280,12 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let doc of ListDocs | slice : 0 : 10; index as i">
+            <tr
+              *ngFor="
+                let doc of ListDocs
+                  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }
+              "
+            >
               <!-- Empleado -->
               <td>
                 {{ doc.name }}
@@ -323,11 +304,6 @@
                   role="group"
                   sizing="lg"
                 >
-
-
-                
-
-
                   <button
                     cButton
                     color="dark"
@@ -337,7 +313,6 @@
                     Editar
                   </button>
 
-                  
                   <button
                     cButton
                     color="dark"
@@ -361,7 +336,17 @@
         </table>
       </c-card-body>
 
-      <c-card-footer> </c-card-footer>
+      <c-card-footer>
+        <div class="mt-8 py-5 felx justyfy-center">
+          <pagination-controls
+            class=""
+            style="float: right"
+            previousLabel=" "
+            nextLabel=" "
+            (pageChange)="p = $event"
+          ></pagination-controls>
+        </div>
+      </c-card-footer>
     </c-card>
   </c-col>
 </c-row>

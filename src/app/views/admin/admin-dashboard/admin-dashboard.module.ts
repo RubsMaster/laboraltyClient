@@ -24,6 +24,7 @@ import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 import { WidgetsModule } from "../../widgets/widgets.module";
 import { EmployeesModule } from "../../employees/employees.module";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 interface IUser {
   idEmployee: number;
@@ -100,8 +101,9 @@ import { ValidationComponent } from '../../../views/forms/validation/validation.
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
-    ListGroupModule
+    ListGroupModule,
+    NgxPaginationModule
   ]
 })
 
-export class AdminDashboardModule { }
+export class AdminDashboardModule {}
