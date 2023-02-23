@@ -6,6 +6,12 @@ import { TextEditorComponent } from './text-editor.component';
 
 import { QuillModule } from "ngx-quill";
 
+import {
+  GridModule,
+  ButtonModule,
+  CardModule
+} from '@coreui/angular';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +20,10 @@ import { QuillModule } from "ngx-quill";
   imports: [
     CommonModule,
     TextEditorRoutingModule,
-    QuillModule
+    QuillModule,
+    GridModule,
+    ButtonModule,
+    CardModule
   ]
 })
 export class TextEditorModule { }

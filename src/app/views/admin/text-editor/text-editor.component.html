@@ -1,3 +1,43 @@
-<p>text-editor works!</p>
+<c-row>
+  <c-col>
+    <c-container>
+      <c-card class="mb-4 pb-1">
+        <c-card-header>
+          <h1>Palabras reservadas</h1>
+        </c-card-header>
 
-<quill-editor></quill-editor>
+        <c-card-body> </c-card-body>
+      </c-card>
+    </c-container>
+  </c-col>
+</c-row>
+
+<c-row>
+  <c-col>
+    <c-container>
+      <c-card class="mb-4 pb-1">
+        <c-card-header>
+          <h1>Editor de textos</h1>
+        </c-card-header>
+
+        <c-card-body style="height: 600px">
+          <c-container style="height: 90%" class="mt-2">
+            <quill-editor id="editor"></quill-editor>
+          </c-container>
+        </c-card-body>
+
+        <c-card-footer>
+          <button
+            cButton
+            color="info"
+            style="float: right"
+            id="btnSubmit"
+            type="submit"
+          >
+            + Guardar
+          </button>
+        </c-card-footer>
+      </c-card>
+    </c-container>
+  </c-col>
+</c-row>

@@ -7,7 +7,6 @@ import {
   FormArray,
   Validators
 } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
 
 import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
@@ -56,27 +55,6 @@ export class UsersComponent implements OnInit {
   }
 
   UserArray: UserModel[] = [];
-
-  
-  // businessName = new FormControl('',Validators.required)
-  // RFC = new FormControl('',Validators.required)
-  // lastNameTitular = new FormControl('',Validators.required)
-  // email = new FormControl('',Validators.required)
-  // street = new FormControl('',Validators.required)
-  // innerNumber = new FormControl('',Validators.required)
-  // outdoorNumber = new FormControl('',Validators.required)
-  // zipCode = new FormControl('',Validators.required)
-  // suburb = new FormControl('',Validators.required)
-  // city = new FormControl('',Validators.required)
-  // state = new FormControl('',Validators.required)
-  // officePhoneNumber = new FormControl('',Validators.required)
-  // mobilePhoneNumber = new FormControl('',Validators.required)
-  // totalEmployees = new FormControl('',Validators.required)
-  // totalRFC = new FormControl('',Validators.required)
-  // monthlyDebt = new FormControl('',Validators.required)
-  // userAssigned = new FormControl('',Validators.required)
-  // passwordAssigned = new FormControl('',Validators.required)
-
 
   ngOnInit(): void {
     this.createUserForm.reset();

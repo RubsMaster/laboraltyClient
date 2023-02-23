@@ -32,4 +32,8 @@ export class LaborDocumentsService {
   createDoc(doc: laborDocuments): Observable<any> {
     return this.http.post(this.URI_API + "createDoc", doc);
   }
+
+  // saveTextDoc(text: laborDocuments): Observable<any> {
+  //   return this.http.post(this)
+  // }
 }
