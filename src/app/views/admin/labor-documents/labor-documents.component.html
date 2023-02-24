@@ -117,7 +117,7 @@
             Esta sección permite delimitar campos únicos que serán agregados a
             <strong>este documento únicamente</strong>
           </p>
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <input
               type="text"
               class="form-control"
@@ -128,20 +128,21 @@
             />
           </c-col>
 
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <select
               cSelect
               id="uniqueType"
               class="form-control"
               name="uniqueType"
               formControlName="uniqueType"
+              placeholder="Tipo"
             >
               <option>Texto</option>
               <option>Fecha</option>
             </select>
           </c-col>
           <!--  -->
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <input
               type="text"
               class="form-control"
@@ -151,20 +152,21 @@
               placeholder="Nombre"
             />
           </c-col>
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <select
               cSelect
               id="uniqueType1"
               class="form-control"
               name="uniqueType1"
               formControlName="uniqueType1"
+              placeholder="Tipo"
             >
               <option>Texto</option>
               <option>Fecha</option>
             </select>
           </c-col>
           <!--  -->
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <input
               type="text"
               class="form-control"
@@ -174,20 +176,21 @@
               placeholder="Nombre"
             />
           </c-col>
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <select
               cSelect
               id="uniqueType2"
               class="form-control"
               name="uniqueType2"
               formControlName="uniqueType2"
+              placeholder="Tipo"
             >
               <option>Texto</option>
               <option>Fecha</option>
             </select>
           </c-col>
           <!--  -->
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <input
               type="text"
               class="form-control"
@@ -197,19 +200,20 @@
               placeholder="Nombre"
             />
           </c-col>
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <select
               cSelect
               id="uniqueType3"
               class="form-control"
               name="uniqueType3"
               formControlName="uniqueType3"
+              placeholder="Tipo"
             >
               <option>Texto</option>
               <option>Fecha</option>
             </select>
           </c-col>
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <input
               type="text"
               class="form-control"
@@ -219,19 +223,33 @@
               placeholder="Nombre"
             />
           </c-col>
-          <c-col [md]="6" *ngIf="isDisplayed">
+          <c-col [md]="3" *ngIf="isDisplayed">
             <select
               cSelect
               id="uniqueType4"
               class="form-control"
               name="uniqueType4"
               formControlName="uniqueType4"
+              placeholder="Tipo"
             >
               <option>Texto</option>
               <option>Fecha</option>
             </select>
           </c-col>
         </form>
+
+        <hr>
+
+        <div style="height: 600px;">
+          <c-container style="height: 90%" class="mt-2">
+            <quill-editor
+              id="txtContent"
+              [modules]="modulesQuill"
+              (onEditorChanged)="onChangedEditor($event)"
+            ></quill-editor>
+          </c-container>
+        </div>
+
       </c-card-body>
 
       <c-card-footer>

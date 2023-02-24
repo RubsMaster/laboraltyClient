@@ -7,6 +7,8 @@ import { LaborDocumentsComponent } from './labor-documents.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from '@coreui/icons-angular';
 
+import { QuillModule } from "ngx-quill";
+
 
 import {
   NavModule,
@@ -87,7 +89,8 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
     DropdownModule,
     SharedModule,
     ListGroupModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    QuillModule
   ]
 })
 export class LaborDocumentsModule { 

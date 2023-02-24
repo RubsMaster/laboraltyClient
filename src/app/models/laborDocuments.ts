@@ -3,5 +3,6 @@ export interface laborDocuments {
     type: String;
     isAvailable: Boolean;
     isImmediate: Boolean;
-    uniqueFields: Boolean
+    uniqueFields: Boolean;
+    text: String;
   }

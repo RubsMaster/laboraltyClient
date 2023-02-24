@@ -1,6 +1,5 @@
-  import { Component, OnInit } from '@angular/core';
-import { FormControl, AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
@@ -12,6 +11,23 @@ import { LaborDocumentsService } from "../../../services/labor-documents/labor-d
 })
 export class LaborDocumentsComponent implements OnInit {
 
+  public modulesQuill = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ font: [] }],
+      [{ color: [] }, { background: [] }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ align: [] }],
+      ['blockquote', 'code-block'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ]
+  };
+
+  public htmlContent: any;
+
   laborDocumentForm!: FormGroup;
   p:number = 1;
   itemsPerPage:number = 8;
@@ -21,21 +37,43 @@ export class LaborDocumentsComponent implements OnInit {
   idDoc: string="";
   name: string="";
   type: string="";
+  text: string="";
   isAvailable: boolean=false;
   isImmediate: boolean=false;
   uniqueFields:  boolean=false;
 
+  uniqueName: string="";
+  uniqueType: string="";
+  uniqueName1: string="";
+  uniqueType1: string="";
+  uniqueName2: string="";
+  uniqueType2: string="";
+  uniqueName3: string="";
+  uniqueType3: string="";
+  uniqueName4: string="";
+  uniqueType4: string="";
+
+
   constructor(
     private DocumentsService: LaborDocumentsService,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {
     this.laborDocumentForm = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
       isMandatory: [''],
       isImmediate: [''],
-      uniqueFields: ['']
+      uniqueFields: [''],
+      uniqueName: [''],
+      uniqueType: [''],
+      uniqueName1: [''],
+      uniqueType1: [''],
+      uniqueName2: [''],
+      uniqueType2: [''],
+      uniqueName3: [''],
+      uniqueType3: [''],
+      uniqueName4: [''],
+      uniqueType4: ['']
     });
   }
   
@@ -62,13 +100,17 @@ export class LaborDocumentsComponent implements OnInit {
       isAvailable: this.laborDocumentForm.get('isMandatory')?.value,
       isImmediate: this.laborDocumentForm.get('isImmediate')?.value,
       uniqueFields: this.laborDocumentForm.get('uniqueFields')?.value,
+      text: this.htmlContent
     }
 
     this.DocumentsService.createDoc(doc).subscribe(data => {
+      console.log(doc);
       this.ngOnInit();
+      
     }, error => {
       console.log(error)
     })
+
 
   }
 
@@ -94,6 +136,12 @@ export class LaborDocumentsComponent implements OnInit {
  
    this.idDoc = data.id;
    console.log('test')
+  }
+
+  onChangedEditor(event: any): void {
+    if (event.html) {
+        this.htmlContent = event.html;
+      }
   }
 
 }

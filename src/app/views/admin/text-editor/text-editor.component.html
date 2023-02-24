@@ -22,7 +22,11 @@
 
         <c-card-body style="height: 600px">
           <c-container style="height: 90%" class="mt-2">
-            <quill-editor id="editor"></quill-editor>
+            <quill-editor
+              id="txtContent"
+              [modules]="modulesQuill"
+              (onEditorChanged)="onChangedEditor($event)"
+            ></quill-editor>
           </c-container>
         </c-card-body>
 
@@ -33,6 +37,7 @@
             style="float: right"
             id="btnSubmit"
             type="submit"
+            (click)="showContent()"
           >
             + Guardar
           </button>
