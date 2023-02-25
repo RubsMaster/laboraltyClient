@@ -41,7 +41,6 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
     LaborDocumentsComponent
   ],
   imports: [
-    CommonModule,
     LaborDocumentsRoutingModule,
     CommonModule,
     ReactiveFormsModule,

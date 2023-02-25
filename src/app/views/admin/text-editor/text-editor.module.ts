@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { TextEditorRoutingModule } from './text-editor-routing.module';
 import { TextEditorComponent } from './text-editor.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { QuillModule } from "ngx-quill";
 
 import {
@@ -23,7 +25,8 @@ import {
     QuillModule,
     GridModule,
     ButtonModule,
-    CardModule
+    CardModule,
+    FormsModule
   ]
 })
 export class TextEditorModule { }

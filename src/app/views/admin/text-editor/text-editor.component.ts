@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, ActivatedRoute } from "@angular/router";
+
+
+import { laborDocuments } from "../../../models/laborDocuments";
+import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
 
 @Component({
   selector: 'app-text-editor',
@@ -6,6 +11,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./text-editor.component.scss']
 })
 export class TextEditorComponent implements OnInit {
+  @ViewChild('editorSpecific') editor: any;
+  content = ''
+  identifier = ''
+
+  ListDocs: laborDocuments[] = [];
 
   public modulesQuill = {
     toolbar: [
@@ -24,7 +34,11 @@ export class TextEditorComponent implements OnInit {
 
   public htmlContent: any;
 
-  constructor() { }
+  constructor(
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private DocumentsService: LaborDocumentsService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +47,12 @@ export class TextEditorComponent implements OnInit {
     if (event.html) {
         this.htmlContent = event.html;
       }
+  }
+  
+  getText(){
+    this.DocumentsService.getTextFromDoc(this._route.snapshot.paramMap.get('id')).subscribe( data => {
+      console.log(data)
+    })
   }
 
   showContent(){

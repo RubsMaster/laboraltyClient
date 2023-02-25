@@ -243,7 +243,8 @@
         <div style="height: 600px;">
           <c-container style="height: 90%" class="mt-2">
             <quill-editor
-              id="txtContent"
+              #editor
+              [(ngModel)]="content"
               [modules]="modulesQuill"
               (onEditorChanged)="onChangedEditor($event)"
             ></quill-editor>
@@ -255,7 +256,8 @@
       <c-card-footer>
         <button
           cButton
-          color="info"
+          color="dark"
+          variant="outline"
           style="float: right"
           id="btnSubmit"
           type="submit"
@@ -326,7 +328,7 @@
                     cButton
                     color="dark"
                     variant="outline"
-                    cOffcanvasToggle="OffcanvasStart"
+                    [routerLink]="['/textEditor', doc.name]"
                   >
                     Editar
                   </button>

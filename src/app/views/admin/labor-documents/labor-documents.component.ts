@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import Quill from 'quill';
+
+import Delta from "quill-delta";
 
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
+
 
 @Component({
   selector: 'app-labor-documents',
@@ -10,21 +15,8 @@ import { LaborDocumentsService } from "../../../services/labor-documents/labor-d
   styleUrls: ['./labor-documents.component.scss']
 })
 export class LaborDocumentsComponent implements OnInit {
-
-  public modulesQuill = {
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],
-      [{ font: [] }],
-      [{ color: [] }, { background: [] }],
-      [{ size: ['small', false, 'large', 'huge'] }],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      [{ align: [] }],
-      ['blockquote', 'code-block'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image', 'video'],
-      ['clean'],
-    ]
-  };
+  @ViewChild('editor') editor: any;
+  content = ''
 
   public htmlContent: any;
 
@@ -53,11 +45,16 @@ export class LaborDocumentsComponent implements OnInit {
   uniqueName4: string="";
   uniqueType4: string="";
 
+  ListDocs: laborDocuments[] = [];
+  isDisplayed: boolean = false;
+
+  // Quill container 
 
   constructor(
     private DocumentsService: LaborDocumentsService,
     private formBuilder: FormBuilder
   ) {
+
     this.laborDocumentForm = this.formBuilder.group({
       name: new FormControl('', Validators.required),
       type: new FormControl('', Validators.required),
@@ -75,11 +72,9 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueName4: [''],
       uniqueType4: ['']
     });
-  }
-  
 
-  ListDocs: laborDocuments[] = [];
-  isDisplayed: boolean = false;
+
+  }
 
   ngOnInit(): void {
     this.getDocs();
@@ -89,28 +84,36 @@ export class LaborDocumentsComponent implements OnInit {
   getDocs() {
     this.DocumentsService.getDocs().subscribe(data => {
       this.ListDocs = data.reverse();
-      this.totalDocs = data.length;
     })
   }
 
   saveDoc() {
+
     const doc: laborDocuments = {
       name: this.laborDocumentForm.get('name')?.value,
       type: this.laborDocumentForm.get('type')?.value,
       isAvailable: this.laborDocumentForm.get('isMandatory')?.value,
       isImmediate: this.laborDocumentForm.get('isImmediate')?.value,
       uniqueFields: this.laborDocumentForm.get('uniqueFields')?.value,
-      text: this.htmlContent
+      uniqueName: this.laborDocumentForm.get('uniqueName')?.value,
+      uniqueType: this.laborDocumentForm.get('uniqueType')?.value,
+      uniqueName1: this.laborDocumentForm.get('uniqueName1')?.value,
+      uniqueType1: this.laborDocumentForm.get('uniqueType1')?.value,
+      uniqueName2: this.laborDocumentForm.get('uniqueName2')?.value,
+      uniqueType2: this.laborDocumentForm.get('uniqueType2')?.value,
+      uniqueName3: this.laborDocumentForm.get('uniqueName3')?.value,
+      uniqueType3: this.laborDocumentForm.get('uniqueType3')?.value,
+      uniqueName4: this.laborDocumentForm.get('uniqueName4')?.value,
+      uniqueType4: this.laborDocumentForm.get('uniqueType4')?.value,
+      text: this.htmlContent,
     }
 
     this.DocumentsService.createDoc(doc).subscribe(data => {
-      console.log(doc);
       this.ngOnInit();
-      
+      this.content = '';
     }, error => {
       console.log(error)
-    })
-
+    });
 
   }
 
@@ -143,6 +146,22 @@ export class LaborDocumentsComponent implements OnInit {
         this.htmlContent = event.html;
       }
   }
+
+  
+  public modulesQuill = {
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ font: [] }],
+      [{ color: [] }, { background: [] }],
+      [{ size: ['small', false, 'large', 'huge'] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ align: [] }],
+      ['blockquote', 'code-block'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image', 'video'],
+      ['clean'],
+    ]
+  };
 
 }
 

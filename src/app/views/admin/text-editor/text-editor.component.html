@@ -23,9 +23,10 @@
         <c-card-body style="height: 600px">
           <c-container style="height: 90%" class="mt-2">
             <quill-editor
-              id="txtContent"
-              [modules]="modulesQuill"
-              (onEditorChanged)="onChangedEditor($event)"
+            #editorSpecific
+            [(ngModel)]="content"
+            [modules]="modulesQuill"
+            (onEditorChanged)="onChangedEditor($event)"
             ></quill-editor>
           </c-container>
         </c-card-body>
