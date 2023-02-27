@@ -84,6 +84,7 @@ export class LaborDocumentsComponent implements OnInit {
   getDocs() {
     this.DocumentsService.getDocs().subscribe(data => {
       this.ListDocs = data.reverse();
+      this.ListDocs.values
     })
   }
 
@@ -110,6 +111,7 @@ export class LaborDocumentsComponent implements OnInit {
 
     this.DocumentsService.createDoc(doc).subscribe(data => {
       this.ngOnInit();
+      console.log(this.ListDocs)
       this.content = '';
     }, error => {
       console.log(error)
