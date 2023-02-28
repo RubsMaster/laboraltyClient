@@ -1,10 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import Quill from 'quill';
-
-import Delta from "quill-delta";
-
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
 
@@ -83,8 +79,7 @@ export class LaborDocumentsComponent implements OnInit {
 
   getDocs() {
     this.DocumentsService.getDocs().subscribe(data => {
-      this.ListDocs = data.reverse();
-      this.ListDocs.values
+      this.ListDocs = data.reverse();      
     })
   }
 
@@ -107,11 +102,11 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueName4: this.laborDocumentForm.get('uniqueName4')?.value,
       uniqueType4: this.laborDocumentForm.get('uniqueType4')?.value,
       text: this.htmlContent,
+      
     }
 
     this.DocumentsService.createDoc(doc).subscribe(data => {
       this.ngOnInit();
-      console.log(this.ListDocs)
       this.content = '';
     }, error => {
       console.log(error)

@@ -1,4 +1,4 @@
-<c-row>
+<!-- <c-row>
   <c-col>
     <c-container>
       <c-card class="mb-4 pb-1">
@@ -10,7 +10,7 @@
       </c-card>
     </c-container>
   </c-col>
-</c-row>
+</c-row> -->
 
 <c-row>
   <c-col>
@@ -23,24 +23,17 @@
         <c-card-body style="height: 600px">
           <c-container style="height: 90%" class="mt-2">
             <quill-editor
-            #editorSpecific
-            [(ngModel)]="content"
-            [modules]="modulesQuill"
-            (onEditorChanged)="onChangedEditor($event)"
+              #editorSpecific
+              [(ngModel)]="content"
+              [modules]="modulesQuill"
+              (onEditorChanged)="onChangedEditor($event)"
             ></quill-editor>
           </c-container>
         </c-card-body>
 
         <c-card-footer>
-          <button
-            cButton
-            color="info"
-            style="float: right"
-            id="btnSubmit"
-            type="submit"
-            (click)="showContent()"
-          >
-            + Guardar
+          <button cButton color="dark" variant="outline" style="float: right">
+            Guardar
           </button>
         </c-card-footer>
       </c-card>
