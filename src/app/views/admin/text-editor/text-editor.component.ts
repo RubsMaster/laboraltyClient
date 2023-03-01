@@ -41,6 +41,7 @@ export class TextEditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.getText();
   }
 
   onChangedEditor(event: any): void {
@@ -50,9 +51,10 @@ export class TextEditorComponent implements OnInit {
   }
   
   getText(){
-    this.DocumentsService.getTextFromDoc(this._route.snapshot.paramMap.get('id')).subscribe( data => {
-      console.log(data)
-    })
+    const param = this.DocumentsService.getTextFromDoc('contrato');
+    
+
+    console.log(param)
   }
 
   showContent(){

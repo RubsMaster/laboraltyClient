@@ -63,15 +63,30 @@
   
                 <!-- Acciones -->
                 <td>
+                  <c-button-group
+                 
+                  aria-label="Large button group"
+                  class="m-1"
+                  role="group"
+                  sizing="lg"
+                >
                   <button
-                  style="margin-left: 30%;"
+                  style="margin-left: 30%"
                     cButton
-                    color="dark"
+                    color="secondary"
                     variant="outline"
-                    [routerLink]="['/user']"
                   >
                     Editar
                   </button>
+
+                  <button
+                    cButton
+                    color="danger"
+                    variant="outline"
+                  >
+                    Eliminar
+                  </button>
+                </c-button-group>
                   <!-- <button (click)="deleteEmployee(user.idEmployee!)" cButton color="danger" style="float: right;"><svg cIcon name="cil-trash" size="xl"></svg></button> -->
                 </td>
   

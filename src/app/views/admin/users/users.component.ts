@@ -7,6 +7,7 @@ import {
   FormArray,
   Validators
 } from "@angular/forms";
+// import { ToastrService } from 'ngx-toastr';
 
 import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
@@ -22,6 +23,7 @@ export class UsersComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
+    // private toastr: ToastrService, 
     private userService: UsersService
   ) {
     this.createUserForm = this.formBuilder.group({
@@ -84,6 +86,7 @@ export class UsersComponent implements OnInit {
     }
 
     this.userService.createUser(user).subscribe(data => {
+      // this.toastr.success('El usuario fue registrado con exito!', 'Usuario Registrado')
       this.ngOnInit()
     }, error => {
       console.log(error)

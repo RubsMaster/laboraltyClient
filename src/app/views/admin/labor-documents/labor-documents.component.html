@@ -303,12 +303,13 @@
             <tr
               *ngFor="
                 let doc of ListDocs
-                  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }
+                  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }; index as i
               "
             >
               <!-- Empleado -->
               <td>
                 {{ doc.name }}
+                
               </td>
 
               <!-- Empresa -->
@@ -328,7 +329,7 @@
                     cButton
                     color="dark"
                     variant="outline"
-                    [routerLink]="['/textEditor', doc]"
+                    [routerLink]="['/textEditor', doc.name]"
                   >
                     Editar
                   </button>
