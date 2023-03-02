@@ -389,7 +389,7 @@
                   style="margin-top: 3px"
                   *ngIf="this.createUserForm.get('passwordAssigned')?.hasError?.('required') && this.createUserForm.get('passwordAssigned')?.touched"
                 >
-                  El numero exterior<strong> es obligatorio</strong>
+                  La constraseña<strong> es obligatoria</strong>
                 </div>
               </div>
             </c-col>
@@ -402,16 +402,19 @@
                   id="monthlyDebt"
                   name="monthlyDebt"
                   formControlName="monthlyDebt"
+                  placeholder="Deuda mensual"
                 />
-                <label for="monthlyDebt">Contraseña</label>
+                <label for="monthlyDebt">Deuda mensual</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
                   style="margin-top: 3px"
                   *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched"
                 >
-                  El numero exterior<strong> es obligatorio</strong>
+                  La deuda mensual<strong> es obligatoria</strong>
                 </div>
+
+
               </div>
             </c-col>
           </c-row>

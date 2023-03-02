@@ -54,6 +54,7 @@ import { FormsModule } from '@angular/forms';
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 import { FormsRoutingModule } from './views/forms/forms-routing.module';
+import { UsersModule } from './views/admin/users/users.module';
 // import { RangesComponent } from './views/forms/ranges/ranges.component';
 // import { FloatingLabelsComponent } from './views/forms/floating-labels/floating-labels.component';
 // import { FormControlsComponent } from './views/forms/form-controls/form-controls.component';
