@@ -41,7 +41,7 @@ export class TextEditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getText();
+    this.getDocs();
   }
 
   onChangedEditor(event: any): void {
@@ -49,12 +49,12 @@ export class TextEditorComponent implements OnInit {
         this.htmlContent = event.html;
       }
   }
-  
-  getText(){
-    const param = this.DocumentsService.getTextFromDoc('contrato');
-    
 
-    console.log(param)
+  getDocs() {
+    this.DocumentsService.getDocs().subscribe(data => {
+      this.ListDocs = data.reverse();      
+      
+    })
   }
 
   showContent(){

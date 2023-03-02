@@ -15,4 +15,6 @@ export interface laborDocuments {
   uniqueType3: String;
   uniqueName4: String;
   uniqueType4: String;
+  uniqueName5: String;
+  uniqueType5: String;
 }

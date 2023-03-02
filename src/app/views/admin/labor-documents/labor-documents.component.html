@@ -232,6 +232,31 @@
               formControlName="uniqueType4"
               placeholder="Tipo"
             >
+            
+              <option>Texto</option>
+              <option>Fecha</option>
+            </select>
+          </c-col>
+          <c-col [md]="3" *ngIf="isDisplayed">
+            <input
+              type="text"
+              class="form-control"
+              id="uniqueName4"
+              formControlName="uniqueName5"
+              name="uniqueName4"
+              placeholder="Nombre"
+            />
+          </c-col>
+          <c-col [md]="3" *ngIf="isDisplayed">
+            <select
+              cSelect
+              id="uniqueType4"
+              class="form-control"
+              name="uniqueType4"
+              formControlName="uniqueType5"
+              placeholder="Tipo"
+            >
+            
               <option>Texto</option>
               <option>Fecha</option>
             </select>
@@ -309,6 +334,7 @@
               <!-- Empleado -->
               <td>
                 {{ doc.name }}
+                
                 
               </td>
 
