@@ -44,6 +44,8 @@ export class LaborDocumentsComponent implements OnInit {
   uniqueType3: string="";
   uniqueName4: string="";
   uniqueType4: string="";
+  uniqueName5: string="";
+  uniqueType5: string="";
 
   ListDocs: laborDocuments[] = [];
   isDisplayed: boolean = false;
@@ -70,7 +72,9 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueName3: [''],
       uniqueType3: [''],
       uniqueName4: [''],
-      uniqueType4: ['']
+      uniqueType4: [''],
+      uniqueName5: [''],
+      uniqueType5: ['']
     });
 
 
@@ -105,6 +109,8 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueType3: this.laborDocumentForm.get('uniqueType3')?.value,
       uniqueName4: this.laborDocumentForm.get('uniqueName4')?.value,
       uniqueType4: this.laborDocumentForm.get('uniqueType4')?.value,
+      uniqueName5: this.laborDocumentForm.get('uniqueName5')?.value,
+      uniqueType5: this.laborDocumentForm.get('uniqueType5')?.value,
       text: this.htmlContent,
       
     }

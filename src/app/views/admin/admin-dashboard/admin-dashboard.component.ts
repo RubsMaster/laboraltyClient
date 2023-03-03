@@ -7,11 +7,7 @@ import { UsersService } from "../../../services/users/users.service";
 // models
 import { UserModel } from "../../../models/user";
 
-
-
 import { DashboardChartsData, IChartProps } from '../../dashboard/dashboard-charts-data';
-
-import { AlertsComponent } from '../../notifications/alerts/alerts.component';
 
 
 
@@ -40,14 +36,11 @@ export class AdminDashboardComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.initCharts();
     this.getAllUsers();
   }
 
   initCharts(): void {
     this.mainChart = this.chartsData.mainChart;
-    this.getAllUsers();
-
   }
 
   setTrafficPeriod(value: string): void {
@@ -55,7 +48,6 @@ export class AdminDashboardComponent implements OnInit {
     this.chartsData.initMainChart(value);
     this.initCharts();
   }
-
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe( data => {
@@ -67,7 +59,6 @@ export class AdminDashboardComponent implements OnInit {
   deleteUser(id: any) {
     this.userService.deleteUser(id).subscribe(() => {
       this.getAllUsers();
-      // alert("Borrado");
     });
   }
 }

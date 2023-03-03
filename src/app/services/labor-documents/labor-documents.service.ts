@@ -33,14 +33,4 @@ export class LaborDocumentsService {
     return this.http.post(this.URI_API + "createDoc", doc);
   }
 
-  getTextFromDoc(name: any){
-    const docJSON = this.http.get(
-      this.URI_API + "getTextFromID/" + name
-    );
-    return docJSON;
-  }
-
-  // saveTextDoc(text: laborDocuments): Observable<any> {
-  //   return this.http.post(this)
-  // }
 }
