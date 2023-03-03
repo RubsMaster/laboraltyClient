@@ -37,7 +37,7 @@
   <!-- ------------------------------------------------------------------------------------------------ -->
   
             <tbody>
-              <tr *ngFor="let user of ListUsers | slice:0:10; index as i">
+              <tr *ngFor="let user of ListUsers  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }; index as i">
                 
                 <!-- nombre del titular -->
                 <td class="text-center">
@@ -75,6 +75,7 @@
                     cButton
                     color="secondary"
                     variant="outline"
+                    [routerLink]="['/edit-user', user._id]"
                   >
                     Editar
                   </button>
@@ -83,6 +84,7 @@
                     cButton
                     color="danger"
                     variant="outline"
+                    (click)="deleteUser(user._id)"
                   >
                     Eliminar
                   </button>
@@ -96,13 +98,15 @@
         </c-card-body>
 
         <c-card-footer >
-          <pagination-controls
-            class=""
-            style="float: right"
-            previousLabel=" "
-            nextLabel=" "
-            (pageChange)="p = $event"
-          ></pagination-controls>
+          <div class="mt-8 py-5 felx justyfy-center">
+            <pagination-controls
+              class=""
+              style="float: right"
+              previousLabel=" "
+              nextLabel=" "
+              (pageChange)="p = $event"
+            ></pagination-controls>
+          </div>
         </c-card-footer>
 
       </c-card>

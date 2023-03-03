@@ -123,6 +123,8 @@ const routes: Routes = [
           import('./views/admin/users/users.module').then(
             m => m.UsersModule)
       },
+      { path: 'edit-user/:id', loadChildren: () => import('./views/admin/users/edit-user/edit-user.module').then(m => m.EditUserModule) },
+
     ],
   },
   {
@@ -153,7 +155,6 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
-  { path: 'edit-user', loadChildren: () => import('./views/admin/users/edit-user/edit-user.module').then(m => m.EditUserModule) },
   { path: "**", redirectTo: "adminDashboard" },
 ];
 

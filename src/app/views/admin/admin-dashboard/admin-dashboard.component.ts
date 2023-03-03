@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 //service
-import { EmployeesService } from 'src/app/services/employees/employees.service';
 import { UsersService } from "../../../services/users/users.service";
 
 // models
-import { EmployeesModel } from "../../../models/employees";
 import { UserModel } from "../../../models/user";
 
 
 
 import { DashboardChartsData, IChartProps } from '../../dashboard/dashboard-charts-data';
+
 import { AlertsComponent } from '../../notifications/alerts/alerts.component';
 
 
@@ -57,7 +56,6 @@ export class AdminDashboardComponent implements OnInit {
     this.initCharts();
   }
 
-  
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe( data => {
@@ -66,10 +64,10 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
-  // deleteEmployee(idEmployee: number) {
-  //   this._employeesService.deleteEmployee(idEmployee).subscribe(() => {
-  //     this.getEmployees();
-  //     alert("Borrado");
-  //   });
-  // }
+  deleteUser(id: any) {
+    this.userService.deleteUser(id).subscribe(() => {
+      this.getAllUsers();
+      // alert("Borrado");
+    });
+  }
 }
