@@ -25,6 +25,12 @@ export class LaborDocumentsService {
     return allDocumentsJSON;
   }
 
+  editText(name: string, text: string): Observable<laborDocuments[]> {
+    return this.http.put<laborDocuments[]>(
+      this.URI_API + "editText", { name, text}
+      )
+  }
+
   deleteDoc(id: number): Observable<void> {
     return this.http.delete<void>(this.URI_API + "/" + id);
   }

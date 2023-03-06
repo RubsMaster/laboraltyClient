@@ -26,13 +26,14 @@
               #editorSpecific
               [(ngModel)]="content"
               [modules]="modulesQuill"
+              (click)="saveEdit()"
               (onEditorChanged)="onChangedEditor($event)"
             ></quill-editor>
           </c-container>
         </c-card-body>
 
         <c-card-footer>
-          <button cButton color="dark" variant="outline" style="float: right">
+          <button cButton color="dark" variant="outline" style="float: right" (click)="saveEdit()">
             Guardar
           </button>
         </c-card-footer>

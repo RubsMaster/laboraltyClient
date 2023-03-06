@@ -33,6 +33,7 @@ export class TextEditorComponent implements OnInit {
   };
 
   public htmlContent: any;
+  public documento: any;
 
   constructor(
     private _router: Router,
@@ -41,7 +42,7 @@ export class TextEditorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getDocs();
+    this.getTextFromDoc();
   }
 
   onChangedEditor(event: any): void {
@@ -50,11 +51,21 @@ export class TextEditorComponent implements OnInit {
       }
   }
 
-  getDocs() {
-    this.DocumentsService.getDocs().subscribe(data => {
-      this.ListDocs = data.reverse();      
-      
+  getTextFromDoc() {
+    var index: any
+    this.DocumentsService.getDocs().subscribe( data => {
+      data.reverse();
+      index = this._route.snapshot.paramMap.get('id')
+      this.documento = data[index]
+      this.content = this.documento.text;
     })
+  }
+
+  saveEdit(){
+    this.DocumentsService.editText(this.documento.name, this.content).subscribe( data => {
+      console.log(data)
+    })
+    
   }
 
   showContent(){
