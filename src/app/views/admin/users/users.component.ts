@@ -7,6 +7,7 @@ import {
   FormArray,
   Validators
 } from "@angular/forms";
+import { ActivatedRoute } from '@angular/router';
 // import { ToastrService } from 'ngx-toastr';
 
 import { UserModel } from "../../../models/user";
@@ -19,11 +20,13 @@ import { UsersService } from "../../../services/users/users.service";
 })
 export class UsersComponent implements OnInit {
 
+  Title = 'Crear Usuario';
+  id: string | null;
   createUserForm: FormGroup;
 
   constructor(
     public formBuilder: FormBuilder,
-    // private toastr: ToastrService, 
+    private aRouter: ActivatedRoute, 
     private userService: UsersService
   ) {
     this.createUserForm = this.formBuilder.group({
@@ -54,12 +57,15 @@ export class UsersComponent implements OnInit {
       userAssigned: new FormControl("", [Validators.required]),
       passwordAssigned: new FormControl("", [Validators.required]),
     });
+    this.id =  this.aRouter.snapshot.paramMap.get(':id')
   }
 
   UserArray: UserModel[] = [];
 
   ngOnInit(): void {
+    this.isEdit();
     this.createUserForm.reset();
+   
   }
 
   saveUser() {
@@ -92,6 +98,35 @@ export class UsersComponent implements OnInit {
       console.log(error)
     })
 
+  }
+
+  isEdit() {
+    if (this.id !== null) {
+      this.Title = 'Editar Usuario';
+      this.userService.getUser(this.id).subscribe(data => {
+        this.createUserForm.setValue({
+          firstNameTitular: data.firstNameTitular,
+          lastNameTitular: data.lastNameTitular,
+          businessName: data.businessName,
+          RFC: data.RFC,
+          email: data.email,
+          mobilePhoneNumber: data.mobilePhoneNumber,
+          officePhoneNumber: data.officePhoneNumber,
+          street: data.street,
+          innerNumber: data.innerNumber,
+          outdoorNumber: data.outdoorNumber,
+          zipCode: data.zipCode,
+          suburb: data.suburb,
+          city: data.city,
+          state: data.state,
+          totalEmployees: data.totalEmployees,
+          totalRFC: data.totalRFC,
+          monthlyDebt: data.monthlyDebt,
+          userAssigned: data.userAssigned,
+          passwordAssigned: data.passwordAssigned
+        })
+      })
+    }
   }
 
 }
