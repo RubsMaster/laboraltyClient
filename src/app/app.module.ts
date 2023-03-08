@@ -55,14 +55,6 @@ import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 import { FormsRoutingModule } from './views/forms/forms-routing.module';
 import { UsersModule } from './views/admin/users/users.module';
-// import { RangesComponent } from './views/forms/ranges/ranges.component';
-// import { FloatingLabelsComponent } from './views/forms/floating-labels/floating-labels.component';
-// import { FormControlsComponent } from './views/forms/form-controls/form-controls.component';
-// import { SelectComponent } from './views/forms/select/select.component';
-// import { ChecksRadiosComponent } from './views/forms/checks-radios/checks-radios.component';
-// import { InputGroupsComponent } from './views/forms/input-groups/input-groups.component';
-// import { LayoutComponent } from './views/forms/layout/layout.component';
-// import { ValidationComponent } from './views/forms/validation/validation.component';
 
 
 
