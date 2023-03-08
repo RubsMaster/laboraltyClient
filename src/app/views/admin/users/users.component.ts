@@ -31,9 +31,9 @@ export class UsersComponent implements OnInit {
   ) {
     this.createUserForm = this.formBuilder.group({
       firstNameTitular: new FormControl("", Validators.required),
-      lastNameTitular: [""],
-      businessName: [""],
-      RFC: [""],
+      lastNameTitular: ["", Validators.required],
+      businessName: ["", Validators.required],
+      RFC: ["", Validators.required],
       email: new FormControl("", [Validators.required, Validators.email]),
       mobilePhoneNumber: new FormControl("", [
         Validators.required,
