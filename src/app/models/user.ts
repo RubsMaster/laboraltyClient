@@ -1,4 +1,5 @@
 export interface UserModel {
+    _id?: number,
     businessName: String,
     RFC: String,
     firstNameTitular: String,

@@ -47,7 +47,7 @@ export class AdminDashboardComponent implements OnInit {
     this.trafficRadioGroup.setValue({ trafficRadio: value });
     this.chartsData.initMainChart(value);
     this.initCharts();
-  }  
+  }
 
   getAllUsers() {
     this.userService.getAllUsers().subscribe( data => {
@@ -56,4 +56,9 @@ export class AdminDashboardComponent implements OnInit {
     })
   }
 
+  deleteUser(id: any) {
+    this.userService.deleteUser(id).subscribe(() => {
+      this.getAllUsers();
+    });
+  }
 }

@@ -7,6 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import * as path from 'path';
+import { UsersComponent } from './views/admin/users/users.component';
 
 const routes: Routes = [
   {
@@ -123,6 +124,13 @@ const routes: Routes = [
           import('./views/admin/users/users.module').then(
             m => m.UsersModule)
       },
+      {
+        path: "edit-user/:id",
+        component: UsersComponent,
+        data: {
+          title: "Editar usuario",
+        },
+      },
     ],
   },
   {
@@ -132,6 +140,7 @@ const routes: Routes = [
       title: "Page 404",
     },
   },
+ 
   {
     path: "500",
     component: Page500Component,
@@ -153,7 +162,6 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
-  { path: 'edit-user', loadChildren: () => import('./views/admin/users/edit-user/edit-user.module').then(m => m.EditUserModule) },
   { path: "**", redirectTo: "adminDashboard" },
 ];
 
