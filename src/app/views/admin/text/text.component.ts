@@ -6,14 +6,14 @@ import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
 
 @Component({
-  selector: 'app-text-editor',
-  templateUrl: './text-editor.component.html',
-  styleUrls: ['./text-editor.component.scss']
+  selector: 'app-text',
+  templateUrl: './text.component.html',
+  styleUrls: ['./text.component.scss']
 })
-export class TextEditorComponent implements OnInit {
+export class TextComponent implements OnInit {
   @ViewChild('editorSpecific') editor: any;
-  content = ''
-  identifier = ''
+  public content = ''
+  public identifier = ''
 
   ListDocs: laborDocuments[] = [];
 
@@ -30,8 +30,8 @@ export class TextEditorComponent implements OnInit {
       ['link', 'image', 'video'],
       ['clean'],
     ],
-
   };
+
 
   public htmlContent: any;
   public documento: any;
@@ -54,10 +54,21 @@ export class TextEditorComponent implements OnInit {
     private _route: ActivatedRoute,
     private DocumentsService: LaborDocumentsService,
   ) {
-  }
+    this.uniqueName = this.documento.uniqueName
+    this.uniqueType = this.documento.uniqueType
+    this.uniqueName1 = this.documento.uniqueName1
+    this.uniqueType1 = this.documento.uniqueType1
+    this.uniqueName2 = this.documento.uniqueName2
+    this.uniqueType2 = this.documento.uniqueType2
+    this.uniqueName3 = this.documento.uniqueName3
+    this.uniqueType3 = this.documento.uniqueType3
+    this.uniqueName4 = this.documento.uniqueName4
+    this.uniqueType4 = this.documento.uniqueType4
+    this.uniqueName5 = this.documento.uniqueName5
+    this.uniqueType5 = this.documento.uniqueType5
+   }
 
   ngOnInit(): void {
-    this.getInfoFromDoc();
   }
 
   onChangedEditor(event: any): void {
@@ -65,7 +76,6 @@ export class TextEditorComponent implements OnInit {
       this.htmlContent = event.html;
     }
   }
-
   getInfoFromDoc() {
     var index: any;
     this.DocumentsService.getDocs().subscribe(data => {
@@ -75,16 +85,13 @@ export class TextEditorComponent implements OnInit {
       this.content = this.documento.text;
     });
   }
-
   saveEdit() {
     this.DocumentsService.editText(this.documento.name, this.content).subscribe(data => {
       console.log(data);
     });
     this._router.navigate(['/', 'laborDocuments']);
   }
-
   showContent() {
     console.log(this.htmlContent);
   }
-
 }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TextEditorRoutingModule } from './text-editor-routing.module';
-import { TextEditorComponent } from './text-editor.component';
+import { TextRoutingModule } from './text-routing.module';
+import { TextComponent } from './text.component';
 
 import { FormsModule } from '@angular/forms';
 
@@ -17,11 +17,11 @@ import {
 
 @NgModule({
   declarations: [
-    TextEditorComponent
+    TextComponent
   ],
   imports: [
     CommonModule,
-    TextEditorRoutingModule,
+    TextRoutingModule,
     QuillModule,
     GridModule,
     ButtonModule,
@@ -29,4 +29,4 @@ import {
     FormsModule
   ]
 })
-export class TextEditorModule { }
+export class TextModule { }

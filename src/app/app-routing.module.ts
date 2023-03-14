@@ -17,6 +17,11 @@ const routes: Routes = [
       title: "Home",
     },
     children: [
+      { path: 'text',
+       loadChildren: () => 
+          import('./views/admin/text/text.module').then(
+            m => m.TextModule) 
+      },
       {
         path: "adminDashboard",
         loadChildren: () =>
@@ -24,7 +29,7 @@ const routes: Routes = [
             (m) => m.AdminDashboardModule
           ),
       },
-      { path: 'textEditor/:id',
+      { path: "textEditor/:id",
         loadChildren: () => 
           import('./views/admin/text-editor/text-editor.module').then(
             (m) => m.TextEditorModule) 
@@ -162,6 +167,7 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
+  
   { path: "**", redirectTo: "adminDashboard" },
 ];
 
