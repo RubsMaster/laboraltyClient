@@ -8,7 +8,6 @@ import {
   Validators
 } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
-// import { ToastrService } from 'ngx-toastr';
 
 import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
@@ -20,13 +19,33 @@ import { UsersService } from "../../../services/users/users.service";
 })
 export class UsersComponent implements OnInit {
 
+  createUserForm: FormGroup;
+
   Title = 'Crear Usuario';
   id: string | null;
-  createUserForm: FormGroup;
+  firstNameTitular: string;
+  lastNameTitular: string;
+  businessName: string;
+  RFC: string;
+  email: string;
+  mobilePhoneNumber: string;
+  officePhoneNumber: string;
+  street: string;
+  innerNumber: string;
+  outdoorNumber: string;
+  zipCode: string;
+  suburb: string;
+  city: string;
+  state: string;
+  totalEmployees: string;
+  totalRFC: string;
+  monthlyDebt: string;
+  userAssigned: string;
+  passwordAssigned: string;
 
   constructor(
     public formBuilder: FormBuilder,
-    private aRouter: ActivatedRoute, 
+    private aRouter: ActivatedRoute,
     private userService: UsersService
   ) {
     this.createUserForm = this.formBuilder.group({
@@ -57,15 +76,79 @@ export class UsersComponent implements OnInit {
       userAssigned: new FormControl("", [Validators.required]),
       passwordAssigned: new FormControl("", [Validators.required]),
     });
-    this.id =  this.aRouter.snapshot.paramMap.get(':id')
+    this.id = this.aRouter.snapshot.paramMap.get('id')
+    this.firstNameTitular = ''
+    this.lastNameTitular = ''
+    this.businessName = ''
+    this.RFC = ''
+    this.email = ''
+    this.mobilePhoneNumber = ''
+    this.officePhoneNumber = ''
+    this.street = ''
+    this.innerNumber = ''
+    this.outdoorNumber = ''
+    this.zipCode = ''
+    this.suburb = ''
+    this.city = ''
+    this.state = ''
+    this.totalEmployees = ''
+    this.totalRFC = ''
+    this.monthlyDebt = ''
+    this.userAssigned = ''
+    this.passwordAssigned = ''
   }
+
+  
 
   UserArray: UserModel[] = [];
 
   ngOnInit(): void {
-    this.isEdit();
-    this.createUserForm.reset();
-   
+    if (this.id !== null) {
+      this.Title = 'Editar Usuario';
+      this.userService
+      this.userService.getUser(this.id).subscribe(data => {
+        console.log(data)
+        this.firstNameTitular = data.firstNameTitular
+        this.lastNameTitular = data.lastNameTitular
+        this.businessName = data.businessName
+        this.RFC = data.RFC
+        this.email = data.email
+        this.mobilePhoneNumber = data.mobilePhoneNumber
+        this.officePhoneNumber = data.officePhoneNumber
+        this.street = data.street
+        this.innerNumber = data.innerNumber
+        this.outdoorNumber = data.outdoorNumber
+        this.zipCode = data.zipCode
+        this.suburb = data.suburb
+        this.city = data.city
+        this.state = data.state
+        this.totalEmployees = data.totalEmployees
+        this.totalRFC = data.totalRFC
+        this.monthlyDebt = data.monthlyDebt
+        this.userAssigned = data.userAssigned
+        this.passwordAssigned = data.passwordAssigned
+      })
+    } else {
+      this.firstNameTitular = 'Nombre(s)'
+      this.lastNameTitular = 'Apellidos'
+      this.businessName = 'Razón Social'
+      this.RFC = 'RFC'
+      this.email = 'Email'
+      this.mobilePhoneNumber = 'Teléfono móvil'
+      this.officePhoneNumber = 'Teléfono de oficina'
+      this.street = 'Calle'
+      this.innerNumber = 'Número interior'
+      this.outdoorNumber = 'Número exterior'
+      this.zipCode = 'Número interior'
+      this.suburb = 'Colonia'
+      this.city = 'Seleccione ciudad'
+      this.state = 'Estado'
+      this.totalEmployees = 'Empleados Asignables'
+      this.totalRFC = 'RFC asignables'
+      this.monthlyDebt = 'Deuda mensual'
+      this.userAssigned = 'Nombre de usuario'
+      this.passwordAssigned = 'Contraseña'
+    }
   }
 
   saveUser() {
@@ -92,41 +175,10 @@ export class UsersComponent implements OnInit {
     }
 
     this.userService.createUser(user).subscribe(data => {
-      // this.toastr.success('El usuario fue registrado con exito!', 'Usuario Registrado')
       this.ngOnInit()
     }, error => {
       console.log(error)
     })
 
   }
-
-  isEdit() {
-    if (this.id !== null) {
-      this.Title = 'Editar Usuario';
-      this.userService.getUser(this.id).subscribe(data => {
-        this.createUserForm.setValue({
-          firstNameTitular: data.firstNameTitular,
-          lastNameTitular: data.lastNameTitular,
-          businessName: data.businessName,
-          RFC: data.RFC,
-          email: data.email,
-          mobilePhoneNumber: data.mobilePhoneNumber,
-          officePhoneNumber: data.officePhoneNumber,
-          street: data.street,
-          innerNumber: data.innerNumber,
-          outdoorNumber: data.outdoorNumber,
-          zipCode: data.zipCode,
-          suburb: data.suburb,
-          city: data.city,
-          state: data.state,
-          totalEmployees: data.totalEmployees,
-          totalRFC: data.totalRFC,
-          monthlyDebt: data.monthlyDebt,
-          userAssigned: data.userAssigned,
-          passwordAssigned: data.passwordAssigned
-        })
-      })
-    }
-  }
-
 }

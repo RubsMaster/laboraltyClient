@@ -27,7 +27,7 @@
                   name="firstNameTitular"
                   placeholder="Nombres"
                 />
-                <label for="firstNameTitular">Nombre(s)</label>
+                <label for="firstNameTitular">{{ this.firstNameTitular }}</label>
 
                 <div
                   class="alert alert-danger"
@@ -51,7 +51,7 @@
                   name="lastNameTitular"
                   placeholder="Apellidos"
                 />
-                <label for="lastNameTitular">Apellidos</label>
+                <label for="lastNameTitular">{{ this.lastNameTitular }}</label>
 
                 <div
                   class="alert alert-danger"
@@ -75,7 +75,7 @@
                   name="businessName"
                   placeholder="Razón Social"
                 />
-                <label for="businessName">Razón Social</label>
+                <label for="businessName">{{this.businessName}}</label>
               </div>
               <div
                   class="alert alert-danger"
@@ -98,7 +98,7 @@
                   formControlName="RFC"
                   placeholder="RFC"
                 />
-                <label for="businessName">RFC</label>
+                <label for="businessName">{{this.RFC}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -123,7 +123,7 @@
                   formControlName="email"
                   placeholder="email"
                 />
-                <label for="email">Email</label>
+                <label for="email">{{this.email}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -152,7 +152,7 @@
                   placeholder="Teléfono móvil"
                   formControlName="mobilePhoneNumber"
                 />
-                <label for="mobilePhoneNumber">Teléfono móvil</label>
+                <label for="mobilePhoneNumber">{{this.mobilePhoneNumber}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -182,7 +182,7 @@
                   placeholder="Teléfono de oficina"
                   formControlName="officePhoneNumber"
                 />
-                <label for="officePhoneNumber">Teléfono de oficina</label>
+                <label for="officePhoneNumber">{{this.officePhoneNumber}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -211,7 +211,7 @@
                   placeholder="Calle"
                   formControlName="street"
                 />
-                <label for="street">Calle</label>
+                <label for="street">{{this.street}}</label>
               </div>
             </c-col>
 
@@ -224,7 +224,7 @@
                   placeholder="Colonia"
                   formControlName="suburb"
                 />
-                <label for="suburb">Colonia</label>
+                <label for="suburb">{{this.suburb}}</label>
               </div>
             </c-col>
 
@@ -239,7 +239,7 @@
                   <option selected>Chihuahua</option>
                   <option>...</option>
                 </select>
-                <label for="city">Seleccione ciudad</label>
+                <label for="city">{{this.city}}</label>
               </div>
             </c-col>
 
@@ -254,7 +254,7 @@
                   <option>Chihuahua</option>
                   <option>...</option>
                 </select>
-                <label for="state">Estado</label>
+                <label for="state">{{this.state}}</label>
               </div>
             </c-col>
 
@@ -267,7 +267,7 @@
                   placeholder="Código postal"
                   formControlName="postalCode"
                 />
-                <label for="zipCode">Código postal</label>
+                <label for="zipCode">{{this.zipCode}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -288,7 +288,7 @@
                   placeholder="Número exterior"
                   formControlName="outdoorNumber"
                 />
-                <label for="outdoorNumber">Número exterior</label>
+                <label for="outdoorNumber">{{this.innerNumber}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -317,7 +317,7 @@
                   placeholder="Número exterior"
                   formControlName="innerNumber"
                 />
-                <label for="innerNumber">Número interior</label>
+                <label for="innerNumber">{{this.outdoorNumber}}</label>
               </div>
             </c-col>
 
@@ -346,7 +346,7 @@
                   placeholder="Empleados asignables"
                   formControlName="totalEmployees"
                 />
-                <label for="street">Empleados Asignables</label>
+                <label for="totalEmployees">{{this.totalEmployees}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -367,7 +367,7 @@
                   placeholder="RFC asignables"
                   formControlName="totalRFC"
                 />
-                <label for="totalRFC">RFC asignables</label>
+                <label for="totalRFC">{{this.totalRFC}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -388,7 +388,7 @@
                   placeholder="Nombre de usuario"
                   formControlName="userAssigned"
                 />
-                <label for="userAssigned">Nombre de usuario</label>
+                <label for="userAssigned">{{this.userAssigned}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -409,7 +409,7 @@
                   placeholder="passwordAssigned"
                   formControlName="passwordAssigned"
                 />
-                <label for="passwordAssigned">Contraseña</label>
+                <label for="passwordAssigned">{{this.passwordAssigned}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -431,7 +431,7 @@
                   formControlName="monthlyDebt"
                   placeholder="Deuda mensual"
                 />
-                <label for="monthlyDebt">Deuda mensual</label>
+                <label for="monthlyDebt">{{this.monthlyDebt}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"

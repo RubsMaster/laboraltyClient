@@ -130,11 +130,10 @@ const routes: Routes = [
             m => m.UsersModule)
       },
       {
-        path: "edit-user/:id",
-        component: UsersComponent,
-        data: {
-          title: "Editar usuario",
-        },
+        path: 'users/:id',
+        loadChildren: () =>
+          import('./views/admin/users/users.module').then(
+            m => m.UsersModule)
       },
     ],
   },
