@@ -7,46 +7,16 @@ export const navItems: INavData[] = [
     url: '/adminDashboard',
     iconComponent: { name: 'cil-home'}
   },
-  // {
-  //   name: 'Mis Empresas',
-  //   url: '/companies',
-  //   iconComponent: { name: 'cil-briefcase' }
-  // },
-  // {
-  //   name: 'Mis sucursales',
-  //   url: '',
-  //   iconComponent: { name: 'cil-bank'}
-  // },
-  // {
-  //   name: 'Departamentos',
-  //   url: '',
-  //   iconComponent: { name: 'cil-building'}
-  // },
   {
     name: 'Usuarios',
     url: '/users',
     iconComponent: { name: 'cil-people' }
   },
-  // {
-  //   name: 'Jornadas laborales',
-  //   url: '',
-  //   iconComponent: { name: 'cil-clock' }
-  // },
-  // {
-  //   name: 'Mis empleados',
-  //   url: '/employees',
-  //   iconComponent: { name: 'cil-badge' }
-  // },
-  // {
-  //   name: 'admindashboard',
-  //   url: '/adminDashboard'
-  // },
   {
     name: 'Documentos Laborales',
     url: '/laborDocuments',
     iconComponent: { name: 'cilAlignCenter'}
-  },
-   
+  }   
 ];
 
 // export const regularNavItems: INavData[] = [
