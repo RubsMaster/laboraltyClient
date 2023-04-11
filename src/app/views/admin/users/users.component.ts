@@ -98,8 +98,6 @@ export class UsersComponent implements OnInit {
     this.passwordAssigned = ''
   }
 
-  
-
   UserArray: UserModel[] = [];
 
   ngOnInit(): void {
@@ -107,7 +105,6 @@ export class UsersComponent implements OnInit {
       this.Title = 'Editar Usuario';
       this.userService
       this.userService.getUser(this.id).subscribe(data => {
-        console.log(data)
         this.firstNameTitular = data.firstNameTitular
         this.lastNameTitular = data.lastNameTitular
         this.businessName = data.businessName
