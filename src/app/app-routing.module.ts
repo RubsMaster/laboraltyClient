@@ -166,8 +166,20 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
-  
-  { path: "**", redirectTo: "adminDashboard" },
+  {
+    path: "",
+    component: DefaultLayoutComponent,
+    data: {
+      title: "Accountant",
+    },
+    children: [    
+  { path: 'labor-file-sections', loadChildren: () => import('./views/accountant/labor-file-sections/labor-file-sections.module').then(m => m.LaborFileSectionsModule) },
+  { path: 'settings', loadChildren: () => import('./views/accountant/settings/settings.module').then(m => m.SettingsModule) },
+  { path: 'service-log', loadChildren: () => import('./views/accountant/service-log/service-log.module').then(m => m.ServiceLogModule) },
+  { path: 'clients', loadChildren: () => import('./views/accountant/clients/clients.module').then(m => m.ClientsModule) },
+  { path: 'consultants', loadChildren: () => import('./views/accountant/consultants/consultants.module').then(m => m.ConsultantsModule) }],
+    },
+  { path: "**", redirectTo: "adminDashboard" }
 ];
 
 @NgModule({

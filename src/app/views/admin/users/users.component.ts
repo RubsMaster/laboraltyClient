@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormBuilder,
   FormGroup,
-  FormArray,
   Validators
 } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
@@ -101,6 +99,9 @@ export class UsersComponent implements OnInit {
   UserArray: UserModel[] = [];
 
   ngOnInit(): void {
+    this.updateUser();
+  }
+  updateUser(){
     if (this.id !== null) {
       this.Title = 'Editar Usuario';
       this.userService
