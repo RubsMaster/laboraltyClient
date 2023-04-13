@@ -243,6 +243,7 @@
               </div>
             </c-col>
 
+            <!-- state input -->
             <c-col [md]="3">
               <div class="form-floating">
                 <select
@@ -257,7 +258,9 @@
                 <label for="state">{{this.state}}</label>
               </div>
             </c-col>
+            
 
+            <!-- zipCode input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
@@ -265,20 +268,21 @@
                   class="form-control"
                   id="zipCode"
                   placeholder="Código postal"
-                  formControlName="postalCode"
+                  formControlName="zipCode"
                 />
                 <label for="zipCode">{{this.zipCode}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
                   style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('postalCode')?.hasError?.('required') && this.createUserForm.get('postalCode')?.touched"
+                  *ngIf="this.createUserForm.get('zipCode')?.hasError?.('required') && this.createUserForm.get('zipCode')?.touched"
                 >
                   El código postal<strong> es obligatorio</strong>
                 </div>
               </div>
             </c-col>
 
+            <!-- outdoorNumber input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
@@ -308,6 +312,7 @@
               </div>
             </c-col>
 
+            <!-- innerNumber input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
@@ -321,14 +326,6 @@
               </div>
             </c-col>
 
-            <!-- <c-col [md]="4">
-              <label for="autoSizingInputGroup">No. Interior</label>
-              <div class="input-group">
-                <div class="input-group-text">#</div>
-                <input type="text" class="form-control" id="autoSizingInputGroup" placeholder=""
-                  formControlName="innerNumber" />
-              </div>
-            </c-col> -->
           </c-row>
 
           <c-row style="margin-bottom: 2%">
@@ -336,7 +333,10 @@
             <h4>Atributos en sistema</h4>
           </c-row>
 
+          
           <c-row>
+
+            <!-- totalEmployees input -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <input
@@ -358,6 +358,7 @@
               </div>
             </c-col>
 
+            <!-- totalRFC input -->
             <c-col [md]="3">
               <div class="form-floating">
                 <input
@@ -379,6 +380,7 @@
               </div>
             </c-col>
 
+            <!-- userAssigned input -->
             <c-col [md]="3">
               <div class="form-floating">
                 <input
@@ -400,6 +402,7 @@
               </div>
             </c-col>
 
+            <!-- passwordAssigned input -->
             <c-col [md]="3">
               <div class="form-floating">
                 <input
@@ -421,6 +424,7 @@
               </div>
             </c-col>
 
+            <!-- monthlyDebt input -->
             <c-col [md]="2">
               <div class="form-floating">
                 <input
@@ -440,9 +444,8 @@
                 >
                   La deuda mensual<strong> es obligatoria</strong>
                 </div>
-
-
               </div>
+
             </c-col>
           </c-row>
         </form>
@@ -451,7 +454,7 @@
       <c-card-footer>
         <button
           cButton
-          (click)="saveUser()"
+          (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()"
           color="dark"
           variant="outline"
           style="float: right"
@@ -459,7 +462,7 @@
           type="submit"
           [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid"
         >
-          + Agregar
+        {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
         </button>
       </c-card-footer>
     </c-card>

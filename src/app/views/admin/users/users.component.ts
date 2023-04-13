@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
@@ -42,6 +42,7 @@ export class UsersComponent implements OnInit {
   passwordAssigned: string;
 
   constructor(
+    private _router: Router,
     public formBuilder: FormBuilder,
     private aRouter: ActivatedRoute,
     private userService: UsersService
@@ -64,7 +65,7 @@ export class UsersComponent implements OnInit {
         Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
       ]),
       outdoorNumber: new FormControl("", [Validators.required]),
-      postalCode: new FormControl("", [Validators.required, Validators.maxLength(10)]),
+      zipCode: new FormControl("", [Validators.required, Validators.maxLength(10)]),
       suburb: new FormControl("", [Validators.required]),
       city: new FormControl("", [Validators.required]),
       state: new FormControl("", [Validators.required]),
@@ -94,6 +95,8 @@ export class UsersComponent implements OnInit {
     this.monthlyDebt = ''
     this.userAssigned = ''
     this.passwordAssigned = ''
+
+  
   }
 
   UserArray: UserModel[] = [];
@@ -159,7 +162,7 @@ export class UsersComponent implements OnInit {
       street: this.createUserForm.get('street')?.value,
       innerNumber: this.createUserForm.get('innerNumber')?.value,
       outdoorNumber: this.createUserForm.get('outdoorNumber')?.value,
-      zipCode: this.createUserForm.get('postalCode')?.value,
+      zipCode: this.createUserForm.get('zipCode')?.value,
       suburb: this.createUserForm.get('suburb')?.value,
       city: this.createUserForm.get('city')?.value,
       state: this.createUserForm.get('state')?.value,
@@ -177,6 +180,48 @@ export class UsersComponent implements OnInit {
     }, error => {
       console.log(error)
     })
-
   }
+
+  updateUser() {
+    const id = this.id ?? '';
+
+    const updatedUser: UserModel = {
+      businessName: this.createUserForm.get('businessName')?.value ?? '',
+      RFC: this.createUserForm.get('RFC')?.value ?? '',
+      firstNameTitular: this.createUserForm.get('firstNameTitular')?.value ?? '',
+      lastNameTitular: this.createUserForm.get('lastNameTitular')?.value ?? '',
+      email: this.createUserForm.get('email')?.value ?? '',
+      street: this.createUserForm.get('street')?.value ?? '',
+      innerNumber: this.createUserForm.get('innerNumber')?.value ?? '',
+      outdoorNumber: this.createUserForm.get('outdoorNumber')?.value ?? '',
+      zipCode: this.createUserForm.get('zipCode')?.value ?? '',
+      suburb: this.createUserForm.get('suburb')?.value ?? '',
+      city: this.createUserForm.get('city')?.value ?? '',
+      state: this.createUserForm.get('state')?.value ?? '',
+      totalEmployees: this.createUserForm.get('totalEmployees')?.value ?? 0,
+      totalRFC: this.createUserForm.get('totalRFC')?.value ?? 0,
+      monthlyDebt: this.createUserForm.get('monthlyDebt')?.value ?? 0,
+      userAssigned: this.createUserForm.get('userAssigned')?.value ?? '',
+      passwordAssigned: this.createUserForm.get('passwordAssigned')?.value ?? '',
+      mobilePhoneNumber: this.createUserForm.get('mobilePhoneNumber')?.value ?? '',
+      officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value ?? ''
+    };    
+
+    this.userService.updateUser(id, updatedUser).subscribe(
+      (user) => {
+        this._router.navigate(['/', 'adminDashboard']);
+        console.log("actualizado", user)
+        // Agrega aquí cualquier otra acción que desees realizar después de actualizar el usuario.
+      },
+      (error) => {
+        console.log(error);
+        // Agrega aquí cualquier acción que desees realizar en caso de que se produzca un error.
+      }
+    );
+  }
+
+  
+
+
+
 }

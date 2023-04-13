@@ -52,7 +52,6 @@ export class AdminDashboardComponent implements OnInit {
   getAllUsers() {
     this.userService.getAllUsers().subscribe( data => {
       this.ListUsers = data.reverse();
-      console.log(this.ListUsers);
     })
   }
 

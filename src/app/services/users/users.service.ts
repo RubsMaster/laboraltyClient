@@ -19,9 +19,9 @@ export class UsersService {
     return this.http.post(this.URI_API + "createUser", user)
   }
 
-  editUser(id: string, updates: any): Observable<UserModel> {    
+  updateUser(id: string, updates: any): Observable<UserModel> {
     return this.http.patch<UserModel>(
-      this.URI_API + "getUser", { id, updates}
+      `${this.URI_API}updateUser/${id}`, updates 
     )
   }
 
