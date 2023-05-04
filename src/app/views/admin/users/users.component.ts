@@ -102,9 +102,6 @@ export class UsersComponent implements OnInit {
   UserArray: UserModel[] = [];
 
   ngOnInit(): void {
-    this.updateUser();
-  }
-  updateUser(){
     if (this.id !== null) {
       this.Title = 'Editar Usuario';
       this.userService
@@ -151,6 +148,7 @@ export class UsersComponent implements OnInit {
       this.passwordAssigned = 'Contraseña'
     }
   }
+
 
   saveUser() {
     const user: UserModel = {

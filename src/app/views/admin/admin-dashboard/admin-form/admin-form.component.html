@@ -6,14 +6,14 @@
       </c-card-header>
 
       <c-card-body>
-        <form cForm class="row g-3" novalidate>
+        <form class="row g-3" novalidate>
           <c-row class="mt-2">
-            <!-- <h4>Informacion del usuario</h4> -->
+            <h4>Informacion del usuario</h4>
 
             <c-col [md]="3">
               <div class="form-floating">
 
-                <input type="file" class="form-control" id="" formControlName="logo" name=""
+                <input type="text" class="form-control" id="" formControlName="logo" name=""
                   placeholder="Seleccione el logo" />
                 <label for="logo">Seleccione el logo</label>
 
@@ -63,11 +63,11 @@
                 <!-- ------------------------------------------------------------------------------------------------ -->
 
                 <tbody>
-                  <tr *ngFor="let user of ListUsers">
+                  <tr *ngFor="let user of ListAdmins">
 
                     <!-- Empleados asignados -->
                     <td class="text-center">
-                      {{ user.totalEmployees }}
+                      {{ user.username }}
                     </td>
 
                     <!-- Acciones -->
@@ -87,8 +87,6 @@
                 </tbody>
               </table>
             </c-row>
-            <P> Nota: Si deseas aumentar o disminuir tu paquete de empleados contratados favor de ponerte en contacto
-              con el administrador del sistema.</P>
           </c-row>
         </form>
       </c-card-body>

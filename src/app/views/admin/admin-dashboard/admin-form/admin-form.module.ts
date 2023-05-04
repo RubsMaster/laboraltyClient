@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SettingsRoutingModule } from './settings-routing.module';
-import { SettingsComponent } from './settings.component';
+import { AdminFormRoutingModule } from './admin-form-routing.module';
+import { AdminFormComponent } from './admin-form.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -19,16 +19,15 @@ import {
 
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
-import { FormsRoutingModule } from '../../forms/forms-routing.module';
-
+import { FormsRoutingModule } from '../../../forms/forms-routing.module';
 
 @NgModule({
   declarations: [
-    SettingsComponent
+    AdminFormComponent
   ],
   imports: [
     CommonModule,
-    SettingsRoutingModule,
+    AdminFormRoutingModule,
     CommonModule,
     ReactiveFormsModule,
     CommonModule,
@@ -48,4 +47,4 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
     ListGroupModule
   ]
 })
-export class SettingsModule { }
+export class AdminFormModule { }

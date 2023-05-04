@@ -14,13 +14,14 @@ const routes: Routes = [
     path: "",
     component: DefaultLayoutComponent,
     data: {
-      title: "Home",
+      title: "Administrador",
     },
     children: [
-      { path: 'text',
-       loadChildren: () => 
+      {
+        path: 'text',
+        loadChildren: () =>
           import('./views/admin/text/text.module').then(
-            m => m.TextModule) 
+            m => m.TextModule)
       },
       {
         path: "adminDashboard",
@@ -29,10 +30,11 @@ const routes: Routes = [
             (m) => m.AdminDashboardModule
           ),
       },
-      { path: "textEditor/:id",
-        loadChildren: () => 
+      {
+        path: "textEditor/:id",
+        loadChildren: () =>
           import('./views/admin/text-editor/text-editor.module').then(
-            (m) => m.TextEditorModule) 
+            (m) => m.TextEditorModule)
       },
       {
         path: "employees",
@@ -135,6 +137,7 @@ const routes: Routes = [
           import('./views/admin/users/users.module').then(
             m => m.UsersModule)
       },
+      { path: 'adminForm', loadChildren: () => import('./views/admin/admin-dashboard/admin-form/admin-form.module').then(m => m.AdminFormModule) },
     ],
   },
   {
@@ -144,7 +147,7 @@ const routes: Routes = [
       title: "Page 404",
     },
   },
- 
+
   {
     path: "500",
     component: Page500Component,
@@ -170,15 +173,16 @@ const routes: Routes = [
     path: "",
     component: DefaultLayoutComponent,
     data: {
-      title: "Accountant",
+      title: "Contador",
     },
-    children: [    
-  { path: 'labor-file-sections', loadChildren: () => import('./views/accountant/labor-file-sections/labor-file-sections.module').then(m => m.LaborFileSectionsModule) },
-  { path: 'settings', loadChildren: () => import('./views/accountant/settings/settings.module').then(m => m.SettingsModule) },
-  { path: 'service-log', loadChildren: () => import('./views/accountant/service-log/service-log.module').then(m => m.ServiceLogModule) },
-  { path: 'clients', loadChildren: () => import('./views/accountant/clients/clients.module').then(m => m.ClientsModule) },
-  { path: 'consultants', loadChildren: () => import('./views/accountant/consultants/consultants.module').then(m => m.ConsultantsModule) }],
-    },
+    children: [
+      { path: 'labor-file-sections', loadChildren: () => import('./views/accountant/labor-file-sections/labor-file-sections.module').then(m => m.LaborFileSectionsModule) },
+      { path: 'settings', loadChildren: () => import('./views/accountant/settings/settings.module').then(m => m.SettingsModule) },
+      { path: 'service-log', loadChildren: () => import('./views/accountant/service-log/service-log.module').then(m => m.ServiceLogModule) },
+      { path: 'clients', loadChildren: () => import('./views/accountant/clients/clients.module').then(m => m.ClientsModule) },
+      { path: 'consultants', loadChildren: () => import('./views/accountant/consultants/consultants.module').then(m => m.ConsultantsModule) }],
+  },
+
   { path: "**", redirectTo: "adminDashboard" }
 ];
 
