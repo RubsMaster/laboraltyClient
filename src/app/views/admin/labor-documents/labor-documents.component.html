@@ -265,17 +265,6 @@
 
         <hr>
 
-        <div style="height: 600px;">
-          <c-container style="height: 90%" class="mt-2">
-            <quill-editor
-              #editor
-              [(ngModel)]="content"
-              [modules]="modulesQuill"
-              (onEditorChanged)="onChangedEditor($event)"
-            ></quill-editor>
-          </c-container>
-        </div>
-
       </c-card-body>
 
       <c-card-footer>
@@ -355,7 +344,7 @@
                     cButton
                     color="dark"
                     variant="outline"
-                    [routerLink]="['/textEditor/', i]"
+                    [routerLink]="['/textEditor/', doc._id]"
                   >
                     Editar
                   </button>

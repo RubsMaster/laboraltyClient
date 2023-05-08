@@ -98,6 +98,7 @@ export class LaborDocumentsComponent implements OnInit {
       type: this.laborDocumentForm.get('type')?.value,
       isAvailable: this.laborDocumentForm.get('isMandatory')?.value,
       isImmediate: this.laborDocumentForm.get('isImmediate')?.value,
+      isMoral:  this.laborDocumentForm.get('isImmediate')?.value,
       uniqueFields: this.laborDocumentForm.get('uniqueFields')?.value,
       uniqueName: this.laborDocumentForm.get('uniqueName')?.value,
       uniqueType: this.laborDocumentForm.get('uniqueType')?.value,
@@ -112,7 +113,6 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueName5: this.laborDocumentForm.get('uniqueName5')?.value,
       uniqueType5: this.laborDocumentForm.get('uniqueType5')?.value,
       text: this.htmlContent,
-      
     }
 
     this.DocumentsService.createDoc(doc).subscribe(data => {

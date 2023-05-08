@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
+import { text } from 'node:stream/consumers';
 
 @Component({
   selector: 'app-text-editor',
@@ -12,8 +13,9 @@ import { LaborDocumentsService } from "../../../services/labor-documents/labor-d
 })
 export class TextEditorComponent implements OnInit {
   @ViewChild('editorSpecific') editor: any;
-  content = ''
+  content: string  = "";
   identifier = ''
+  title: string = "";
 
   ListDocs: laborDocuments[] = [];
 
@@ -57,7 +59,7 @@ export class TextEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getInfoFromDoc();
+    this.getDoc();
   }
 
   onChangedEditor(event: any): void {
@@ -70,17 +72,27 @@ export class TextEditorComponent implements OnInit {
     var index: any;
     this.DocumentsService.getDocs().subscribe(data => {
       data.reverse();
-      index = this._route.snapshot.paramMap.get('id');
+      
       this.documento = data[index];
       this.content = this.documento.text;
     });
   }
 
+
+  getDoc() {
+    const id = this._route.snapshot.paramMap.get('id');
+    this.DocumentsService.getDoc(id).subscribe( data => {
+      this.documento = data
+      this.content = data.text
+      this.title = data.name
+    })
+  }
+
   saveEdit() {
-    this.DocumentsService.editText(this.documento.name, this.content).subscribe(data => {
-      console.log(data);
-    });
-    this._router.navigate(['/', 'laborDocuments']);
+     this.DocumentsService.editText(this.documento._id, this.content).subscribe(data => {
+       
+     });
+     this._router.navigate(['/', 'laborDocuments']);
   }
 
   showContent() {

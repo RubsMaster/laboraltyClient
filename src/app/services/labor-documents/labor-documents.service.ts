@@ -24,10 +24,22 @@ export class LaborDocumentsService {
     );
     return allDocumentsJSON;
   }
+  getDoc(id: any): Observable<laborDocuments> {
+    const docToEdit = this.http.get<laborDocuments>(
+      this.URI_API + "getDoc/" + id
+    )
+    return docToEdit
+  }
 
-  editText(name: string, text: string): Observable<laborDocuments[]> {
+  getTextFromDoc(id: string) {
+    const text = this.http.get(
+      this.URI_API + "getTextFromDoc/" + id
+    )
+  }
+
+  editText(id: string, text: string): Observable<laborDocuments[]> {
     return this.http.put<laborDocuments[]>(
-      this.URI_API + "editText", { name, text}
+      this.URI_API + "editText", { id, text}
       )
   }
 
