@@ -340,20 +340,22 @@
                   role="group"
                   sizing="lg"
                 >
-                  <button
+                <td>
+                  <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
+                    <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, true)">
+                      Moral
+                    </button>
+                    <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, false)">
+                      Fisica
+                    </button>
+                  </c-button-group>
+                </td>
+                
+                  <!-- <button
                     cButton
                     color="dark"
                     variant="outline"
-                    [routerLink]="['/textEditor/', doc._id]"
-                  >
-                    Editar
-                  </button>
-
-                  <button
-                    cButton
-                    color="dark"
-                    variant="outline"
-                    [routerLink]="['/textEditor/']"
+                    (click)="createMoralDoc(doc._id)"
                   >
                     Moral
                   </button>
@@ -361,10 +363,10 @@
                     cButton
                     color="dark"
                     variant="outline"
-                    [routerLink]="['/textEditor/', i]"
+                    [routerLink]="['/textEditor/', doc._id]"
                   >
                     Fisica
-                  </button>
+                  </button> -->
                 </c-button-group>
               </td>
             </tr>

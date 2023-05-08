@@ -13,10 +13,7 @@ export class LaborDocumentsService {
   URI_API = "http://localhost:4000/";
 
   constructor(private http: HttpClient) {}
-
-  getPost() {
-    return this.http.get(this.URI_API);
-  }
+  
 
   getDocs(): Observable<laborDocuments[]> {
     const allDocumentsJSON = this.http.get<laborDocuments[]>(
@@ -29,12 +26,6 @@ export class LaborDocumentsService {
       this.URI_API + "getDoc/" + id
     )
     return docToEdit
-  }
-
-  getTextFromDoc(id: string) {
-    const text = this.http.get(
-      this.URI_API + "getTextFromDoc/" + id
-    )
   }
 
   editText(id: string, text: string): Observable<laborDocuments[]> {

@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 
-
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
-import { text } from 'node:stream/consumers';
 
 @Component({
   selector: 'app-text-editor',
@@ -59,33 +57,25 @@ export class TextEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getDoc();
+    this._route.queryParams.subscribe(params => {
+      const isMoral = params['isMoral'] === 'true';
+      this.getDoc(isMoral);
+    });
   }
 
   onChangedEditor(event: any): void {
     if (event.html) {
       this.htmlContent = event.html;
     }
-  }
+  }  
 
-  getInfoFromDoc() {
-    var index: any;
-    this.DocumentsService.getDocs().subscribe(data => {
-      data.reverse();
-      
-      this.documento = data[index];
-      this.content = this.documento.text;
-    });
-  }
-
-
-  getDoc() {
+  getDoc(isMoral: boolean) {
     const id = this._route.snapshot.paramMap.get('id');
-    this.DocumentsService.getDoc(id).subscribe( data => {
-      this.documento = data
-      this.content = data.text
-      this.title = data.name
-    })
+    this.DocumentsService.getDoc(id).subscribe(data => {
+      this.documento = data;
+      this.content = data.text;
+      this.title = data.name + (isMoral ? ' | moral' : '');
+    });
   }
 
   saveEdit() {
@@ -94,6 +84,8 @@ export class TextEditorComponent implements OnInit {
      });
      this._router.navigate(['/', 'laborDocuments']);
   }
+
+
 
   showContent() {
     console.log(this.htmlContent);

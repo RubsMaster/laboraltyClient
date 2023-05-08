@@ -7,6 +7,7 @@ import Quill from 'quill';
 
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -53,6 +54,7 @@ export class LaborDocumentsComponent implements OnInit {
   // Quill container 
 
   constructor(
+    private _router: Router,
     private DocumentsService: LaborDocumentsService,
     private formBuilder: FormBuilder
   ) {
@@ -134,19 +136,44 @@ export class LaborDocumentsComponent implements OnInit {
     }
     // Add other stuff
   }
-
-  setUpdate(data: any)
-  {
-   this.name = data.namme;
-   this.type = data.type;
-   this.isAvailable = data.isAvailable;
-   this.isImmediate = data.isImmediate;
-   this.uniqueFields = data.uniqueFields;
-
- 
-   this.idDoc = data.id;
-   console.log('test')
+  redirectToEditor(docId: any, isMoral: boolean) {
+    this._router.navigate([`/textEditor/${docId}`], { queryParams: { isMoral: isMoral } });
   }
+
+  createMoralDoc(id: any) {
+    this.DocumentsService.getDoc(id).subscribe(data => {
+      if (data.isMoral) {
+        // Si el documento ya es moral, redirigir al componente TextEditor
+        this._router.navigate([`/textEditor/${data._id}`]);
+      } else {
+        const moralDoc: laborDocuments = {
+          name: data.name + '  | moral',
+          type: data.type,
+          isAvailable: data.isAvailable,
+          isImmediate: data.isImmediate,
+          isMoral: true,
+          uniqueFields: data.uniqueFields,
+          uniqueName: data.uniqueName,
+          uniqueType: data.uniqueType,
+          uniqueName1: data.uniqueName1,
+          uniqueType1: data.uniqueType1,
+          uniqueName2: data.uniqueName2,
+          uniqueType2: data.uniqueType2,
+          uniqueName3: data.uniqueName3,
+          uniqueType3: data.uniqueType3,
+          uniqueName4: data.uniqueName4,
+          uniqueType4: data.uniqueType4,
+          uniqueName5: data.uniqueName5,
+          uniqueType5: data.uniqueType5,
+          text: this.content
+        }
+        this.DocumentsService.createDoc(moralDoc).subscribe(data => {
+          this._router.navigate([`/textEditor/${data}`]);
+        });
+      }
+    });
+  }
+  
 
   onChangedEditor(event: any): void {
     if (event.html) {
