@@ -8,6 +8,7 @@ import Quill from 'quill';
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
 import { Router } from '@angular/router';
+import { created } from '@syncfusion/ej2-angular-richtexteditor';
 
 
 @Component({
@@ -83,24 +84,39 @@ export class LaborDocumentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getDocs();
     this.laborDocumentForm.reset();
   }
 
   getDocs() {
     this.DocumentsService.getDocs().subscribe(data => {
-      this.ListDocs = data.reverse();      
-    })
+      const documentosFiltrados: { [nombre: string]: laborDocuments } = {};
+  
+      for (const documento of data) {
+        const nombre = documento.name;
+  
+        if (documentosFiltrados[nombre]) {
+          if (documento.isMoral === true) {
+            documentosFiltrados[nombre] = documento;
+          }
+        } else {
+          documentosFiltrados[nombre] = documento;
+        }
+      }
+  
+      this.ListDocs = Object.values(documentosFiltrados).reverse();
+    });
   }
+  
 
   saveDoc() {
-
     const doc: laborDocuments = {
       name: this.laborDocumentForm.get('name')?.value,
       type: this.laborDocumentForm.get('type')?.value,
       isAvailable: this.laborDocumentForm.get('isMandatory')?.value,
       isImmediate: this.laborDocumentForm.get('isImmediate')?.value,
-      isMoral:  this.laborDocumentForm.get('isImmediate')?.value,
+      isMoral:  false,
       uniqueFields: this.laborDocumentForm.get('uniqueFields')?.value,
       uniqueName: this.laborDocumentForm.get('uniqueName')?.value,
       uniqueType: this.laborDocumentForm.get('uniqueType')?.value,
@@ -116,8 +132,8 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueType5: this.laborDocumentForm.get('uniqueType5')?.value,
       text: this.htmlContent,
     }
-
     this.DocumentsService.createDoc(doc).subscribe(data => {
+      console.log("Se guardo el documento: " + doc)
       this.ngOnInit();
       this.content = '';
     }, error => {
@@ -126,8 +142,7 @@ export class LaborDocumentsComponent implements OnInit {
 
   }
 
-  showUniqueFields(event:any){
-  
+  showUniqueFields(event:any){  
     if(event.target.checked==true){
       this.isDisplayed = true;
     }
@@ -136,43 +151,14 @@ export class LaborDocumentsComponent implements OnInit {
     }
     // Add other stuff
   }
-  redirectToEditor(docId: any, isMoral: boolean) {
-    this._router.navigate([`/textEditor/${docId}`], { queryParams: { isMoral: isMoral } });
-  }
 
-  createMoralDoc(id: any) {
-    this.DocumentsService.getDoc(id).subscribe(data => {
-      if (data.isMoral) {
-        // Si el documento ya es moral, redirigir al componente TextEditor
-        this._router.navigate([`/textEditor/${data._id}`]);
-      } else {
-        const moralDoc: laborDocuments = {
-          name: data.name + '  | moral',
-          type: data.type,
-          isAvailable: data.isAvailable,
-          isImmediate: data.isImmediate,
-          isMoral: true,
-          uniqueFields: data.uniqueFields,
-          uniqueName: data.uniqueName,
-          uniqueType: data.uniqueType,
-          uniqueName1: data.uniqueName1,
-          uniqueType1: data.uniqueType1,
-          uniqueName2: data.uniqueName2,
-          uniqueType2: data.uniqueType2,
-          uniqueName3: data.uniqueName3,
-          uniqueType3: data.uniqueType3,
-          uniqueName4: data.uniqueName4,
-          uniqueType4: data.uniqueType4,
-          uniqueName5: data.uniqueName5,
-          uniqueType5: data.uniqueType5,
-          text: this.content
-        }
-        this.DocumentsService.createDoc(moralDoc).subscribe(data => {
-          this._router.navigate([`/textEditor/${data}`]);
-        });
-      }
-    });
+  redirectToEditor(docName: any, isMoral: boolean) {
+    this.DocumentsService.getDocByName(docName, isMoral)
+      .subscribe(data => {
+        console.log(data);
+      });
   }
+  
   
 
   onChangedEditor(event: any): void {
@@ -181,7 +167,7 @@ export class LaborDocumentsComponent implements OnInit {
       }
   }
 
-  
+
   public modulesQuill = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],

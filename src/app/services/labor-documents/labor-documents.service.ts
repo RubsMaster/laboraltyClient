@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 
 import { laborDocuments } from "../../models/laborDocuments";
 
@@ -28,6 +29,19 @@ export class LaborDocumentsService {
     return docToEdit
   }
 
+  getDocByName(docName: any, isMoral: any): Observable<laborDocuments> {
+    const body = {
+      docName,
+      isMoral
+    };
+  
+    return this.http.post<any>(`${this.URI_API}getDocByName`, body)
+      .pipe(
+        map((response: any) => response?.data)
+      );
+  }
+  
+  
   editText(id: string, text: string): Observable<laborDocuments[]> {
     return this.http.put<laborDocuments[]>(
       this.URI_API + "editText", { id, text}
@@ -35,7 +49,7 @@ export class LaborDocumentsService {
   }
 
   deleteDoc(id: number): Observable<void> {
-    return this.http.delete<void>(this.URI_API + "/" + id);
+    return this.http.delete<void>(this.URI_API + "deleteDoc/" + id);
   }
 
   createDoc(doc: laborDocuments): Observable<any> {

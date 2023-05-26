@@ -314,62 +314,31 @@
           </thead>
 
           <tbody>
-            <tr
-              *ngFor="
-                let doc of ListDocs
-                  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }; index as i
-              "
-            >
+            <tr *ngFor="let doc of ListDocs; index as i">
               <!-- Empleado -->
               <td>
                 {{ doc.name }}
-                
-                
+                <span class="badge bg-secondary">{{doc.isMoral}}</span>
               </td>
-
+            
               <!-- Empresa -->
               <td>
                 {{ doc.type }}
               </td>
-
+            
               <!-- Sucursal -->
               <td>
-                <c-button-group
-                  aria-label="Large button group"
-                  class="m-1"
-                  role="group"
-                  sizing="lg"
-                >
-                <td>
-                  <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
-                    <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, true)">
-                      Moral
-                    </button>
-                    <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, false)">
-                      Fisica
-                    </button>
-                  </c-button-group>
-                </td>
-                
-                  <!-- <button
-                    cButton
-                    color="dark"
-                    variant="outline"
-                    (click)="createMoralDoc(doc._id)"
-                  >
+                <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
+                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc.name, true)">
                     Moral
                   </button>
-                  <button
-                    cButton
-                    color="dark"
-                    variant="outline"
-                    [routerLink]="['/textEditor/', doc._id]"
-                  >
+                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc.name, false)">
                     Fisica
-                  </button> -->
+                  </button>
                 </c-button-group>
               </td>
             </tr>
+            
           </tbody>
         </table>
       </c-card-body>
