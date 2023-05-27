@@ -151,14 +151,59 @@ export class LaborDocumentsComponent implements OnInit {
     }
     // Add other stuff
   }
+  
+  redirectToEditor(idDoc: any, docName: any, isMoral: boolean) {
+  let subscription = this.DocumentsService.getDocByName(docName, isMoral).subscribe(data => {
+    if (data) {
+      console.log("El documento ya existe");
+      this._router.navigate([`/textEditor/${data._id}`], { queryParams: { isMoral: false } });
+    } else {
+      console.log("Se creó una copia");
+      let resentDoc = this.DocumentsService.getDoc(idDoc).subscribe(data => {
+        this.copyDocument(data);
+      })
+      
+    }
+    subscription.unsubscribe();
+  });
+}
 
-  redirectToEditor(docName: any, isMoral: boolean) {
-    this.DocumentsService.getDocByName(docName, isMoral)
-      .subscribe(data => {
-        console.log(data);
-      });
+
+
+  copyDocument(documento: laborDocuments) {
+    const newDocument: laborDocuments = {
+      name: documento.name, // agregar "_moral" al nombre del documento
+      type: documento.type,
+      isAvailable: documento.isAvailable,
+      isImmediate: documento.isImmediate,
+      uniqueFields: documento.uniqueFields,
+      text: documento.text,
+      uniqueName: documento.uniqueName,
+      uniqueType: documento.uniqueType,
+      uniqueName1: documento.uniqueName1,
+      uniqueType1: documento.uniqueType1,
+      uniqueName2: documento.uniqueName2,
+      uniqueType2: documento.uniqueType2,
+      uniqueName3: documento.uniqueName3,
+      uniqueType3: documento.uniqueType3,
+      uniqueName4: documento.uniqueName4,
+      uniqueType4: documento.uniqueType4,
+      uniqueName5: documento.uniqueName5,
+      uniqueType5: documento.uniqueType5,
+      isMoral: true // establecer isMoral en true
+    };
+  
+     // guardar la copia en la base de datos
+     this.DocumentsService.createDoc(newDocument).subscribe(response => {
+      console.log("se crea y se redirecciona")
+      this.DocumentsService.getDoc(response).subscribe(data => {
+        this._router.navigate([`/textEditor/${data._id}`], { queryParams: { isMoral: true } });
+      })
+      
+     });
   }
   
+
   
 
   onChangedEditor(event: any): void {

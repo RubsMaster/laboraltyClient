@@ -329,10 +329,10 @@
               <!-- Sucursal -->
               <td>
                 <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
-                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc.name, true)">
+                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, doc.name, true)">
                     Moral
                   </button>
-                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc.name, false)">
+                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, doc.name, false)">
                     Fisica
                   </button>
                 </c-button-group>

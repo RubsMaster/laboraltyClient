@@ -35,11 +35,9 @@ export class LaborDocumentsService {
       isMoral
     };
   
-    return this.http.post<any>(`${this.URI_API}getDocByName`, body)
-      .pipe(
-        map((response: any) => response?.data)
-      );
+    return this.http.post<laborDocuments>(`${this.URI_API}getDocByName`, body);
   }
+  
   
   
   editText(id: string, text: string): Observable<laborDocuments[]> {
