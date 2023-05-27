@@ -6,34 +6,19 @@
       </c-card-header>
 
       <c-card-body>
-        <form
-          cForm
-          class="row g-3"
-          [formGroup]="createUserForm"
-          (ngSubmit)="saveUser()"
-          novalidate
-        >
+        <form cForm class="row g-3" [formGroup]="createUserForm" (ngSubmit)="saveUser()" novalidate>
           <c-row class="mt-2">
             <h4>Informacion del usuario</h4>
 
             <c-col [md]="3">
               <div class="form-floating">
 
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstNameTitular"
-                  formControlName="firstNameTitular"
-                  name="firstNameTitular"
-                  placeholder="Nombres"
-                />
+                <input type="text" class="form-control" id="firstNameTitular" formControlName="firstNameTitular"
+                  name="firstNameTitular" placeholder="Nombres" />
                 <label for="firstNameTitular">{{ this.firstNameTitular }}</label>
 
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched">
                   El nombre del usuario <strong> es obligatorio</strong>
                 </div>
 
@@ -42,23 +27,12 @@
 
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  cFormControl                  
-                  id="lastNameTitular"
-                  type="text"
-                  class="form-control"
-                  formControlName="lastNameTitular"                  
-                  name="lastNameTitular"
-                  placeholder="Apellidos"
-                />
+                <input cFormControl id="lastNameTitular" type="text" class="form-control"
+                  formControlName="lastNameTitular" name="lastNameTitular" placeholder="Apellidos" />
                 <label for="lastNameTitular">{{ this.lastNameTitular }}</label>
 
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('lastNameTitular')?.errors?.['required'] && this.createUserForm.get('lastNameTitular')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('lastNameTitular')?.errors?.['required'] && this.createUserForm.get('lastNameTitular')?.touched">
                   Los apellidos <strong> son obligatorios</strong>
                 </div>
               </div>
@@ -66,45 +40,23 @@
 
             <c-col [md]="3" class="mb-3">
               <div class="form-floating">
-                <input
-                  cFormControl
-                  id="businessName"
-                  type="text"
-                  class="form-control"
-                  formControlName="businessName"
-                  name="businessName"
-                  placeholder="Razón Social"
-                />
+                <input cFormControl id="businessName" type="text" class="form-control" formControlName="businessName"
+                  name="businessName" placeholder="Razón Social" />
                 <label for="businessName">{{this.businessName}}</label>
               </div>
-              <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('businessName')?.hasError?.('required') && this.createUserForm.get('businessName')?.touched"
-                >
-                  La razón social<strong> es obligatoria</strong>
-                </div>
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createUserForm.get('businessName')?.hasError?.('required') && this.createUserForm.get('businessName')?.touched">
+                La razón social<strong> es obligatoria</strong>
+              </div>
             </c-col>
 
             <c-col [md]="3">
               <div class="form-floating ">
-                <input
-                  cFormControl
-                  id="RFC"
-                  type="text"
-                  class="form-control"
-                  name="RFC"
-                  formControlName="RFC"
-                  placeholder="RFC"
-                />
+                <input cFormControl id="RFC" type="text" class="form-control" name="RFC" formControlName="RFC"
+                  placeholder="RFC" />
                 <label for="businessName">{{this.RFC}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('RFC')?.errors?.['required'] && this.createUserForm.get('RFC')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('RFC')?.errors?.['required'] && this.createUserForm.get('RFC')?.touched">
                   El RFC<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -114,30 +66,15 @@
           <c-row style="margin-bottom: 2%">
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  cFormControl
-                  id="email"
-                  type="text"
-                  class="form-control"
-                  name="email"
-                  formControlName="email"
-                  placeholder="email"
-                />
+                <input cFormControl id="email" type="text" class="form-control" name="email" formControlName="email"
+                  placeholder="email" />
                 <label for="email">{{this.email}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('email')?.errors?.['required'] && this.createUserForm.get('email')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('email')?.errors?.['required'] && this.createUserForm.get('email')?.touched">
                   El email <strong> es obligatorio</strong>
                 </div>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('email')?.errors?.['email'] && this.createUserForm.get('email')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('email')?.errors?.['email'] && this.createUserForm.get('email')?.touched">
                   El email debe ser <strong> valido </strong>
                 </div>
               </div>
@@ -145,28 +82,15 @@
 
             <c-col [md]="4">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="mobilePhoneNumber"
-                  placeholder="Teléfono móvil"
-                  formControlName="mobilePhoneNumber"
-                />
+                <input type="number" class="form-control" id="mobilePhoneNumber" placeholder="Teléfono móvil"
+                  formControlName="mobilePhoneNumber" />
                 <label for="mobilePhoneNumber">{{this.mobilePhoneNumber}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('mobilePhoneNumber')?.hasError?.('required') && this.createUserForm.get('mobilePhoneNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('mobilePhoneNumber')?.hasError?.('required') && this.createUserForm.get('mobilePhoneNumber')?.touched">
                   El numero telefonico<strong> es obligatorio</strong>
                 </div>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['pattern'] && this.createUserForm.get('mobilePhoneNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('mobilePhoneNumber')?.errors?.['pattern'] && this.createUserForm.get('mobilePhoneNumber')?.touched">
                   El numero telefonico debe contener
                   <strong> 10 dígitos</strong>
                 </div>
@@ -175,20 +99,11 @@
 
             <c-col [md]="4">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="officePhoneNumber"
-                  placeholder="Teléfono de oficina"
-                  formControlName="officePhoneNumber"
-                />
+                <input type="number" class="form-control" id="officePhoneNumber" placeholder="Teléfono de oficina"
+                  formControlName="officePhoneNumber" />
                 <label for="officePhoneNumber">{{this.officePhoneNumber}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['pattern'] && this.createUserForm.get('officePhoneNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('officePhoneNumber')?.errors?.['pattern'] && this.createUserForm.get('officePhoneNumber')?.touched">
                   El numero telefonico debe contener
                   <strong> 10 dígitos</strong>
                 </div>
@@ -204,38 +119,21 @@
           <c-row style="margin-bottom: 2%">
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="street"
-                  placeholder="Calle"
-                  formControlName="street"
-                />
+                <input type="text" class="form-control" id="street" placeholder="Calle" formControlName="street" />
                 <label for="street">{{this.street}}</label>
               </div>
             </c-col>
 
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="suburb"
-                  placeholder="Colonia"
-                  formControlName="suburb"
-                />
+                <input type="text" class="form-control" id="suburb" placeholder="Colonia" formControlName="suburb" />
                 <label for="suburb">{{this.suburb}}</label>
               </div>
             </c-col>
 
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <select
-                  class="form-select"
-                  id="city"
-                  formControlName="city"
-                  placeholder="Ciudad"
-                >
+                <select class="form-select" id="city" formControlName="city" placeholder="Ciudad">
                   <option selected>Chihuahua</option>
                   <option>...</option>
                 </select>
@@ -246,37 +144,23 @@
             <!-- state input -->
             <c-col [md]="3">
               <div class="form-floating">
-                <select
-                  cSelect
-                  id="state"
-                  formControlName="state"
-                  placeholder="Estado"
-                >
+                <select cSelect id="state" formControlName="state" placeholder="Estado">
                   <option>Chihuahua</option>
                   <option>...</option>
                 </select>
                 <label for="state">{{this.state}}</label>
               </div>
             </c-col>
-            
+
 
             <!-- zipCode input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="zipCode"
-                  placeholder="Código postal"
-                  formControlName="zipCode"
-                />
+                <input type="number" class="form-control" id="zipCode" placeholder="Código postal"
+                  formControlName="zipCode" />
                 <label for="zipCode">{{this.zipCode}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('zipCode')?.hasError?.('required') && this.createUserForm.get('zipCode')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('zipCode')?.hasError?.('required') && this.createUserForm.get('zipCode')?.touched">
                   El código postal<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -285,44 +169,30 @@
             <!-- outdoorNumber input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="outdoorNumber"
-                  placeholder="Número exterior"
-                  formControlName="outdoorNumber"
-                />
-                <label for="outdoorNumber">{{this.innerNumber}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched"
-                >
-                  El numero exterior<strong> es obligatorio</strong>
+                <input type="number" class="form-control" id="outdoorNumber" placeholder="Número exterior"
+                  formControlName="outdoorNumber" />
+                <label for="outdoorNumber">{{this.outdoorNumber}}</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched">
+                  El número interior<strong> es obligatorio</strong>
                 </div>
-                <div
+                <!-- <div
                   class="alert alert-danger"
                   role="alert"
                   style="margin-top: 3px"
                   *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createUserForm.get('outdoorNumber')?.touched"
                 >
-                  El numero exterior<strong> es muy largo</strong>
-                </div>
+                  El número exterior<strong> es muy largo</strong>
+                </div> -->
               </div>
             </c-col>
 
             <!-- innerNumber input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="innerNumber"
-                  placeholder="Número exterior"
-                  formControlName="innerNumber"
-                />
-                <label for="innerNumber">{{this.outdoorNumber}}</label>
+                <input type="number" class="form-control" id="innerNumber" placeholder="Número interior"
+                  formControlName="innerNumber" />
+                <label for="innerNumber">{{this.innerNumber}}</label>
               </div>
             </c-col>
 
@@ -333,27 +203,18 @@
             <h4>Atributos en sistema</h4>
           </c-row>
 
-          
+
           <c-row>
 
             <!-- totalEmployees input -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="totalEmployees"
-                  placeholder="Empleados asignables"
-                  formControlName="totalEmployees"
-                />
+                <input type="text" class="form-control" id="totalEmployees" placeholder="Empleados asignables"
+                  formControlName="totalEmployees" />
                 <label for="totalEmployees">{{this.totalEmployees}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('totalEmployees')?.hasError?.('required') && this.createUserForm.get('totalEmployees')?.touched"
-                >
-                  El numero exterior<strong> es obligatorio</strong>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('totalEmployees')?.hasError?.('required') && this.createUserForm.get('totalEmployees')?.touched">
+                  El total de empleados<strong> es obligatorio</strong>
                 </div>
               </div>
             </c-col>
@@ -361,20 +222,11 @@
             <!-- totalRFC input -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="totalRFC"
-                  placeholder="RFC asignables"
-                  formControlName="totalRFC"
-                />
+                <input type="text" class="form-control" id="totalRFC" placeholder="RFC asignables"
+                  formControlName="totalRFC" />
                 <label for="totalRFC">{{this.totalRFC}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('totalRFC')?.hasError?.('required') && this.createUserForm.get('totalRFC')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('totalRFC')?.hasError?.('required') && this.createUserForm.get('totalRFC')?.touched">
                   El numero exterior<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -383,20 +235,11 @@
             <!-- userAssigned input -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="userAssigned"
-                  placeholder="Nombre de usuario"
-                  formControlName="userAssigned"
-                />
+                <input type="text" class="form-control" id="userAssigned" placeholder="Nombre de usuario"
+                  formControlName="userAssigned" />
                 <label for="userAssigned">{{this.userAssigned}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('userAssigned')?.hasError?.('required') && this.createUserForm.get('userAssigned')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('userAssigned')?.hasError?.('required') && this.createUserForm.get('userAssigned')?.touched">
                   El numero exterior<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -405,20 +248,11 @@
             <!-- passwordAssigned input -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="passwordAssigned"
-                  placeholder="passwordAssigned"
-                  formControlName="passwordAssigned"
-                />
+                <input type="password" class="form-control" id="passwordAssigned" placeholder="passwordAssigned"
+                  formControlName="passwordAssigned" />
                 <label for="passwordAssigned">{{this.passwordAssigned}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('passwordAssigned')?.hasError?.('required') && this.createUserForm.get('passwordAssigned')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('passwordAssigned')?.hasError?.('required') && this.createUserForm.get('passwordAssigned')?.touched">
                   La constraseña<strong> es obligatoria</strong>
                 </div>
               </div>
@@ -427,21 +261,11 @@
             <!-- monthlyDebt input -->
             <c-col [md]="2">
               <div class="form-floating">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="monthlyDebt"
-                  name="monthlyDebt"
-                  formControlName="monthlyDebt"
-                  placeholder="Deuda mensual"
-                />
+                <input type="number" class="form-control" id="monthlyDebt" name="monthlyDebt"
+                  formControlName="monthlyDebt" placeholder="Deuda mensual" />
                 <label for="monthlyDebt">{{this.monthlyDebt}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched">
                   La deuda mensual<strong> es obligatoria</strong>
                 </div>
               </div>
@@ -452,17 +276,10 @@
       </c-card-body>
 
       <c-card-footer>
-        <button
-          cButton
-          (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()"
-          color="dark"
-          variant="outline"
-          style="float: right"
-          id="btnSubmit"
-          type="submit"
-          [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid"
-        >
-        {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
+        <button cButton (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()" color="dark" variant="outline"
+          style="float: right" id="btnSubmit" type="submit"
+          [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid">
+          {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
         </button>
       </c-card-footer>
     </c-card>
