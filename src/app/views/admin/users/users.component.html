@@ -1,11 +1,23 @@
 <c-row>
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>
+      <c-card-header class="p-4">
         <h3 style="float: left">{{ Title }}</h3>
+        <button class="ms-auto"
+          cButton
+          (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()"
+          color="dark"
+          variant="outline"
+          style="float: right"
+          id="btnSubmit"
+          type="submit"
+          [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid"
+        >
+        {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
+        </button>
       </c-card-header>
 
-      <c-card-body>
+      <c-card-body class="p-4">
         <form
           cForm
           class="row g-3"
@@ -102,7 +114,7 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
+                  
                   *ngIf="this.createUserForm.get('RFC')?.errors?.['required'] && this.createUserForm.get('RFC')?.touched"
                 >
                   El RFC<strong> es obligatorio</strong>
@@ -111,8 +123,8 @@
             </c-col>
           </c-row>
 
-          <c-row style="margin-bottom: 2%">
-            <c-col [md]="3">
+          <c-row class="mt-1">
+            <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
                   cFormControl
@@ -201,7 +213,7 @@
             <h4>Domicilio fiscal</h4>
           </c-row>
 
-          <c-row style="margin-bottom: 2%">
+          <c-row class="mt-2" >
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <input
@@ -332,56 +344,10 @@
             <hr />
             <h4>Atributos en sistema</h4>
           </c-row>
-
-          
-          <c-row>
-
-            <!-- totalEmployees input -->
-            <c-col [md]="3">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="totalEmployees"
-                  placeholder="Empleados asignables"
-                  formControlName="totalEmployees"
-                />
-                <label for="totalEmployees">{{this.totalEmployees}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('totalEmployees')?.hasError?.('required') && this.createUserForm.get('totalEmployees')?.touched"
-                >
-                  El numero exterior<strong> es obligatorio</strong>
-                </div>
-              </div>
-            </c-col>
-
-            <!-- totalRFC input -->
-            <c-col [md]="3">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="totalRFC"
-                  placeholder="RFC asignables"
-                  formControlName="totalRFC"
-                />
-                <label for="totalRFC">{{this.totalRFC}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('totalRFC')?.hasError?.('required') && this.createUserForm.get('totalRFC')?.touched"
-                >
-                  El numero exterior<strong> es obligatorio</strong>
-                </div>
-              </div>
-            </c-col>
-
+<c-row class="mb-3">
+  
             <!-- userAssigned input -->
-            <c-col [md]="3">
+            <c-col [md]="6">
               <div class="form-floating">
                 <input
                   type="text"
@@ -403,7 +369,7 @@
             </c-col>
 
             <!-- passwordAssigned input -->
-            <c-col [md]="3">
+            <c-col [md]="6">
               <div class="form-floating">
                 <input
                   type="password"
@@ -424,8 +390,56 @@
               </div>
             </c-col>
 
+</c-row>
+          
+          <c-row>
+
+            <!-- totalEmployees input -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="totalEmployees"
+                  placeholder="Empleados asignables"
+                  formControlName="totalEmployees"
+                />
+                <label for="totalEmployees">{{this.totalEmployees}}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('totalEmployees')?.hasError?.('required') && this.createUserForm.get('totalEmployees')?.touched"
+                >
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- totalRFC input -->
+            <c-col [md]="4">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="totalRFC"
+                  placeholder="RFC asignables"
+                  formControlName="totalRFC"
+                />
+                <label for="totalRFC">{{this.totalRFC}}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createUserForm.get('totalRFC')?.hasError?.('required') && this.createUserForm.get('totalRFC')?.touched"
+                >
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
             <!-- monthlyDebt input -->
-            <c-col [md]="2">
+            <c-col [md]="4">
               <div class="form-floating">
                 <input
                   type="number"
@@ -449,22 +463,9 @@
             </c-col>
           </c-row>
         </form>
+
       </c-card-body>
 
-      <c-card-footer>
-        <button
-          cButton
-          (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()"
-          color="dark"
-          variant="outline"
-          style="float: right"
-          id="btnSubmit"
-          type="submit"
-          [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid"
-        >
-        {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
-        </button>
-      </c-card-footer>
     </c-card>
   </c-col>
 </c-row>
