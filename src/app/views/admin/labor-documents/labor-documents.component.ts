@@ -7,6 +7,8 @@ import Quill from 'quill';
 
 import { laborDocuments } from "../../../models/laborDocuments";
 import { LaborDocumentsService } from "../../../services/labor-documents/labor-documents.service";
+import { Router } from '@angular/router';
+import { created } from '@syncfusion/ej2-angular-richtexteditor';
 
 
 @Component({
@@ -53,6 +55,7 @@ export class LaborDocumentsComponent implements OnInit {
   // Quill container 
 
   constructor(
+    private _router: Router,
     private DocumentsService: LaborDocumentsService,
     private formBuilder: FormBuilder
   ) {
@@ -81,23 +84,39 @@ export class LaborDocumentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getDocs();
     this.laborDocumentForm.reset();
   }
 
   getDocs() {
     this.DocumentsService.getDocs().subscribe(data => {
-      this.ListDocs = data.reverse();      
-    })
+      const documentosFiltrados: { [nombre: string]: laborDocuments } = {};
+  
+      for (const documento of data) {
+        const nombre = documento.name;
+  
+        if (documentosFiltrados[nombre]) {
+          if (documento.isMoral === true) {
+            documentosFiltrados[nombre] = documento;
+          }
+        } else {
+          documentosFiltrados[nombre] = documento;
+        }
+      }
+  
+      this.ListDocs = Object.values(documentosFiltrados).reverse();
+    });
   }
+  
 
   saveDoc() {
-
     const doc: laborDocuments = {
       name: this.laborDocumentForm.get('name')?.value,
       type: this.laborDocumentForm.get('type')?.value,
       isAvailable: this.laborDocumentForm.get('isMandatory')?.value,
       isImmediate: this.laborDocumentForm.get('isImmediate')?.value,
+      isMoral:  false,
       uniqueFields: this.laborDocumentForm.get('uniqueFields')?.value,
       uniqueName: this.laborDocumentForm.get('uniqueName')?.value,
       uniqueType: this.laborDocumentForm.get('uniqueType')?.value,
@@ -112,10 +131,9 @@ export class LaborDocumentsComponent implements OnInit {
       uniqueName5: this.laborDocumentForm.get('uniqueName5')?.value,
       uniqueType5: this.laborDocumentForm.get('uniqueType5')?.value,
       text: this.htmlContent,
-      
     }
-
     this.DocumentsService.createDoc(doc).subscribe(data => {
+      console.log("Se guardo el documento: " + doc)
       this.ngOnInit();
       this.content = '';
     }, error => {
@@ -124,8 +142,7 @@ export class LaborDocumentsComponent implements OnInit {
 
   }
 
-  showUniqueFields(event:any){
-  
+  showUniqueFields(event:any){  
     if(event.target.checked==true){
       this.isDisplayed = true;
     }
@@ -134,19 +151,60 @@ export class LaborDocumentsComponent implements OnInit {
     }
     // Add other stuff
   }
+  
+  redirectToEditor(idDoc: any, docName: any, isMoral: boolean) {
+  let subscription = this.DocumentsService.getDocByName(docName, isMoral).subscribe(data => {
+    if (data) {
+      console.log("El documento ya existe");
+      this._router.navigate([`/textEditor/${data._id}`], { queryParams: { isMoral: false } });
+    } else {
+      console.log("Se creó una copia");
+      let resentDoc = this.DocumentsService.getDoc(idDoc).subscribe(data => {
+        this.copyDocument(data);
+      })
+      
+    }
+    subscription.unsubscribe();
+  });
+}
 
-  setUpdate(data: any)
-  {
-   this.name = data.namme;
-   this.type = data.type;
-   this.isAvailable = data.isAvailable;
-   this.isImmediate = data.isImmediate;
-   this.uniqueFields = data.uniqueFields;
 
- 
-   this.idDoc = data.id;
-   console.log('test')
+
+  copyDocument(documento: laborDocuments) {
+    const newDocument: laborDocuments = {
+      name: documento.name, // agregar "_moral" al nombre del documento
+      type: documento.type,
+      isAvailable: documento.isAvailable,
+      isImmediate: documento.isImmediate,
+      uniqueFields: documento.uniqueFields,
+      text: documento.text,
+      uniqueName: documento.uniqueName,
+      uniqueType: documento.uniqueType,
+      uniqueName1: documento.uniqueName1,
+      uniqueType1: documento.uniqueType1,
+      uniqueName2: documento.uniqueName2,
+      uniqueType2: documento.uniqueType2,
+      uniqueName3: documento.uniqueName3,
+      uniqueType3: documento.uniqueType3,
+      uniqueName4: documento.uniqueName4,
+      uniqueType4: documento.uniqueType4,
+      uniqueName5: documento.uniqueName5,
+      uniqueType5: documento.uniqueType5,
+      isMoral: true // establecer isMoral en true
+    };
+  
+     // guardar la copia en la base de datos
+     this.DocumentsService.createDoc(newDocument).subscribe(response => {
+      console.log("se crea y se redirecciona")
+      this.DocumentsService.getDoc(response).subscribe(data => {
+        this._router.navigate([`/textEditor/${data._id}`], { queryParams: { isMoral: true } });
+      })
+      
+     });
   }
+  
+
+  
 
   onChangedEditor(event: any): void {
     if (event.html) {
@@ -154,7 +212,7 @@ export class LaborDocumentsComponent implements OnInit {
       }
   }
 
-  
+
   public modulesQuill = {
     toolbar: [
       ['bold', 'italic', 'underline', 'strike'],

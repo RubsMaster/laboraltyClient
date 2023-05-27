@@ -265,17 +265,6 @@
 
         <hr>
 
-        <div style="height: 600px;">
-          <c-container style="height: 90%" class="mt-2">
-            <quill-editor
-              #editor
-              [(ngModel)]="content"
-              [modules]="modulesQuill"
-              (onEditorChanged)="onChangedEditor($event)"
-            ></quill-editor>
-          </c-container>
-        </div>
-
       </c-card-body>
 
       <c-card-footer>
@@ -325,60 +314,31 @@
           </thead>
 
           <tbody>
-            <tr
-              *ngFor="
-                let doc of ListDocs
-                  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }; index as i
-              "
-            >
+            <tr *ngFor="let doc of ListDocs; index as i">
               <!-- Empleado -->
               <td>
                 {{ doc.name }}
-                
-                
+                <span class="badge bg-secondary">{{doc.isMoral}}</span>
               </td>
-
+            
               <!-- Empresa -->
               <td>
                 {{ doc.type }}
               </td>
-
+            
               <!-- Sucursal -->
               <td>
-                <c-button-group
-                  aria-label="Large button group"
-                  class="m-1"
-                  role="group"
-                  sizing="lg"
-                >
-                  <button
-                    cButton
-                    color="dark"
-                    variant="outline"
-                    [routerLink]="['/textEditor/', i]"
-                  >
-                    Editar
-                  </button>
-
-                  <button
-                    cButton
-                    color="dark"
-                    variant="outline"
-                    [routerLink]="['/textEditor/']"
-                  >
+                <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
+                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, doc.name, true)">
                     Moral
                   </button>
-                  <button
-                    cButton
-                    color="dark"
-                    variant="outline"
-                    [routerLink]="['/textEditor/', i]"
-                  >
+                  <button cButton color="dark" variant="outline" (click)="redirectToEditor(doc._id, doc.name, false)">
                     Fisica
                   </button>
                 </c-button-group>
               </td>
             </tr>
+            
           </tbody>
         </table>
       </c-card-body>

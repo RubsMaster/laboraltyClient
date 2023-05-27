@@ -1,20 +1,22 @@
 export interface laborDocuments {
-  name: String;
-  type: String;
+  _id?: string,
+  name: string;
+  type: string;
   isAvailable: Boolean;
   isImmediate: Boolean;
   uniqueFields: Boolean;
-  text: String;
-  uniqueName: String ;
-  uniqueType: String ;
-  uniqueName1: String;
-  uniqueType1: String;
-  uniqueName2: String;
-  uniqueType2: String;
-  uniqueName3: String;
-  uniqueType3: String;
-  uniqueName4: String;
-  uniqueType4: String;
-  uniqueName5: String;
-  uniqueType5: String;
+  isMoral: Boolean;
+  text: string;
+  uniqueName: string ;
+  uniqueType: string ;
+  uniqueName1: string;
+  uniqueType1: string;
+  uniqueName2: string;
+  uniqueType2: string;
+  uniqueName3: string;
+  uniqueType3: string;
+  uniqueName4: string;
+  uniqueType4: string;
+  uniqueName5: string;
+  uniqueType5: string;
 }
