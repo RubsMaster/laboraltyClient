@@ -175,6 +175,7 @@ export class UsersComponent implements OnInit {
 
     this.userService.createUser(user).subscribe(data => {
       this.ngOnInit()
+      this._router.navigate(['/', 'adminDashboard']);
     }, error => {
       console.log(error)
     })

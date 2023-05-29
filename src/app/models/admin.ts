@@ -1,6 +1,12 @@
+export type Roles = 'ADMMIN' | 'ACCOUNTANT' | 'CLIENT';
 export interface AdminModel {
-    username: string;
-    email: string;
+    userName: string;
     password: string;
-    role: string;
+}
+
+export interface adminResponse{
+    message: string;
+    token: string;
+    userId: number;
+    role: Roles;
 }
