@@ -9,7 +9,7 @@ import { UserModel } from "../../models/user";
 })
 export class UsersService {
 
-  URI_API = "http://localhost:4000/";
+  URI_API = "https://laboraltyapi.glitch.me/";
 
   constructor(
     private http: HttpClient
