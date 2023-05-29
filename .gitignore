@@ -2,3 +2,5 @@ node_modules
 .angular
 .vscode
 dist
+# Local Netlify folder
+.netlify

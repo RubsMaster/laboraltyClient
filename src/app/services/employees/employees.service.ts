@@ -9,7 +9,7 @@ import { EmployeesModel } from "../../models/employees";
   providedIn: "root",
 })
 export class EmployeesService {
-  URI_API = "http://localhost:4000/";
+  URI_API = "https://laboraltyapi.glitch.me/";
   
   constructor(
     private http: HttpClient
