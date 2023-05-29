@@ -137,7 +137,7 @@ export class UsersComponent implements OnInit {
       this.street = 'Calle'
       this.innerNumber = 'Número interior'
       this.outdoorNumber = 'Número exterior'
-      this.zipCode = 'Número interior'
+      this.zipCode = 'Código postal'
       this.suburb = 'Colonia'
       this.city = 'Seleccione ciudad'
       this.state = 'Estado'

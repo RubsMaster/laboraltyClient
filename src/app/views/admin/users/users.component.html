@@ -15,6 +15,7 @@
         >
         {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
         </button>
+        
       </c-card-header>
 
       <c-card-body class="p-4">
@@ -176,7 +177,7 @@
               <div class="form-floating mb-3">
                 <input type="number" class="form-control" id="zipCode" placeholder="Código postal"
                   formControlName="zipCode" />
-                <label for="zipCode">{{this.zipCode}}</label>
+                <label for="zipCode"> {{this.zipCode}}</label>
                 <div class="alert alert-danger" role="alert" style="margin-top: 3px"
                   *ngIf="this.createUserForm.get('zipCode')?.hasError?.('required') && this.createUserForm.get('zipCode')?.touched">
                   El código postal<strong> es obligatorio</strong>
@@ -296,31 +297,6 @@
               </div>
             </c-col>
 
-            <!-- userAssigned input -->
-            <c-col [md]="3">
-              <div class="form-floating">
-                <input type="text" class="form-control" id="userAssigned" placeholder="Nombre de usuario"
-                  formControlName="userAssigned" />
-                <label for="userAssigned">{{this.userAssigned}}</label>
-                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('userAssigned')?.hasError?.('required') && this.createUserForm.get('userAssigned')?.touched">
-                  El numero exterior<strong> es obligatorio</strong>
-                </div>
-              </div>
-            </c-col>
-
-            <!-- passwordAssigned input -->
-            <c-col [md]="3">
-              <div class="form-floating">
-                <input type="password" class="form-control" id="passwordAssigned" placeholder="passwordAssigned"
-                  formControlName="passwordAssigned" />
-                <label for="passwordAssigned">{{this.passwordAssigned}}</label>
-                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('passwordAssigned')?.hasError?.('required') && this.createUserForm.get('passwordAssigned')?.touched">
-                  La constraseña<strong> es obligatoria</strong>
-                </div>
-              </div>
-            </c-col>
 
             <!-- monthlyDebt input -->
             <c-col [md]="4">
@@ -340,13 +316,6 @@
 
       </c-card-body>
 
-      <c-card-footer>
-        <button cButton (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()" color="dark" variant="outline"
-          style="float: right" id="btnSubmit" type="submit"
-          [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid">
-          {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
-        </button>
-      </c-card-footer>
     </c-card>
   </c-col>
 </c-row>

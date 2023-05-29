@@ -15,11 +15,5 @@ export const navItems: INavData[] = [
     name: 'Documentos Laborales',
     url: '/laborDocuments',
     iconComponent: { name: 'cilAlignCenter'}
-  },  
-  {
-    name: 'Administradores',
-    url: '/adminForm',
-    iconComponent: { name: 'cil-Settings'},
-    class: 'last-nav-item'
-  }   
+  }
 ];

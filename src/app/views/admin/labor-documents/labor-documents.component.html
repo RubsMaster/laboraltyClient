@@ -291,7 +291,7 @@
         <h3 style="float: left">Documentos laborales Existentes</h3>
       </c-card-header>
 
-      <c-card-body class="p-4" style="height: 60vh; overflow-y: auto;">
+      <c-card-body class="p-4">
         <table
           [hover]="true"
           [responsive]="true"
@@ -311,7 +311,7 @@
           </thead>
 
           <tbody>
-            <tr *ngFor="let doc of ListDocs; index as i">
+            <tr *ngFor="let doc of ListDocs  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }; index as i">
               <!-- Empleado -->
               <td>
                 {{ doc.name }}
