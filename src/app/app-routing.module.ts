@@ -18,12 +18,6 @@ const routes: Routes = [
     },
     children: [
       {
-        path: 'text',
-        loadChildren: () =>
-          import('./views/admin/text/text.module').then(
-            m => m.TextModule)
-      },
-      {
         path: "adminDashboard",
         loadChildren: () =>
           import("./views/admin/admin-dashboard/admin-dashboard.module").then(

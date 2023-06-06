@@ -41,7 +41,7 @@ export class AdminDashboardComponent implements OnInit {
 
   initCharts(): void {
     this.mainChart = this.chartsData.mainChart;
-  }
+  } 
 
   setTrafficPeriod(value: string): void {
     this.trafficRadioGroup.setValue({ trafficRadio: value });

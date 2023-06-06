@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { navItems } from './_nav';
+import { navAccountant } from './_AccountantNav';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,7 @@ import { navItems } from './_nav';
 })
 export class DefaultLayoutComponent {
 
-  public navItems = navItems;
+  public navItems = navAccountant;
 
   public perfectScrollbarConfig = {
     suppressScrollX: true,
