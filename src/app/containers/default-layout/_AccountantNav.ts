@@ -8,22 +8,22 @@ export const navAccountant: INavData[] = [
   },
   {
     name: 'Expediente laboral',
-    url: '/users',
+    url: '/service-log',
     iconComponent: { name: 'cil-file' }
   },
   {
     name: 'Bitácoras de servicio',
-    url: '/laborDocuments',
+    url: '/labor-file-sections',
     iconComponent: { name: 'cil-notes'}
   },
   {
     name: 'Consultores',
-    url: '/laborDocuments',
+    url: '/consultants',
     iconComponent: { name: 'cil-people'}
   },
   {
     name: 'Clientes',
-    url: '/laborDocuments',
+    url: '/clients',
     iconComponent: { name: 'cil-user'}
   }
 ];
