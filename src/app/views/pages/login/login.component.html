@@ -8,7 +8,7 @@
           <c-card class="p-4">
             <c-card-body>
 
-              <form cForm>
+              <form cForm (ngSubmit)="onLogIn()" [formGroup]="loginForm">
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
                 <c-input-group class="mb-3">
@@ -16,8 +16,9 @@
                     <svg cIcon name="cilUser"></svg>
                   </span>
                   <input autoComplete="username" 
-                  formControlname="username"
-                  cFormControl placeholder="Username" />
+                  formControlName="username"
+                  cFormControl placeholder="Username" 
+                  required/>
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
@@ -26,14 +27,15 @@
                   <input
                     autoComplete="current-password"
                     cFormControl
-                    formControlname="password"
+                    formControlName="password"
                     placeholder="Password"
                     type="password"
+                    required
                   />
                 </c-input-group>
                 <c-row>
                   <c-col xs="6">
-                    <button (click)= "onLogin()" cButton class="px-4" color="primary">
+                    <button type="submit" cButton class="px-4" color="primary">
                       Login
                     </button>
                   </c-col>

@@ -1,47 +1,51 @@
-import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 // import Validation from './utils/validation';
 import { AuthService } from "../../../services/auth/auth.service";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminModel } from 'src/app/models/admin';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
-  loginForm =  this.fb.group({
-    username: [''],
-    password: ['']
-  })
-
-
+export class LoginComponent implements OnInit{
+  loginForm!: FormGroup;
+  
   constructor(
     private authSvc: AuthService, 
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+
   ) { }
 
-  // ngOnInit(): void{
-  //   const userData = {
-  //     username: 'admin',
-  //     password: '123456'
-  //   };
-  //   this.authSvc.logIn(userData).subscribe((res) => console.log(res)); 
-  // }
+ 
 
-  onLogin(): void{
-    const formValue = this.loginForm.value;
-    const admin: AdminModel = {
-      username: formValue.username || '',
-      password: formValue.password || ''
+  ngOnInit(): void{
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  onLogIn(): void{
+      //si el formulario es invalido retronna
+    if (this.loginForm.invalid) {
+      return;
+    }
+    //traemos la informacion del formulario y la guradamos en formcvalue
+    const formValue: AdminModel = {
+      username: this.loginForm.value.username,
+      password: this.loginForm.value.password
     };
-    this.authSvc.logIn(admin).subscribe(res => {
+    //nos suscribimos al servicio de login 
+    this.authSvc.logIn(formValue).subscribe( res => {
       if(res){
+        console.log(res);
         this.router.navigate(['']);
       }
     })
   }
-
 }

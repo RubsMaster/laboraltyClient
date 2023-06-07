@@ -11,17 +11,22 @@ const helper = new JwtHelperService;
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  
+  // private userSubject: BehaviorSubject<AdminModel | null>;
+  // public user: Observable<AdminModel | null>;
+
   URI_API = "http://localhost:4000";
 
 
   constructor(private http: HttpClient) { 
     this.checkToken();
+    // this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+    // this.user = this.userSubject.asObservable();
   }
 
   get isLogged(): Observable<boolean>{
     return this.loggedIn.asObservable();    
   }
+  
 
   logIn(authData: AdminModel): Observable<AdminResponse | void>{
     const url = this.URI_API + "/auth/logIn";
@@ -31,9 +36,9 @@ export class AuthService {
       map((res: AdminResponse) => {
       this.saveToken(res.token);
       this.loggedIn.next(true);
+      // console.log('res->', res);
       console.log("URL completo:", url);
       return res;
-      // console.log('res->', res);
     }),
     catchError((err) => {
       console.error("Error en la solicitud. URL completo:", url); // Imprimir el URL completo en caso de error
@@ -63,7 +68,7 @@ export class AuthService {
     let errorMessage = 'An error occurred retrieving data';
     if (err) {
       errorMessage = `Error: code ${err.message}`;
-      window.alert(errorMessage + 'TEST');
+      window.alert(errorMessage);
     }
     return throwError(errorMessage);
   }
