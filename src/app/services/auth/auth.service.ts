@@ -23,24 +23,32 @@ export class AuthService {
     return this.loggedIn.asObservable();    
   }
 
-  logIn(authData: AdminModel): Observable<AdminResponse | void>{
-    const url = this.URI_API + "/auth/logIn";
-    return this.http 
-    .post<AdminResponse>(url, authData)
-    .pipe(
-      map((res: AdminResponse) => {
-      this.saveToken(res.token);
-      this.loggedIn.next(true);
-      console.log("URL completo:", url);
-      return res;
-      // console.log('res->', res);
-    }),
-    catchError((err) => {
-      console.error("Error en la solicitud. URL completo:", url); // Imprimir el URL completo en caso de error
-      return this.handlerError(err);
-    })
-  );
-}
+  logIn(authData: AdminModel): Observable<AdminResponse | void> {
+    // Construir la URL para el endpoint de autenticación
+    const url = this.URI_API + "/auth/login";
+
+    return this.http.post<AdminResponse>(url, authData)
+      .pipe(
+        map((res: AdminResponse) => {
+          // Guardar el token en el almacenamiento local
+          this.saveToken(res.token);
+          
+          // Emitir un evento para indicar que el usuario ha iniciado sesión
+          this.loggedIn.next(true);
+                    
+          // Devolver la respuesta del servidor
+          return res;
+        }),
+        catchError((err) => {
+          // Imprimir el URL completo en caso de error
+          console.error("Error en la solicitud. URL completo:", url);
+          
+          // Manejar el error
+          return this.handlerError(err);
+        })
+      );
+  }
+  
 
 
   logout():void{

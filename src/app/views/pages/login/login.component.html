@@ -8,32 +8,49 @@
           <c-card class="p-4">
             <c-card-body>
 
-              <form cForm>
+              <form
+          cForm
+          class="row g-3"
+          [formGroup]="loginForm"
+          (ngSubmit)="onLogin()"
+        >
                 <h1>Login</h1>
                 <p class="text-medium-emphasis">Sign In to your account</p>
                 <c-input-group class="mb-3">
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input autoComplete="username" 
-                  formControlname="username"
-                  cFormControl placeholder="Username" />
+                  <input 
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  formControlName="username"
+                  name="username"
+                  placeholder="Nombre de usuario"
+                  />
                 </c-input-group>
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
                   <input
-                    autoComplete="current-password"
-                    cFormControl
-                    formControlname="password"
-                    placeholder="Password"
-                    type="password"
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  name="password"
+                  placeholder="Contrase;a"
                   />
                 </c-input-group>
                 <c-row>
                   <c-col xs="6">
-                    <button (click)= "onLogin()" cButton class="px-4" color="primary">
+                    <button 
+                    (click)= "onLogin()" 
+                    cButton 
+                    class="px-4" 
+                    color="primary" 
+                    id="btnSubmit"
+                    type="submit">
                       Login
                     </button>
                   </c-col>
