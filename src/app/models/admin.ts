@@ -7,6 +7,6 @@ export interface AdminModel {
 export interface AdminResponse{
     message: string;
     token: string;
-    userId: number;
+    userId: string;
     role: Roles;
 }

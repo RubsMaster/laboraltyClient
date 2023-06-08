@@ -11,17 +11,22 @@ const helper = new JwtHelperService;
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  
+  // private userSubject: BehaviorSubject<AdminModel | null>;
+  // public user: Observable<AdminModel | null>;
+
   URI_API = "http://localhost:4000";
 
 
   constructor(private http: HttpClient) { 
     this.checkToken();
+    // this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
+    // this.user = this.userSubject.asObservable();
   }
 
   get isLogged(): Observable<boolean>{
     return this.loggedIn.asObservable();    
   }
+
 
   logIn(authData: AdminModel): Observable<AdminResponse | void> {
     // Construir la URL para el endpoint de autenticación
@@ -51,6 +56,8 @@ export class AuthService {
   
 
 
+
+
   logout():void{
     localStorage.removeItem('token');
     this.loggedIn.next(false);  
@@ -71,7 +78,7 @@ export class AuthService {
     let errorMessage = 'An error occurred retrieving data';
     if (err) {
       errorMessage = `Error: code ${err.message}`;
-      window.alert(errorMessage + 'TEST');
+      window.alert(errorMessage);
     }
     return throwError(errorMessage);
   }
