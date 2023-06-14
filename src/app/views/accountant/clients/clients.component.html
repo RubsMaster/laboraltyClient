@@ -6,7 +6,7 @@
         <button
           class="ms-auto"
           cButton
-          (click)="(saveClient)"
+          (click)="saveClient()"
           color="dark"
           variant="outline"
           style="float: right"
@@ -16,15 +16,19 @@
             Title === 'Editar Usuario' ? false : !createClientForm.valid
           "
         >
-          {{ Title === "Editar Usuario" ? "+Editar" : "+Agregar" }}
+          {{ Title === "Editar Usuario" ? "+Editar" : "+ Crear" }}
         </button>
       </c-card-header>
 
       <c-card-body class="p-4">
         <form cForm class="row g-3" [formGroup]="createClientForm" novalidate>
-          <c-row class="mt-2">
-            <h4>Informacion del cliente</h4>
+          <c-row>
+            <h4>información del cliente</h4>
+          </c-row>
 
+          <c-row class="mt-2">
+
+            <!-- businessName -->
             <c-col [md]="3">
               <div class="form-floating">
                 <input
@@ -35,7 +39,7 @@
                   name="businessName"
                   placeholder="Razón social"
                 />
-                <label for="firstNameTitular">{{ this.businessName }}</label>
+                <label for="businessName">{{ this.businessName }}</label>
 
                 <div
                   class="alert alert-danger"
@@ -47,6 +51,7 @@
               </div>
             </c-col>
 
+            <!-- taxRegime -->
             <c-col [md]="3">
               <div class="form-floating">
                 <input
@@ -71,6 +76,7 @@
               </div>
             </c-col>
 
+            <!-- RFC -->
             <c-col [md]="3" class="mb-3">
               <div class="form-floating">
                 <input
@@ -94,8 +100,6 @@
               </div>
             </c-col>
 
-            
-
           </c-row>
 
 
@@ -104,8 +108,9 @@
             <h4>Domicilio fiscal</h4>
           </c-row>
 
-          <!-- Street -->
           <c-row class="mt-2">
+
+            <!-- Street -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <input
@@ -117,20 +122,14 @@
                 />
                 <label for="street">{{ this.street }}</label>
               </div>
-            </c-col>
-
-            <!-- innerNumber input -->
-            <c-col [md]="4">
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="innerNumber"
-                  placeholder="Número exterior"
-                  formControlName="innerNumber"
-                />
-                <label for="innerNumber">{{ this.outdoorNumber }}</label>
-              </div>
+              <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('street')?.errors?.['required'] && this.createClientForm.get('street')?.touched"
+                >
+                  La calle <strong> es obligatoria</strong>
+                </div>
             </c-col>
 
             <!-- outdoorNumber input -->
@@ -143,7 +142,7 @@
                   placeholder="Número exterior"
                   formControlName="outdoorNumber"
                 />
-                <label for="outdoorNumber">{{ this.innerNumber }}</label>
+                <label for="outdoorNumber">{{ this.outdoorNumber }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -160,6 +159,20 @@
                 >
                   El numero exterior<strong> es muy largo</strong>
                 </div>
+              </div>
+            </c-col>
+
+            <!-- innerNumber input -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="innerNumber"
+                  placeholder="Número exterior"
+                  formControlName="innerNumber"
+                />
+                <label for="innerNumber">{{ this.innerNumber }}</label>
               </div>
             </c-col>
 
@@ -197,12 +210,17 @@
                 />
                 <label for="suburb">{{ this.suburb }}</label>
               </div>
+              <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('suburb')?.hasError?.('required') && this.createClientForm.get('suburb')?.touched"
+                >
+                  La colonia<strong> es obligatoria</strong>
+                </div>
             </c-col>
 
             <!-- CFDI -->
-            
-
-
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <select
@@ -221,17 +239,25 @@
                 </select>
                 <label for="CFDI">{{this.CFDI}}</label>
               </div>
+              <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('CFDI')?.hasError?.('required') && this.createClientForm.get('CFDI')?.touched"
+                >
+                  El uso de CFDI<strong> es obligatorio</strong>
+                </div>
             </c-col>
 
-
           </c-row>
-
 
           <c-row style="margin-bottom: 2%">
             <hr />
             <h4>Datos del responsable del servicio</h4>
           </c-row>
+
           <c-row class="mb-3">
+
             <!-- inChargeName -->
             <c-col [md]="6">
               <div class="form-floating">
@@ -275,9 +301,11 @@
                 </div>
               </div>
             </c-col>
+
           </c-row>
 
           <c-row>
+
             <!-- phoneNumber -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
@@ -313,7 +341,6 @@
                 <label for="extension">{{ this.extension }}</label>                
               </div>
             </c-col>
-
 
             <!-- email -->
             <c-col [md]="4">

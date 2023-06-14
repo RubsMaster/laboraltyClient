@@ -56,6 +56,7 @@ export class ClientsComponent implements OnInit {
       jobTitle: new FormControl("", [Validators.required]),
       phoneNumber: new FormControl("", [Validators.required]),
       extension: new FormControl("", [Validators.required]),
+      taxRegime: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.email])
     });
 
@@ -98,7 +99,7 @@ export class ClientsComponent implements OnInit {
   saveClient(){
     const client: ClientModel = {
       businessName: this.createClientForm.get('businessName')?.value,
-      taxRegime: this.createClientForm.get('firstNamtaxRegimeeTitular')?.value,
+      taxRegime: this.createClientForm.get('taxRegime')?.value,
       RFC: this.createClientForm.get('RFC')?.value,
       street: this.createClientForm.get('street')?.value,
       innerNumber: this.createClientForm.get('innerNumber')?.value,
