@@ -25,8 +25,8 @@ export class ClientsComponent implements OnInit {
   taxRegime: string;
   RFC: string;
   street: string;
-  innerNumber: string;
   outdoorNumber: string;
+  innerNumber: string;
   zipCode: string;
   suburb: string;
   CFDI: string;
@@ -47,8 +47,8 @@ export class ClientsComponent implements OnInit {
       businessName: ["", Validators.required],
       RFC: ["", Validators.required],
       street: new FormControl("", [Validators.required]),
-      innerNumber: new FormControl(""),
       outdoorNumber: new FormControl("", [Validators.required]),
+      innerNumber: new FormControl(""),
       zipCode: new FormControl("", [Validators.required, Validators.maxLength(10)]),
       suburb: new FormControl("", [Validators.required]),
       CFDI: new FormControl("", [Validators.required]),
@@ -67,8 +67,8 @@ export class ClientsComponent implements OnInit {
     this.taxRegime= '';
     this.RFC= '';
     this.street= '';
-    this.innerNumber= '';
     this.outdoorNumber= '';
+    this.innerNumber= '';
     this.zipCode= '';
     this.suburb= '';
     this.CFDI= '';
@@ -84,8 +84,8 @@ export class ClientsComponent implements OnInit {
     this.taxRegime= 'Regimen Fiscal';
     this.RFC= 'RFC';
     this.street= 'Calle';
-    this.innerNumber= 'Número interior';
     this.outdoorNumber= 'Número exterior';
+    this.innerNumber= 'Número interior';
     this.zipCode= 'Código postal';
     this.suburb= 'Colonia';
     this.CFDI= 'CFDI';
@@ -102,8 +102,8 @@ export class ClientsComponent implements OnInit {
       taxRegime: this.createClientForm.get('taxRegime')?.value,
       RFC: this.createClientForm.get('RFC')?.value,
       street: this.createClientForm.get('street')?.value,
-      innerNumber: this.createClientForm.get('innerNumber')?.value,
       outdoorNumber: this.createClientForm.get('outdoorNumber')?.value,
+      innerNumber: this.createClientForm.get('innerNumber')?.value,
       zipCode: this.createClientForm.get('zipCode')?.value,
       suburb: this.createClientForm.get('suburb')?.value,
       CFDI: this.createClientForm.get('CFDI')?.value,

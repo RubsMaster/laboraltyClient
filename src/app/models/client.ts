@@ -4,8 +4,8 @@ export interface ClientModel {
     taxRegime: String;
     RFC: String;
     street: String;
-    innerNumber: String;
     outdoorNumber: String;
+    innerNumber: String;
     zipCode: String;
     suburb: String;
     CFDI: String;
