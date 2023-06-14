@@ -22,7 +22,12 @@ export class LoginComponent {
     private authSvc: AuthService, 
     private fb: FormBuilder,
     private router: Router
-  ) { }
+  ) { 
+    this.loginForm = this.fb.group({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required) 
+    })
+  }
 
   // ngOnInit(): void{
   //   const userData = {
@@ -33,13 +38,12 @@ export class LoginComponent {
   // }
 
   onLogin(): void{
-    const formValue = this.loginForm.value;
-    const admin: AdminModel = {
-      username: formValue.username || '',
-      password: formValue.password || ''
-    };
+    const cred: AdminModel = {
+      username: this.loginForm.get('username')?.value,
+      password: this.loginForm.get('password')?.value
+    }
     //nos suscribimos al servicio de login 
-    this.authSvc.logIn(formValue).subscribe( res => {
+    this.authSvc.logIn(cred).subscribe( res => {
       if(res){
         console.log(res);
         this.router.navigate(['']);

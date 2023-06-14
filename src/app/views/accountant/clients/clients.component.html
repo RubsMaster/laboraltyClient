@@ -1,1 +1,355 @@
-<p>clients works!</p>
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header class="p-4">
+        <h3 style="float: left">{{ Title }}</h3>
+        <button
+          class="ms-auto"
+          cButton
+          (click)="(saveClient)"
+          color="dark"
+          variant="outline"
+          style="float: right"
+          id="btnSubmit"
+          type="submit"
+          [disabled]="
+            Title === 'Editar Usuario' ? false : !createClientForm.valid
+          "
+        >
+          {{ Title === "Editar Usuario" ? "+Editar" : "+Agregar" }}
+        </button>
+      </c-card-header>
+
+      <c-card-body class="p-4">
+        <form cForm class="row g-3" [formGroup]="createClientForm" novalidate>
+          <c-row class="mt-2">
+            <h4>Informacion del cliente</h4>
+
+            <c-col [md]="3">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="businessName"
+                  formControlName="businessName"
+                  name="businessName"
+                  placeholder="Razón social"
+                />
+                <label for="firstNameTitular">{{ this.businessName }}</label>
+
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="this.createClientForm.get('businessName')?.errors?.['required'] && this.createClientForm.get('businessName')?.touched"
+                >
+                  La razón social<strong> es obligatoria</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <c-col [md]="3">
+              <div class="form-floating">
+                <input
+                  cFormControl
+                  id="taxRegime"
+                  type="text"
+                  class="form-control"
+                  formControlName="taxRegime"
+                  name="taxRegime"
+                  placeholder="Regimen Fiscal"
+                />
+                <label for="taxRegime">{{ this.taxRegime }}</label>
+
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('taxRegime')?.errors?.['required'] && this.createClientForm.get('taxRegime')?.touched"
+                >
+                  El regimen fiscal <strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <c-col [md]="3" class="mb-3">
+              <div class="form-floating">
+                <input
+                  cFormControl
+                  id="RFC"
+                  type="text"
+                  class="form-control"
+                  formControlName="RFC"
+                  name="RFC"
+                  placeholder="RFC"
+                />
+                <label for="RFC">{{ this.RFC }}</label>
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                style="margin-top: 3px"
+                *ngIf="this.createClientForm.get('RFC')?.hasError?.('required') && this.createClientForm.get('RFC')?.touched"
+              >
+                El RFC<strong> es obligatorio</strong>
+              </div>
+            </c-col>
+
+            
+
+          </c-row>
+
+
+          <c-row>
+            <hr />
+            <h4>Domicilio fiscal</h4>
+          </c-row>
+
+          <!-- Street -->
+          <c-row class="mt-2">
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="street"
+                  placeholder="Calle"
+                  formControlName="street"
+                />
+                <label for="street">{{ this.street }}</label>
+              </div>
+            </c-col>
+
+            <!-- innerNumber input -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="innerNumber"
+                  placeholder="Número exterior"
+                  formControlName="innerNumber"
+                />
+                <label for="innerNumber">{{ this.outdoorNumber }}</label>
+              </div>
+            </c-col>
+
+            <!-- outdoorNumber input -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="outdoorNumber"
+                  placeholder="Número exterior"
+                  formControlName="outdoorNumber"
+                />
+                <label for="outdoorNumber">{{ this.innerNumber }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('required') && this.createClientForm.get('outdoorNumber')?.touched"
+                >
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createClientForm.get('outdoorNumber')?.touched"
+                >
+                  El numero exterior<strong> es muy largo</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- zipCode input -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="zipCode"
+                  placeholder="Código postal"
+                  formControlName="zipCode"
+                />
+                <label for="zipCode">{{ this.zipCode }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('zipCode')?.hasError?.('required') && this.createClientForm.get('zipCode')?.touched"
+                >
+                  El código postal<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- Suburb -->
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="suburb"
+                  placeholder="Colonia"
+                  formControlName="suburb"
+                />
+                <label for="suburb">{{ this.suburb }}</label>
+              </div>
+            </c-col>
+
+            <!-- CFDI -->
+            
+
+
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <select
+                  class="form-select"
+                  id="CFDI"
+                  formControlName="CFDI"
+                  placeholder="CFDI"
+                >
+                  <option>Comprobante de ingreso</option>
+                  <option>Comprobante de egreso</option>
+                  <option>Comprobante de traslado</option>
+                  <option>Comprobante de recepción de pagos</option>
+                  <option>Comprobante de nómina</option>
+                  <option>Comprobante de retenciones e información de pagos</option>
+                  <option>...</option>
+                </select>
+                <label for="CFDI">{{this.CFDI}}</label>
+              </div>
+            </c-col>
+
+
+          </c-row>
+
+
+          <c-row style="margin-bottom: 2%">
+            <hr />
+            <h4>Datos del responsable del servicio</h4>
+          </c-row>
+          <c-row class="mb-3">
+            <!-- inChargeName -->
+            <c-col [md]="6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inChargeName"
+                  placeholder="Nombre"
+                  formControlName="inChargeName"
+                />
+                <label for="inChargeName">{{ this.inChargeName }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('inChargeName')?.hasError?.('required') && this.createClientForm.get('inChargeName')?.touched"
+                >
+                  El nombre<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- jobTitle -->
+            <c-col [md]="6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="jobTitle"
+                  placeholder="jobTitle"
+                  formControlName="jobTitle"
+                />
+                <label for="jobTitle">{{ this.jobTitle }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('jobTitle')?.hasError?.('required') && this.createClientForm.get('jobTitle')?.touched"
+                >
+                  El puesto<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <!-- phoneNumber -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="Numero telefonico"
+                  formControlName="phoneNumber"
+                />
+                <label for="phoneNumber">{{ this.phoneNumber }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('phoneNumber')?.hasError?.('required') && this.createClientForm.get('phoneNumber')?.touched"
+                >
+                  El telefono<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- extension -->
+            <c-col [md]="4">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="extension"
+                  placeholder="Extension"
+                  formControlName="extension"
+                />
+                <label for="extension">{{ this.extension }}</label>                
+              </div>
+            </c-col>
+
+
+            <!-- email -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  cFormControl
+                  id="email"
+                  type="text"
+                  class="form-control"
+                  name="email"
+                  formControlName="email"
+                  placeholder="email"
+                />
+                <label for="email">{{ this.email }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('email')?.errors?.['required'] && this.createClientForm.get('email')?.touched"
+                >
+                  El email <strong> es obligatorio</strong>
+                </div>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('email')?.errors?.['email'] && this.createClientForm.get('email')?.touched"
+                >
+                  El email debe ser <strong> valido </strong>
+                </div>
+              </div>
+            </c-col>
+
+          </c-row>
+        </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
