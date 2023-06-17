@@ -154,6 +154,7 @@ export class ClientsComponent implements OnInit {
             rol: "ACCOUNTANT",
             relatedId: data._id
           } 
+          console.log("related id: " + data._id)
           this.credService.createCredential(newCred).subscribe(data => {
             console.log("to chill")
             this.ngOnInit()
