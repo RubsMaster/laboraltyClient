@@ -2,100 +2,52 @@
   <c-col xs>
     <c-card class="mb-4">
       <c-card-header>
-        <h3 style="float: left">Configuracion</h3>
+        <h3 style="float: left">Configuraciones</h3>
       </c-card-header>
 
       <c-card-body>
-        <form cForm class="row g-3" novalidate>
-          <c-row class="mt-2">
-            <!-- <h4>Informacion del usuario</h4> -->
+        <c-row class="mt-2">
+          <!-- <h4>Informacion del usuario</h4> -->
 
-            <c-col [md]="3">
-              <div class="form-floating">
+          <!-- input logo -->
+          <div>
+            <label cLabel for="formFileLg">Large file input example</label>
+            <input cFormControl id="formFileLg" sizing="lg" type="file" />
+          </div>
 
-                <input type="file" class="form-control" id="" formControlName="logo" name=""
-                  placeholder="Seleccione el logo" />
-                <label for="logo">Seleccione el logo</label>
+          <c-col [md]="3">
+            <div class="form-floating">
 
-                <div class="alert alert-danger" role="alert" *ngIf="">
-                  El nombre del usuario <strong> es obligatorio</strong>
-                </div>
+              <input type="file" class="form-control" id="" name="" placeholder="Seleccione el logo" />
+              <label for="logo">Seleccione el logo</label>
+
+              <div class="alert alert-danger" role="alert" *ngIf="">
+                El nombre del usuario <strong> es obligatorio</strong>
               </div>
-            </c-col>
+            </div>
+          </c-col>
 
-            <c-col [md]="3">
-              <div class="form-floating">
-                <select class="form-select" formControlName="color" placeholder="Seleccione un color">
-                  <option selected>Seleccione un color</option>
-                  <option>...</option>
-                </select>
-                <label for="city"></label>
+          <!-- Notification email -->
+          <c-col [md]="6">
+            <div class="form-floating">
+              <input type="email" class="form-control" placeholder="Correo electronico para recibir notificaciones" />
+              <label for="color">Correo electronico para recibir notificaciones</label>
 
-                <div class="alert alert-danger" role="alert" *ngIf="">
-                  El nombre del usuario <strong> es obligatorio</strong>
-                </div>
-
+              <div class="alert alert-danger" role="alert" *ngIf="">
+                El nombre del usuario <strong> es obligatorio</strong>
               </div>
-            </c-col>
 
-            <c-col [md]="6">
-              <div class="form-floating">
-                <input type="email" class="form-control" formControlName="email"
-                  placeholder="Correo electronico para recibir notificaciones" />
-                <label for="color">Correo electronico para recibir notificaciones</label>
+            </div>
+          </c-col>
 
-                <div class="alert alert-danger" role="alert" *ngIf="">
-                  El nombre del usuario <strong> es obligatorio</strong>
-                </div>
-
-              </div>
-            </c-col>
-
-            <c-row [md]="12" style="margin-top: 2%;">
-              <table align="middle" cTable class="mb-0 border">
-                <thead cTableColor="dark">
-                  <tr>
-                    <th class="text-center">Empleados asignados</th>
-                    <th class="text-center">Acciones</th>
-                  </tr>
-                </thead>
-
-                <!-- ------------------------------------------------------------------------------------------------ -->
-
-                <tbody>
-                  <tr *ngFor="let user of ListUsers">
-
-                    <!-- Empleados asignados -->
-                    <td class="text-center">
-                      {{ user.totalEmployees }}
-                    </td>
-
-                    <!-- Acciones -->
-                    <td>
-                      <c-button-group aria-label="Large button group" class="m-1" role="group" sizing="lg">
-                        <button style="margin-left: 30%" cButton color="secondary" variant="outline">
-                          Editar
-                        </button>
-
-                        <button cButton color="danger" variant="outline">
-                          Eliminar
-                        </button>
-                      </c-button-group>
-                    </td>
-
-                  </tr>
-                </tbody>
-              </table>
-            </c-row>
-            <P> Nota: Si deseas aumentar o disminuir tu paquete de empleados contratados favor de ponerte en contacto
-              con el administrador del sistema.</P>
-          </c-row>
-        </form>
+          <P> Nota: Si deseas aumentar o disminuir tu paquete de empleados contratados favor de ponerte en contacto
+            con el administrador del sistema.</P>
+        </c-row>
       </c-card-body>
 
       <c-card-footer>
-        <button cButton color="dark" variant="outline" style="float: right" id="btnSubmit" type="submit"
-          [disabled]="">Guardar
+        <button cButton color="dark" variant="outline" style="float: right" id="btnSubmit" type="submit">
+          Guardar
         </button>
       </c-card-footer>
     </c-card>

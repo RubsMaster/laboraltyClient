@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 import { UserModel } from "../../models/user";
+import { AdminModel } from "../../models/admin";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class UsersService {
 
   createUser(user: UserModel): Observable<any> {
     return this.http.post(this.URI_API + "createUser", user)
+  }
+
+  createAccountant(admin: AdminModel): Observable<any>{
+    return this.http.post(this.URI_API + "createUser", admin)
   }
 
   updateUser(id: string, updates: any): Observable<UserModel> {

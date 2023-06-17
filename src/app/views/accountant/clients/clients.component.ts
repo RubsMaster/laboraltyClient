@@ -35,6 +35,11 @@ export class ClientsComponent implements OnInit {
   phoneNumber: string;
   extension: string;
   email: string;
+  totalRFC: string;
+  totalEmployees: string;
+  userAssigned: string;
+  passwordAssigned: string;
+  
 
   constructor(
     private _router: Router,
@@ -57,7 +62,11 @@ export class ClientsComponent implements OnInit {
       phoneNumber: new FormControl("", [Validators.required]),
       extension: new FormControl("", [Validators.required]),
       taxRegime: new FormControl("", [Validators.required]),
-      email: new FormControl("", [Validators.required, Validators.email])
+      email: new FormControl("", [Validators.required, Validators.email]),
+      totalRFC: new FormControl("", [Validators.required]),
+      totalEmployees: new FormControl("", [Validators.required]),
+      userAssigned: new FormControl("", [Validators.required]),
+      passwordAssigned: new FormControl("", [Validators.required]),
     });
 
 
@@ -77,6 +86,10 @@ export class ClientsComponent implements OnInit {
     this.phoneNumber= '';
     this.extension= '';
     this.email=  '';
+    this.totalRFC = '';
+    this.totalEmployees= ''
+    this.userAssigned=''
+    this.passwordAssigned=''
   }
 
   ngOnInit(): void {
@@ -94,6 +107,10 @@ export class ClientsComponent implements OnInit {
     this.phoneNumber= 'Teléfono';
     this.extension= 'Extensión';
     this.email=  'Correo electrónico';
+    this.totalRFC=  'RFC asignados';
+    this.totalEmployees=  'Empleados asignados';
+    this.userAssigned='Usuario'
+    this.passwordAssigned='Contraseña'
   }
 
   saveClient(){
@@ -111,7 +128,11 @@ export class ClientsComponent implements OnInit {
       jobTitle: this.createClientForm.get('jobTitle')?.value,
       phoneNumber: this.createClientForm.get('phoneNumber')?.value,
       extension: this.createClientForm.get('extension')?.value,
-      email: this.createClientForm.get('email')?.value
+      email: this.createClientForm.get('email')?.value,
+      totalRFC: this.createClientForm.get('totalRFC')?.value,
+      totalEmployees: this.createClientForm.get('totalEmployees')?.value,
+      userAssigned: this.createClientForm.get('userAssigned')?.value,
+      passwordAssigned: this.createClientForm.get('passwordAssigned')?.value
     }
 
     this.clientService.createClient(client).subscribe(data => {

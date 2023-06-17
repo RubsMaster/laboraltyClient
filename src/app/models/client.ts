@@ -14,4 +14,8 @@ export interface ClientModel {
     phoneNumber: String;
     extension: String;
     email: String;
+    totalRFC: String;
+    totalEmployees: String;
+    userAssigned: String;
+    passwordAssigned: String;
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { AdminModel, AdminResponse } from "../../models/admin";
+import { authModel, sessionModel } from "../../models/session";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { HttpClient } from '@angular/common/http';
 
@@ -28,13 +29,13 @@ export class AuthService {
   }
 
 
-  logIn(authData: AdminModel): Observable<AdminResponse | void> {
+  logIn(authData: authModel): Observable<sessionModel | void> {
     // Construir la URL para el endpoint de autenticación
     const url = this.URI_API + "/auth/login";
 
-    return this.http.post<AdminResponse>(url, authData)
+    return this.http.post<sessionModel>(url, authData)
       .pipe(
-        map((res: AdminResponse) => {
+        map((res: sessionModel) => {
           // Guardar el token en el almacenamiento local
           this.saveToken(res.token);
           
@@ -53,10 +54,6 @@ export class AuthService {
         })
       );
   }
-  
-
-
-
 
   logout():void{
     localStorage.removeItem('token');

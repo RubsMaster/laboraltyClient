@@ -4,6 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { AuthService } from "../../../services/auth/auth.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminModel } from 'src/app/models/admin';
+import { authModel } from 'src/app/models/session';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -38,12 +39,12 @@ export class LoginComponent {
   // }
 
   onLogin(): void{
-    const cred: AdminModel = {
+    const auth: authModel = {
       username: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value
     }
     //nos suscribimos al servicio de login 
-    this.authSvc.logIn(cred).subscribe( res => {
+    this.authSvc.logIn(auth).subscribe( res => {
       if(res){
         console.log(res);
         this.router.navigate(['']);

@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
+import { AdminModel } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-users',
@@ -172,6 +173,12 @@ export class UsersComponent implements OnInit {
       userAssigned: this.createUserForm.get('userAssigned')?.value,
       passwordAssigned: this.createUserForm.get('passwordAssigned')?.value
     }
+
+    const admin: AdminModel = {
+      username: this.createUserForm.get('userAssigned')?.value,
+      password: this.createUserForm.get('passwordAssigned')?.value
+    }
+
 
     this.userService.createUser(user).subscribe(data => {
       this.ngOnInit()

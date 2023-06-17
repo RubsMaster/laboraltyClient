@@ -250,14 +250,13 @@
             </c-col>
 
           </c-row>
-
+<!-- ------------------------------------------------------------------------------------------------ -->
           <c-row style="margin-bottom: 2%">
             <hr />
             <h4>Datos del responsable del servicio</h4>
           </c-row>
 
           <c-row class="mb-3">
-
             <!-- inChargeName -->
             <c-col [md]="6">
               <div class="form-floating">
@@ -301,11 +300,9 @@
                 </div>
               </div>
             </c-col>
-
           </c-row>
 
           <c-row>
-
             <!-- phoneNumber -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
@@ -373,8 +370,131 @@
                 </div>
               </div>
             </c-col>
-
           </c-row>
+<!-- ------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------ -->
+          <c-row style="margin-bottom: 2%">
+            <hr />
+            <h4>Atributos en sistema</h4>
+          </c-row>
+
+          <c-row class="mb-3">
+            <!-- totalRFC -->
+            <c-col [md]="6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="totalRFC"
+                  placeholder="Nombre"
+                  formControlName="totalRFC"
+                />
+                <label for="totalRFC">{{ this.totalRFC }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('totalRFC')?.hasError?.('required') && this.createClientForm.get('totalRFC')?.touched"
+                >
+                  La cantidad de RFC asignados<strong> es obligatoria</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- totalEmployees -->
+            <c-col [md]="6">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="totalEmployees"
+                  placeholder="totalEmployees"
+                  formControlName="totalEmployees"
+                />
+                <label for="totalEmployees">{{ this.totalEmployees }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('totalEmployees')?.hasError?.('required') && this.createClientForm.get('totalEmployees')?.touched"
+                >
+                  La cantidad de empleados asignados<strong> es obligatoria</strong>
+                </div>
+              </div>
+            </c-col>
+          </c-row>
+
+          <c-row>
+            <!-- phoneNumber -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phoneNumber"
+                  placeholder="Numero telefonico"
+                  formControlName="phoneNumber"
+                />
+                <label for="phoneNumber">{{ this.phoneNumber }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('phoneNumber')?.hasError?.('required') && this.createClientForm.get('phoneNumber')?.touched"
+                >
+                  El telefono<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- extension -->
+            <c-col [md]="4">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="extension"
+                  placeholder="Extension"
+                  formControlName="extension"
+                />
+                <label for="extension">{{ this.extension }}</label>                
+              </div>
+            </c-col>
+
+            <!-- email -->
+            <c-col [md]="4">
+              <div class="form-floating mb-3">
+                <input
+                  cFormControl
+                  id="email"
+                  type="text"
+                  class="form-control"
+                  name="email"
+                  formControlName="email"
+                  placeholder="email"
+                />
+                <label for="email">{{ this.email }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('email')?.errors?.['required'] && this.createClientForm.get('email')?.touched"
+                >
+                  El email <strong> es obligatorio</strong>
+                </div>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('email')?.errors?.['email'] && this.createClientForm.get('email')?.touched"
+                >
+                  El email debe ser <strong> valido </strong>
+                </div>
+              </div>
+            </c-col>
+          </c-row>
+<!-- ------------------------------------------------------------------------------------------------ -->
+
         </form>
       </c-card-body>
     </c-card>
