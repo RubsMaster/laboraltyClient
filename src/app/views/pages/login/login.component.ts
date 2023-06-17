@@ -4,7 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { AuthService } from "../../../services/auth/auth.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminModel } from 'src/app/models/admin';
-import { authModel } from 'src/app/models/session';
+import { authModel } from 'src/app/models/credential';
 import { first } from 'rxjs/operators';
 
 @Component({

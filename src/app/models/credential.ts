@@ -10,3 +10,10 @@ export interface sessionModel{
     userId: string;
     role: Roles;
 }
+export interface CredentialModel {
+    _id?: number,
+    user: String;
+    password: String;
+    rol: string;
+    relatedId: any;
+}

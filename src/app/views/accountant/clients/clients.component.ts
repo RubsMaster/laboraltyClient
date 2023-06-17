@@ -10,6 +10,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClientModel } from "../../../models/client";
 import { ClientsService } from "../../../services/accountant/clients/clients.service";
+import { CredentialsService } from "../../../services/credentials.service";
+import { CredentialModel } from 'src/app/models/credential';
+import { any } from 'joi';
 
 @Component({
   selector: 'app-clients',
@@ -40,12 +43,14 @@ export class ClientsComponent implements OnInit {
   userAssigned: string;
   passwordAssigned: string;
   
+  userExists: boolean = false;
 
   constructor(
     private _router: Router,
     public formBuilder: FormBuilder,
     private aRouter: ActivatedRoute,
-    private clientService: ClientsService
+    private clientService: ClientsService,
+    private credService: CredentialsService
   ) { 
 
     this.createClientForm = this.formBuilder.group({
@@ -113,6 +118,7 @@ export class ClientsComponent implements OnInit {
     this.passwordAssigned='Contraseña'
   }
 
+
   saveClient(){
     const client: ClientModel = {
       businessName: this.createClientForm.get('businessName')?.value,
@@ -135,11 +141,30 @@ export class ClientsComponent implements OnInit {
       passwordAssigned: this.createClientForm.get('passwordAssigned')?.value
     }
 
-    this.clientService.createClient(client).subscribe(data => {
-      this.ngOnInit()
-    }, error => {
-      console.log(error)
+    const user = this.createClientForm.get('userAssigned')
+    
+    this.credService.checkCredential(user?.value).subscribe(data => {
+      if (data){
+        return alert("El usuario ya existe, elija otro nombre")
+      } else {
+        this.clientService.createClient(client).subscribe((data:any) => {
+          const newCred: CredentialModel = {
+            user: client.userAssigned,
+            password: client.passwordAssigned,
+            rol: "ACCOUNTANT",
+            relatedId: data._id
+          } 
+          this.credService.createCredential(newCred).subscribe(data => {
+            console.log("to chill")
+            this.ngOnInit()
+          })
+          
+        }, error => {
+          console.log(error)
+        })
+      }
     })
+     
   }
 
 

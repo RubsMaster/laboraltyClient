@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { AdminModel, AdminResponse } from "../../models/admin";
-import { authModel, sessionModel } from "../../models/session";
+import { authModel, sessionModel } from "../../models/credential";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { HttpClient } from '@angular/common/http';
 
