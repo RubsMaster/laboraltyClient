@@ -6,14 +6,23 @@
         </c-card-header>
   
         <c-card-body>
-          <form cForm class="row g-3" novalidate>
+          <form 
+          cForm 
+          class="row g-3"
+          [formGroup]="createLaborFiles"
+          novalidate>
             <c-row class="mt-2">  
               <c-col [md]="8">
                 <div class="form-floating">
   
-                  <input type="text" class="form-control" id="" formControlName="docName" name=""
-                    placeholder="Escriba el nombre" />
-                  <label for="logo">Escriba el nombre</label>
+                  <input 
+                  type="text" 
+                  class="form-control" 
+                  id="laborFile" 
+                  formControlName="laborFile" 
+                  name="laborFile"
+                  placeholder="Escriba el nombre" />
+                  <label for="laborFile"> {{this.laborFile}}</label>
   
                   <div class="alert alert-danger" role="alert" *ngIf="">
                     El nombre del usuario <strong> es obligatorio</strong>
@@ -23,12 +32,17 @@
   
               <c-col [md]="4">
                 <div class="form-floating">
-                  <select class="form-select" formControlName="color" placeholder="Seleccione">
+                  <select 
+                  class="form-select" 
+                  formControlName="fileType"
+                  id="fileType"
+                  name="fileType" 
+                  placeholder="Seleccione">
                     <option selected>Seleccione</option>
                     <option>Empleado</option>
                     <option>Empresa</option>
                   </select>
-                  <label for="city"></label>
+                  <label for="fileType">{{this.fileType}}</label>
   
                   <div class="alert alert-danger" role="alert" *ngIf="">
                     El nombre del usuario <strong> es obligatorio</strong>

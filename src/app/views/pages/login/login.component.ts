@@ -39,7 +39,7 @@ export class LoginComponent {
   // }
 
   onLogin(): void{
-    const auth: authModel = {
+    const auth = {
       username: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value
     }

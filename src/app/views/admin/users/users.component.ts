@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
     private userService: UsersService
   ) {
     this.createUserForm = this.formBuilder.group({
-      firstNameTitular: new FormControl("", Validators.required),
+      firstNameTitular: ["", Validators.required],
       lastNameTitular: ["", Validators.required],
       businessName: ["", Validators.required],
       RFC: ["", Validators.required],
