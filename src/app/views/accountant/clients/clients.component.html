@@ -100,8 +100,36 @@
               </div>
             </c-col>
 
-          </c-row>
+            <!-- CFDI -->
+            <c-col [md]="3">
+              <div class="form-floating mb-3">
+                <select
+                  class="form-select"
+                  id="CFDI"
+                  formControlName="CFDI"
+                  placeholder="CFDI"
+                >
+                  <option>Comprobante de ingreso</option>
+                  <option>Comprobante de egreso</option>
+                  <option>Comprobante de traslado</option>
+                  <option>Comprobante de recepción de pagos</option>
+                  <option>Comprobante de nómina</option>
+                  <option>Comprobante de retenciones e información de pagos</option>
+                  <option>...</option>
+                </select>
+                <label for="CFDI">{{this.CFDI}}</label>
+              </div>
+              <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('CFDI')?.hasError?.('required') && this.createClientForm.get('CFDI')?.touched"
+                >
+                  El uso de CFDI<strong> es obligatorio</strong>
+                </div>
+            </c-col>
 
+          </c-row>
 
           <c-row>
             <hr />
@@ -220,34 +248,6 @@
                 </div>
             </c-col>
 
-            <!-- CFDI -->
-            <c-col [md]="3">
-              <div class="form-floating mb-3">
-                <select
-                  class="form-select"
-                  id="CFDI"
-                  formControlName="CFDI"
-                  placeholder="CFDI"
-                >
-                  <option>Comprobante de ingreso</option>
-                  <option>Comprobante de egreso</option>
-                  <option>Comprobante de traslado</option>
-                  <option>Comprobante de recepción de pagos</option>
-                  <option>Comprobante de nómina</option>
-                  <option>Comprobante de retenciones e información de pagos</option>
-                  <option>...</option>
-                </select>
-                <label for="CFDI">{{this.CFDI}}</label>
-              </div>
-              <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('CFDI')?.hasError?.('required') && this.createClientForm.get('CFDI')?.touched"
-                >
-                  El uso de CFDI<strong> es obligatorio</strong>
-                </div>
-            </c-col>
 
           </c-row>
 <!-- ------------------------------------------------------------------------------------------------ -->

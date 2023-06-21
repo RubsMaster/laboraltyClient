@@ -1,1 +1,227 @@
-<p>consultants works!</p>
+<c-row>
+    <c-col xs>
+      <c-card class="mb-4">
+        <c-card-header class="p-4">
+          <h3 style="float: left">{{ Title }}</h3>
+          <button
+            class="ms-auto"
+            cButton
+            (click)="saveClient()"
+            color="dark"
+            variant="outline"
+            style="float: right"
+            id="btnSubmit"
+            type="submit"
+            [disabled]="
+              Title === 'Editar Usuario' ? false : !createConsultantForm.valid
+            "
+          >
+            {{ Title === "Editar Usuario" ? "+Editar" : "+ Crear" }}
+          </button>
+        </c-card-header>
+  
+        <c-card-body class="p-4">
+          <form cForm class="row g-3" [formGroup]="createConsultantForm" novalidate>
+            <c-row>
+              <h4>información del cliente</h4>
+            </c-row>
+  
+            <c-row class="mt-2">
+  
+              <!-- jobTitle -->
+              <c-col [md]="3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="jobTitle"
+                    formControlName="jobTitle"
+                    name="jobTitle"
+                    placeholder="Puesto"
+                  />
+                  <label for="jobTitle">{{ this.jobTitle }}</label>
+  
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="this.createConsultantForm.get('jobTitle')?.errors?.['required'] && this.createConsultantForm.get('jobTitle')?.touched"
+                  >
+                    El nombre del puesto<strong> es obligatorio</strong>
+                  </div>
+                </div>
+              </c-col>
+  
+              <!-- firstName -->
+              <c-col [md]="3">
+                <div class="form-floating">
+                  <input
+                    cFormControl
+                    id="firstName"
+                    type="text"
+                    class="form-control"
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder="Nombre(s)"
+                  />
+                  <label for="firstName">{{ this.firstName }}</label>
+  
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.createConsultantForm.get('firstName')?.errors?.['required'] && this.createConsultantForm.get('firstName')?.touched"
+                  >
+                    El nombre<strong> es obligatorio</strong>
+                  </div>
+                </div>
+              </c-col>
+  
+              <!-- middleNam -->
+              <c-col [md]="3" class="mb-3">
+                <div class="form-floating">
+                  <input
+                    cFormControl
+                    id="middleName"
+                    type="text"
+                    class="form-control"
+                    formControlName="middleName"
+                    name="middleName"
+                    placeholder="Apellido paterno"
+                  />
+                  <label for="middleName">{{ this.middleName }}</label>
+                </div>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createConsultantForm.get('middleName')?.hasError?.('required') && this.createConsultantForm.get('middleName')?.touched"
+                >
+                  El apellido paterno<strong> es obligatorio</strong>
+                </div>
+              </c-col>
+  
+            </c-row>
+  
+            <c-row>
+              <hr />
+              <h4>Domicilio fiscal</h4>
+            </c-row>
+  
+            <c-row class="mt-2">
+  
+              <!-- lastName -->
+              <c-col [md]="3">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lastName"
+                    placeholder="Apellido materno"
+                    formControlName="lastName"
+                  />
+                  <label for="street">{{ this.lastName }}</label>
+                </div>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.createConsultantForm.get('lastName')?.errors?.['required'] && this.createConsultantForm.get('lastName')?.touched"
+                  >
+                    El apellido materno <strong> es obligatorio</strong>
+                  </div>
+              </c-col>
+  
+              <!-- officePhonenumber -->
+              <c-col [md]="4">
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="officePhonenumberr"
+                    placeholder="Telefono de oficina"
+                    formControlName="officePhonenumber"
+                  />
+                  <label for="officePhonenumber">{{ this.officePhonenumber }}</label>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.createConsultantForm.get('officePhonenumber')?.hasError?.('required') && this.createConsultantForm.get('officePhonenumber')?.touched"
+                  >
+                    El telefono movil<strong> es obligatorio</strong>
+                  </div>
+                </div>
+              </c-col>
+  
+              <!-- mobilePhonenumber -->
+              <c-col [md]="4">
+                <div class="form-floating mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="mobilePhonenumber"
+                    placeholder="Telefono mobil"
+                    formControlName="mobilePhonenumber"
+                  />
+                  <label for="mobilePhonenumber">{{ this.mobilePhonenumber }}</label>
+                </div>
+              </c-col>
+  
+              <!-- userAssigned -->
+              <c-col [md]="4">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="userAssigned"
+                    name="userAssigned"
+                    placeholder="Código postal"
+                    formControlName="userAssigned"
+                  />
+                  <label for="userAssigned">{{ this.userAssigned }}</label>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.createConsultantForm.get('userAssigned')?.hasError?.('required') && this.createConsultantForm.get('userAssigned')?.touched"
+                  >
+                    El nombre de usuario<strong> es obligatorio</strong>
+                  </div>
+                </div>
+              </c-col>
+  
+              <!-- passwordAssigned -->
+              <c-col [md]="3">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="passwordAssigned"
+                    placeholder="Colonia"
+                    formControlName="passwordAssigned"
+                  />
+                  <label for="passwordAssigned">{{ this.passwordAssigned }}</label>
+                </div>
+                <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.createConsultantForm.get('passwordAssigned')?.hasError?.('required') && this.createConsultantForm.get('passwordAssigned')?.touched"
+                  >
+                    La colonia<strong> es obligatoria</strong>
+                  </div>
+              </c-col>
+  
+            </c-row>
+  <!-- ------------------------------------------------------------------------------------------------ -->
+          
+  <!-- ------------------------------------------------------------------------------------------------ -->
+           
+  <!-- ------------------------------------------------------------------------------------------------ -->
+  
+          </form>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
+  
