@@ -6,7 +6,7 @@
           <button
             class="ms-auto"
             cButton
-            (click)="saveClient()"
+            (click)="saveConsultant()"
             color="dark"
             variant="outline"
             style="float: right"
@@ -21,7 +21,7 @@
         </c-card-header>
   
         <c-card-body class="p-4">
-          <form cForm class="row g-3" [formGroup]="createConsultantForm" novalidate>
+          <form cForm class="row g-3" [formGroup]="createConsultantForm" (ngSubmit)="saveConsultant()" novalidate>
             <c-row>
               <h4>información del cliente</h4>
             </c-row>

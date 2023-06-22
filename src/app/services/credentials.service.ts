@@ -12,7 +12,6 @@ export class CredentialsService {
     private http: HttpClient
   ) { }
   createCredential(credential: CredentialModel){
-    console.log("Credential to create" + JSON.stringify(credential))
     return this.http.post(this.URI_API + "createCredential", credential)
   }
 

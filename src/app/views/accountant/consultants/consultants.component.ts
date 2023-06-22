@@ -68,10 +68,11 @@ export class ConsultantsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.createConsultantForm.reset();
   }
 
 
-  saveClient(){
+  saveConsultant(){
     const consultant: ConsultantModel = {
       jobTitle: this.createConsultantForm.get('jobTitle')?.value,
       firstName: this.createConsultantForm.get('firstName')?.value,
@@ -96,12 +97,9 @@ export class ConsultantsComponent implements OnInit {
             rol: "CONSULTANT",
             relatedId: data._id
           } 
-          console.log("related id: " + data._id)
           this.credService.createCredential(newCred).subscribe(data => {
-            
             this.ngOnInit()
-          })
-          
+          })          
         }, error => {
           console.log(error)
         })

@@ -16,7 +16,6 @@ export class ConsultantsService {
   ) { }
 
   createConsultant(consultant: ConsultantModel){
-    console.log("esto envia el servicio: " + JSON.stringify(consultant))
     return this.http.post(this.URI_API + "createConsultant", consultant)
   }
 }
