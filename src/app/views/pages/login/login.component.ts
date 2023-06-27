@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 // import Validation from './utils/validation';
-import { AuthService } from "../../../services/auth/auth.service";
+// import { AuthService } from "../../../services/auth/auth.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminModel } from 'src/app/models/admin';
 import { authModel } from 'src/app/models/credential';
 import { first } from 'rxjs/operators';
+import { CredentialsService } from 'src/app/services/credentials.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent {
 
 
   constructor(
-    private authSvc: AuthService, 
+    private authSvc: CredentialsService, 
     private fb: FormBuilder,
     private router: Router
   ) { 
@@ -30,13 +31,13 @@ export class LoginComponent {
     })
   }
 
-  // ngOnInit(): void{
-  //   const userData = {
-  //     username: 'admin',
-  //     password: '123456'
-  //   };
-  //   this.authSvc.logIn(userData).subscribe((res) => console.log(res)); 
-  // }
+  ngOnInit(): void{
+    // const userData = {
+    //   username: 'admin',
+    //   password: '123456'
+    // };
+    // this.authSvc.login(userData).subscribe((res) => console.log("login")); 
+  }
 
   onLogin(): void{
     const auth = {
@@ -44,7 +45,7 @@ export class LoginComponent {
       password: this.loginForm.get('password')?.value
     }
     //nos suscribimos al servicio de login 
-    this.authSvc.logIn(auth).subscribe( res => {
+    this.authSvc.login(auth).subscribe( res => {
       if(res){
         console.log(res);
         this.router.navigate(['']);

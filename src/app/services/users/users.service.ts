@@ -17,11 +17,11 @@ export class UsersService {
   ) { }
 
   createUser(user: UserModel): Observable<any> {
-    return this.http.post(this.URI_API + "createUser", user)
+    return this.http.post(this.URI_API + "createAccountant", user)
   }
 
   createAccountant(admin: AdminModel): Observable<any>{
-    return this.http.post(this.URI_API + "createUser", admin)
+    return this.http.post(this.URI_API + "createAccountant", admin)
   }
 
   updateUser(id: string, updates: any): Observable<UserModel> {
@@ -32,7 +32,7 @@ export class UsersService {
 
   getAllUsers(): Observable<UserModel []> {
     const resultJSON = this.http.get<UserModel[]>(
-     this.URI_API + "getAllUsers" 
+     this.URI_API + "getAccountants" 
     );
     return resultJSON;
   }
@@ -42,6 +42,6 @@ export class UsersService {
   }
 
    getUser(id: string): Observable<any>{
-    return this.http.get(this.URI_API + "getUser/" + id)
+    return this.http.get(this.URI_API + "getAccountant/" + id)
    }
 }
