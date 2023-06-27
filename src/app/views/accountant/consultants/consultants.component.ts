@@ -45,6 +45,8 @@ export class ConsultantsComponent implements OnInit {
 
   fileInfos?: Observable<any>;
 
+  imageUrl: string = './assets/images/default-profile.jpg';
+
   constructor(
     private _router: Router,
     public formBuilder: FormBuilder,
@@ -120,7 +122,6 @@ export class ConsultantsComponent implements OnInit {
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
-
   upload(): void {
     this.progress = 0;
 
@@ -135,7 +136,10 @@ export class ConsultantsComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
+              console.log("event: " + JSON.stringify(event.body))
               this.message = event.body.message;
+              this.imageUrl = event.body.filename;
+              this.imageUrl = `http://localhost:4000/getFile/${event.body.filename}`;
               this.fileInfos = this.uploadService.getFiles();
             }
           },
