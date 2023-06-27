@@ -78,7 +78,7 @@ export class ConsultantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.createConsultantForm.reset();
-    this.fileInfos = this.uploadService.getFiles();
+    //this.fileInfos = this.uploadService.getFiles();
   }
 
   saveConsultant(){
