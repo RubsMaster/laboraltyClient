@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { AdminModel, AdminResponse } from "../../models/admin";
-import { authModel, sessionModel } from "../../models/credential";
+import { CredentialModel, authModel, sessionModel } from "../../models/credential";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { HttpClient } from '@angular/common/http';
 
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
 
-  logIn(authData: authModel): Observable<sessionModel | void> {
+  logIn(authData: CredentialModel): Observable<sessionModel | void> {
     // Construir la URL para el endpoint de autenticación
     const url = this.URI_API + "/auth/login";
 

@@ -1,4 +1,4 @@
-export type Roles = 'ADMIN' | 'ACCOUNTANT' | 'CLIENT';
+export type Roles = 'ADMIN' | 'ACCOUNTANT' | 'CLIENT'| 'CONSULTANT'; 
 export interface authModel {
     username: string;
     password: string;
@@ -12,8 +12,8 @@ export interface sessionModel{
 }
 export interface CredentialModel {
     _id?: number,
-    user: String;
-    password: String;
-    rol: string;
-    relatedId: any;
+    user?: String;
+    password?: String;
+    role?: Roles;
+    relatedId?: any;
 }

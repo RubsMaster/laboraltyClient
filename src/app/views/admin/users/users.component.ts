@@ -10,6 +10,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
 import { AdminModel } from 'src/app/models/admin';
+import { CredentialsService } from 'src/app/services/credentials.service';
+import { CredentialModel } from 'src/app/models/credential';
 
 @Component({
   selector: 'app-users',
@@ -46,7 +48,8 @@ export class UsersComponent implements OnInit {
     private _router: Router,
     public formBuilder: FormBuilder,
     private aRouter: ActivatedRoute,
-    private userService: UsersService
+    private userService: UsersService,
+    private credService: CredentialsService
   ) {
     this.createUserForm = this.formBuilder.group({
       firstNameTitular: ["", Validators.required],
@@ -151,41 +154,89 @@ export class UsersComponent implements OnInit {
   }
 
 
-  saveUser() {
-    const user: UserModel = {
-      businessName: this.createUserForm.get('businessName')?.value,
-      RFC: this.createUserForm.get('RFC')?.value,
-      firstNameTitular: this.createUserForm.get('firstNameTitular')?.value,
-      lastNameTitular: this.createUserForm.get('lastNameTitular')?.value,
-      email: this.createUserForm.get('email')?.value,
-      street: this.createUserForm.get('street')?.value,
-      innerNumber: this.createUserForm.get('innerNumber')?.value,
-      outdoorNumber: this.createUserForm.get('outdoorNumber')?.value,
-      zipCode: this.createUserForm.get('zipCode')?.value,
-      suburb: this.createUserForm.get('suburb')?.value,
-      city: this.createUserForm.get('city')?.value,
-      state: this.createUserForm.get('state')?.value,
-      officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value,
-      mobilePhoneNumber: this.createUserForm.get('mobilePhoneNumber')?.value,
-      totalEmployees: this.createUserForm.get('totalEmployees')?.value,
-      totalRFC: this.createUserForm.get('totalRFC')?.value,
-      monthlyDebt: this.createUserForm.get('monthlyDebt')?.value,
-      userAssigned: this.createUserForm.get('userAssigned')?.value,
-      passwordAssigned: this.createUserForm.get('passwordAssigned')?.value
+  // saveUser() {
+  //   const user: UserModel = {
+  //     businessName: this.createUserForm.get('businessName')?.value,
+  //     RFC: this.createUserForm.get('RFC')?.value,
+  //     firstNameTitular: this.createUserForm.get('firstNameTitular')?.value,
+  //     lastNameTitular: this.createUserForm.get('lastNameTitular')?.value,
+  //     email: this.createUserForm.get('email')?.value,
+  //     street: this.createUserForm.get('street')?.value,
+  //     innerNumber: this.createUserForm.get('innerNumber')?.value,
+  //     outdoorNumber: this.createUserForm.get('outdoorNumber')?.value,
+  //     zipCode: this.createUserForm.get('zipCode')?.value,
+  //     suburb: this.createUserForm.get('suburb')?.value,
+  //     city: this.createUserForm.get('city')?.value,
+  //     state: this.createUserForm.get('state')?.value,
+  //     officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value,
+  //     mobilePhoneNumber: this.createUserForm.get('mobilePhoneNumber')?.value,
+  //     totalEmployees: this.createUserForm.get('totalEmployees')?.value,
+  //     totalRFC: this.createUserForm.get('totalRFC')?.value,
+  //     monthlyDebt: this.createUserForm.get('monthlyDebt')?.value,
+  //     userAssigned: this.createUserForm.get('userAssigned')?.value,
+  //     passwordAssigned: this.createUserForm.get('passwordAssigned')?.value
+  //   }
+
+  saveUser(){
+      const accountant: UserModel = {
+        businessName: this.createUserForm.get('businessName')?.value,
+        RFC: this.createUserForm.get('RFC')?.value,
+        firstNameTitular: this.createUserForm.get('firstNameTitular')?.value,
+        lastNameTitular: this.createUserForm.get('lastNameTitular')?.value,
+        email: this.createUserForm.get('email')?.value,
+        street: this.createUserForm.get('street')?.value,
+        innerNumber: this.createUserForm.get('innerNumber')?.value,
+        outdoorNumber: this.createUserForm.get('outdoorNumber')?.value,
+        zipCode: this.createUserForm.get('zipCode')?.value,
+        suburb: this.createUserForm.get('suburb')?.value,
+        city: this.createUserForm.get('city')?.value,
+        state: this.createUserForm.get('state')?.value,
+        officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value,
+        mobilePhoneNumber: this.createUserForm.get('mobilePhoneNumber')?.value,
+        totalEmployees: this.createUserForm.get('totalEmployees')?.value,
+        totalRFC: this.createUserForm.get('totalRFC')?.value,
+        monthlyDebt: this.createUserForm.get('monthlyDebt')?.value,
+        userAssigned: this.createUserForm.get('userAssigned')?.value,
+        passwordAssigned: this.createUserForm.get('passwordAssigned')?.value
+      }
+  
+      const user = this.createUserForm.get('userAssigned')
+      
+      this.credService.checkCredential(user?.value).subscribe(data => {
+        if (data){
+          return alert("El usuario ya existe, elija otro nombre")
+        } else {
+          this.userService.createUser(accountant).subscribe((data:any) => {
+            const newCred: CredentialModel = {
+              user: accountant.userAssigned,
+              password: accountant.passwordAssigned,
+              role: "ACCOUNTANT",
+              relatedId: data._id
+            } 
+            this.credService.createCredential(newCred).subscribe(data => {
+              console.log("to chill")
+              this.ngOnInit()
+            })          
+          }, error => {
+            console.log(error)
+          })
+        }
+      })
+       
     }
 
-    const admin: AdminModel = {
-      username: this.createUserForm.get('userAssigned')?.value,
-      password: this.createUserForm.get('passwordAssigned')?.value
-    }
+    // const admin: AdminModel = {
+    //   username: this.createUserForm.get('userAssigned')?.value,
+    //   password: this.createUserForm.get('passwordAssigned')?.value
+    // }
 
 
-    this.userService.createUser(user).subscribe(data => {
-      this.ngOnInit()
-    }, error => {
-      console.log(error)
-    })
-  }
+  //   this.userService.createUser(user).subscribe(data => {
+  //     this.ngOnInit()
+  //   }, error => {
+  //     console.log(error)
+  //   })
+  // }
 
   updateUser() {
     const id = this.id ?? '';

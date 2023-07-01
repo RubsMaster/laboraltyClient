@@ -12,7 +12,7 @@ import { ClientModel } from "../../../models/client";
 import { ClientsService } from "../../../services/accountant/clients/clients.service";
 import { CredentialsService } from "../../../services/credentials.service";
 import { CredentialModel } from 'src/app/models/credential';
-// import { any } from 'joi';
+
 
 @Component({
   selector: 'app-clients',
@@ -50,7 +50,7 @@ export class ClientsComponent implements OnInit {
     public formBuilder: FormBuilder,
     private aRouter: ActivatedRoute,
     private clientService: ClientsService,
-    private credService: CredentialsService
+    private credService: CredentialsService,
   ) { 
 
     this.createClientForm = this.formBuilder.group({
@@ -151,7 +151,7 @@ export class ClientsComponent implements OnInit {
           const newCred: CredentialModel = {
             user: client.userAssigned,
             password: client.passwordAssigned,
-            rol: "ACCOUNTANT",
+            role: "ACCOUNTANT",
             relatedId: data._id
           } 
           console.log("related id: " + data._id)

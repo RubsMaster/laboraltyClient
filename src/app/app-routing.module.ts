@@ -7,7 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import * as path from 'path';
-import { UsersComponent } from './views/admin/users/users.component';
+import { CheckLoginGuard } from './guards/check-login.guard';
 
 const routes: Routes = [
   {
@@ -154,6 +154,7 @@ const routes: Routes = [
     component: LoginComponent,
     data: {
       title: "Login Page",
+      canActivate:[CheckLoginGuard]
     },
   },
   {
