@@ -10,21 +10,36 @@
           <!-- <h4>Informacion del usuario</h4> -->
 
           <!-- input logo -->
-          <div>
-            <label cLabel for="formFileLg">Large file input example</label>
-            <input cFormControl id="formFileLg" sizing="lg" type="file" />
-          </div>
-
           <c-col [md]="3">
-            <div class="form-floating">
-
-              <input type="file" class="form-control" id="" name="" placeholder="Seleccione el logo" />
-              <label for="logo">Seleccione el logo</label>
-
-              <div class="alert alert-danger" role="alert" *ngIf="">
-                El nombre del usuario <strong> es obligatorio</strong>
-              </div>
-            </div>
+            <c-card>
+              <img cCardImg="top" [src]="imageUrl" style="width: 360px; height: 200px;">
+        
+              <c-card-body>
+                <c-row>
+                  <h3 cCardTitle>Logotipo</h3>
+                  <p cCardText>
+                    Es el logotipo de su empresa. Aparecerá en la parte superior de la barra de navegación.
+                  </p>
+                </c-row>
+        
+                
+                <c-row class="mt-3">
+                  <c-progress class="mb-3 justify-content-between" thin >
+                    <c-progress-bar :value="{{this.progress}}" color="info" [ngStyle]="{ width: this.progress + '%' }"></c-progress-bar>
+                  </c-progress>
+        
+                  <input cFormControl id="formFile" type="file" (change)="selectFile($event)" class="mb-3"/>
+                  <button cButton color="info" variant="outline" [disabled]="!selectedFiles" (click)="upload()">Subir imagen</button>
+                </c-row>
+        
+                <p cCardText *ngIf="message">
+                  <small class="text-medium-emphasis">{{ message }}</small>
+                </p>
+                <div >
+                  
+                </div>
+              </c-card-body>
+            </c-card>
           </c-col>
 
           <!-- Notification email -->
