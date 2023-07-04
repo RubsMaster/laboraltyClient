@@ -11,7 +11,7 @@ import { UserModel } from "../../../models/user";
 import { UsersService } from "../../../services/users/users.service";
 import { AdminModel } from 'src/app/models/admin';
 import { CredentialsService } from 'src/app/services/credentials.service';
-import { CredentialModel } from 'src/app/models/credential';
+import { CredentialModel, sessionModel } from 'src/app/models/credential';
 
 @Component({
   selector: 'app-users',

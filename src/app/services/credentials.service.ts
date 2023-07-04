@@ -39,7 +39,7 @@ export class CredentialsService {
   }
 
   //Recibimios el user 
-  login(authData: CredentialModel ): Observable<sessionModel | void>{
+  login(authData: CredentialModel | authModel): Observable<sessionModel | void>{
     const url = this.URI_API + "auth/login";
 
     return this.http
@@ -84,6 +84,7 @@ export class CredentialsService {
         this.logout();
       }else{
         this.loggedIn.next(true);
+        console.log(user.role)
         this.role.next(user.role);
       }
     }
@@ -94,7 +95,7 @@ export class CredentialsService {
   private saveLocalStorage(user: sessionModel):void{
     // localStorage.setItem('token', token);
     const {userId, message, ... rest} = user;
-    localStorage.setItem('User', JSON.stringify(rest));
+    localStorage.setItem('user', JSON.stringify(rest));
     console.log(user) ;
 
   };

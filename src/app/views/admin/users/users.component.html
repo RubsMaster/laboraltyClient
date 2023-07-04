@@ -39,15 +39,15 @@
                   name="firstNameTitular"
                   placeholder="Nombres"
                 />
-                <label for="firstNameTitular">{{ this.firstNameTitular }}</label>
+                  <label for="firstNameTitular">{{ this.firstNameTitular }}</label>
 
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched"
-                >
-                  El nombre del usuario <strong> es obligatorio</strong>
-                </div>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched"
+                  >
+                    El nombre del usuario <strong> es obligatorio</strong>
+                  </div>
 
               </div>
             </c-col>

@@ -13,7 +13,6 @@ import { ClientsService } from "../../../services/accountant/clients/clients.ser
 import { CredentialsService } from "../../../services/credentials.service";
 import { CredentialModel } from 'src/app/models/credential';
 
-
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',

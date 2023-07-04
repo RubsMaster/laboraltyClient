@@ -15,7 +15,8 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
-  SharedModule
+  SharedModule,
+  ProgressModule
 } from '@coreui/angular';
 
 @NgModule({
@@ -34,7 +35,8 @@ import {
     FormModule,
     GridModule,
     ListGroupModule,
-    SharedModule
+    SharedModule,
+    ProgressModule
   ]
 })
 export class ConsultantsModule { }

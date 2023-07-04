@@ -12,7 +12,7 @@ import { CheckLoginGuard } from './guards/check-login.guard';
 const routes: Routes = [
   {
     path: "",
-    component: DefaultLayoutComponent,
+    component: LoginComponent,
     data: {
       title: "Administrador",
     },
