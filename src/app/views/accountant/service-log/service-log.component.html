@@ -1,48 +1,24 @@
 <c-row>
-  <c-col >
+  <c-col>
     <c-card class="mb-4">
       <c-card-header class="p-4">
         <h3 style="float: left">Crear Documentos laborales</h3>
-        <button class="ms-auto"
-          cButton
-          color="dark"
-          variant="outline"
-          style="float: right"
-          id="btnSubmit"
-          type="submit"
-          (click)="saveService()"
-          [disabled]="serviceLogForm.invalid"
-        >
+        <button class="ms-auto" cButton color="dark" variant="outline" style="float: right" id="btnSubmit" type="submit"
+          (click)="saveService()" [disabled]="serviceLogForm.invalid">
           + Agregar
         </button>
       </c-card-header>
 
       <c-card-body class="p-4">
-        <form
-          cForm
-          class="row g-3"
-          [formGroup]="serviceLogForm"
-          (ngSubmit)="saveService()"
-        >
+        <form cForm class="row g-3" [formGroup]="serviceLogForm" (ngSubmit)="saveService()">
           <c-row style="margin-bottom: 2%">
             <c-col [md]="6" style="margin-top: 15px">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="serviceLogName"
-                  formControlName="serviceLogName"
-                  name="serviceLogName"
-                  placeholder="serviceLogName"
-                  required
-                />
+                <input type="text" class="form-control" id="serviceLogName" formControlName="serviceLogName"
+                  name="serviceLogName" placeholder="serviceLogName" required />
                 <label for="serviceLogName">Nombre</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.serviceLogForm.get('serviceLogName')?.errors?.['required'] && this.serviceLogForm.get('serviceLogName')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.serviceLogForm.get('serviceLogName')?.errors?.['required'] && this.serviceLogForm.get('serviceLogName')?.touched">
                   El nombre del servicio <strong> es obligatorio</strong>
                 </div>
               </div>
@@ -50,25 +26,16 @@
 
             <c-col [md]="6" style="margin-top: 15px">
               <div class="form-floating">
-                <select
-                  cSelect
-                  id="serviceLogType"
-                  class="form-control"
-                  name="serviceLogType"
-                  formControlName="serviceLogType"
-                >
+                <select cSelect id="serviceLogType" class="form-control" name="serviceLogType"
+                  formControlName="serviceLogType">
                   <option>Empleado</option>
                   <option>Empresa</option>
                 </select>
                 <label for="serviceLogType">Tipo de documento</label>
-                <div
-                  class="alert alert-danger"
+                <div class="alert alert-danger"
                   *ngIf="this.serviceLogForm.get('serviceLogType')?.errors?.['required'] && this.serviceLogForm.get('serviceLogType')?.touched"
-                  style="margin-top: 3px"
-                >
-                  <span
-                    >El tipo del servicio<strong> es obligatorio</strong></span
-                  >
+                  style="margin-top: 3px">
+                  <span>El tipo del servicio<strong> es obligatorio</strong></span>
                 </div>
               </div>
             </c-col>
@@ -77,34 +44,59 @@
           <c-row style="margin-bottom: 2%">
             <c-col [md]="4" style="margin-top: 15px">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="taskName"
-                  formControlName="taskName"
-                  name="taskName"
-                  placeholder="taskName"
-                  required
-                />
+                <input type="text" class="form-control" id="taskName" formControlName="taskName" name="taskName"
+                  placeholder="taskName" required #taskNameInput/>
                 <label for="taskName">Nombre tarea:</label>
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.serviceLogForm.get('taskName')?.errors?.['required'] && this.serviceLogForm.get('taskName')?.touched">
+                  El nombre de la tarea <strong> es obligatoria</strong>
+                </div>
               </div>
             </c-col>
             <c-col [md]="2" style="margin-top: 15px">
               <div class="form-floating mb-3">
-                <button cButton color="primary" variant="outline">Agregar</button>
+                <button cButton color="primary" variant="outline" (click)="addTaskToList(taskNameInput.value); taskNameInput.value=''">Agregar</button>
               </div>
             </c-col>
             <c-col [md]="6" style="margin-top: 15px">
               <div class="form-floating mb-3">
                 <c-card>
-                  <c-card-header>
-                    Tareas
-                  </c-card-header>
-                  <ul cListGroup [flush]="true">
-                    <li cListGroupItem>Cras justo odio <button cButton color="danger" variant="outline">Eliminar</button></li>
-                    <li cListGroupItem>Dapibus ac facilisis in <button cButton color="danger" variant="outline">Eliminar</button></li>
-                    <li cListGroupItem>Vestibulum at eros <button cButton color="danger" variant="outline">Eliminar</button></li>
-                  </ul>
+                  <c-card-body>
+                    <div class="small text-medium-emphasis">
+                      <span>ⓘ Debe crear al menos una tarea para poder continuar</span>
+                    </div>
+                    <table [hover]="true" [responsive]="true" [striped]="false" align="middle" cTable
+                      class="mb-0 border">
+                      <thead cTableColor="dark">
+                        <tr>
+                          <th class="col-8">Nombre</th>
+
+                          <th class="col-2">Eliminar</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let task of taskList; index as i">
+                          <!-- Empleado -->
+                          <td>
+                            {{ task.taskName }}
+                            <!--- <span class="badge bg-secondary">{{doc.isMoral}}</span>-->
+                          </td>
+
+                          <!-- Empresa -->
+                          <td>
+                            <button cButton color="danger" variant="outline"
+                                (click)="deleteTask(task.taskName, i)">
+                                Eliminar
+                              </button>
+                          </td>
+
+                          
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </c-card-body>
                 </c-card>
               </div>
             </c-col>

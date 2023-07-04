@@ -13,7 +13,8 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
-  SharedModule
+  SharedModule,
+  TableModule
 } from '@coreui/angular';
 
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
@@ -37,7 +38,9 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
-    ListGroupModule
+    ListGroupModule,
+    TableModule
   ]
 })
 export class ServiceLogModule { }
+
