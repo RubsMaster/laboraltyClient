@@ -14,13 +14,13 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
-  SharedModule
+  SharedModule,
+  ProgressModule
 } from '@coreui/angular';
 
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 import { FormsRoutingModule } from '../../forms/forms-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
     ButtonGroupModule,
     DropdownModule,
     SharedModule,
-    ListGroupModule
+    ListGroupModule,
+    ProgressModule
   ]
 })
 export class SettingsModule { }
