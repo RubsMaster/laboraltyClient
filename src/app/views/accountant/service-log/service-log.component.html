@@ -79,14 +79,14 @@
                         <tr *ngFor="let task of taskList; index as i">
                           <!-- Empleado -->
                           <td>
-                            {{ task.taskName }}
+                            {{ task.name }}
                             <!--- <span class="badge bg-secondary">{{doc.isMoral}}</span>-->
                           </td>
 
                           <!-- Empresa -->
                           <td>
                             <button cButton color="danger" variant="outline"
-                                (click)="deleteTask(task.taskName, i)">
+                                (click)="deleteTask(task.name, i)">
                                 Eliminar
                               </button>
                           </td>

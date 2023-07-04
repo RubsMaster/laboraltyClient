@@ -1,4 +1,4 @@
 export interface tasks {
-    taskName: string,
+    name: string,
     completed: boolean
   }

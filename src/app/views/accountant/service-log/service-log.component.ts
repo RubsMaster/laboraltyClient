@@ -7,6 +7,8 @@ import {
 } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { tasks } from "../../../models/tasks";
+import { ServiceLog } from "../../../models/serviceLog";
+import { ServiceLogService } from "../../../services/accountant/service-log/service-log.service";
 
 @Component({
   selector: 'app-service-log',
@@ -20,7 +22,8 @@ export class ServiceLogComponent implements OnInit {
    taskList: tasks[] = []
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private service: ServiceLogService
   ) {
     this.serviceLogForm = this.formBuilder.group({
       serviceLogName: new FormControl('', Validators.required),
@@ -34,7 +37,7 @@ export class ServiceLogComponent implements OnInit {
 
   addTaskToList(taskNameParameter: string){
     const task: tasks = {
-      taskName: taskNameParameter,
+      name: taskNameParameter,
       completed: false
     }
      this.taskList.push(task)
@@ -47,18 +50,15 @@ export class ServiceLogComponent implements OnInit {
   }
 
   saveService() {
-  //   const doc: laborDocuments = {
-  //     serviceLogName: this.serviceLogForm.get('name')?.value,
-  //     serviceLogType: this.serviceLogForm.get('type')?.value
-  //   }
-  //   this.DocumentsService.createDoc(doc).subscribe(data => {
-  //     console.log("Se guardo el documento: " + doc)
-  //     this.ngOnInit();
-  //     this.content = '';
-  //   }, error => {
-  //     console.log(error)
-  //   });
-
+    
+     const serviceLog: ServiceLog = {
+       serviceLogName: this.serviceLogForm.get('serviceLogName')?.value,
+       serviceLogType: this.serviceLogForm.get('serviceLogType')?.value,
+       tasks: this.taskList
+     }
+     this.service.createServiceLog(serviceLog).subscribe(data => {
+      console.log("esto es lo que se creó: " + JSON.stringify(data))
+     })
  }
 
 
