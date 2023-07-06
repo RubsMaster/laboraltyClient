@@ -46,6 +46,9 @@ export class ConsultantsComponent implements OnInit {
   fileInfos?: Observable<any>;
 
   imageUrl: string = './assets/images/default-profile.jpg';
+  imageName: string = ''
+
+  consultantList: ConsultantModel[] = [];
 
   constructor(
     private _router: Router,
@@ -80,10 +83,12 @@ export class ConsultantsComponent implements OnInit {
 
   ngOnInit(): void {
     this.createConsultantForm.reset();
+    this.getAllConsultants()
     //this.fileInfos = this.uploadService.getFiles();
   }
 
   saveConsultant(){
+
     const consultant: ConsultantModel = {
       jobTitle: this.createConsultantForm.get('jobTitle')?.value,
       firstName: this.createConsultantForm.get('firstName')?.value,
@@ -93,14 +98,17 @@ export class ConsultantsComponent implements OnInit {
       mobilePhonenumber: this.createConsultantForm.get('mobilePhonenumber')?.value,
       userAssigned: this.createConsultantForm.get('userAssigned')?.value,
       passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
+      imageName: this.imageName
     }
 
     const user = this.createConsultantForm.get('userAssigned')
     
     this.credService.checkCredential(user?.value).subscribe(data => {
+      
       if (data){
         return alert("El usuario ya existe, elija otro nombre")
       } else {
+
         this.consultantService.createConsultant(consultant).subscribe((data:any) => {
           const newCred: CredentialModel = {
             user: consultant.userAssigned,
@@ -111,7 +119,9 @@ export class ConsultantsComponent implements OnInit {
           this.credService.createCredential(newCred).subscribe(data => {
             this.ngOnInit()
           })          
+
         }, error => {
+          
           console.log(error)
         })
       }
@@ -119,9 +129,25 @@ export class ConsultantsComponent implements OnInit {
      
   }
 
+getAllConsultants() {
+  this.consultantService.getAllConsultants().subscribe(
+    (data: any) => {
+      this.consultantList = data as ConsultantModel[]; // Asignar los datos al arreglo consultantList
+      this.consultantList.reverse()
+    },
+    error => {
+      console.log(error); // Manejar el error, si corresponde
+    }
+  );
+}
+
+  
+
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
   }
+
+
   upload(): void {
     this.progress = 0;
 
@@ -132,16 +158,18 @@ export class ConsultantsComponent implements OnInit {
         this.currentFile = file;
 
         this.uploadService.upload(this.currentFile).subscribe({
+
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
-              this.imageUrl = event.body.filename;
+              this.imageName = event.body.filename;
               this.imageUrl = `http://localhost:4000/getFile/${event.body.filename}`;
               this.fileInfos = this.uploadService.getFiles();
             }
           },
+
           error: (err: any) => {
             console.log(err);
             this.progress = 0;
@@ -154,6 +182,7 @@ export class ConsultantsComponent implements OnInit {
 
             this.currentFile = undefined;
           }
+          
         });
       }
 
