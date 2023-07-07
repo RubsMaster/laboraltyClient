@@ -1,19 +1,20 @@
 export type Roles = 'ADMIN' | 'ACCOUNTANT' | 'CLIENT'| 'CONSULTANT'; 
-export interface authModel {
-    username: string;
-    password: string;
-}
+// export interface authModel {
+//     username?: String;
+//     password?: String;
+// }
 
-export interface sessionModel{
-    message: string;
-    token: string;
-    userId: string;
-    role: Roles;
-}
-export interface CredentialModel {
+export interface CredentialModel   {
     _id?: number,
-    user?: String;
-    password?: String;
+    user: String;
+    password: String;
     role?: Roles;
     relatedId?: any;
+}
+
+export interface sessionModel {
+    message: String;
+    token: String;
+    relatedId: String;
+    role: Roles;
 }
