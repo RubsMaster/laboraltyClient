@@ -19,4 +19,8 @@ export class ClientsService {
     return this.http.post(this.URI_API + "createClient", client)
   }
 
+  getAllClients(){
+    return this.http.get(this.URI_API+"getAllClients")
+  }
+
 }

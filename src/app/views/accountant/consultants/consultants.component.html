@@ -165,33 +165,59 @@
   </c-col>
 </c-row>
 
-
-
-
-
-
-
-
-
-
-
-
-<div class="row">
-
-  <div class="col-4">
-    
-  </div>
-</div>
-
-
-
-
-
-<div class="card mt-3">
-  <div class="card-header">List of Files</div>
-  <ul class="list-group list-group-flush">
-    <li *ngFor="let file of fileInfos | async" class="list-group-item">
-      <a href="{{ file.url }}">{{ file.name }}</a>
-    </li>
-  </ul>
-</div>
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Consultores</c-card-header>
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+          <tr>
+            <th class="text-center">
+              
+            </th>
+            <th>Nombre</th>
+            <th class="text-center">Nombre de usuario</th>
+            <th class="text-center">Teléfono móvil</th>
+            <th class="text-center">Teléfono de oficina</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let consultant of consultantList; index as i">
+            <td class="text-center">
+              <c-avatar
+                size="md"
+                src="http://localhost:4000/getFile/{{ consultant.imageName }}"
+                status=""
+              ></c-avatar>
+            </td>
+            <td>
+              <div>{{ consultant.firstName }} {{consultant.middleName}} {{consultant.lastName}}</div>
+              <div class="small text-medium-emphasis">
+                <span>{{ consultant.jobTitle }}</span> | Registered:
+                {{ getFormattedDate(consultant.createdAt)  }}
+              </div> 
+            </td>
+            <td class="text-center">
+              <div>{{ consultant.userAssigned}}</div>
+            </td>
+            <td class="text-center">
+              <div>{{ consultant.mobilePhonenumber}}</div>
+            </td>
+            <td class="text-center">
+              <div>{{ consultant.officePhonenumber}}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>

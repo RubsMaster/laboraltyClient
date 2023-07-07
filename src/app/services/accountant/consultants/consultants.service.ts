@@ -18,4 +18,9 @@ export class ConsultantsService {
   createConsultant(consultant: ConsultantModel){
     return this.http.post(this.URI_API + "createConsultant", consultant)
   }
+
+  getAllConsultants(){
+    return this.http.get(this.URI_API + "getAllConsultants")
+  }
+
 }

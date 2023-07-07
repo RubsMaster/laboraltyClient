@@ -18,4 +18,5 @@ export interface ClientModel {
     totalEmployees: String;
     userAssigned: String;
     passwordAssigned: String;
+    createdAt: string;
 }

@@ -467,46 +467,69 @@
             </c-col>
           </c-row>
 <!-- ------------------------------------------------------------------------------------------------ -->
-          <c-row>
-            <!-- phoneNumber -->
-            <c-col [md]="4">
-              <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="phoneNumber"
-                  placeholder="Numero telefonico"
-                  formControlName="phoneNumber"
-                />
-                <label for="phoneNumber">{{ this.phoneNumber }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('phoneNumber')?.hasError?.('required') && this.createClientForm.get('phoneNumber')?.touched"
-                >
-                  El telefono<strong> es obligatorio</strong>
-                </div>
-              </div>
-            </c-col>
-
-            <!-- extension -->
-            <c-col [md]="4">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="extension"
-                  placeholder="Extension"
-                  formControlName="extension"
-                />
-                <label for="extension">{{ this.extension }}</label>                
-              </div>
-            </c-col>
-          </c-row>
+          
 <!-- ------------------------------------------------------------------------------------------------ -->
 
         </form>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+<c-row>
+  <c-col xs>
+    <c-card class="mb-4">
+      <c-card-header>Consultores</c-card-header>
+      <c-card-body>
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="light">
+          <tr>
+            <th>Nombre</th>
+            <th class="text-center">RFC</th>
+            <th class="text-center">Usuario</th>
+            <th>Responsable del servicio</th>
+            <th class="text-center">RFC Asignados</th>
+            <th class="text-center">Empleados Asignados</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let client of clientList; index as i">
+            <td>
+              <div>{{ client.businessName }}</div>
+              <div class="small text-medium-emphasis">
+                <span>{{ client.taxRegime }}</span> | Registered:
+                {{ client.createdAt  }}
+              </div> 
+            </td>
+            <td class="text-center">
+              <div>{{ client.RFC}}</div>
+            </td>
+            <td class="text-center">
+              <div>{{ client.userAssigned}}</div>
+            </td>
+            <td>
+              <div>{{ client.inChargeName}}</div>
+              <div class="small text-medium-emphasis">
+                <span>puesto</span>
+              </div> 
+            </td>
+            <td class="text-center">
+              <div>{{ client.totalRFC}}</div>
+            </td>
+            <td class="text-center">
+              <div>{{ client.totalEmployees}}</div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </c-card-body>
     </c-card>
   </c-col>

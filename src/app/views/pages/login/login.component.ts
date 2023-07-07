@@ -118,8 +118,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.authSvc.login(auth).subscribe(res => {
         if (res) {
-          // console.log(res);
-          this.router.navigate(['/']);
+          console.log(res);
+          this.router.navigate(['/dashboard']);
         }
       })
     )

@@ -4,10 +4,16 @@ import { CommonModule } from '@angular/common';
 import { ConsultantsRoutingModule } from './consultants-routing.module';
 import { ConsultantsComponent } from './consultants.component';
 
+import { MomentModule } from 'ngx-moment';
+
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
+
 import {
+  AvatarModule,
   ButtonGroupModule,
   ButtonModule,
   CardModule,
@@ -15,8 +21,9 @@ import {
   FormModule,
   GridModule,
   ListGroupModule,
+  ProgressModule,
   SharedModule,
-  ProgressModule
+  TableModule
 } from '@coreui/angular';
 
 @NgModule({
@@ -24,6 +31,7 @@ import {
     ConsultantsComponent
   ],
   imports: [
+    AvatarModule,
     CommonModule,
     ConsultantsRoutingModule,
     FormsModule,
@@ -36,7 +44,9 @@ import {
     GridModule,
     ListGroupModule,
     SharedModule,
-    ProgressModule
+    ProgressModule,
+    TableModule,
+    MomentModule
   ]
 })
 export class ConsultantsModule { }
