@@ -44,12 +44,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // const authdata ={
-    //   user: "Terreneitor",
-    //   password: "123456"
-    // }
-    // this.authSvc.login(authdata).subscribe((res) => (console.log(res)))
-
     this.subscription.add(
       this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
     )
@@ -58,51 +52,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  // onLogin(): void {
-  //   if (this.loginForm.invalid) {
-  //     return;
-  //   }
-  
-  //   // obtener los datos del formulario
-  //   const username: string = this.loginForm.get('username')?.value;
-  //   const password: string = this.loginForm.get('password')?.value;
-  
-  //   if (this.isAdmin) {
-  //     // si el usuario es admin, usamos CredentialModel
-  //     const credentialData: CredentialModel = {
-  //       user: username,
-  //       password: password,
-  //       role: 'ADMIN', // este valor debería provenir de alguna parte, no estar codificado
-  //     };
-  
-  //     // iniciar sesión con loginWithCredentialModel y manejar la respuesta
-  //     this.subscription.add(
-  //       this.authSvc.loginWithCredentialModel(credentialData).subscribe(res => {
-  //         if (res) {
-  //           console.log(res);
-  //           this.router.navigate(['']);
-  //         }
-  //       })
-  //     );
-  //   } else {
-  //     // si el usuario no es admin, usamos authModel
-  //     const authData: CredentialModel = {
-  //       user: username,
-  //       password: password,
-  //     };
-  
-  //     // iniciar sesión con loginWithAuthModel y manejar la respuesta
-  //     this.subscription.add(
-  //       this.authSvc.loginWithAuthModel(authData).subscribe(res => {
-  //         if (res) {
-  //           console.log(res);
-  //           this.router.navigate(['']);
-  //         }
-  //       })
-  //     );
-  //   }
-  // }
   
 
   onLogin(): void {
@@ -119,7 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authSvc.login(auth).subscribe(res => {
         if (res) {
           console.log(res);
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/']);
         }
       })
     )

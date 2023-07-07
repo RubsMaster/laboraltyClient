@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
-import { CredentialModel, sessionModel } from '../models/credential';
+import { CredentialModel, authModel, sessionModel } from '../models/credential';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Roles } from '../models/credential';
 
@@ -29,6 +29,15 @@ export class CredentialsService {
   get isAdmin$(): Observable<string | null>{
     return this.role.asObservable();
   }
+  get isAccountnt$(): Observable<string | null>{
+    return this.role.asObservable();
+  }
+  get isClient$(): Observable<string | null>{
+    return this.role.asObservable();
+
+  } get isConsultant$(): Observable<string | null>{
+    return this.role.asObservable();
+  }
   
   createCredential(credential: CredentialModel){
     return this.http.post(this.URI_API + "createCredential", credential)
@@ -37,24 +46,8 @@ export class CredentialsService {
   checkCredential(user: string){
     return this.http.get(this.URI_API + "getCredential/" + user)
   }
-
-
-  //  login(authData: CredentialModel): Observable<any>{
-  //       const url = this.URI_API + "auth/login";
-  //      return this.http
-  //       .post<sessionModel>(url, authData)
-  //       .pipe(
-  //         map((res: sessionModel) => {
-  //           console.log('res ->' , res);
-  //           //saveToken
-  //         }),
-  //         catchError((err) => this.handlerError(err))
-  //       )
-  //  }
-  
         
-
-  login(authData: CredentialModel): Observable<sessionModel | void>{
+  login(authData: authModel): Observable<sessionModel | void>{
     const url = this.URI_API + "auth/login";
     return this.http
     .post<sessionModel>(url, authData)
@@ -72,35 +65,6 @@ export class CredentialsService {
     );
   }
   
-        
-      
-  //Recibimios el user 
-  // login(authData: CredentialModel | authModel): Observable<sessionModel | void>{
-  //   const url = this.URI_API + "auth/login";
-  //   console.log()
-  //   return this.http
-  //   .post<sessionModel>(url, authData)
-  //   .pipe(
-  //     map((res: sessionModel) => {
-  //       // Guardar el token en el almacenamiento local
-  //       this.saveLocalStorage(res);
-        
-  //       // Emitir un evento para indicar que el usuario ha iniciado sesión
-  //       this.loggedIn.next(true);
-                  
-  //       // Devolver la respuesta del servidor
-  //       return res;
-  //     }),
-  //     catchError((err) => {
-  //       // Imprimir el URL completo en caso de error
-  //       console.error("Error en la solicitud. URL completo:", url);
-        
-  //       // Manejar el error
-  //       return this.handlerError(err);
-  //     })
-  //   ); 
-  //  }
-
 
   logout():void{
     localStorage.removeItem('user');
@@ -113,7 +77,7 @@ export class CredentialsService {
     if (userItem === null) {
       return;
     }
-    const user = JSON.parse(userItem) || null; 
+    const user = JSON.parse(userItem); 
     if(user){
       const isExpired =  helper.isTokenExpired(user.token);
       if(isExpired){
@@ -138,8 +102,7 @@ export class CredentialsService {
 
   private saveLocalStorage(user: sessionModel):void{
     const {relatedId, message, ... rest} = user;
-    console.log(user);
-
+    // console.log(user);s
     localStorage.setItem('user', JSON.stringify(rest));
     this.role.next(user.role);  // actualizar BehaviorSubject role
 };
