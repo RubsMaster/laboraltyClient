@@ -8,5 +8,6 @@ export interface ConsultantModel {
     mobilePhonenumber: String;
     userAssigned: String;
     passwordAssigned: String;
-    imageName: String;
+    imageName: string;
+    createdAt: string;
 }

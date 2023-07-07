@@ -181,13 +181,12 @@
           <thead cTableColor="light">
           <tr>
             <th class="text-center">
-              <svg cIcon name="cilPeople"></svg>
+              
             </th>
             <th>Nombre</th>
-            <th class="text-center">Country</th>
-            <th>Usage</th>
-            <th class="text-center">Payment Method</th>
-            <th>Activity</th>
+            <th class="text-center">Nombre de usuario</th>
+            <th class="text-center">Teléfono móvil</th>
+            <th class="text-center">Teléfono de oficina</th>
           </tr>
           </thead>
           <tbody>
@@ -201,45 +200,19 @@
             </td>
             <td>
               <div>{{ consultant.firstName }} {{consultant.middleName}} {{consultant.lastName}}</div>
-              <!-- <div class="small text-medium-emphasis">
-                <span>{{ user.state }}</span> | Registered:
-                {{ user.registered }}
-              </div> -->
+              <div class="small text-medium-emphasis">
+                <span>{{ consultant.jobTitle }}</span> | Registered:
+                {{ getFormattedDate(consultant.createdAt)  }}
+              </div> 
             </td>
             <td class="text-center">
-              <!-- <svg cIcon
-                id="{{ user.country + user.name }}"
-                name="cif{{ user.country }}"
-                size="xl"
-                title="{{ user.country }}"
-              ></svg> -->
-            </td>
-            <td>
-              <!-- <div class="clearfix">
-                <div class="float-start">
-                  <strong>{{ user.usage }}%</strong>
-                </div>
-                <div class="float-end">
-                  <small class="text-medium-emphasis">
-                    {{ user.period }}
-                  </small>
-                </div>
-              </div>
-              <c-progress thin
-              >
-                <c-progress-bar
-                  [value]="user.usage"
-                  color="{{ user.color }}"
-                ></c-progress-bar
-                >
-              </c-progress> -->
+              <div>{{ consultant.userAssigned}}</div>
             </td>
             <td class="text-center">
-              <!-- <svg cIcon name="cibCc{{ user.payment }}" size="xl"></svg> -->
+              <div>{{ consultant.mobilePhonenumber}}</div>
             </td>
-            <td>
-              <!-- <div class="small text-medium-emphasis">Last login</div>
-              <strong>{{ user.activity }}</strong> -->
+            <td class="text-center">
+              <div>{{ consultant.officePhonenumber}}</div>
             </td>
           </tr>
           </tbody>

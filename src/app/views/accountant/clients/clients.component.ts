@@ -44,6 +44,8 @@ export class ClientsComponent implements OnInit {
   
   userExists: boolean = false;
 
+  clientList: ClientModel[] = [];
+
   constructor(
     private _router: Router,
     public formBuilder: FormBuilder,
@@ -64,7 +66,7 @@ export class ClientsComponent implements OnInit {
       inChargeName: new FormControl("", [Validators.required]),
       jobTitle: new FormControl("", [Validators.required]),
       phoneNumber: new FormControl("", [Validators.required]),
-      extension: new FormControl("", [Validators.required]),
+      extension: new FormControl(""),
       taxRegime: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.email]),
       totalRFC: new FormControl("", [Validators.required]),
@@ -115,6 +117,8 @@ export class ClientsComponent implements OnInit {
     this.totalEmployees=  'Empleados asignados';
     this.userAssigned='Usuario'
     this.passwordAssigned='Contraseña'
+
+    this.getAllConsultants()
   }
 
 
@@ -137,7 +141,8 @@ export class ClientsComponent implements OnInit {
       totalRFC: this.createClientForm.get('totalRFC')?.value,
       totalEmployees: this.createClientForm.get('totalEmployees')?.value,
       userAssigned: this.createClientForm.get('userAssigned')?.value,
-      passwordAssigned: this.createClientForm.get('passwordAssigned')?.value
+      passwordAssigned: this.createClientForm.get('passwordAssigned')?.value,
+      createdAt:""
     }
 
     const user = this.createClientForm.get('userAssigned')
@@ -165,6 +170,19 @@ export class ClientsComponent implements OnInit {
       }
     })
      
+  }
+
+  getAllConsultants(){
+    this.clientService.getAllClients().subscribe(
+      (data: any) => {
+        this.clientList = data as ClientModel[]; // Asignar los datos al arreglo consultantList
+         console.log(this.clientList)
+        this.clientList.reverse()
+      },
+      error => {
+        console.log(error); // Manejar el error, si corresponde
+      }
+    );
   }
 
 

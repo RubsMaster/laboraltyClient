@@ -16,8 +16,7 @@ import { CredentialsService } from "../../../services/credentials.service";
 import { CredentialModel } from 'src/app/models/credential';
 import { UploadService } from "../../../services/uploads/upload.service";
 
-import { title } from 'process';
-import { last } from 'rxjs';
+import { formatDistanceToNowStrict } from "date-fns";
 
 @Component({
   selector: 'app-consultants',
@@ -84,8 +83,14 @@ export class ConsultantsComponent implements OnInit {
   ngOnInit(): void {
     this.createConsultantForm.reset();
     this.getAllConsultants()
-    //this.fileInfos = this.uploadService.getFiles();
+      //this.fileInfos = this.uploadService.getFiles();
   }
+
+  getFormattedDate(date: string): string {
+    const formattedDate = formatDistanceToNowStrict(new Date(date), { addSuffix: true });
+    return formattedDate;
+  }
+  
 
   saveConsultant(){
 
@@ -98,9 +103,11 @@ export class ConsultantsComponent implements OnInit {
       mobilePhonenumber: this.createConsultantForm.get('mobilePhonenumber')?.value,
       userAssigned: this.createConsultantForm.get('userAssigned')?.value,
       passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
-      imageName: this.imageName
+      imageName: this.imageName,
+      createdAt: ""
     }
-
+    
+    console.log(consultant)
     const user = this.createConsultantForm.get('userAssigned')
     
     this.credService.checkCredential(user?.value).subscribe(data => {
@@ -133,6 +140,7 @@ getAllConsultants() {
   this.consultantService.getAllConsultants().subscribe(
     (data: any) => {
       this.consultantList = data as ConsultantModel[]; // Asignar los datos al arreglo consultantList
+       console.log(this.consultantList)
       this.consultantList.reverse()
     },
     error => {

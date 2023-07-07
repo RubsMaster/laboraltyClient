@@ -4,8 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ConsultantsRoutingModule } from './consultants-routing.module';
 import { ConsultantsComponent } from './consultants.component';
 
+import { MomentModule } from 'ngx-moment';
+
+
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 import {
   AvatarModule,
@@ -40,7 +45,8 @@ import {
     ListGroupModule,
     SharedModule,
     ProgressModule,
-    TableModule
+    TableModule,
+    MomentModule
   ]
 })
 export class ConsultantsModule { }
