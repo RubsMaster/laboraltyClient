@@ -137,7 +137,6 @@ previewImageUrl: string | ArrayBuffer | null = null;
       } else {
 
         this.upload()
-        console.log(this.imageUrl)
         this.consultantService.createConsultant(consultant).subscribe((data: any) => {
           const newCred: CredentialModel = {
             user: consultant.userAssigned,
@@ -145,9 +144,10 @@ previewImageUrl: string | ArrayBuffer | null = null;
             role: "CONSULTANT",
             relatedId: data._id
           }
-          this.ngOnInit()
-          // this.credService.createCredential(newCred).subscribe(data => {
-          // })
+          this.credService.createCredential(newCred).subscribe(data => {
+            this.previewImageUrl="";
+            this.ngOnInit()
+          })
 
         }, error => {
 

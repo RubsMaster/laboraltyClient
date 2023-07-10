@@ -145,6 +145,7 @@ export class ClientsComponent implements OnInit {
       createdAt:""
     }
 
+    console.log(client)
     const user = this.createClientForm.get('userAssigned')
     
     this.credService.checkCredential(user?.value).subscribe(data => {
