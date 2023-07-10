@@ -30,6 +30,7 @@ export class AuthService {
 
 
   logIn(authData: CredentialModel): Observable<sessionModel | void> {
+    console.log("auth data: " + authData)
     // Construir la URL para el endpoint de autenticación
     const url = this.URI_API + "/auth/login";
 
