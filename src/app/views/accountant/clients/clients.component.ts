@@ -176,7 +176,7 @@ export class ClientsComponent implements OnInit {
     this.clientService.getAllClients().subscribe(
       (data: any) => {
         this.clientList = data as ClientModel[]; // Asignar los datos al arreglo consultantList
-         console.log(this.clientList)
+        //  console.log(this.clientList)
         this.clientList.reverse()
       },
       error => {

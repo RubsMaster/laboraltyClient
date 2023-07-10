@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, catchError, map, throwError } from 'rxjs';
 import { CredentialModel, authModel, sessionModel } from '../models/credential';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Roles } from '../models/credential';
+import { Router } from '@angular/router';
 
 const helper = new JwtHelperService;
 
@@ -17,7 +18,9 @@ export class CredentialsService {
   URI_API = "http://localhost:4000/";
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
+
   ) {
     this.checkToken();  
    }
@@ -26,18 +29,6 @@ export class CredentialsService {
     return this.loggedIn.asObservable();    
   }
 
-  get isAdmin$(): Observable<string | null>{
-    return this.role.asObservable();
-  }
-  get isAccountnt$(): Observable<string | null>{
-    return this.role.asObservable();
-  }
-  get isClient$(): Observable<string | null>{
-    return this.role.asObservable();
-
-  } get isConsultant$(): Observable<string | null>{
-    return this.role.asObservable();
-  }
   
   createCredential(credential: CredentialModel){
     return this.http.post(this.URI_API + "createCredential", credential)
@@ -46,7 +37,13 @@ export class CredentialsService {
   checkCredential(user: string){
     return this.http.get(this.URI_API + "getCredential/" + user)
   }
-        
+
+ 
+  get role$(): Observable<Roles | null> {
+    return this.role.asObservable();
+  }
+
+  
   login(authData: authModel): Observable<sessionModel | void>{
     const url = this.URI_API + "auth/login";
     return this.http
@@ -54,9 +51,9 @@ export class CredentialsService {
     .pipe(
       map((res: sessionModel) => {
         this.saveLocalStorage(res);
-        // console.log(res)
+        // console.log(res)3
         this.loggedIn.next(true);
-        return res;
+        // return res;
       }),
       catchError((err) => {
         console.error("Error en la solicitud. URL completo:", url);
@@ -65,10 +62,10 @@ export class CredentialsService {
     );
   }
   
-
   logout():void{
     localStorage.removeItem('user');
     this.loggedIn.next(false);  
+    this.router.navigate(['/login'])
   };
 
 
@@ -84,14 +81,12 @@ export class CredentialsService {
         this.logout();
       }else{
         this.loggedIn.next(true);
-        console.log(user.role)
+        // console.log(user.role)
         this.role.next(user.role);
       }
     }
   };
 
-
-  
   // private saveLocalStorage(user: sessionModel):void{
   //   // localStorage.setItem('token', token);
   //   console.log(user) ;
@@ -104,9 +99,9 @@ export class CredentialsService {
     const {relatedId, message, ... rest} = user;
     // console.log(user);s
     localStorage.setItem('user', JSON.stringify(rest));
+    // console.log(user.role)
     this.role.next(user.role);  // actualizar BehaviorSubject role
 };
-
 
   private handlerError(err: { message: any }): Observable<never> {
     let errorMessage = 'An error occurred retrieving data';
