@@ -16,7 +16,7 @@ import { cilLowVision } from '@coreui/icons';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 
   icons = {
     cilLowVision
@@ -49,26 +49,31 @@ export class LoginComponent implements OnInit, OnDestroy {
     )
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+    // ngOnDestroy(): void {
+    //   this.subscription.unsubscribe();
+    // }
   
 
   onLogin(): void {
     if (this.loginForm.invalid) {
+      console.log('no jalo')
       return;
     }
     const auth = {
       user: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value
     }
-
     //nos suscribimos al servicio de login  
     this.subscription.add(
       this.authSvc.login(auth).subscribe(res => {
         if (res) {
           console.log(res);
-          this.router.navigate(['/']);
+          if(res.role === 'ADMIN'){
+            console.log(res.role)
+            this.router.navigate(['/adminDashboard']);
+          }else if(res.role === 'ACCOUNTANT'){
+            console.log(res.role)
+            this.router.navigateByUrl('/clients').then();          }
         }
       })
     )
