@@ -10,7 +10,7 @@ import { MomentModule } from 'ngx-moment';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
+import { NgxPaginationModule } from "ngx-pagination";
 
 import {
   AvatarModule,
@@ -46,7 +46,8 @@ import {
     SharedModule,
     ProgressModule,
     TableModule,
-    MomentModule
+    MomentModule,
+    NgxPaginationModule
   ]
 })
 export class ConsultantsModule { }

@@ -18,15 +18,17 @@ import { UploadService } from "../../../services/uploads/upload.service";
 
 import { formatDistanceToNowStrict } from "date-fns";
 
+import { PaginationInstance } from "ngx-pagination";
+
 @Component({
   selector: 'app-consultants',
   templateUrl: './consultants.component.html',
   styleUrls: ['./consultants.component.scss']
 })
 export class ConsultantsComponent implements OnInit {
-
-  createConsultantForm: FormGroup;
-
+  
+  // Form
+  createConsultantForm: FormGroup;  
   Title: string;
   jobTitle: string;
   firstName: string;
@@ -37,17 +39,28 @@ export class ConsultantsComponent implements OnInit {
   userAssigned: string;
   passwordAssigned: string;
 
+  // Upload images
   selectedFiles?: FileList;
   currentFile?: File;
   progress = 0;
   message = '';
-
   fileInfos?: Observable<any>;
 
+  // img
   imageUrl: string = './assets/images/default-profile.jpg';
   imageName: string = ''
 
-  consultantList: ConsultantModel[] = [];
+  selectedImage: File | null = null;
+previewImageUrl: string | ArrayBuffer | null = null;
+
+
+  consultantList: ConsultantModel[] = []; // List
+  
+   //pagination 
+   paginationId = 'consultantPagination';
+  p1: number = 1;
+  itemsPerPage:number = 5;
+  currentPage = 1;  
 
   constructor(
     private _router: Router,
@@ -78,21 +91,29 @@ export class ConsultantsComponent implements OnInit {
     this.userAssigned='Nombre de usuario'
     this.passwordAssigned='Contraseña'
 
+    this.previewImageUrl='./assets/images/default-profile.jpg';
+
    }
 
   ngOnInit(): void {
     this.createConsultantForm.reset();
     this.getAllConsultants()
-      //this.fileInfos = this.uploadService.getFiles();
+    //this.fileInfos = this.uploadService.getFiles();
   }
+
+  paginationConfig = {
+    id: 'consultantPagination',
+    itemsPerPage: 10,
+    currentPage: 1
+  };
 
   getFormattedDate(date: string): string {
     const formattedDate = formatDistanceToNowStrict(new Date(date), { addSuffix: true });
     return formattedDate;
   }
-  
 
-  saveConsultant(){
+
+  saveConsultant() {
 
     const consultant: ConsultantModel = {
       jobTitle: this.createConsultantForm.get('jobTitle')?.value,
@@ -106,53 +127,63 @@ export class ConsultantsComponent implements OnInit {
       imageName: this.imageName,
       createdAt: ""
     }
-    
-    console.log(consultant)
+
     const user = this.createConsultantForm.get('userAssigned')
-    
+
     this.credService.checkCredential(user?.value).subscribe(data => {
-      
-      if (data){
+
+      if (data) {
         return alert("El usuario ya existe, elija otro nombre")
       } else {
 
-        this.consultantService.createConsultant(consultant).subscribe((data:any) => {
+        this.upload()
+        console.log(this.imageUrl)
+        this.consultantService.createConsultant(consultant).subscribe((data: any) => {
           const newCred: CredentialModel = {
             user: consultant.userAssigned,
             password: consultant.passwordAssigned,
             role: "CONSULTANT",
             relatedId: data._id
-          } 
-          this.credService.createCredential(newCred).subscribe(data => {
-            this.ngOnInit()
-          })          
+          }
+          this.ngOnInit()
+          // this.credService.createCredential(newCred).subscribe(data => {
+          // })
 
         }, error => {
-          
+
           console.log(error)
         })
       }
     })
-     
+
   }
 
-getAllConsultants() {
-  this.consultantService.getAllConsultants().subscribe(
-    (data: any) => {
-      this.consultantList = data as ConsultantModel[]; // Asignar los datos al arreglo consultantList
-       console.log(this.consultantList)
-      this.consultantList.reverse()
-    },
-    error => {
-      console.log(error); // Manejar el error, si corresponde
-    }
-  );
-}
+  getAllConsultants() {
+    this.consultantService.getAllConsultants().subscribe(
+      (data: any) => {
+        this.consultantList = data as ConsultantModel[]; // Asignar los datos al arreglo consultantList
+        console.log(this.consultantList)
+        this.consultantList.reverse()
+      },
+      error => {
+        console.log(error); // Manejar el error, si corresponde
+      }
+    );
+  }
 
-  
+
 
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      this.selectedImage = this.selectedFiles[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewImageUrl = reader.result;
+      };
+      reader.readAsDataURL(this.selectedImage);
+      this.upload()
+    }
   }
 
 
@@ -190,7 +221,7 @@ getAllConsultants() {
 
             this.currentFile = undefined;
           }
-          
+
         });
       }
 
