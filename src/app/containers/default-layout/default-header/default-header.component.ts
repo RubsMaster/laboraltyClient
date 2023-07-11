@@ -21,16 +21,11 @@ export class DefaultHeaderComponent extends HeaderComponent {
 
   constructor(
     private classToggler: ClassToggleService,
-    private authService: AuthService
-    ,
     private authsvc: CredentialsService) {
 
     super();
   }
 
-  getUserInfo(){
-    return this.authService
-  }
 
   logout() {
     this.authsvc.logout();

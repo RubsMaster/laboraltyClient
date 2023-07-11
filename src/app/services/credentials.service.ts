@@ -57,6 +57,7 @@ export class CredentialsService {
     .post<sessionModel>(url, authData)
     .pipe(
       map((res: sessionModel) => {
+        console.log("res" + res)
         this.saveLocalStorage(res);
         // console.log(res)
         this.loggedIn.next(true);
