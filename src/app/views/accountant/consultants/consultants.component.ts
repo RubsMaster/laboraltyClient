@@ -141,7 +141,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
           const newCred: CredentialModel = {
             user: consultant.userAssigned,
             password: consultant.passwordAssigned,
-            role: "CONSULTANT",
+            role: "ADMIN",
             relatedId: data._id
           }
           this.credService.createCredential(newCred).subscribe(data => {
