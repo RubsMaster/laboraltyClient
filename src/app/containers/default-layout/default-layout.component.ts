@@ -26,6 +26,10 @@ export class DefaultLayoutComponent {
     private router: Router){ }
 
   ngOnInit() {
+    this.authsvc.relatedId$.subscribe((userId: string | null) => {
+      console.log(userId);
+    });
+    
     this.authsvc.role$.subscribe((userRole: Roles | null) => {
       switch(userRole) {
         case 'ADMIN':

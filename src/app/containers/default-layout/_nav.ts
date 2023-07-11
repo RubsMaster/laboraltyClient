@@ -34,11 +34,11 @@ export const navAccountant: INavData[] = [
     url: '/service-log',
     iconComponent: { name: 'cil-notes'}
   },
-  // {
-  //   name: 'Consultores',
-  //   url: '/consultants',
-  //   iconComponent: { name: 'cil-people'}
-  // },
+  {
+    name: 'Consultores',
+    url: '/consultants',
+    iconComponent: { name: 'cil-people'}
+  },
   {
     name: 'Clientes',
     url: '/clients',

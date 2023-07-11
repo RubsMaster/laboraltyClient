@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 
+import { CredentialsService } from 'src/app/services/credentials.service';
+
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
@@ -15,7 +17,15 @@ export class DefaultHeaderComponent extends HeaderComponent {
   public newTasks = new Array(5)
   public newNotifications = new Array(5)
 
-  constructor(private classToggler: ClassToggleService) {
+  constructor(private classToggler: ClassToggleService,
+    private authsvc: CredentialsService) {
     super();
   }
+
+  logout() {
+    this.authsvc.logout();
+  }
+  
+
+
 }
