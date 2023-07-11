@@ -155,9 +155,9 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
+    canActivate: [CheckLoginGuard],  // Esto debería estar dentro del objeto de la ruta, no dentro del objeto de datos
     data: {
       title: "Login Page",
-      canActivate: [CheckLoginGuard],
     },
   },
   {

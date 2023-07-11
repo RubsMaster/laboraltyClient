@@ -14,6 +14,8 @@ const helper = new JwtHelperService;
 export class CredentialsService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   private role = new BehaviorSubject<Roles | null>(null);
+  private relatedId = new BehaviorSubject<string | null>(null);
+
   
   URI_API = "http://localhost:4000/";
 
@@ -44,7 +46,11 @@ export class CredentialsService {
     return this.role.asObservable();
   }
 
+  get relatedId$(): Observable<string | null> {
+    return this.relatedId.asObservable();
+  }
   
+
   login(authData: authModel): Observable<sessionModel | void>{
     const url = this.URI_API + "auth/login";
     return this.http
@@ -102,6 +108,8 @@ export class CredentialsService {
     localStorage.setItem('user', JSON.stringify(rest));
     // console.log(user.role)
     this.role.next(user.role);  // actualizar BehaviorSubject role
+    this.relatedId.next(user.relatedId); // actualizar BehaviorSubject relatedId
+
 };
 
   private handlerError(err: { message: any }): Observable<never> {

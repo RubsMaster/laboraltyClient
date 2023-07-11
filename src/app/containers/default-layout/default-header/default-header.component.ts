@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 import {AuthService} from "../../../services/auth/auth.service";
 
+import { CredentialsService } from 'src/app/services/credentials.service';
+
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
@@ -20,7 +22,8 @@ export class DefaultHeaderComponent extends HeaderComponent {
   constructor(
     private classToggler: ClassToggleService,
     private authService: AuthService
-    ) {
+    ,
+    private authsvc: CredentialsService) {
 
     super();
   }
@@ -28,4 +31,11 @@ export class DefaultHeaderComponent extends HeaderComponent {
   getUserInfo(){
     return this.authService
   }
+
+  logout() {
+    this.authsvc.logout();
+  }
+  
+
+
 }
