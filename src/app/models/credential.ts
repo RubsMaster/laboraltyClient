@@ -14,7 +14,7 @@ export interface CredentialModel   {
 
 export interface sessionModel{
     message: String;
-    token: String;
+    token: string;
     relatedId: any;
     role: Roles;
 }

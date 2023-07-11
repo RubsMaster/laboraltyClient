@@ -17,34 +17,21 @@
             <!-- imagen -->
             <c-col class="col-4 p-3">
               <c-card>
-
                 <img cCardImg="top" cCardImg="top" [src]="previewImageUrl">
-
                 <c-card-body>
                   <c-row>
                     <h3 cCardTitle>Imagen consultor</h3>
                     <p cCardText>
                       Es la imagen de referencia para el consultor que se crea.
                     </p>
-                  </c-row>
-
-                  <c-row class="mt-3">
-                    <c-progress class="mb-3 p-0" thin>
-                      <c-progress-bar :value="{{this.progress}}" color="info"
-                        [ngStyle]="{ width: this.progress + '%' }"></c-progress-bar>
-                    </c-progress>
-
-                    <input cFormControl id="formFile" type="file" (change)="selectFile($event)" class="mb-3" />
-                  </c-row>
+                  </c-row>                  
                 </c-card-body>
               </c-card>
             </c-col>
 
             <c-col class="col-8">
-
-
               <c-row class="p-2">
-                <h4>información del cliente</h4>
+                <h4>Información del consultor</h4>
                 <hr>
 
                 <c-col>
@@ -62,6 +49,7 @@
                         </div>
                       </div>
                     </c-col>
+                    
                     <!-- firstName -->
                     <c-col>
                       <div class="form-floating">
@@ -75,12 +63,12 @@
                         </div>
                       </div>
                     </c-col>
-
                   </c-row>
-                  <c-row class="mt-3">
 
+                  <c-row class="mt-3">
                     <!-- middleNam -->
-                    <c-col class=" col-6">
+                    <c-col class="col-6">
+
                       <div class="form-floating">
                         <input cFormControl id="middleName" type="text" class="form-control"
                           formControlName="middleName" name="middleName" placeholder="Apellido paterno" />
@@ -91,6 +79,7 @@
                         El apellido paterno<strong> es obligatorio</strong>
                       </div>
                     </c-col>
+                    
                     <!-- lastName -->
                     <c-col class="">
                       <div class="form-floating">
@@ -104,18 +93,8 @@
                       </div>
                     </c-col>
                   </c-row>
-
-
-
-
                 </c-col>
               </c-row>
-
-
-
-
-
-
 
               <c-row>
                 <h4>Domicilio fiscal</h4>
@@ -144,13 +123,9 @@
                         <label for="mobilePhonenumber">{{ this.mobilePhonenumber }}</label>
                       </div>
                     </c-col>
-
-
                   </c-row>
 
-
                   <c-row class="mt-2">
-
                     <!-- userAssigned -->
                     <c-col >
                       <div class="form-floating mt-2">
@@ -176,37 +151,27 @@
                         La colonia<strong> es obligatoria</strong>
                       </div>
                     </c-col>
-
-
-
-
                   </c-row>
+                  
                 </c-col>
 
               </c-row>
+              <!-- upload iamge -->
+              <c-row class="mt-3">
+                <!-- <c-progress class="mb-3 p-0" thin>
+                  <c-progress-bar :value="{{this.progress}}" color="info"
+                    [ngStyle]="{ width: this.progress + '%' }"></c-progress-bar>
+                </c-progress> -->
 
-
+                <input cFormControl id="formFile" type="file" (change)="selectFile($event)" class="mb-3" />
+              </c-row>
             </c-col>
-
-
-
           </c-row>
-
-
-
-
-
         </form>
       </c-card-body>
     </c-card>
 
   </c-col>
-
-
-
-
-
-
 
   <c-col>
     <c-card class="mb-4">
