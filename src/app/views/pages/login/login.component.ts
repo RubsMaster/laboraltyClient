@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
   password: string = ''
 
 
+
   constructor(
     private authSvc: CredentialsService,
     private fb: FormBuilder,
@@ -44,41 +45,41 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription.add(
-      this.authSvc.isLogged.subscribe((res) => (this.isLogged = res))
-    )
   }
-
-    // ngOnDestroy(): void {
-    //   this.subscription.unsubscribe();
-    // }
-  
 
   onLogin(): void {
     if (this.loginForm.invalid) {
-      console.log('no jalo')
       return;
     }
     const auth = {
       user: this.loginForm.get('username')?.value,
       password: this.loginForm.get('password')?.value
     }
-    //nos suscribimos al servicio de login  
+
+    // Mapeo de roles a rutas
+    const roleRoutes: { [role: string]: string } = {
+      'ADMIN': '/adminDashboard',
+      'ACCOUNTANT': '/settings',
+      'CONSULTANT': '/consultants',
+      'CLIENT': '/clients'
+    };
+
+    // Suscribirse al servicio de login
     this.subscription.add(
       this.authSvc.login(auth).subscribe(res => {
         if (res) {
-          console.log(res);
-          if(res.role === 'ADMIN'){
-            console.log(res.role)
-            this.router.navigate(['/adminDashboard']);
-          }else if(res.role === 'ACCOUNTANT'){
-            console.log(res.role)
-            this.router.navigateByUrl('/clients').then();          }
+          const route = roleRoutes[res.role];
+          if (route) {
+            this.router.navigate([route]);
+          } else {
+            console.log('Ups');
+            return;
+          }
         }
       })
     )
-
   }
+
 
   getErrorMessage(field: string): string {
     let message = "";

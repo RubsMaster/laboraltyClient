@@ -40,6 +40,7 @@ export class CredentialsService {
 
  
   get role$(): Observable<Roles | null> {
+    // console.log(this.role.value)
     return this.role.asObservable();
   }
 
@@ -51,9 +52,9 @@ export class CredentialsService {
     .pipe(
       map((res: sessionModel) => {
         this.saveLocalStorage(res);
-        // console.log(res)3
+        // console.log(res)
         this.loggedIn.next(true);
-        // return res;
+        return res;
       }),
       catchError((err) => {
         console.error("Error en la solicitud. URL completo:", url);

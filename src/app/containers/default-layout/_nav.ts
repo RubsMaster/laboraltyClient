@@ -1,6 +1,6 @@
 import { INavData } from '@coreui/angular';
 
-export const navItems: INavData[] = [
+export const navAdmin: INavData[] = [
   {
     name: 'Dashboard',
     url: '/adminDashboard',
@@ -34,14 +34,45 @@ export const navAccountant: INavData[] = [
     url: '/service-log',
     iconComponent: { name: 'cil-notes'}
   },
+  // {
+  //   name: 'Consultores',
+  //   url: '/consultants',
+  //   iconComponent: { name: 'cil-people'}
+  // },
+  {
+    name: 'Clientes',
+    url: '/clients',
+    iconComponent: { name: 'cil-user'}
+  },
+  {
+    name: 'este es un test mdf',
+    url: '/consultants',
+    iconComponent: { name: 'cil-people'}
+  },
+];
+
+export const navClient: INavData[] = [
+  {
+    name: 'Clientes',
+    url: '/clients',
+    iconComponent: { name: 'cil-user'}
+  },
+  {
+    name: 'este es un test mdf',
+    url: '/consultants',
+    iconComponent: { name: 'cil-people'}
+  },
+];
+
+export const navConsultant: INavData[] = [
   {
     name: 'Consultores',
     url: '/consultants',
     iconComponent: { name: 'cil-people'}
   },
   {
-    name: 'Clientes',
-    url: '/clients',
-    iconComponent: { name: 'cil-user'}
-  }
+    name: 'este es un test mdf',
+    url: '/consultants',
+    iconComponent: { name: 'cil-people'}
+  },
 ];
