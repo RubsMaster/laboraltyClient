@@ -63,10 +63,10 @@ export class LoginComponent implements OnInit {
 
     // Mapeo de roles a rutas
     const roleRoutes: { [role: string]: string } = {
-      'ADMIN': '/adminDashboard',
-      'ACCOUNTANT': '/settings',
-      'CONSULTANT': '/consultants',
-      'CLIENT': '/clients'
+      'Admin': '/adminDashboard',
+      'Accountant': '/settings',
+      'Consultant': '/consultants',
+      'Client': '/clients'
     };
 
     // Suscribirse al servicio de login
