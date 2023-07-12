@@ -48,7 +48,7 @@
           <svg cIcon name="cilEnvelopeOpen" size="lg"></svg>
         </a>
       </c-nav-item> -->
-      <h4>{{ actualUserInfo.relatedId }}</h4>
+      <h4>{{ actualUserInfo.name }}</h4>
 
     </c-header-nav>
     <c-header-nav class="ms-3">
@@ -76,7 +76,7 @@
         cTextColor="primary"
         shape="rounded-1"
         size="md"
-        src="./assets/img/avatars/8.jpg"
+        src="http://localhost:4000/getFile/{{ actualUserInfo.imageName }}"
         status="success"
       >
       </c-avatar>

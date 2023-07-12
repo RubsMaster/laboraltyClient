@@ -80,7 +80,7 @@ export class CredentialsService {
         const userObjectUrl = this.URI_API + "get" + role + "/" + res.relatedId; //Genera la URL a consultar dependiendo el tipo de usuario
 
         return this.http.get(userObjectUrl).pipe(
-          map((userObject: any) => {
+          map((userObject: any) => { //userObject es el objeto con toda la información del tipo de usuario
             this.actualUserInfo.imageName = userObject.imageName;
             this.actualUserInfo.name = userObject.firstName;
             this.saveLocalStorage(res);

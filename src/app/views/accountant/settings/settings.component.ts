@@ -10,6 +10,9 @@ import { Observable } from 'rxjs';
 import { UploadService } from "../../../services/uploads/upload.service";
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { CredentialsService } from 'src/app/services/credentials.service';
+import { sessionModel } from "../../../models/credential";
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -26,10 +29,14 @@ export class SettingsComponent implements OnInit {
 
   imageUrl: string = './assets/images/default-profile.jpg';
 
+  actualUserInfo: sessionModel
+
   constructor(
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private authsvc: CredentialsService
   ) {
-    
+    this.actualUserInfo = this.authsvc.getActualUserInfo();
+      const name = this.actualUserInfo.name
    }
   ngOnInit(): void {
   }

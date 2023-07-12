@@ -28,7 +28,7 @@ export class DefaultHeaderComponent extends HeaderComponent {
     private authsvc: CredentialsService) {
       super();
       this.actualUserInfo = this.authsvc.getActualUserInfo();
-
+      const name = this.actualUserInfo.name
       console.log("actual user: " + JSON.stringify(this.actualUserInfo))
   }
 
