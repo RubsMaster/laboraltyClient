@@ -26,23 +26,20 @@ export class DefaultLayoutComponent {
     private router: Router){ }
 
   ngOnInit() {
-    this.authsvc.relatedId$.subscribe((userId: string | null) => {
-      console.log(userId);
-    });
-    
+
     this.authsvc.role$.subscribe((userRole: Roles | null) => {
       switch(userRole) {
-        case 'ADMIN':
+        case 'Admin':
           this.navItems = navAdmin;
           break;
-        case 'ACCOUNTANT':
+        case 'Accountant':
           this.navItems = navAccountant;
           break;
-        case 'CLIENT':
+        case 'Client':
           // Asume que tienes navClient y navConsultant disponibles
           this.navItems = navClient;
           break;
-        case 'CONSULTANT':
+        case 'Consultant':
           this.navItems = navConsultant;
           break;
         default:

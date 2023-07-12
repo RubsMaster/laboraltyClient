@@ -5,6 +5,10 @@ import { CredentialModel, authModel, sessionModel } from '../models/credential';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Roles } from '../models/credential';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
+
+import { ConsultantModel } from "../models/consultant";
 
 const helper = new JwtHelperService;
 
@@ -16,7 +20,16 @@ export class CredentialsService {
   private role = new BehaviorSubject<Roles | null>(null);
   private relatedId = new BehaviorSubject<string | null>(null);
 
-  
+  public actualUserInfo: sessionModel = {
+    message: '',
+    token: '',
+    relatedId: '',
+    role: '',
+    imageName: '',
+    userName: '',
+    name: ''
+  }
+
   URI_API = "http://localhost:4000/";
 
   constructor(
@@ -24,14 +37,14 @@ export class CredentialsService {
     private router: Router,
 
   ) {
-    this.checkToken();  
+    this.checkToken();
    }
 
   get isLogged(): Observable<boolean>{
-    return this.loggedIn.asObservable();    
+    return this.loggedIn.asObservable();
   }
 
-  
+
   createCredential(credential: CredentialModel){
     return this.http.post(this.URI_API + "createCredential", credential)
   }
@@ -40,7 +53,7 @@ export class CredentialsService {
     return this.http.get(this.URI_API + "getCredential/" + user)
   }
 
- 
+
   get role$(): Observable<Roles | null> {
     // console.log(this.role.value)
     return this.role.asObservable();
@@ -49,18 +62,41 @@ export class CredentialsService {
   get relatedId$(): Observable<string | null> {
     return this.relatedId.asObservable();
   }
-  
+
+  getActualUserInfo(): sessionModel {
+    return this.actualUserInfo;
+  }
+
 
   login(authData: authModel): Observable<sessionModel | void>{
     const url = this.URI_API + "auth/login";
+          // Mapeo de roles a rutas
+          const roleRoutes: { [role: string]: string } = {
+            'Admin': '/adminDashboard',
+            'Accountant': '/settings',
+            'Consultant': '/consultants',
+            'Cliente': '/clients'
+          };
     return this.http
     .post<sessionModel>(url, authData)
     .pipe(
-      map((res: sessionModel) => {
-        this.saveLocalStorage(res);
-        // console.log(res)
-        this.loggedIn.next(true);
-        return res;
+      switchMap((res: sessionModel) => {
+        this.actualUserInfo = res;
+        const role = this.actualUserInfo.role;
+        const userObjectUrl = this.URI_API + "get" + role + "/" + res.relatedId;
+        return this.http.get(userObjectUrl).pipe(
+          map((userObject: any) => {
+
+            const route = roleRoutes[res.role];
+          if (route) {
+            this.router.navigate([route]);
+            return this.actualUserInfo;
+          } else {
+            console.log('Ups');
+            return;
+          }
+          })
+        );
       }),
       catchError((err) => {
         console.error("Error en la solicitud. URL completo:", url);
@@ -68,10 +104,10 @@ export class CredentialsService {
       })
     );
   }
-  
+
   logout():void{
     localStorage.removeItem('user');
-    this.loggedIn.next(false);  
+    this.loggedIn.next(false);
     this.router.navigate(['/login'])
   };
 
@@ -81,7 +117,7 @@ export class CredentialsService {
     if (userItem === null) {
       return;
     }
-    const user = JSON.parse(userItem); 
+    const user = JSON.parse(userItem);
     if(user){
       const isExpired =  helper.isTokenExpired(user.token);
       if(isExpired){

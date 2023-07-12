@@ -13,6 +13,38 @@
         <form cForm class="row g-3" [formGroup]="serviceLogForm" (ngSubmit)="saveService()">
           <c-row style="margin-bottom: 2%">
             <c-col>
+              <c-row style="margin-bottom: 2%">
+                <c-col [md]="6" style="margin-top: 15px">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="serviceLogName" formControlName="serviceLogName"
+                      name="serviceLogName" placeholder="serviceLogName" required />
+                    <label for="serviceLogName">Nombre</label>
+                    <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                      *ngIf="this.serviceLogForm.get('serviceLogName')?.errors?.['required'] && this.serviceLogForm.get('serviceLogName')?.touched">
+                      El nombre del servicio <strong> es obligatorio</strong>
+                    </div>
+                  </div>
+                </c-col>
+    
+                <c-col [md]="6" style="margin-top: 15px">
+                  <div class="form-floating">
+                    <select cSelect id="serviceLogType" class="form-control" name="serviceLogType"
+                      formControlName="serviceLogType">
+                      <option>Empleado</option>
+                      <option>Empresa</option>
+                    </select>
+                    <label for="serviceLogType">Tipo de documento</label>
+                    <div class="alert alert-danger"
+                      *ngIf="this.serviceLogForm.get('serviceLogType')?.errors?.['required'] && this.serviceLogForm.get('serviceLogType')?.touched"
+                      style="margin-top: 3px">
+                      <span>El tipo del servicio<strong> es obligatorio</strong></span>
+                    </div>
+                  </div>
+                </c-col>
+                
+                </c-row>
+            </c-col>
+            <c-col>
               <c-col [md]="4" style="margin-top: 15px">
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control" id="taskName" formControlName="taskName" name="taskName"
@@ -24,6 +56,8 @@
                   </div>
                 </div>
               </c-col>
+
+
               <c-col [md]="2" style="margin-top: 15px">
                 <div class="form-floating mb-3">
                   <button cButton color="primary" variant="outline" (click)="addTaskToList(taskNameInput.value); taskNameInput.value=''">Agregar</button>
@@ -77,9 +111,6 @@
           </c-row>
 
           <c-row style="margin-bottom: 2%">
-            
-
-            
 
           </c-row>
         </form>

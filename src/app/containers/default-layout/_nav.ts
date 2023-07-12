@@ -10,11 +10,9 @@ export const navAdmin: INavData[] = [
     name: 'Usuarios',
     url: '/users',
     iconComponent: { name: 'cil-people' }
-  },
-  {
+  },{
     name: 'Documentos Laborales',
-    url: '/laborDocuments',
-    iconComponent: { name: 'cilAlignCenter'}
+    url:'/laborDocuments'
   }
 ];
 
@@ -44,16 +42,11 @@ export const navAccountant: INavData[] = [
     url: '/clients',
     iconComponent: { name: 'cil-user'}
   },
-  {
-    name: 'este es un test mdf',
-    url: '/consultants',
-    iconComponent: { name: 'cil-people'}
-  },
 ];
 
 export const navClient: INavData[] = [
   {
-    name: 'Clientes',
+    name: 'Dashboard',
     url: '/clients',
     iconComponent: { name: 'cil-user'}
   },
@@ -69,6 +62,11 @@ export const navConsultant: INavData[] = [
     name: 'Consultores',
     url: '/consultants',
     iconComponent: { name: 'cil-people'}
+  },
+  {
+    name: 'Clientes',
+    url: '/clients',
+    iconComponent: { name: 'cil-user'}
   },
   {
     name: 'este es un test mdf',

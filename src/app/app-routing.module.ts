@@ -1,18 +1,18 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { DefaultLayoutComponent } from './containers';
-import { Page404Component } from './views/pages/page404/page404.component';
-import { Page500Component } from './views/pages/page500/page500.component';
-import { LoginComponent } from './views/pages/login/login.component';
-import { RegisterComponent } from './views/pages/register/register.component';
-import * as path from 'path';
-import { CheckLoginGuard } from './guards/check-login.guard';
+import { DefaultLayoutComponent } from "./containers";
+import { Page404Component } from "./views/pages/page404/page404.component";
+import { Page500Component } from "./views/pages/page500/page500.component";
+import { LoginComponent } from "./views/pages/login/login.component";
+import { RegisterComponent } from "./views/pages/register/register.component";
+import * as path from "path";
+import { CheckLoginGuard } from "./guards/check-login.guard";
 
 const routes: Routes = [
   {
     path: "",
-    component: LoginComponent,
+    component: DefaultLayoutComponent,
     data: {
       title: "Administrador",
     },
@@ -27,8 +27,9 @@ const routes: Routes = [
       {
         path: "textEditor/:id",
         loadChildren: () =>
-          import('./views/admin/text-editor/text-editor.module').then(
-            (m) => m.TextEditorModule)
+          import("./views/admin/text-editor/text-editor.module").then(
+            (m) => m.TextEditorModule
+          ),
       },
       {
         path: "employees",
@@ -84,9 +85,7 @@ const routes: Routes = [
       {
         path: "notifications",
         loadChildren: () =>
-          import("./views/notifications/notifications.module").then(
-            (m) => m.NotificationsModule
-          ),
+          import("./views/notifications/notifications.module").then((m) => m.NotificationsModule),
       },
       {
         path: "widgets",
@@ -120,18 +119,22 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'users',
+        path: "users",
         loadChildren: () =>
-          import('./views/admin/users/users.module').then(
-            m => m.UsersModule)
+          import("./views/admin/users/users.module").then((m) => m.UsersModule),
       },
       {
-        path: 'users/:id',
+        path: "users/:id",
         loadChildren: () =>
-          import('./views/admin/users/users.module').then(
-            m => m.UsersModule)
+          import("./views/admin/users/users.module").then((m) => m.UsersModule),
       },
-      { path: 'adminForm', loadChildren: () => import('./views/admin/admin-dashboard/admin-form/admin-form.module').then(m => m.AdminFormModule) },
+      {
+        path: "adminForm",
+        loadChildren: () =>
+          import(
+            "./views/admin/admin-dashboard/admin-form/admin-form.module"
+          ).then((m) => m.AdminFormModule),
+      },
     ],
   },
   {
@@ -164,6 +167,7 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
+
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -171,26 +175,56 @@ const routes: Routes = [
       title: "Contador",
     },
     children: [
-      { path: 'labor-file-sections', loadChildren: () => import('./views/accountant/labor-file-sections/labor-file-sections.module').then(m => m.LaborFileSectionsModule) },
-      { path: 'settings', loadChildren: () => import('./views/accountant/settings/settings.module').then(m => m.SettingsModule) },
-      { path: 'service-log', loadChildren: () => import('./views/accountant/service-log/service-log.module').then(m => m.ServiceLogModule) },
-      { path: 'clients', loadChildren: () => import('./views/accountant/clients/clients.module').then(m => m.ClientsModule) },
-      { path: 'consultants', loadChildren: () => import('./views/accountant/consultants/consultants.module').then(m => m.ConsultantsModule) }],
+      {
+        path: "labor-file-sections",
+        loadChildren: () =>
+          import(
+            "./views/accountant/labor-file-sections/labor-file-sections.module"
+          ).then((m) => m.LaborFileSectionsModule),
+      },
+      {
+        path: "settings",
+        loadChildren: () =>
+          import("./views/accountant/settings/settings.module").then(
+            (m) => m.SettingsModule
+          ),
+      },
+      {
+        path: "service-log",
+        loadChildren: () =>
+          import("./views/accountant/service-log/service-log.module").then(
+            (m) => m.ServiceLogModule
+          ),
+      },
+      {
+        path: "clients",
+        loadChildren: () =>
+          import("./views/accountant/clients/clients.module").then(
+            (m) => m.ClientsModule
+          ),
+      },
+      {
+        path: "consultants",
+        loadChildren: () =>
+          import("./views/accountant/consultants/consultants.module").then(
+            (m) => m.ConsultantsModule
+          ),
+      },
+    ],
   },
 
-  { path: "**", redirectTo: "adminDashboard" }
+  { path: "**", redirectTo: "adminDashboard" },
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'top',
-      anchorScrolling: 'enabled',
-      initialNavigation: 'enabledBlocking'
+      scrollPositionRestoration: "top",
+      anchorScrolling: "enabled",
+      initialNavigation: "enabledBlocking",
       // relativeLinkResolution: 'legacy'
-    })
+    }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
