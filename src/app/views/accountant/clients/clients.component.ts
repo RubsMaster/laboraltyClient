@@ -119,6 +119,7 @@ export class ClientsComponent implements OnInit {
     this.passwordAssigned='Contraseña'
 
     this.getAllConsultants()
+    
   }
 
 
@@ -156,7 +157,7 @@ export class ClientsComponent implements OnInit {
           const newCred: CredentialModel = {
             user: client.userAssigned,
             password: client.passwordAssigned,
-            role: "Accountant",
+            role: "Client",
             relatedId: data._id
           } 
           console.log("related id: " + data._id)

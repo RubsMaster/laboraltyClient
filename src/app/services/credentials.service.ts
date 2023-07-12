@@ -83,7 +83,7 @@ export class CredentialsService {
           map((userObject: any) => { //userObject es el objeto con toda la información del tipo de usuario
             this.actualUserInfo.imageName = userObject.imageName;
             this.actualUserInfo.name = userObject.firstName;
-            this.saveLocalStorage(res);
+            this.saveLocalStorage(this.actualUserInfo);
             return this.actualUserInfo;
           })
         );

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit  } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 import { ClassToggleService, HeaderComponent } from '@coreui/angular';
@@ -12,10 +12,10 @@ import { json } from 'stream/consumers';
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
 })
-export class DefaultHeaderComponent extends HeaderComponent {
+export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   imageUrl: string = './assets/images/default-profile.jpg';
   userID: string | null = '';
-  actualUserInfo: sessionModel
+  sessionInfo: sessionModel | null = null;
 
   @Input() sidebarId: string = "sidebar";
 
@@ -27,22 +27,21 @@ export class DefaultHeaderComponent extends HeaderComponent {
     private classToggler: ClassToggleService,
     private authsvc: CredentialsService) {
       super();
-      this.actualUserInfo = this.authsvc.getActualUserInfo();
-      const name = this.actualUserInfo.name
-      console.log("actual user: " + JSON.stringify(this.actualUserInfo))
+      const sessionString = localStorage.getItem('user');
+    if (sessionString) {
+      this.sessionInfo = JSON.parse(sessionString);
+    }
   }
 
+  ngOnInit() {
+    const sessionString = localStorage.getItem('user');
+    if (sessionString) {
+      this.sessionInfo = JSON.parse(sessionString);
+    }
+  }
 
-  
   logout() {
     this.authsvc.logout();
-
   }
-
-  getSessionInfo(){
-
-  }
-  
-
 
 }
