@@ -70,31 +70,21 @@ export class CredentialsService {
 
   login(authData: authModel): Observable<sessionModel | void>{
     const url = this.URI_API + "auth/login";
-          // Mapeo de roles a rutas
-          const roleRoutes: { [role: string]: string } = {
-            'Admin': '/adminDashboard',
-            'Accountant': '/settings',
-            'Consultant': '/consultants',
-            'Cliente': '/clients'
-          };
     return this.http
     .post<sessionModel>(url, authData)
     .pipe(
       switchMap((res: sessionModel) => {
-        this.actualUserInfo = res;
+        
+        this.actualUserInfo = res; // Asigna los valores de la respuesta a la variable
         const role = this.actualUserInfo.role;
-        const userObjectUrl = this.URI_API + "get" + role + "/" + res.relatedId;
+        const userObjectUrl = this.URI_API + "get" + role + "/" + res.relatedId; //Genera la URL a consultar dependiendo el tipo de usuario
+
         return this.http.get(userObjectUrl).pipe(
           map((userObject: any) => {
-
-            const route = roleRoutes[res.role];
-          if (route) {
-            this.router.navigate([route]);
+            this.actualUserInfo.imageName = userObject.imageName;
+            this.actualUserInfo.name = userObject.firstName;
+            this.saveLocalStorage(res);
             return this.actualUserInfo;
-          } else {
-            console.log('Ups');
-            return;
-          }
           })
         );
       }),
