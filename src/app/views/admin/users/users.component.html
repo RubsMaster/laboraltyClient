@@ -272,27 +272,28 @@
             </c-col>
             
 
-            <!-- zipCode input -->
-            <c-col [md]="4">
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="zipCode"
-                  placeholder="Código postal"
-                  formControlName="zipCode"
-                />
-                <label for="zipCode">{{this.zipCode}}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('zipCode')?.hasError?.('required') && this.createUserForm.get('zipCode')?.touched"
-                >
-                  El código postal<strong> es obligatorio</strong>
-                </div>
-              </div>
-            </c-col>
+          <!-- zipCode input -->
+<c-col [md]="4">
+  <div class="form-floating mb-3">
+    <input
+      type="number"
+      class="form-control"
+      id="zipCode"
+      placeholder="Código postal"
+      formControlName="zipCode"
+    />
+    <label for="zipCode">{{this.zipCode}}</label>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      style="margin-top: 3px"
+      *ngIf="this.createUserForm.get('zipCode')?.hasError?.('required') && this.createUserForm.get('zipCode')?.touched"
+    >
+      El código postal<strong> es obligatorio</strong>
+    </div>
+  </div>
+</c-col>
+
 
             <!-- outdoorNumber input -->
             <c-col [md]="4">
@@ -304,7 +305,7 @@
                   placeholder="Número exterior"
                   formControlName="outdoorNumber"
                 />
-                <label for="outdoorNumber">{{this.innerNumber}}</label>
+                <label for="outdoorNumber">{{this.outdoorNumber}}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -313,14 +314,14 @@
                 >
                   El numero exterior<strong> es obligatorio</strong>
                 </div>
-                <div
+                <!-- <div
                   class="alert alert-danger"
                   role="alert"
                   style="margin-top: 3px"
                   *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createUserForm.get('outdoorNumber')?.touched"
                 >
                   El numero exterior<strong> es muy largo</strong>
-                </div>
+                </div> -->
               </div>
             </c-col>
 
@@ -331,10 +332,10 @@
                   type="number"
                   class="form-control"
                   id="innerNumber"
-                  placeholder="Número exterior"
+                  placeholder="Número interior"
                   formControlName="innerNumber"
                 />
-                <label for="innerNumber">{{this.outdoorNumber}}</label>
+                <label for="innerNumber">{{this.innerNumber}}</label>
               </div>
             </c-col>
 
@@ -454,7 +455,7 @@
                   class="alert alert-danger"
                   role="alert"
                   style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched"
+                  *ngIf="this.createUserForm.get('monthlyDebt')?.hasError?.('required') && this.createUserForm.get('monthlyDebt')?.touched"
                 >
                   La deuda mensual<strong> es obligatoria</strong>
                 </div>

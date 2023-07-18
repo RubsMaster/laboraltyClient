@@ -210,7 +210,7 @@ export class UsersComponent implements OnInit {
             const newCred: CredentialModel = {
               user: accountant.userAssigned,
               password: accountant.passwordAssigned,
-              role: "Admin",
+              role: "Accountant",
               relatedId: data._id
             } 
             this.credService.createCredential(newCred).subscribe(data => {

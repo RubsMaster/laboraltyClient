@@ -18,7 +18,8 @@ import {
   GridModule,
   ListGroupModule,
   SharedModule,
-  InputGroupComponent
+  InputGroupComponent,
+  AlertModule
 } from '@coreui/angular';
 
 
@@ -37,7 +38,8 @@ import {
     GridModule,
     IconModule,
     FormModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule
   ]
 })
 export class PagesModule {

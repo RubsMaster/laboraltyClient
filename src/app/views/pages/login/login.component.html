@@ -8,27 +8,23 @@
           <c-card class="p-4">
             <c-card-body>
 
-              <form cForm class="row g-3" [formGroup]="loginForm" (ngSubmit)="onLogin()" [gutter]="3" >
+              <form cForm class="row g-3" [formGroup]="loginForm" (ngSubmit)="onLogin()" [gutter]="3">
                 <h1>Inicio de sesión</h1>
                 <p class="text-medium-emphasis">Ingrese con su usuario y contraseña asignados</p>
-                 <c-input-group class="mb-3">
+                <c-input-group class="mb-3">
+
                   <span cInputGroupText>
                     <svg cIcon name="cilUser"></svg>
                   </span>
-                  <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  formControlName="username"
-                  name="username"
-                  placeholder="Nombre de usuario"
-                  />
-                <c-form-feedback *ngIf="isValidField('username')">{{getErrorMessage("username")}}.</c-form-feedback>
-                <br>
+                  <input type="text" class="form-control" id="username" formControlName="username" name="username"
+                    placeholder="Nombre de usuario" />
+                  <!-- <c-form-feedback *ngIf="isValidField('username')">{{getErrorMessage("username")}}.</c-form-feedback> -->
+                  <br>
                 </c-input-group>
-                <label cFormCheckLabel for="password" *ngIf="isValidField('username')">{{getErrorMessage("username")}}.</label>
+                <c-alert *ngIf="isValidField('username')" color="warning">{{ getErrorMessage("username") }}</c-alert>
+                <!-- <label cFormCheckLabel for="password" *ngIf="isValidField('username')">{{getErrorMessage("username")}}.</label> -->
 
-                <c-input-group class="mb-4">
+                <!-- <c-input-group class="mb-4">
                   <span cInputGroupText>
                     <svg cIcon name="cilLockLocked"></svg>
                   </span>
@@ -44,20 +40,31 @@
                   <button matSubffix (click)="hide = !hide">
                     <svg [cIcon]="icons.cilLowVision" size="xl" title="List Icon">{{ hide ? "visibility_off" : "visibility"}}</svg>
                   </button>
+                </c-input-group> -->
+                <c-input-group class="mb-4">
+                  <span cInputGroupText>
+                    <svg cIcon name="cilLockLocked"></svg>
+                  </span>
+                  <input [type]="hide.value ? 'password' : 'text'" class="form-control" id="password"
+                    formControlName="password" name="password" placeholder="Contraseña" />
                 </c-input-group>
-                <label cFormCheckLabel for="password" *ngIf="isValidField('password')">{{getErrorMessage("password")}}.</label>
+                <c-alert color="warning" *ngIf="isValidField('password')">{{getErrorMessage("password")}}</c-alert>
+                <div class="d-flex justify-content-end">
+                  <input type="checkbox" id="showPasswordCheck" [formControl]="hide" [disabled]="isPasswordEmpty()" />
+                  <label for="showPasswordCheck">Mostrar contraseña</label>
+                </div>
+
+
+
+                <c-alert *ngIf="errorMessage" color="warning">{{ errorMessage }}</c-alert>
+
                 <c-row>
 
+
+
                   <c-col style="margin: auto;" xs="6">
-                    <button
-                    (click)= "onLogin()"
-                    cButton
-                    class="px-4"
-                    color="primary"
-                    id="btnSubmit"
-                    type="submit"
-                    [disabled]="loginForm.invalid"
-                    >
+                    <button (click)="onLogin()" cButton class="px-4" color="primary" id="btnSubmit" type="submit"
+                      [disabled]="loginForm.invalid">
                       Login
                     </button>
                   </c-col>
@@ -81,6 +88,7 @@
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua.
                 </p>
+                <!-- <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Flaboralty.net%2F&psig=AOvVaw0EYF3a155czSnsoVL5PfvF&ust=1689747586808000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMjo7cfOl4ADFQAAAAAdAAAAABAE" alt="Image description"> -->
                 <button [active]="true" cButton class="mt-3" color="primary" routerLink="/register">
                   Register Now!
                 </button>
