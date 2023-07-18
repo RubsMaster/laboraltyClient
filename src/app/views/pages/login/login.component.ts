@@ -15,7 +15,7 @@ import { CredentialModel } from "src/app/models/credential";
 import { first } from "rxjs/operators";
 import { CredentialsService } from "src/app/services/credentials.service";
 import { Subscription } from "rxjs";
-import { cilLowVision } from "@coreui/icons";
+import { cilLowVision, cilCircle, cilCheckCircle, cilLockUnlocked, cilLockLocked, cilFingerprint } from "@coreui/icons";
 
 @Component({
   selector: "app-login",
@@ -25,6 +25,11 @@ import { cilLowVision } from "@coreui/icons";
 export class LoginComponent implements OnInit {
   icons = {
     cilLowVision,
+    cilCircle,
+    cilCheckCircle,
+    cilLockLocked,
+    cilLockUnlocked,
+    cilFingerprint
   };
 
   hide = true;

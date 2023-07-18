@@ -3,7 +3,8 @@
     <c-card class="mb-4">
       <c-card-header class="p-4">
         <h3 style="float: left">{{ Title }}</h3>
-        <button class="ms-auto"
+        <button
+          class="ms-auto"
           cButton
           (click)="Title === 'Editar Usuario' ? updateUser() : saveUser()"
           color="dark"
@@ -11,9 +12,11 @@
           style="float: right"
           id="btnSubmit"
           type="submit"
-          [disabled]="Title === 'Editar Usuario' ? false : !createUserForm.valid"
+          [disabled]="
+            Title === 'Editar Usuario' ? false : !createUserForm.valid
+          "
         >
-        {{ Title === 'Editar Usuario' ? '+Editar' : '+Agregar' }}
+          {{ Title === "Editar Usuario" ? "+Editar" : "+Agregar" }}
         </button>
       </c-card-header>
 
@@ -28,9 +31,9 @@
           <c-row class="mt-2">
             <h4>Informacion del usuario</h4>
 
+            <!-- firstNameTitular -->
             <c-col [md]="3">
               <div class="form-floating">
-
                 <input
                   type="text"
                   class="form-control"
@@ -39,27 +42,29 @@
                   name="firstNameTitular"
                   placeholder="Nombres"
                 />
-                  <label for="firstNameTitular">{{ this.firstNameTitular }}</label>
+                <label for="firstNameTitular">{{
+                  this.firstNameTitular
+                }}</label>
 
-                  <div
-                    class="alert alert-danger"
-                    role="alert"
-                    *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched"
-                  >
-                    El nombre del usuario <strong> es obligatorio</strong>
-                  </div>
-
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="this.createUserForm.get('firstNameTitular')?.errors?.['required'] && this.createUserForm.get('firstNameTitular')?.touched"
+                >
+                  El nombre del usuario <strong> es obligatorio</strong>
+                </div>
               </div>
             </c-col>
 
+            <!-- lastNameTitular -->
             <c-col [md]="3">
               <div class="form-floating">
                 <input
-                  cFormControl                  
+                  cFormControl
                   id="lastNameTitular"
                   type="text"
                   class="form-control"
-                  formControlName="lastNameTitular"                  
+                  formControlName="lastNameTitular"
                   name="lastNameTitular"
                   placeholder="Apellidos"
                 />
@@ -76,6 +81,7 @@
               </div>
             </c-col>
 
+            <!-- businessName -->
             <c-col [md]="3" class="mb-3">
               <div class="form-floating">
                 <input
@@ -87,20 +93,21 @@
                   name="businessName"
                   placeholder="Razón Social"
                 />
-                <label for="businessName">{{this.businessName}}</label>
+                <label for="businessName">{{ this.businessName }}</label>
               </div>
               <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('businessName')?.hasError?.('required') && this.createUserForm.get('businessName')?.touched"
-                >
-                  La razón social<strong> es obligatoria</strong>
-                </div>
+                class="alert alert-danger"
+                role="alert"
+                style="margin-top: 3px"
+                *ngIf="this.createUserForm.get('businessName')?.hasError?.('required') && this.createUserForm.get('businessName')?.touched"
+              >
+                La razón social<strong> es obligatoria</strong>
+              </div>
             </c-col>
 
+            <!-- RFC -->
             <c-col [md]="3">
-              <div class="form-floating ">
+              <div class="form-floating">
                 <input
                   cFormControl
                   id="RFC"
@@ -110,11 +117,10 @@
                   formControlName="RFC"
                   placeholder="RFC"
                 />
-                <label for="businessName">{{this.RFC}}</label>
+                <label for="businessName">{{ this.RFC }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  
                   *ngIf="this.createUserForm.get('RFC')?.errors?.['required'] && this.createUserForm.get('RFC')?.touched"
                 >
                   El RFC<strong> es obligatorio</strong>
@@ -124,6 +130,7 @@
           </c-row>
 
           <c-row class="mt-1">
+            <!-- email -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
@@ -135,7 +142,7 @@
                   formControlName="email"
                   placeholder="email"
                 />
-                <label for="email">{{this.email}}</label>
+                <label for="email">{{ this.email }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -155,6 +162,7 @@
               </div>
             </c-col>
 
+            <!-- mobilePhoneNumber -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
@@ -164,7 +172,9 @@
                   placeholder="Teléfono móvil"
                   formControlName="mobilePhoneNumber"
                 />
-                <label for="mobilePhoneNumber">{{this.mobilePhoneNumber}}</label>
+                <label for="mobilePhoneNumber">{{
+                  this.mobilePhoneNumber
+                }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -185,6 +195,7 @@
               </div>
             </c-col>
 
+            <!-- officePhoneNumber -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
                 <input
@@ -194,7 +205,9 @@
                   placeholder="Teléfono de oficina"
                   formControlName="officePhoneNumber"
                 />
-                <label for="officePhoneNumber">{{this.officePhoneNumber}}</label>
+                <label for="officePhoneNumber">{{
+                  this.officePhoneNumber
+                }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -213,7 +226,8 @@
             <h4>Domicilio fiscal</h4>
           </c-row>
 
-          <c-row class="mt-2" >
+          <c-row class="mt-2">
+            <!-- street -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <input
@@ -223,10 +237,11 @@
                   placeholder="Calle"
                   formControlName="street"
                 />
-                <label for="street">{{this.street}}</label>
+                <label for="street">{{ this.street }}</label>
               </div>
             </c-col>
 
+            <!-- suburb -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <input
@@ -236,10 +251,11 @@
                   placeholder="Colonia"
                   formControlName="suburb"
                 />
-                <label for="suburb">{{this.suburb}}</label>
+                <label for="suburb">{{ this.suburb }}</label>
               </div>
             </c-col>
 
+            <!-- city -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
                 <select
@@ -251,11 +267,11 @@
                   <option selected>Chihuahua</option>
                   <option>...</option>
                 </select>
-                <label for="city">{{this.city}}</label>
+                <label for="city">{{ this.city }}</label>
               </div>
             </c-col>
 
-            <!-- state input -->
+            <!-- state -->
             <c-col [md]="3">
               <div class="form-floating">
                 <select
@@ -267,10 +283,9 @@
                   <option>Chihuahua</option>
                   <option>...</option>
                 </select>
-                <label for="state">{{this.state}}</label>
+                <label for="state">{{ this.state }}</label>
               </div>
             </c-col>
-            
 
             <!-- zipCode input -->
             <c-col [md]="4">
@@ -282,7 +297,7 @@
                   placeholder="Código postal"
                   formControlName="zipCode"
                 />
-                <label for="zipCode">{{this.zipCode}}</label>
+                <label for="zipCode">{{ this.zipCode }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -304,7 +319,7 @@
                   placeholder="Número exterior"
                   formControlName="outdoorNumber"
                 />
-                <label for="outdoorNumber">{{this.innerNumber}}</label>
+                <label for="outdoorNumber">{{ this.outdoorNumber }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -331,21 +346,19 @@
                   type="number"
                   class="form-control"
                   id="innerNumber"
-                  placeholder="Número exterior"
+                  placeholder="Número interior"
                   formControlName="innerNumber"
                 />
-                <label for="innerNumber">{{this.outdoorNumber}}</label>
+                <label for="innerNumber">{{ this.innerNumber }}</label>
               </div>
             </c-col>
-
           </c-row>
 
           <c-row style="margin-bottom: 2%">
             <hr />
             <h4>Atributos en sistema</h4>
           </c-row>
-<c-row class="mb-3">
-  
+          <c-row class="mb-3">
             <!-- userAssigned input -->
             <c-col [md]="6">
               <div class="form-floating">
@@ -356,7 +369,7 @@
                   placeholder="Nombre de usuario"
                   formControlName="userAssigned"
                 />
-                <label for="userAssigned">{{this.userAssigned}}</label>
+                <label for="userAssigned">{{ this.userAssigned }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -378,7 +391,9 @@
                   placeholder="passwordAssigned"
                   formControlName="passwordAssigned"
                 />
-                <label for="passwordAssigned">{{this.passwordAssigned}}</label>
+                <label for="passwordAssigned">{{
+                  this.passwordAssigned
+                }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -389,11 +404,9 @@
                 </div>
               </div>
             </c-col>
+          </c-row>
 
-</c-row>
-          
           <c-row>
-
             <!-- totalEmployees input -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
@@ -404,7 +417,7 @@
                   placeholder="Empleados asignables"
                   formControlName="totalEmployees"
                 />
-                <label for="totalEmployees">{{this.totalEmployees}}</label>
+                <label for="totalEmployees">{{ this.totalEmployees }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -426,7 +439,7 @@
                   placeholder="RFC asignables"
                   formControlName="totalRFC"
                 />
-                <label for="totalRFC">{{this.totalRFC}}</label>
+                <label for="totalRFC">{{ this.totalRFC }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
@@ -449,23 +462,20 @@
                   formControlName="monthlyDebt"
                   placeholder="Deuda mensual"
                 />
-                <label for="monthlyDebt">{{this.monthlyDebt}}</label>
+                <label for="monthlyDebt">{{ this.monthlyDebt }}</label>
                 <div
                   class="alert alert-danger"
                   role="alert"
                   style="margin-top: 3px"
-                  *ngIf="this.createUserForm.get('outdoorNumber')?.hasError?.('required') && this.createUserForm.get('outdoorNumber')?.touched"
+                  *ngIf="this.createUserForm.get('monthlyDebt')?.hasError?.('required') && this.createUserForm.get('monthlyDebt')?.touched"
                 >
                   La deuda mensual<strong> es obligatoria</strong>
                 </div>
               </div>
-
             </c-col>
           </c-row>
         </form>
-
       </c-card-body>
-
     </c-card>
   </c-col>
 </c-row>

@@ -30,7 +30,7 @@
 
                 <c-input-group class="mb-4">
                   <span cInputGroupText>
-                    <svg cIcon name="cilLockLocked"></svg>
+                    <svg [cIcon]="icons.cilFingerprint"></svg>
                   </span>
                   <input
                   [type] = "hide ? 'password' : 'text'"
@@ -39,11 +39,12 @@
                   id="password"
                   formControlName="password"
                   name="password"
-                  placeholder="Contrase;a"
+                  placeholder="Contrasña"
                   />  
-                  <button matSubffix (click)="hide = !hide">
-                    <svg [cIcon]="icons.cilLowVision" size="xl" title="List Icon">{{ hide ? "visibility_off" : "visibility"}}</svg>
+                  <button cButton matSubffix (click)="hide = !hide" color="secondary" variant="outline">
+                    <svg [cIcon]="hide ? icons.cilLockLocked : icons.cilLockUnlocked" title="List Icon"></svg>
                   </button>
+                  
                 </c-input-group>
                 <label cFormCheckLabel for="password" *ngIf="isValidField('password')">{{getErrorMessage("password")}}.</label>
                 <c-row>
@@ -71,9 +72,7 @@
             </c-card-body>
           </c-card>
 
-
-
-          <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
+          <!-- <c-card [ngStyle]="{'width.%': 44}" class="text-white bg-primary py-5">
             <c-card-body class="text-center">
               <div>
                 <h2>Sign up</h2>
@@ -86,7 +85,8 @@
                 </button>
               </div>
             </c-card-body>
-          </c-card>
+          </c-card> -->
+          
         </c-card-group>
       </c-col>
     </c-row>
