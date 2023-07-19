@@ -20,6 +20,9 @@ import {
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 
 import { FormsRoutingModule } from '../../forms/forms-routing.module';
+import { NgxPaginationModule } from "ngx-pagination";
+
+import { IconModule } from '@coreui/icons-angular';
 @NgModule({
   declarations: [
     ServiceLogComponent
@@ -39,7 +42,9 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
     DropdownModule,
     SharedModule,
     ListGroupModule,
-    TableModule
+    TableModule,
+    NgxPaginationModule,
+    IconModule
   ]
 })
 export class ServiceLogModule { }

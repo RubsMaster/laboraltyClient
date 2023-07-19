@@ -10,6 +10,8 @@ import { tasks } from "../../../models/tasks";
 import { ServiceLog } from "../../../models/serviceLog";
 import { ServiceLogService } from "../../../services/accountant/service-log/service-log.service";
 
+import { cilLowVision, cilCircle, cilCheckCircle, cilLockUnlocked, cilLockLocked, cilFingerprint } from "@coreui/icons";
+
 @Component({
   selector: 'app-service-log',
   templateUrl: './service-log.component.html',
@@ -17,9 +19,26 @@ import { ServiceLogService } from "../../../services/accountant/service-log/serv
 })
 
 export class ServiceLogComponent implements OnInit {
+  icons = {
+    cilLowVision,
+    cilCircle,
+    cilCheckCircle,
+    cilLockLocked,
+    cilLockUnlocked,
+    cilFingerprint
+  };
+
   serviceLogForm: FormGroup;
 
    taskList: tasks[] = []
+
+   serviceLogList: ServiceLog[] = []
+
+    //pagination 
+    paginationId = 'consultantPagination';
+    p1: number = 1;
+    itemsPerPage:number = 5;
+    currentPage = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +52,7 @@ export class ServiceLogComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getAllServiceLogs()
   }
 
   addTaskToList(taskNameParameter: string){
@@ -47,6 +67,13 @@ export class ServiceLogComponent implements OnInit {
     if (index >= 0 && index < this.taskList.length) {
       this.taskList.splice(index, 1);
     }
+  }
+
+  getAllServiceLogs(){
+    this.service.getAllServiceLogs().subscribe( (data: any) => {
+      this.serviceLogList = data as ServiceLog[];
+      this.serviceLogList.reverse()
+    })
   }
 
   saveService() {

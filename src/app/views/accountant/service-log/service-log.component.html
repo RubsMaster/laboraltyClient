@@ -198,7 +198,58 @@
 
   <c-col>
     <c-card>
-      
+      <c-card-header class="p-4">
+        <h3 style="float: left">Consultores</h3>
+        <pagination-controls (pageChange)="p1 = $event" id="consultantPagination" previousLabel="" nextLabel=""
+          style="float: right;" class="ms-auto"></pagination-controls>
+      </c-card-header>
+      <c-card-body class="p-4" >
+
+        <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
+          <thead cTableColor="dark">
+            <tr>
+              <th></th>
+              <th class="text-center">Nombre de bitácora</th>
+              <th class="text-center">Tipo</th>
+              <th class="text-center">Teléfono de oficina</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              *ngFor="let serviceLog of serviceLogList | paginate: { itemsPerPage: 5, currentPage: p1, id: 'consultantPagination' }">
+              <td class="text-center">
+                <!-- <c-avatar size="md" src="http://localhost:4000/getFile/{{ consultant.imageName }}" status=""></c-avatar> -->
+              </td>
+              <td>
+                <div>{{ serviceLog.serviceLogName }}</div>
+                <!-- <div class="small text-medium-emphasis">
+                  <span>{{ serviceLog.jobTitle }}</span> | Registered:
+                  {{ getFormattedDate(serviceLog.createdAt) }}
+                </div> -->
+              </td>
+              <td class="text-center">
+                <div>{{ serviceLog.serviceLogType }}</div>
+              </td>
+              <td class="text-center">
+                <ul>
+                  <li *ngFor="let task of serviceLog.tasks">
+                    {{ task.name }}
+                    {{ task.completed }}
+                    <svg [cIcon]="task.completed ? 'icons.cilCheckCircle' : 'icons.cilCircle'" title="Task Icon"></svg>
+
+                  </li>
+                </ul>
+              </td>
+              <!-- <td class="text-center">
+                <div>{{ serviceLog.officePhonenumber}}</div>
+              </td> -->
+            </tr>
+          </tbody>
+          
+        </table>
+
+      </c-card-body>
     </c-card>
   </c-col>
 </c-row>
