@@ -479,8 +479,13 @@
 
 <c-row>
   <c-col xs>
-    <c-card class="mb-4">
-      <c-card-header>Consultores</c-card-header>
+    <c-card 
+    class="mb-4"
+    
+    >
+      <c-card-header >
+        <h2>Clientes</h2>
+      </c-card-header>
       <c-card-body>
         <table
           [hover]="true"
@@ -490,14 +495,15 @@
           cTable
           class="mb-0 border"
         >
-          <thead cTableColor="light">
+          <thead cTableColor="dark">
           <tr>
             <th>Nombre</th>
-            <th class="text-center">RFC</th>
-            <th class="text-center">Usuario</th>
+            <th>RFC</th>
+            <th>Usuario</th>
             <th>Responsable del servicio</th>
-            <th class="text-center">RFC Asignados</th>
-            <th class="text-center">Empleados Asignados</th>
+            <th>RFC Asignados</th>
+            <th>Empleados Asignados</th>
+            <th>Consultor asignado</th>
           </tr>
           </thead>
           <tbody>
@@ -509,10 +515,10 @@
                 {{ client.createdAt  }}
               </div> 
             </td>
-            <td class="text-center">
+            <td>
               <div>{{ client.RFC}}</div>
             </td>
-            <td class="text-center">
+            <td>
               <div>{{ client.userAssigned}}</div>
             </td>
             <td>
@@ -521,11 +527,14 @@
                 <span>puesto</span>
               </div> 
             </td>
-            <td class="text-center">
+            <td>
               <div>{{ client.totalRFC}}</div>
             </td>
-            <td class="text-center">
+            <td>
               <div>{{ client.totalEmployees}}</div>
+            </td>
+            <td>
+              <div>consultor</div>
             </td>
           </tr>
           </tbody>

@@ -23,6 +23,9 @@ import { FormsRoutingModule } from '../../forms/forms-routing.module';
 import { NgxPaginationModule } from "ngx-pagination";
 
 import { IconModule } from '@coreui/icons-angular';
+import { ToastModule } from '@coreui/angular';
+
+
 @NgModule({
   declarations: [
     ServiceLogComponent

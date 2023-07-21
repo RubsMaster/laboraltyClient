@@ -19,6 +19,7 @@ import { CredentialModel } from 'src/app/models/credential';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
+  cardColor = "dark"
 
   createClientForm: FormGroup;
 

@@ -10,6 +10,7 @@ import { tasks } from "../../../models/tasks";
 import { ServiceLog } from "../../../models/serviceLog";
 import { ServiceLogService } from "../../../services/accountant/service-log/service-log.service";
 
+
 import {
   cilLowVision,
   cilCircle,
@@ -17,6 +18,8 @@ import {
   cilLockUnlocked,
   cilLockLocked,
   cilFingerprint,
+  cilLevelDown,
+  cilTrash
 } from "@coreui/icons";
 
 @Component({
@@ -32,7 +35,14 @@ export class ServiceLogComponent implements OnInit {
     cilLockLocked,
     cilLockUnlocked,
     cilFingerprint,
+    cilLevelDown,
+    cilTrash
   };
+
+  // Toast configuration
+  position = 'top-end';
+  visible = false;
+  percentage = 0;
 
   serviceLogForm: FormGroup;
 
@@ -68,6 +78,8 @@ export class ServiceLogComponent implements OnInit {
     this.getAllServiceLogs();
   }
 
+  // CRUD functions
+
   addTaskToList(taskNameParameter: string) {
     const task: tasks = {
       name: taskNameParameter,
@@ -99,4 +111,5 @@ export class ServiceLogComponent implements OnInit {
       console.log("esto es lo que se creó: " + JSON.stringify(data));
     });
   }
+
 }
