@@ -26,112 +26,105 @@
           (ngSubmit)="saveService()"
         >
           <c-row>
-
             <c-col>
-
-                <!-- serviceLogName -->
-                <c-col [md]="6" style="margin-top: 15px">
-                  <div class="form-floating mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="serviceLogName"
-                      formControlName="serviceLogName"
-                      name="serviceLogName"
-                      placeholder="serviceLogName"
-                      required
-                    />
-                    <label for="serviceLogName">Nombre</label>
-                    <div
-                      class="alert alert-danger"
-                      role="alert"
-                      style="margin-top: 3px"
-                      *ngIf="this.serviceLogForm.get('serviceLogName')?.errors?.['required'] && this.serviceLogForm.get('serviceLogName')?.touched"
-                    >
-                      El nombre del servicio <strong> es obligatorio</strong>
-                    </div>
-                  </div>
-                </c-col>
-                <!-- serviceLogType -->
-                <c-col [md]="6" style="margin-top: 15px">
-                  <div class="form-floating">
-                    <select
-                      cSelect
-                      id="serviceLogType"
-                      class="form-control"
-                      name="serviceLogType"
-                      formControlName="serviceLogType"
-                    >
-                      <option>Empleado</option>
-                      <option>Empresa</option>
-                    </select>
-                    <label for="serviceLogType">Tipo de documento</label>
-                    <div
-                      class="alert alert-danger"
-                      *ngIf="this.serviceLogForm.get('serviceLogType')?.errors?.['required'] && this.serviceLogForm.get('serviceLogType')?.touched"
-                      style="margin-top: 3px"
-                    >
-                      <span
-                        >El tipo del servicio<strong>
-                          es obligatorio</strong
-                        ></span
-                      >
-                    </div>
-                  </div>
-                </c-col>
-
-            </c-col>
-
-            <c-col>
-              
-              <!-- taskName and button -->
+              <!-- serviceLogName -->
               <c-row>
-
-                <c-col>
-                  <!-- taskName -->
-                  <div class="form-floating mb-3">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="taskName"
-                      formControlName="taskName"
-                      name="taskName"
-                      placeholder="taskName"
-                      required
-                      #taskNameInput
-                    />
-                    <label for="taskName">Nombre tarea:</label>
-                    <div
-                      class="alert alert-danger"
-                      role="alert"
-                      style="margin-top: 3px"
-                      *ngIf="this.serviceLogForm.get('taskName')?.errors?.['required'] && this.serviceLogForm.get('taskName')?.touched"
-                    >
-                      El nombre de la tarea <strong> es obligatoria</strong>
-                    </div>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="serviceLogName"
+                    formControlName="serviceLogName"
+                    name="serviceLogName"
+                    placeholder="serviceLogName"
+                    required
+                  />
+                  <label for="serviceLogName">{{ this.serviceLogName }}</label>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.serviceLogForm.get('serviceLogName')?.errors?.['required'] && this.serviceLogForm.get('serviceLogName')?.touched"
+                  >
+                    El nombre del servicio <strong> es obligatorio</strong>
                   </div>
-                </c-col>
-                <c-col>
-                  <!-- button -->
-                  <div class="form-floating mb-3">
-                    <button
-                      cButton
-                      color="primary"
-                      variant="outline"
-                      (click)="
-                        addTaskToList(taskNameInput.value);
-                        taskNameInput.value = ''
-                      "
-                    >
-                      Agregar
-                    </button>
-                  </div>
-                </c-col>
-
+                </div>
               </c-row>
 
-              <!-- TaskList -->
-              <c-col>
+              <!-- serviceLogType -->
+              <c-row>
+                <div class="form-floating mb-3">
+                  <select
+                    cSelect
+                    id="serviceLogType"
+                    class="form-control"
+                    name="serviceLogType"
+                    formControlName="serviceLogType"
+                  >
+                    <option>Empleado</option>
+                    <option>Empresa</option>
+                  </select>
+                  <label for="serviceLogType">{{ this.servicceLogType }}</label>
+                  <div
+                    class="alert alert-danger"
+                    *ngIf="this.serviceLogForm.get('serviceLogType')?.errors?.['required'] && this.serviceLogForm.get('serviceLogType')?.touched"
+                    style="margin-top: 3px"
+                  >
+                    <span
+                      >El tipo del servicio<strong>
+                        es obligatorio</strong
+                      ></span
+                    >
+                  </div>
+                </div>
+              </c-row>
+
+              <!-- taskName -->
+              <c-row>
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="taskName"
+                    formControlName="taskName"
+                    name="taskName"
+                    placeholder="taskName"
+                    required
+                    #taskNameInput
+                  />
+                  <label for="taskName">{{ this.taskName }}</label>
+                  <div
+                    class="alert alert-danger"
+                    role="alert"
+                    style="margin-top: 3px"
+                    *ngIf="this.serviceLogForm.get('taskName')?.errors?.['required'] && this.serviceLogForm.get('taskName')?.touched"
+                  >
+                    El nombre de la tarea <strong> es obligatoria</strong>
+                  </div>
+                </div>
+              </c-row>
+
+              <!-- button -->
+              <c-row>
+                <div class="form-floating mb-3">
+                  <button
+                    cButton
+                    color="primary"
+                    variant="outline"
+                    style="float: right"
+                    (click)="
+                      addTaskToList(taskNameInput.value);
+                      taskNameInput.value = ''
+                    "
+                  >
+                    Agregar
+                  </button>
+                </div>
+              </c-row>
+            </c-col>
+
+            <!-- TaskList -->
+            <c-col>
               <div class="form-floating mb-3">
                 <c-card>
                   <c-card-body>
@@ -141,6 +134,7 @@
                         continuar</span
                       >
                     </div>
+
                     <table
                       [hover]="true"
                       [responsive]="true"
@@ -182,15 +176,9 @@
                   </c-card-body>
                 </c-card>
               </div>
-
-              </c-col>
-
             </c-col>
-            
-
           </c-row>
 
-          <c-row style="margin-bottom: 2%"> </c-row>
         </form>
       </c-card-body>
     </c-card>
@@ -198,7 +186,83 @@
 
   <c-col>
     <c-card>
-      
+      <c-card-header class="p-4">
+        <h3 style="float: left">Consultores</h3>
+        <pagination-controls
+          (pageChange)="p1 = $event"
+          id="consultantPagination"
+          previousLabel=""
+          nextLabel=""
+          style="float: right"
+          class="ms-auto"
+        ></pagination-controls>
+      </c-card-header>
+      <c-card-body class="p-4">
+        <table
+          [hover]="true"
+          [responsive]="true"
+          [striped]="true"
+          align="middle"
+          cTable
+          class="mb-0 border"
+        >
+          <thead cTableColor="dark">
+            <tr>
+              <th></th>
+              <th class="text-center">Nombre de bitácora</th>
+              <th class="text-center">Tipo</th>
+              <th class="text-center">Teléfono de oficina</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr
+              *ngFor="
+                let serviceLog of serviceLogList
+                  | paginate
+                    : {
+                        itemsPerPage: 5,
+                        currentPage: p1,
+                        id: 'consultantPagination'
+                      }
+              "
+            >
+              <td class="text-center">
+                <!-- <c-avatar size="md" src="http://localhost:4000/getFile/{{ consultant.imageName }}" status=""></c-avatar> -->
+              </td>
+              <td>
+                <div>{{ serviceLog.serviceLogName }}</div>
+                <!-- <div class="small text-medium-emphasis">
+                  <span>{{ serviceLog.jobTitle }}</span> | Registered:
+                  {{ getFormattedDate(serviceLog.createdAt) }}
+                </div> -->
+              </td>
+              <td class="text-center">
+                <div>{{ serviceLog.serviceLogType }}</div>
+              </td>
+              <td class="text-center">
+                <ul>
+                  <li *ngFor="let task of serviceLog.tasks">
+                    {{ task.name }}
+                    {{ task.completed }}
+                    <svg
+                      [cIcon]="
+                        task.completed
+                          ? 'icons.cilCheckCircle'
+                          : 'icons.cilCircle'
+                      "
+                      title="Task Icon"
+                    ></svg>
+                  </li>
+                </ul>
+              </td>
+              <!-- <td class="text-center">
+                <div>{{ serviceLog.officePhonenumber}}</div>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </c-card-body>
     </c-card>
   </c-col>
 </c-row>

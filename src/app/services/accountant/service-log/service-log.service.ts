@@ -17,4 +17,8 @@ export class ServiceLogService {
     createServiceLog(serviceLogParameter: ServiceLog){
       return this.http.post(this.URI_API + "createServiceLog", serviceLogParameter)
     }
+
+    getAllServiceLogs(){
+      return this.http.get(this.URI_API + "getAllServiceLogs")
+    }
 }

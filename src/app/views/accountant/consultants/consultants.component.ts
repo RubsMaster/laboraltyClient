@@ -81,6 +81,8 @@ previewImageUrl: string | ArrayBuffer | null = null;
       userAssigned: ["", Validators.required],
       passwordAssigned: ["", Validators.required],
     })
+
+    
     this.Title='Crear consultor'
     this.jobTitle='Puesto'
     this.firstName='Nombre(s)'
