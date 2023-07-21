@@ -99,8 +99,6 @@ export class UsersComponent implements OnInit {
     this.monthlyDebt = ''
     this.userAssigned = ''
     this.passwordAssigned = ''
-
-  
   }
 
   UserArray: UserModel[] = [];
@@ -141,7 +139,7 @@ export class UsersComponent implements OnInit {
       this.street = 'Calle'
       this.innerNumber = 'Número interior'
       this.outdoorNumber = 'Número exterior'
-      this.zipCode = 'Número interior'
+      this.zipCode = 'Código Postal'
       this.suburb = 'Colonia'
       this.city = 'Seleccione ciudad'
       this.state = 'Estado'
@@ -152,30 +150,6 @@ export class UsersComponent implements OnInit {
       this.passwordAssigned = 'Contraseña'
     }
   }
-
-
-  // saveUser() {
-  //   const user: UserModel = {
-  //     businessName: this.createUserForm.get('businessName')?.value,
-  //     RFC: this.createUserForm.get('RFC')?.value,
-  //     firstNameTitular: this.createUserForm.get('firstNameTitular')?.value,
-  //     lastNameTitular: this.createUserForm.get('lastNameTitular')?.value,
-  //     email: this.createUserForm.get('email')?.value,
-  //     street: this.createUserForm.get('street')?.value,
-  //     innerNumber: this.createUserForm.get('innerNumber')?.value,
-  //     outdoorNumber: this.createUserForm.get('outdoorNumber')?.value,
-  //     zipCode: this.createUserForm.get('zipCode')?.value,
-  //     suburb: this.createUserForm.get('suburb')?.value,
-  //     city: this.createUserForm.get('city')?.value,
-  //     state: this.createUserForm.get('state')?.value,
-  //     officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value,
-  //     mobilePhoneNumber: this.createUserForm.get('mobilePhoneNumber')?.value,
-  //     totalEmployees: this.createUserForm.get('totalEmployees')?.value,
-  //     totalRFC: this.createUserForm.get('totalRFC')?.value,
-  //     monthlyDebt: this.createUserForm.get('monthlyDebt')?.value,
-  //     userAssigned: this.createUserForm.get('userAssigned')?.value,
-  //     passwordAssigned: this.createUserForm.get('passwordAssigned')?.value
-  //   }
 
   saveUser(){
       const accountant: UserModel = {
@@ -214,7 +188,6 @@ export class UsersComponent implements OnInit {
               relatedId: data._id
             } 
             this.credService.createCredential(newCred).subscribe(data => {
-              console.log("to chill")
               this.ngOnInit()
             })          
           }, error => {
@@ -225,18 +198,6 @@ export class UsersComponent implements OnInit {
        
     }
 
-    // const admin: AdminModel = {
-    //   username: this.createUserForm.get('userAssigned')?.value,
-    //   password: this.createUserForm.get('passwordAssigned')?.value
-    // }
-
-
-  //   this.userService.createUser(user).subscribe(data => {
-  //     this.ngOnInit()
-  //   }, error => {
-  //     console.log(error)
-  //   })
-  // }
 
   updateUser() {
     const id = this.id ?? '';
@@ -275,9 +236,4 @@ export class UsersComponent implements OnInit {
       }
     );
   }
-
-  
-
-
-
 }

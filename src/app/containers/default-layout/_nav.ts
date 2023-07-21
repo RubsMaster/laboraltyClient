@@ -12,7 +12,8 @@ export const navAdmin: INavData[] = [
     iconComponent: { name: 'cil-people' }
   },{
     name: 'Documentos Laborales',
-    url:'/laborDocuments'
+    url:'/laborDocuments',
+    iconComponent: { name: 'cil-file' }
   }
 ];
 
@@ -25,7 +26,7 @@ export const navAccountant: INavData[] = [
   {
     name: 'Expediente laboral',
     url: '/labor-file-sections',
-    iconComponent: { name: 'cil-file' }
+    iconComponent: { name: 'cil-Paperclip' }
   },
   {
     name: 'Bitácoras de servicio',

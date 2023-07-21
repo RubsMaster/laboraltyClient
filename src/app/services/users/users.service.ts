@@ -17,7 +17,7 @@ export class UsersService {
   ) { }
 
   createUser(user: UserModel): Observable<any> {
-    return this.http.post(this.URI_API + "createUser", user)
+    return this.http.post(this.URI_API + "createAccountant", user)
   }
 
   // createAccountant(admin: AdminModel): Observable<any>{
@@ -32,7 +32,7 @@ export class UsersService {
 
   getAllUsers(): Observable<UserModel []> {
     const resultJSON = this.http.get<UserModel[]>(
-     this.URI_API + "getAllUsers" 
+     this.URI_API + "getAllAccountants" 
     );
     return resultJSON;
   }
