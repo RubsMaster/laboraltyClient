@@ -142,7 +142,7 @@ export class CredentialsService {
     let errorMessage = 'An error occurred retrieving data';
     if (err && err.message) {
       errorMessage = `Error: code ${err.message}`;
-      window.alert(errorMessage);
+      // window.alert(errorMessage);
     }
     return throwError(errorMessage);
   }

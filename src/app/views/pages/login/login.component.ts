@@ -32,11 +32,14 @@ export class LoginComponent implements OnInit {
     cilFingerprint
   };
 
-  hide = true;
+  hide = new FormControl(true); // 'hide' ahora es una instancia de FormControl
   isAdmin = false;
   isLogged = false;
   private subscription: Subscription = new Subscription();
   loginForm!: FormGroup;
+
+  errorMessage: string = '';
+
 
   username: string = "";
   password: string = "";
@@ -56,6 +59,10 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {
   }
+
+  isPasswordEmpty(): boolean {
+    return this.loginForm.get('password')?.value === '';
+}
 
   onLogin(): void {
     if (this.loginForm.invalid) {
@@ -86,6 +93,9 @@ export class LoginComponent implements OnInit {
             return;
           }
         }
+      },
+      (error) => {
+        this.errorMessage = 'Usuario o contraseña incorrectos';
       })
     )
   }

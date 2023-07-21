@@ -319,6 +319,7 @@
                   placeholder="Número exterior"
                   formControlName="outdoorNumber"
                 />
+                <label for="outdoorNumber">{{this.outdoorNumber}}</label>
                 <label for="outdoorNumber">{{ this.outdoorNumber }}</label>
                 <div
                   class="alert alert-danger"
@@ -349,6 +350,7 @@
                   placeholder="Número interior"
                   formControlName="innerNumber"
                 />
+                <label for="innerNumber">{{this.innerNumber}}</label>
                 <label for="innerNumber">{{ this.innerNumber }}</label>
               </div>
             </c-col>
@@ -475,7 +477,9 @@
             </c-col>
           </c-row>
         </form>
+
       </c-card-body>
+
     </c-card>
   </c-col>
 </c-row>
