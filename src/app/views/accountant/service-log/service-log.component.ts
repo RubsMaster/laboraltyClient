@@ -55,7 +55,7 @@ export class ServiceLogComponent implements OnInit {
   serviceLogList: ServiceLog[] = [];
 
   //pagination
-  paginationId = "consultantPagination";
+  paginationId = "service-logPagination";
   p1: number = 1;
   itemsPerPage: number = 5;
   currentPage = 1;

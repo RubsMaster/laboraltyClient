@@ -32,3 +32,7 @@ $enable-rtl: true;
 .ngx-pagination {
     margin-bottom: 0 !important;
   }
+.ngx-pagination .current {
+  background: #3C4B64 !important;
+  border-radius: 6px;
+}
