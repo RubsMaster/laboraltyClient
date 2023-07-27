@@ -23,11 +23,11 @@ export const navAccountant: INavData[] = [
     url: '/settings',
     iconComponent: { name: 'cil-settings'}
   },
-  {
-    name: 'Expediente laboral',
-    url: '/labor-file-sections',
-    iconComponent: { name: 'cil-Paperclip' }
-  },
+  // {
+  //   name: 'Expediente laboral',
+  //   url: '/labor-file-sections',
+  //   iconComponent: { name: 'cil-Paperclip' }
+  // },
   {
     name: 'Bitácoras de servicio',
     url: '/service-log',

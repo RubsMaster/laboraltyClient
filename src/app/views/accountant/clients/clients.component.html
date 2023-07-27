@@ -1,29 +1,26 @@
 <c-row>
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header class="p-4">
+      <c-card-header>
         <h3 style="float: left">{{ Title }}</h3>
         <button
           class="ms-auto"
           cButton
           (click)="saveClient()"
           color="dark"
-          variant="outline"
           style="float: right"
           id="btnSubmit"
           type="submit"
-          [disabled]="
-            Title === 'Editar Usuario' ? false : !createClientForm.valid
-          "
+          [disabled]="!createClientForm.valid"
         >
-          {{ Title === "Editar Usuario" ? "+Editar" : "+ Crear" }}
+          + Crear
         </button>
       </c-card-header>
 
       <c-card-body class="p-4">
         <form cForm class="row g-3" [formGroup]="createClientForm" novalidate>
           <c-row>
-            <h4>información del cliente</h4>
+            <h4>Información del cliente</h4>
           </c-row>
 
           <c-row class="mt-2">
@@ -52,7 +49,7 @@
             </c-col>
 
             <!-- taxRegime -->
-            <c-col [md]="3">
+            <c-col [md]="2">
               <div class="form-floating">
                 <input
                   cFormControl
@@ -101,7 +98,7 @@
             </c-col>
 
             <!-- CFDI -->
-            <c-col [md]="3">
+            <c-col [md]="4">
               <div class="form-floating mb-3">
                 <select
                   class="form-select"
@@ -131,6 +128,9 @@
 
           </c-row>
 
+<!-- ------------------------------------------------------------------------------------------------ -->
+<!-- ------------------------------------------------------------------------------------------------ -->
+
           <c-row>
             <hr />
             <h4>Domicilio fiscal</h4>
@@ -153,77 +153,10 @@
               <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('street')?.errors?.['required'] && this.createClientForm.get('street')?.touched"
                 >
                   La calle <strong> es obligatoria</strong>
                 </div>
-            </c-col>
-
-            <!-- outdoorNumber input -->
-            <c-col [md]="4">
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="outdoorNumber"
-                  placeholder="Número exterior"
-                  formControlName="outdoorNumber"
-                />
-                <label for="outdoorNumber">{{ this.outdoorNumber }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('required') && this.createClientForm.get('outdoorNumber')?.touched"
-                >
-                  El numero exterior<strong> es obligatorio</strong>
-                </div>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createClientForm.get('outdoorNumber')?.touched"
-                >
-                  El numero exterior<strong> es muy largo</strong>
-                </div>
-              </div>
-            </c-col>
-
-            <!-- innerNumber input -->
-            <c-col [md]="4">
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="innerNumber"
-                  placeholder="Número exterior"
-                  formControlName="innerNumber"
-                />
-                <label for="innerNumber">{{ this.innerNumber }}</label>
-              </div>
-            </c-col>
-
-            <!-- zipCode input -->
-            <c-col [md]="4">
-              <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="zipCode"
-                  placeholder="Código postal"
-                  formControlName="zipCode"
-                />
-                <label for="zipCode">{{ this.zipCode }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('zipCode')?.hasError?.('required') && this.createClientForm.get('zipCode')?.touched"
-                >
-                  El código postal<strong> es obligatorio</strong>
-                </div>
-              </div>
             </c-col>
 
             <!-- Suburb -->
@@ -241,24 +174,86 @@
               <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('suburb')?.hasError?.('required') && this.createClientForm.get('suburb')?.touched"
                 >
                   La colonia<strong> es obligatoria</strong>
                 </div>
             </c-col>
 
+            <!-- outdoorNumber input -->
+            <c-col [md]="2">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="outdoorNumber"
+                  placeholder="Número exterior"
+                  formControlName="outdoorNumber"
+                />
+                <label for="outdoorNumber">{{ this.outdoorNumber }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('required') && this.createClientForm.get('outdoorNumber')?.touched"
+                >
+                  El numero exterior<strong> es obligatorio</strong>
+                </div>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createClientForm.get('outdoorNumber')?.touched"
+                >
+                  El numero exterior<strong> es muy largo</strong>
+                </div>
+              </div>
+            </c-col>
 
+            <!-- innerNumber input -->
+            <c-col [md]="2">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="innerNumber"
+                  placeholder="Número exterior"
+                  formControlName="innerNumber"
+                />
+                <label for="innerNumber">{{ this.innerNumber }}</label>
+              </div>
+            </c-col>
+
+            <!-- zipCode input -->
+            <c-col [md]="2">
+              <div class="form-floating mb-3">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="zipCode"
+                  placeholder="Código postal"
+                  formControlName="zipCode"
+                />
+                <label for="zipCode">{{ this.zipCode }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
+                  *ngIf="this.createClientForm.get('zipCode')?.hasError?.('required') && this.createClientForm.get('zipCode')?.touched"
+                >
+                  El código postal<strong> es obligatorio</strong>
+                </div>
+              </div>
+            </c-col>
+            
           </c-row>
-<!-- ------------------------------------------------------------------------------------------------ -->
-          <c-row style="margin-bottom: 2%">
+
+          <c-row>
             <hr />
             <h4>Datos del responsable del servicio</h4>
           </c-row>
 
-          <c-row class="mb-3">
+          <c-row class="mt-2">
             <!-- inChargeName -->
-            <c-col [md]="6">
+            <c-col [md]="3">
               <div class="form-floating">
                 <input
                   type="text"
@@ -271,7 +266,6 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('inChargeName')?.hasError?.('required') && this.createClientForm.get('inChargeName')?.touched"
                 >
                   El nombre<strong> es obligatorio</strong>
@@ -280,7 +274,7 @@
             </c-col>
 
             <!-- jobTitle -->
-            <c-col [md]="6">
+            <c-col [md]="3">
               <div class="form-floating">
                 <input
                   type="text"
@@ -293,18 +287,14 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('jobTitle')?.hasError?.('required') && this.createClientForm.get('jobTitle')?.touched"
                 >
                   El puesto<strong> es obligatorio</strong>
                 </div>
               </div>
             </c-col>
-          </c-row>
-
-          <c-row>
             <!-- phoneNumber -->
-            <c-col [md]="4">
+            <c-col [md]="2">
               <div class="form-floating mb-3">
                 <input
                   type="text"
@@ -317,7 +307,6 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('phoneNumber')?.hasError?.('required') && this.createClientForm.get('phoneNumber')?.touched"
                 >
                   El telefono<strong> es obligatorio</strong>
@@ -326,7 +315,7 @@
             </c-col>
 
             <!-- extension -->
-            <c-col [md]="4">
+            <c-col [md]="1">
               <div class="form-floating">
                 <input
                   type="text"
@@ -340,7 +329,7 @@
             </c-col>
 
             <!-- email -->
-            <c-col [md]="4">
+            <c-col [md]="3">
               <div class="form-floating mb-3">
                 <input
                   cFormControl
@@ -355,7 +344,6 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('email')?.errors?.['required'] && this.createClientForm.get('email')?.touched"
                 >
                   El email <strong> es obligatorio</strong>
@@ -370,20 +358,22 @@
                 </div>
               </div>
             </c-col>
+
           </c-row>
+
 <!-- ------------------------------------------------------------------------------------------------ -->
 <!-- ------------------------------------------------------------------------------------------------ -->
-          <c-row style="margin-bottom: 2%">
+          <c-row>
             <hr />
             <h4>Atributos en sistema</h4>
           </c-row>
-<!-- ------------------------------------------------------------------------------------------------ -->
-          <c-row class="mb-3">
+
+          <c-row class="mt-2">
             <!-- totalRFC -->
-            <c-col [md]="3">
+            <c-col [md]="2">
               <div class="form-floating">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="totalRFC"
                   placeholder="Nombre"
@@ -393,7 +383,6 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('totalRFC')?.hasError?.('required') && this.createClientForm.get('totalRFC')?.touched"
                 >
                   La cantidad de RFC asignados<strong> es obligatoria</strong>
@@ -402,10 +391,10 @@
             </c-col>
 
             <!-- totalEmployees -->
-            <c-col [md]="3">
+            <c-col [md]="2">
               <div class="form-floating">
                 <input
-                  type="text"
+                  type="number"
                   class="form-control"
                   id="totalEmployees"
                   placeholder="totalEmployees"
@@ -415,7 +404,6 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('totalEmployees')?.hasError?.('required') && this.createClientForm.get('totalEmployees')?.touched"
                 >
                   La cantidad de empleados asignados<strong> es obligatoria</strong>
@@ -437,13 +425,13 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
                   *ngIf="this.createClientForm.get('userAssigned')?.hasError?.('required') && this.createClientForm.get('userAssigned')?.touched"
                 >
                   El nombre de usuario<strong> es obligatorio</strong>
                 </div>
               </div>
             </c-col>
+
             <!-- passwordAssigned -->
             <c-col [md]="3">
               <div class="form-floating">
@@ -458,7 +446,27 @@
                 <div
                   class="alert alert-danger"
                   role="alert"
-                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('passwordAssigned')?.hasError?.('required') && this.createClientForm.get('passwordAssigned')?.touched"
+                >
+                  La contrase;a<strong> es obligatoria</strong>
+                </div>
+              </div>
+            </c-col>
+
+            <!-- consultantAssigned -->
+            <c-col [md]="2">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="consultantAssigned"
+                  placeholder="consultantAssigned"
+                  formControlName="consultantAssigned"
+                />
+                <label for="consultantAssigned">{{ this.consultantAssigned }}</label>
+                <div
+                  class="alert alert-danger"
+                  role="alert"
                   *ngIf="this.createClientForm.get('passwordAssigned')?.hasError?.('required') && this.createClientForm.get('passwordAssigned')?.touched"
                 >
                   La contrase;a<strong> es obligatoria</strong>
@@ -466,10 +474,9 @@
               </div>
             </c-col>
           </c-row>
-<!-- ------------------------------------------------------------------------------------------------ -->
-          
-<!-- ------------------------------------------------------------------------------------------------ -->
 
+<!-- ------------------------------------------------------------------------------------------------ -->          
+<!-- ------------------------------------------------------------------------------------------------ -->
         </form>
       </c-card-body>
     </c-card>
@@ -478,22 +485,22 @@
 
 
 <c-row>
-  <c-col xs>
-    <c-card 
-    class="mb-4"
-    
-    >
-      <c-card-header >
-        <h2>Clientes</h2>
+  <c-col>
+    <c-card class="mb-4" style="height: 700px;">
+
+      <c-card-header>
+        <h3 style="float: left">Clientes</h3>
+        <pagination-controls (pageChange)="p1 = $event" id="clientPagination" previousLabel="" nextLabel=""
+          style="float: right;" class="ms-auto"></pagination-controls>
       </c-card-header>
+
       <c-card-body>
+
         <table
           [hover]="true"
           [responsive]="true"
           [striped]="true"
-          align="middle"
           cTable
-          class="mb-0 border"
         >
           <thead cTableColor="dark">
           <tr>
@@ -507,7 +514,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let client of clientList; index as i">
+          <tr *ngFor="let client of clientList | paginate: { itemsPerPage: 9, currentPage: p1, id: 'clientPagination' }; index as i">
             <td>
               <div>{{ client.businessName }}</div>
               <div class="small text-medium-emphasis">

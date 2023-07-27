@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     cilFingerprint
   };
 
-  hide = new FormControl(true); // 'hide' ahora es una instancia de FormControl
+  hide = new FormControl(true);
   isAdmin = false;
   isLogged = false;
   private subscription: Subscription = new Subscription();
@@ -120,5 +120,9 @@ export class LoginComponent implements OnInit {
       (fieldControl.touched || fieldControl.dirty) &&
       !fieldControl.valid
     );
+  }
+
+  toggleHide() {
+    this.hide.setValue(!this.hide.value);
   }
 }

@@ -29,4 +29,6 @@ $enable-rtl: true;
 
 // If you want to add something do it here
 @import "custom";
-
+.ngx-pagination {
+    margin-bottom: 0 !important;
+  }

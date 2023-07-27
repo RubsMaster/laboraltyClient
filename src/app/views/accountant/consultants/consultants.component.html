@@ -1,18 +1,28 @@
 <c-row>
   <c-col>
-    <c-card class="mb-4">
-      <c-card-header class="p-4">
-        <h3 style="float: left">{{ Title }}</h3>
-        <button class="ms-auto mb-2" cButton (click)="saveConsultant()" color="dark" variant="outline"
-          style="float: right" id="btnSubmit" type="submit" [disabled]="
-              Title === 'Editar Usuario' ? false : !createConsultantForm.valid
-            ">
-          {{ Title === "Editar Usuario" ? "+Editar" : "+ Crear" }}
+    <c-card style="height: 650px;">
+      <c-card-header class="d-flex justify-content-between align-items-center">
+        <h3 class="m-0" style="float: left">{{ Title }}</h3>
+        <button 
+        class="ms-auto" 
+        cButton 
+        (click)="saveConsultant()" 
+        color="dark"         
+        style="float: right" 
+        id="btnSubmit" 
+        type="submit" 
+        [disabled]="!createConsultantForm.valid">
+          + Crear
         </button>
       </c-card-header>
 
-      <c-card-body class="p-4">
-        <form cForm class="row g-3" [formGroup]="createConsultantForm" (ngSubmit)="saveConsultant()" novalidate>
+      <c-card-body class="p-3">
+        <form 
+        cForm 
+        class="row g-3" 
+        [formGroup]="createConsultantForm" 
+        (ngSubmit)="saveConsultant()" 
+        novalidate>
           <c-row>
             <!-- imagen -->
             <c-col class="col-4 p-3">
@@ -29,6 +39,7 @@
               </c-card>
             </c-col>
 
+            <!-- inputs -->
             <c-col class="col-8">
               <c-row class="p-2">
                 <h4>Información del consultor</h4>
@@ -156,15 +167,14 @@
                 </c-col>
 
               </c-row>
-              <!-- upload iamge -->
-              <c-row class="mt-3">
-                <!-- <c-progress class="mb-3 p-0" thin>
-                  <c-progress-bar :value="{{this.progress}}" color="info"
-                    [ngStyle]="{ width: this.progress + '%' }"></c-progress-bar>
-                </c-progress> -->
 
-                <input cFormControl id="formFile" type="file" (change)="selectFile($event)" class="mb-3" />
+              <c-row class="mt-3">
+                <!-- upload iamge -->
+                <c-col>
+                  <input cFormControl id="formFile" type="file" (change)="selectFile($event)" class="mb-3" />
+                </c-col>
               </c-row>
+
             </c-col>
           </c-row>
         </form>
@@ -172,30 +182,42 @@
     </c-card>
 
   </c-col>
-
+  
   <c-col>
-    <c-card class="mb-4">
-      <c-card-header class="p-4">
-        <h3 style="float: left">Consultores</h3>
-        <pagination-controls (pageChange)="p1 = $event" id="consultantPagination" previousLabel="" nextLabel=""
-          style="float: right;" class="ms-auto"></pagination-controls>
-      </c-card-header>
-      <c-card-body class="p-4" >
+    
+    <c-card style="height: 650px;">
 
-        <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
+      <c-card-header class="d-flex justify-content-between align-items-center" style="height: 55px;">
+        <h3 class="m-0">Consultores</h3>
+        <pagination-controls 
+        (pageChange)="p1 = $event" 
+        id="consultantPagination" 
+        previousLabel="" 
+        nextLabel=""
+        style="float: right;" 
+        class="ms-auto" ></pagination-controls>
+      </c-card-header>
+
+      <c-card-body class="p-3" >
+
+        <table 
+        [hover]="true" 
+        [responsive]="true" 
+        [striped]="true"
+        cTable >
           <thead cTableColor="dark">
             <tr>
               <th></th>
               <th>Nombre</th>
-              <th class="text-center">Nombre de usuario</th>
-              <th class="text-center">Teléfono móvil</th>
-              <th class="text-center">Teléfono de oficina</th>
+              <th>Nombre de usuario</th>
+              <th>Teléfono móvil</th>
+              <!-- <th class="text-center">Teléfono de oficina</th> -->
             </tr>
           </thead>
 
           <tbody>
             <tr
-              *ngFor="let consultant of consultantList | paginate: { itemsPerPage: 5, currentPage: p1, id: 'consultantPagination' }">
+              *ngFor="let consultant of consultantList | paginate: { itemsPerPage: 8 , currentPage: p1, id: 'consultantPagination' }">
               <td class="text-center">
                 <c-avatar size="md" src="http://localhost:4000/getFile/{{ consultant.imageName }}" status=""></c-avatar>
               </td>
@@ -206,15 +228,15 @@
                   {{ getFormattedDate(consultant.createdAt) }}
                 </div>
               </td>
-              <td class="text-center">
+              <td>
                 <div>{{ consultant.userAssigned}}</div>
               </td>
-              <td class="text-center">
+              <td>
                 <div>{{ consultant.mobilePhonenumber}}</div>
               </td>
-              <td class="text-center">
+              <!-- <td class="text-center">
                 <div>{{ consultant.officePhonenumber}}</div>
-              </td>
+              </td> -->
             </tr>
           </tbody>
         </table>

@@ -18,7 +18,6 @@ import { UploadService } from "../../../services/uploads/upload.service";
 
 import { formatDistanceToNowStrict } from "date-fns";
 
-import { PaginationInstance } from "ngx-pagination";
 
 @Component({
   selector: 'app-consultants',
@@ -60,7 +59,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
    paginationId = 'consultantPagination';
   p1: number = 1;
   itemsPerPage:number = 5;
-  currentPage = 1;  
+  currentPage = 1;
 
   constructor(
     private _router: Router,

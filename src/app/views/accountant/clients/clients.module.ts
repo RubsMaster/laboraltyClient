@@ -19,6 +19,8 @@ import {
   TableModule
 } from '@coreui/angular';
 
+import { NgxPaginationModule } from "ngx-pagination";
+
 @NgModule({
   declarations: [
     ClientsComponent
@@ -37,7 +39,8 @@ import {
     ListGroupModule,
     SharedModule,
     AvatarModule,
-    TableModule
+    TableModule,
+    NgxPaginationModule
   ]
 })
 export class ClientsModule { }

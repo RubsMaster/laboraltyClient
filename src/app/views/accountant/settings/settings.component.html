@@ -10,58 +10,87 @@
           <!-- <h4>Informacion del usuario</h4> -->
 
           <!-- input logo -->
-          <c-col [md]="3">
-            <c-card>
-              <img cCardImg="top" [src]="imageUrl">
-        
-              <c-card-body>
-                <c-row>
-                  <h3 cCardTitle>Logotipo</h3>
-                  <p cCardText>
-                    Es el logotipo de su empresa. Aparecerá en la parte superior de la barra de navegación.
-                  </p>
-                </c-row>
-        
-                
-                <c-row class="mt-3">
-                  <c-progress class="mb-3 justify-content-between" thin >
-                    <c-progress-bar :value="{{this.progress}}" color="info" [ngStyle]="{ width: this.progress + '%' }"></c-progress-bar>
-                  </c-progress>
-        
-                  <input cFormControl id="formFile" type="file" (change)="selectFile($event)" class="mb-3"/>
-                  <button cButton color="info" variant="outline" [disabled]="!selectedFiles" (click)="upload()">Subir imagen</button>
-                </c-row>
-        
-                <p cCardText *ngIf="message">
-                  <small class="text-medium-emphasis">{{ message }}</small>
+          <c-col>
+            <img cCardImg="top" [src]="imageUrl" style="height: 100px; width: 400px;"/>
+          </c-col>
+          <c-col>
+            <h3 cCardTitle>Logotipo</h3>
+            <c-row>
+              <c-col>
+                <input
+                cFormControl
+                id="formFile"
+                type="file"
+                (change)="selectFile($event)"
+                class="mb-3"
+                />
+              </c-col>
+              <c-col>
+                <button
+                cButton
+                color="info"
+                variant="outline"
+                [disabled]="!selectedFiles"
+                (click)="upload()"
+              >
+                Subir imagen
+              </button>
+              </c-col>
+              <c-col>
+                <p cCardText>
+                  Es el logotipo de su empresa. Aparecerá en la parte superior de la
+                  barra de navegación.
                 </p>
-                <div >
-                  
+              </c-col>
+            </c-row>
+            <c-progress class="mb-3 justify-content-between" thin>
+              <c-progress-bar
+                :value="{{ this.progress }}"
+                color="info"
+                [ngStyle]="{ width: this.progress + '%' }"
+              ></c-progress-bar>
+            </c-progress>
+  
+            <p cCardText *ngIf="message">
+              <small class="text-medium-emphasis">{{ message }}</small>
+            </p>
+  
+            <!-- Notification email -->
+              <div class="form-floating">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Correo electronico para recibir notificaciones"
+                />
+                <label for="color"
+                  >Correo electronico para recibir notificaciones</label
+                >
+  
+                <div class="alert alert-danger" role="alert" *ngIf="">
+                  El nombre del usuario <strong> es obligatorio</strong>
                 </div>
-              </c-card-body>
-            </c-card>
-          </c-col>
-
-          <!-- Notification email -->
-          <c-col [md]="6">
-            <div class="form-floating">
-              <input type="email" class="form-control" placeholder="Correo electronico para recibir notificaciones" />
-              <label for="color">Correo electronico para recibir notificaciones</label>
-
-              <div class="alert alert-danger" role="alert" *ngIf="">
-                El nombre del usuario <strong> es obligatorio</strong>
               </div>
-
-            </div>
+  
+            <P>
+              Nota: Si deseas aumentar o disminuir tu paquete de empleados
+              contratados favor de ponerte en contacto con el administrador del
+              sistema.</P
+            >
           </c-col>
 
-          <P> Nota: Si deseas aumentar o disminuir tu paquete de empleados contratados favor de ponerte en contacto
-            con el administrador del sistema.</P>
+
         </c-row>
       </c-card-body>
 
       <c-card-footer>
-        <button cButton color="dark" variant="outline" style="float: right" id="btnSubmit" type="submit">
+        <button
+          cButton
+          color="dark"
+          variant="outline"
+          style="float: right"
+          id="btnSubmit"
+          type="submit"
+        >
           Guardar
         </button>
       </c-card-footer>

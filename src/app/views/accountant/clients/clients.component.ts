@@ -42,10 +42,17 @@ export class ClientsComponent implements OnInit {
   totalEmployees: string;
   userAssigned: string;
   passwordAssigned: string;
+  consultantAssigned: string;
   
   userExists: boolean = false;
 
   clientList: ClientModel[] = [];
+
+  //pagination 
+  paginationId = 'clientPagination';
+  p1: number = 1;
+  itemsPerPage:number = 5;
+  currentPage = 1;
 
   constructor(
     private _router: Router,
@@ -74,32 +81,12 @@ export class ClientsComponent implements OnInit {
       totalEmployees: new FormControl("", [Validators.required]),
       userAssigned: new FormControl("", [Validators.required]),
       passwordAssigned: new FormControl("", [Validators.required]),
+      consultantAssigned:new FormControl("", [Validators.required])
     });
 
 
     //Inicializando las variables
 
-    this.businessName= '';
-    this.taxRegime= '';
-    this.RFC= '';
-    this.street= '';
-    this.outdoorNumber= '';
-    this.innerNumber= '';
-    this.zipCode= '';
-    this.suburb= '';
-    this.CFDI= '';
-    this.inChargeName= '';
-    this.jobTitle= '';
-    this.phoneNumber= '';
-    this.extension= '';
-    this.email=  '';
-    this.totalRFC = '';
-    this.totalEmployees= ''
-    this.userAssigned=''
-    this.passwordAssigned=''
-  }
-
-  ngOnInit(): void {
     this.businessName= 'Razón Social';
     this.taxRegime= 'Regimen Fiscal';
     this.RFC= 'RFC';
@@ -112,15 +99,17 @@ export class ClientsComponent implements OnInit {
     this.inChargeName= 'Nombre';
     this.jobTitle= 'Puesto';
     this.phoneNumber= 'Teléfono';
-    this.extension= 'Extensión';
+    this.extension= 'Ext. (Opcional)';
     this.email=  'Correo electrónico';
     this.totalRFC=  'RFC asignados';
     this.totalEmployees=  'Empleados asignados';
     this.userAssigned='Usuario'
     this.passwordAssigned='Contraseña'
+    this.consultantAssigned='Consultor asignado'
+  }
 
-    this.getAllConsultants()
-    
+  ngOnInit(): void {
+    this.getAllConsultants()    
   }
 
 
