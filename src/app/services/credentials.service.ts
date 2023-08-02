@@ -44,6 +44,14 @@ export class CredentialsService {
     return this.loggedIn.asObservable();
   }
 
+  getUserIdFromSession(): string | null {
+    const sessionString = localStorage.getItem('user');
+    if (sessionString) {
+      const sessionInfo: sessionModel = JSON.parse(sessionString);
+      return sessionInfo.relatedId;
+    }
+    return null;
+  }
 
   createCredential(credential: CredentialModel){
     return this.http.post(this.URI_API + "createCredential", credential)
@@ -83,6 +91,7 @@ export class CredentialsService {
           map((userObject: any) => { //userObject es el objeto con toda la información del tipo de usuario
             this.actualUserInfo.imageName = userObject.imageName;
             this.actualUserInfo.name = userObject.firstName;
+            this.actualUserInfo.relatedId = userObject._id;
             this.saveLocalStorage(this.actualUserInfo);
             return this.actualUserInfo;
           })

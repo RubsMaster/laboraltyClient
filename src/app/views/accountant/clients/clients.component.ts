@@ -8,16 +8,27 @@ import {
 
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { switchMap } from 'rxjs/operators';
+
 import { ClientModel } from "../../../models/client";
 import { ClientsService } from "../../../services/accountant/clients/clients.service";
+
 import { CredentialsService } from "../../../services/credentials.service";
 import { CredentialModel } from 'src/app/models/credential';
+
+import { ConsultantModel } from 'src/app/models/consultant';
+import { ConsultantsService } from "../../../services/accountant/consultants/consultants.service";
+import { sessionModel } from "../../../models/credential";
+
+import { ConsultantsModule } from '../consultants/consultants.module';
+import { error } from 'console';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.scss']
 })
+
 export class ClientsComponent implements OnInit {
   cardColor = "dark"
 
@@ -47,12 +58,14 @@ export class ClientsComponent implements OnInit {
   userExists: boolean = false;
 
   clientList: ClientModel[] = [];
+  consultantList: ConsultantModel[] = [];
 
   //pagination 
   paginationId = 'clientPagination';
   p1: number = 1;
   itemsPerPage:number = 5;
   currentPage = 1;
+  sessionInfo: sessionModel = this.credService.actualUserInfo
 
   constructor(
     private _router: Router,
@@ -60,6 +73,7 @@ export class ClientsComponent implements OnInit {
     private aRouter: ActivatedRoute,
     private clientService: ClientsService,
     private credService: CredentialsService,
+    private consultantService : ConsultantsService
   ) { 
 
     this.createClientForm = this.formBuilder.group({
@@ -109,7 +123,9 @@ export class ClientsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllConsultants()    
+    this.getAllClients()
+    this.getAllConsultants()
+    this.sessionInfo = this.credService.getActualUserInfo()
   }
 
 
@@ -133,10 +149,9 @@ export class ClientsComponent implements OnInit {
       totalEmployees: this.createClientForm.get('totalEmployees')?.value,
       userAssigned: this.createClientForm.get('userAssigned')?.value,
       passwordAssigned: this.createClientForm.get('passwordAssigned')?.value,
-      createdAt:""
+      createdAt:"",
+      assignedTo: this.sessionInfo.relatedId
     }
-
-    console.log(client)
     const user = this.createClientForm.get('userAssigned')
     
     this.credService.checkCredential(user?.value).subscribe(data => {
@@ -150,9 +165,8 @@ export class ClientsComponent implements OnInit {
             role: "Client",
             relatedId: data._id
           } 
-          console.log("related id: " + data._id)
           this.credService.createCredential(newCred).subscribe(data => {
-            console.log("to chill")
+            this.createClientForm.reset()
             this.ngOnInit()
           })
           
@@ -164,18 +178,47 @@ export class ClientsComponent implements OnInit {
      
   }
 
-  getAllConsultants(){
-    this.clientService.getAllClients().subscribe(
+  getAllConsultants () {
+    this.consultantService.getAllConsultants().subscribe(
       (data: any) => {
-        this.clientList = data as ClientModel[]; // Asignar los datos al arreglo consultantList
-        //  console.log(this.clientList)
-        this.clientList.reverse()
+        this.consultantList = data as ConsultantModel[];
+
+        // Filtrar los resultados que cumplan la condición
+      this.consultantList = this.consultantList.filter(
+        (consultant) => consultant.createdBy === this.sessionInfo.relatedId
+      );
+
+        this.consultantList.reverse()
       },
       error => {
-        console.log(error); // Manejar el error, si corresponde
+        console.log(error)
+      }
+    )
+  }
+
+  getAllClients() {
+    this.clientService.getAllClients().subscribe(
+      (data: any) => {
+        this.clientList = data as ClientModel[]; // Asignar los datos al arreglo clientList
+
+        // Asignar el nombre del consultor a cada cliente
+        this.clientList.forEach(client => {
+          const assignedToConsultant = this.consultantList.find(consultant => consultant._id === +client.assignedTo);
+
+          if (assignedToConsultant) {
+            client.assignedTo = assignedToConsultant.firstName; // Asignar el nombre del consultor al cliente
+          }
+        });
+
+        this.clientList.reverse();
+      },
+      error => {
+        console.log(error);
       }
     );
   }
+
+
 
 
 }

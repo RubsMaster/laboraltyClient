@@ -23,4 +23,8 @@ export class ConsultantsService {
     return this.http.get(this.URI_API + "getAllConsultants")
   }
 
+  getConsultaltById(id: number | undefined){
+    return this.http.get(this.URI_API + "getConsultant/" + id)
+  }
+
 }
