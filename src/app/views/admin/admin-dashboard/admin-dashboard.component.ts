@@ -19,7 +19,6 @@ import { DashboardChartsData, IChartProps } from '../../dashboard/dashboard-char
 export class AdminDashboardComponent implements OnInit {
   
   p:number = 1;
-  itemsPerPage:number = 8;
 
   constructor(
     private userService: UsersService,

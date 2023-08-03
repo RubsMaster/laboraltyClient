@@ -37,7 +37,12 @@
   <!-- ------------------------------------------------------------------------------------------------ -->
   
             <tbody>
-              <tr *ngFor="let user of ListUsers  | paginate : { itemsPerPage: itemsPerPage, currentPage: p }; index as i">
+              <tr *ngFor="let user of ListUsers  | paginate : {
+                 itemsPerPage: 8, 
+                 currentPage: p 
+                }; 
+                index as i"
+                >
                 
                 <!-- nombre del titular -->
                 <td class="text-center">

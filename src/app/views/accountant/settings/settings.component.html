@@ -10,10 +10,14 @@
           <!-- <h4>Informacion del usuario</h4> -->
 
           <!-- input logo -->
-          <c-col>
-            <img cCardImg="top" [src]="imageUrl" style="height: 100px; width: 400px;"/>
+          <c-col class="col-4" style="width: 400px;">
+            <img cCardImg="top" [src]="imageUrl" style="height: 100px;"/>
+            <p cCardText class="mt-2">
+              Es el logotipo de su empresa. Aparecerá en la parte superior de la
+              barra de navegación.
+            </p>
           </c-col>
-          <c-col>
+          <c-col class="col-8">
             <h3 cCardTitle>Logotipo</h3>
             <c-row>
               <c-col>
@@ -25,41 +29,12 @@
                 class="mb-3"
                 />
               </c-col>
-              <c-col>
-                <button
-                cButton
-                color="info"
-                variant="outline"
-                [disabled]="!selectedFiles"
-                (click)="upload()"
-              >
-                Subir imagen
-              </button>
-              </c-col>
-              <c-col>
-                <p cCardText>
-                  Es el logotipo de su empresa. Aparecerá en la parte superior de la
-                  barra de navegación.
-                </p>
-              </c-col>
-            </c-row>
-            <c-progress class="mb-3 justify-content-between" thin>
-              <c-progress-bar
-                :value="{{ this.progress }}"
-                color="info"
-                [ngStyle]="{ width: this.progress + '%' }"
-              ></c-progress-bar>
-            </c-progress>
-  
-            <p cCardText *ngIf="message">
-              <small class="text-medium-emphasis">{{ message }}</small>
-            </p>
-  
-            <!-- Notification email -->
+
+              <!-- Notification email -->
               <div class="form-floating">
                 <input
                   type="email"
-                  class="form-control"
+                  class="form-control form-floating"
                   placeholder="Correo electronico para recibir notificaciones"
                 />
                 <label for="color"
@@ -70,6 +45,9 @@
                   El nombre del usuario <strong> es obligatorio</strong>
                 </div>
               </div>
+            </c-row>
+  
+            
   
             <P>
               Nota: Si deseas aumentar o disminuir tu paquete de empleados
