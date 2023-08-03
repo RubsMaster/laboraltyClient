@@ -12,11 +12,18 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ConsultantsService } from '../../../services/accountant/consultants/consultants.service';
 import { ConsultantModel } from "../../../models/consultant";
+
 import { CredentialsService } from "../../../services/credentials.service";
 import { CredentialModel } from 'src/app/models/credential';
+import { sessionModel } from "../../../models/credential";
+
+import { Roles } from 'src/app/models/credential';
+
+
 import { UploadService } from "../../../services/uploads/upload.service";
 
 import { formatDistanceToNowStrict } from "date-fns";
+
 
 
 @Component({
@@ -25,6 +32,7 @@ import { formatDistanceToNowStrict } from "date-fns";
   styleUrls: ['./consultants.component.scss']
 })
 export class ConsultantsComponent implements OnInit {
+  
   
   // Form
   createConsultantForm: FormGroup;  
@@ -54,6 +62,8 @@ previewImageUrl: string | ArrayBuffer | null = null;
 
 
   consultantList: ConsultantModel[] = []; // List
+
+  sessionInfo: sessionModel = this.credService.actualUserInfo
   
    //pagination 
    paginationId = 'consultantPagination';
@@ -93,13 +103,13 @@ previewImageUrl: string | ArrayBuffer | null = null;
     this.passwordAssigned='Contraseña'
 
     this.previewImageUrl='./assets/images/default-profile.jpg';
-
    }
 
   ngOnInit(): void {
     this.createConsultantForm.reset();
     this.getAllConsultants()
-    //this.fileInfos = this.uploadService.getFiles();
+    this.sessionInfo = this.credService.getActualUserInfo()
+    
   }
 
   paginationConfig = {
@@ -115,7 +125,6 @@ previewImageUrl: string | ArrayBuffer | null = null;
 
 
   saveConsultant() {
-
     const consultant: ConsultantModel = {
       jobTitle: this.createConsultantForm.get('jobTitle')?.value,
       firstName: this.createConsultantForm.get('firstName')?.value,
@@ -126,7 +135,8 @@ previewImageUrl: string | ArrayBuffer | null = null;
       userAssigned: this.createConsultantForm.get('userAssigned')?.value,
       passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
       imageName: this.imageName,
-      createdAt: ""
+      createdAt: "",
+      createdBy: this.sessionInfo.relatedId
     }
 
     const user = this.createConsultantForm.get('userAssigned')
@@ -159,17 +169,22 @@ previewImageUrl: string | ArrayBuffer | null = null;
 
   }
 
-  getAllConsultants() {
+  getAllConsultants () {
     this.consultantService.getAllConsultants().subscribe(
       (data: any) => {
-        this.consultantList = data as ConsultantModel[]; // Asignar los datos al arreglo consultantList
-        console.log(this.consultantList)
+        this.consultantList = data as ConsultantModel[];
+
+        // Filtrar los resultados que cumplan la condición
+       this.consultantList = this.consultantList.filter(
+         (consultant) => consultant.createdBy === this.sessionInfo.relatedId
+       );
+
         this.consultantList.reverse()
       },
       error => {
-        console.log(error); // Manejar el error, si corresponde
+        console.log(error)
       }
-    );
+    )
   }
 
 

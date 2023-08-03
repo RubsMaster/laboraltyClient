@@ -15,7 +15,6 @@ export class ClientsService {
   ) { }
 
   createClient(client: ClientModel){
-    console.log("esto envia el servicio: " + JSON.stringify(client))
     return this.http.post(this.URI_API + "createClient", client)
   }
 

@@ -1,7 +1,7 @@
 <c-row>
   <c-col xs>
     <c-card class="mb-4">
-      <c-card-header>
+      <c-card-header class="d-flex justify-content-between align-items-center" style="height: 55px;">
         <h3 style="float: left">{{ Title }}</h3>
         <button
           class="ms-auto"
@@ -455,23 +455,27 @@
 
             <!-- consultantAssigned -->
             <c-col [md]="2">
-              <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
+              <div class="form-floating mb-3">
+                <select
+                  class="form-select"
                   id="consultantAssigned"
-                  placeholder="consultantAssigned"
                   formControlName="consultantAssigned"
-                />
-                <label for="consultantAssigned">{{ this.consultantAssigned }}</label>
-                <div
+                  placeholder="consultantAssigned"
+                >
+                <option *ngFor="let consultant of consultantList" [value]="consultant._id">
+                  {{ consultant.firstName }}
+                </option>
+                </select>
+                <label for="consultantAssigned">{{this.consultantAssigned}}</label>
+              </div>
+              <div
                   class="alert alert-danger"
                   role="alert"
-                  *ngIf="this.createClientForm.get('passwordAssigned')?.hasError?.('required') && this.createClientForm.get('passwordAssigned')?.touched"
+                  style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('consultantAssigned')?.hasError?.('required') && this.createClientForm.get('consultantAssigned')?.touched"
                 >
-                  La contrase;a<strong> es obligatoria</strong>
+                  Asignar un consultor<strong> es obligatorio</strong>
                 </div>
-              </div>
             </c-col>
           </c-row>
 
@@ -488,10 +492,16 @@
   <c-col>
     <c-card class="mb-4" style="height: 700px;">
 
-      <c-card-header>
+      <c-card-header class="d-flex justify-content-between align-items-center" style="height: 55px;">
         <h3 style="float: left">Clientes</h3>
-        <pagination-controls (pageChange)="p1 = $event" id="clientPagination" previousLabel="" nextLabel=""
-          style="float: right;" class="ms-auto"></pagination-controls>
+        <pagination-controls 
+        (pageChange)="p1 = $event" 
+        id="clientPagination" 
+        previousLabel="" 
+        nextLabel=""
+        style="float: right;" 
+        class="ms-auto">
+      </pagination-controls>
       </c-card-header>
 
       <c-card-body>
@@ -541,7 +551,7 @@
               <div>{{ client.totalEmployees}}</div>
             </td>
             <td>
-              <div>consultor</div>
+              <div>{{ client.assignedTo }}</div>
             </td>
           </tr>
           </tbody>
