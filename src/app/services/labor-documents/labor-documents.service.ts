@@ -36,8 +36,7 @@ export class LaborDocumentsService {
     };
   
     return this.http.post<laborDocuments>(`${this.URI_API}getDocByName`, body);
-  }
-  
+  } 
   
   
   editText(id: string, text: string): Observable<laborDocuments[]> {

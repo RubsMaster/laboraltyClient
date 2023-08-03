@@ -139,7 +139,6 @@ export class LaborDocumentsComponent implements OnInit {
     }, error => {
       console.log(error)
     });
-
   }
 
   showUniqueFields(event:any){  

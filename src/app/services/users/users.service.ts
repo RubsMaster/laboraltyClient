@@ -29,6 +29,10 @@ export class UsersService {
       `${this.URI_API}updateUser/${id}`, updates 
     )
   }
+  
+  deleteUser(id: string): Observable<any>{
+    return this.http.delete(this.URI_API + id)
+  }
 
   getAllUsers(): Observable<UserModel []> {
     const resultJSON = this.http.get<UserModel[]>(
@@ -37,9 +41,6 @@ export class UsersService {
     return resultJSON;
   }
   
-  deleteUser(id: string): Observable<any>{
-    return this.http.delete(this.URI_API + id)
-  }
 
    getUser(id: string): Observable<any>{
     return this.http.get(this.URI_API + "getUser/" + id)

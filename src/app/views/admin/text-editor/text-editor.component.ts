@@ -79,8 +79,7 @@ export class TextEditorComponent implements OnInit {
   }
 
   saveEdit() {
-     this.DocumentsService.editText(this.documento._id, this.content).subscribe(data => {
-       
+     this.DocumentsService.editText(this.documento._id, this.content).subscribe(data => {       
      });
      this._router.navigate(['/', 'laborDocuments']);
   }
