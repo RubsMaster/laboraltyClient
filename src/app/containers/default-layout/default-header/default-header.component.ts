@@ -8,14 +8,20 @@ import { CredentialsService } from 'src/app/services/credentials.service';
 import { sessionModel } from "../../../models/credential";
 import { json } from 'stream/consumers';
 
+import { ConsultantModel } from "../../../models/consultant";
+
 @Component({
   selector: 'app-default-header',
   templateUrl: './default-header.component.html',
 })
 export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
+
   imageUrl: string = './assets/images/default-profile.jpg';
   userID: string | null = '';
-  sessionInfo: sessionModel | null = null;
+
+  sessionString = localStorage.getItem('user');
+
+  nameToShow: string = "default"
 
   @Input() sidebarId: string = "sidebar";
 
@@ -24,19 +30,14 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
   public newNotifications = new Array(5)
 
   constructor(
-    private classToggler: ClassToggleService,
     private authsvc: CredentialsService) {
       super();
-      const sessionString = localStorage.getItem('user');
-    if (sessionString) {
-      this.sessionInfo = JSON.parse(sessionString);
-    }
   }
 
   ngOnInit() {
-    const sessionString = localStorage.getItem('user');
-    if (sessionString) {
-      this.sessionInfo = JSON.parse(sessionString);
+    if (this.sessionString) {
+      const sessionObject = JSON.parse(this.sessionString);
+      this.nameToShow = sessionObject.foundRoleInfo.firstNameTitular
     }
   }
 
