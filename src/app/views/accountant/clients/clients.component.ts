@@ -30,47 +30,49 @@ import { error } from 'console';
 })
 
 export class ClientsComponent implements OnInit {
-  cardColor = "dark"
-
+  // Form
   createClientForm: FormGroup;
 
   Title = 'Crear Cliente'
-  businessName: string;
-  taxRegime: string;
-  RFC: string;
-  street: string;
-  outdoorNumber: string;
-  innerNumber: string;
-  zipCode: string;
-  suburb: string;
-  CFDI: string;
-  inChargeName: string;
-  jobTitle: string;
-  phoneNumber: string;
-  extension: string;
-  email: string;
-  totalRFC: string;
-  totalEmployees: string;
-  userAssigned: string;
-  passwordAssigned: string;
-  consultantAssigned: string;
   
   userExists: boolean = false;
 
+  // Arrays to display
   clientList: ClientModel[] = [];
   consultantList: ConsultantModel[] = [];
 
-  //pagination 
+  // Variables to display
+  businessName: string = "Razón Social"
+  taxRegime: string = "Régimen fiscal"
+  RFC: string = "RFC"
+  street: string = "Calle"
+  outdoorNumber: string = "Número exterior"
+  innerNumber: string = "Número interior (Opcional)"
+  zipCode: string = "Código postal"
+  suburb: string = "Colonia"
+  CFDI: string = "CFDI"
+  inChargeName: string = "Nombre"
+  jobTitle: string = "Puesto"
+  phoneNumber: string = "Teléfono"
+  extension: string = "Ext. (Opcional)"
+  email: string = "Correo electrónico"
+  totalRFC: string = "RFC asignados"
+  totalEmployees: string = "Empleados asigndados"
+  userAssigned: string = "Usuario"
+  passwordAssigned: string = "Contraseña"
+  consultantAssigned: string = "Consultor asignado"
+
+  //spagination 
   paginationId = 'clientPagination';
   p1: number = 1;
   itemsPerPage:number = 5;
   currentPage = 1;
-  sessionInfo: sessionModel = this.credService.actualUserInfo
+
+  sessionString = localStorage.getItem('user');
+  sessionID = ""
 
   constructor(
-    private _router: Router,
-    public formBuilder: FormBuilder,
-    private aRouter: ActivatedRoute,
+    private formBuilder: FormBuilder,
     private clientService: ClientsService,
     private credService: CredentialsService,
     private consultantService : ConsultantsService
@@ -78,6 +80,7 @@ export class ClientsComponent implements OnInit {
 
     this.createClientForm = this.formBuilder.group({
       businessName: ["", Validators.required],
+      taxRegime: new FormControl("", [Validators.required]),
       RFC: ["", Validators.required],
       street: new FormControl("", [Validators.required]),
       outdoorNumber: new FormControl("", [Validators.required]),
@@ -89,7 +92,6 @@ export class ClientsComponent implements OnInit {
       jobTitle: new FormControl("", [Validators.required]),
       phoneNumber: new FormControl("", [Validators.required]),
       extension: new FormControl(""),
-      taxRegime: new FormControl("", [Validators.required]),
       email: new FormControl("", [Validators.required, Validators.email]),
       totalRFC: new FormControl("", [Validators.required]),
       totalEmployees: new FormControl("", [Validators.required]),
@@ -97,35 +99,16 @@ export class ClientsComponent implements OnInit {
       passwordAssigned: new FormControl("", [Validators.required]),
       consultantAssigned:new FormControl("", [Validators.required])
     });
-
-
-    //Inicializando las variables
-
-    this.businessName= 'Razón Social';
-    this.taxRegime= 'Regimen Fiscal';
-    this.RFC= 'RFC';
-    this.street= 'Calle';
-    this.outdoorNumber= 'Número exterior';
-    this.innerNumber= 'Número interior';
-    this.zipCode= 'Código postal';
-    this.suburb= 'Colonia';
-    this.CFDI= 'CFDI';
-    this.inChargeName= 'Nombre';
-    this.jobTitle= 'Puesto';
-    this.phoneNumber= 'Teléfono';
-    this.extension= 'Ext. (Opcional)';
-    this.email=  'Correo electrónico';
-    this.totalRFC=  'RFC asignados';
-    this.totalEmployees=  'Empleados asignados';
-    this.userAssigned='Usuario'
-    this.passwordAssigned='Contraseña'
-    this.consultantAssigned='Consultor asignado'
+  
   }
 
   ngOnInit(): void {
     this.getAllClients()
     this.getAllConsultants()
-    this.sessionInfo = this.credService.getActualUserInfo()
+    if (this.sessionString) {
+      const sessionObject = JSON.parse(this.sessionString);
+      this.sessionID = sessionObject.foundRoleInfo._id
+    }
   }
 
 
@@ -150,7 +133,8 @@ export class ClientsComponent implements OnInit {
       userAssigned: this.createClientForm.get('userAssigned')?.value,
       passwordAssigned: this.createClientForm.get('passwordAssigned')?.value,
       createdAt:"",
-      assignedTo: this.sessionInfo.relatedId
+      createdBy:this.sessionID,
+      assignedTo: this.createClientForm.get('consultantAssigned')?.value
     }
     const user = this.createClientForm.get('userAssigned')
     
@@ -185,7 +169,7 @@ export class ClientsComponent implements OnInit {
 
         // Filtrar los resultados que cumplan la condición
       this.consultantList = this.consultantList.filter(
-        (consultant) => consultant.createdBy === this.sessionInfo.relatedId
+        (consultant) => consultant.createdBy === this.sessionID
       );
 
         this.consultantList.reverse()
@@ -202,13 +186,16 @@ export class ClientsComponent implements OnInit {
         this.clientList = data as ClientModel[]; // Asignar los datos al arreglo clientList
 
         // Asignar el nombre del consultor a cada cliente
-        this.clientList.forEach(client => {
-          const assignedToConsultant = this.consultantList.find(consultant => consultant._id === +client.assignedTo);
+        // this.clientList.forEach(client => {
+        //   const assignedToConsultant = this.consultantList.find(consultant => consultant._id === +client.assignedTo);
 
-          if (assignedToConsultant) {
-            client.assignedTo = assignedToConsultant.firstName; // Asignar el nombre del consultor al cliente
-          }
-        });
+        //   if (assignedToConsultant) {
+        //     client.assignedTo = assignedToConsultant.firstName; // Asignar el nombre del consultor al cliente
+        //   }
+        // });
+        this.clientList = this.clientList.filter(
+          (consultant) => consultant.createdAt === this.sessionID
+        );
 
         this.clientList.reverse();
       },

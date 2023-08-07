@@ -19,5 +19,6 @@ export interface ClientModel {
     userAssigned: String;
     passwordAssigned: String;
     createdAt: string;
+    createdBy: string,
     assignedTo: string;
 }

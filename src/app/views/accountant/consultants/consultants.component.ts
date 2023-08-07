@@ -63,13 +63,15 @@ previewImageUrl: string | ArrayBuffer | null = null;
 
   consultantList: ConsultantModel[] = []; // List
 
-  sessionInfo: sessionModel = this.credService.actualUserInfo
+  sessionString = localStorage.getItem('user');
+  sessionID = ""
   
    //pagination 
    paginationId = 'consultantPagination';
   p1: number = 1;
   itemsPerPage:number = 5;
   currentPage = 1;
+  
 
   constructor(
     private _router: Router,
@@ -108,7 +110,10 @@ previewImageUrl: string | ArrayBuffer | null = null;
   ngOnInit(): void {
     this.createConsultantForm.reset();
     this.getAllConsultants()
-    this.sessionInfo = this.credService.getActualUserInfo()
+    if (this.sessionString) {
+      const sessionObject = JSON.parse(this.sessionString);
+      this.sessionID = sessionObject.foundRoleInfo._id
+    }
     
   }
 
@@ -136,7 +141,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
       passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
       imageName: this.imageName,
       createdAt: "",
-      createdBy: this.sessionInfo.relatedId
+      createdBy: this.sessionID
     }
 
     const user = this.createConsultantForm.get('userAssigned')
@@ -176,7 +181,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
 
         // Filtrar los resultados que cumplan la condición
        this.consultantList = this.consultantList.filter(
-         (consultant) => consultant.createdBy === this.sessionInfo.relatedId
+         (consultant) => consultant.createdBy === this.sessionID
        );
 
         this.consultantList.reverse()
