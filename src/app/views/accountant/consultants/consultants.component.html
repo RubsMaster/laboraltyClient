@@ -211,7 +211,6 @@
               <th>Nombre</th>
               <th>Nombre de usuario</th>
               <th>Teléfono móvil</th>
-              <!-- <th class="text-center">Teléfono de oficina</th> -->
             </tr>
           </thead>
 
@@ -224,7 +223,7 @@
               <td>
                 <div>{{ consultant.firstName }} {{consultant.middleName}} {{consultant.lastName}}</div>
                 <div class="small text-medium-emphasis">
-                  <span>{{ consultant.jobTitle }}</span> | Registered:
+                  <span>{{ consultant.jobTitle }}</span> | Registrado:
                   {{ getFormattedDate(consultant.createdAt) }}
                 </div>
               </td>
@@ -234,9 +233,6 @@
               <td>
                 <div>{{ consultant.mobilePhonenumber}}</div>
               </td>
-              <!-- <td class="text-center">
-                <div>{{ consultant.officePhonenumber}}</div>
-              </td> -->
             </tr>
           </tbody>
         </table>

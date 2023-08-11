@@ -23,7 +23,7 @@ import { Roles } from 'src/app/models/credential';
 import { UploadService } from "../../../services/uploads/upload.service";
 
 import { formatDistanceToNowStrict } from "date-fns";
-
+import { es } from "date-fns/locale"; // Importa el locale en español
 
 
 @Component({
@@ -124,7 +124,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
   };
 
   getFormattedDate(date: string): string {
-    const formattedDate = formatDistanceToNowStrict(new Date(date), { addSuffix: true });
+    const formattedDate = formatDistanceToNowStrict(new Date(date), {locale:es, addSuffix: true });
     return formattedDate;
   }
 

@@ -6,7 +6,6 @@ import { Page404Component } from "./views/pages/page404/page404.component";
 import { Page500Component } from "./views/pages/page500/page500.component";
 import { LoginComponent } from "./views/pages/login/login.component";
 import { RegisterComponent } from "./views/pages/register/register.component";
-import * as path from "path";
 import { CheckLoginGuard } from "./guards/check-login.guard";
 
 const routes: Routes = [
@@ -85,7 +84,9 @@ const routes: Routes = [
       {
         path: "notifications",
         loadChildren: () =>
-          import("./views/notifications/notifications.module").then((m) => m.NotificationsModule),
+          import("./views/notifications/notifications.module").then(
+            (m) => m.NotificationsModule
+          ),
       },
       {
         path: "widgets",
@@ -160,7 +161,7 @@ const routes: Routes = [
       title: "Login Page",
     },
   },
-  { 
+  {
     path: "register",
     component: RegisterComponent,
     data: {
@@ -209,6 +210,22 @@ const routes: Routes = [
           import("./views/accountant/consultants/consultants.module").then(
             (m) => m.ConsultantsModule
           ),
+      },
+    ],
+  },
+  {
+    path: "",
+    component: DefaultLayoutComponent,
+    data: {
+      title: "Consultor",
+    },
+    children: [
+      {
+        path: "consultantDashboard",
+        loadChildren: () =>
+          import(
+            "./views/consultant/consultant-dashboard/consultant-dashboard.module"
+          ).then((m) => m.ConsultantDashboardModule),
       },
     ],
   },

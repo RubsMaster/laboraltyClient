@@ -1,18 +1,12 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
-  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
 } from "@angular/forms";
-// import Validation from './utils/validation';
-// import { AuthService } from "../../../services/auth/auth.service";
-import { ActivatedRoute, Router } from "@angular/router";
-import { AdminModel } from "src/app/models/admin";
-import { CredentialModel } from "src/app/models/credential";
-import { first } from "rxjs/operators";
+import { Router } from "@angular/router";
 import { CredentialsService } from "src/app/services/credentials.service";
 import { Subscription } from "rxjs";
 import { cilLowVision, cilCircle, cilCheckCircle, cilLockUnlocked, cilLockLocked, cilFingerprint } from "@coreui/icons";
@@ -77,7 +71,7 @@ export class LoginComponent implements OnInit {
     const roleRoutes: { [role: string]: string } = {
       'Admin': '/adminDashboard',
       'Accountant': '/settings',
-      'Consultant': '/consultants',
+      'Consultant': '/consultantDashboard',
       'Client': '/clients'
     };
 

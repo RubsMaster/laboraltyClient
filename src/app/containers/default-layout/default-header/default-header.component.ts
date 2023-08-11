@@ -16,7 +16,7 @@ import { ConsultantModel } from "../../../models/consultant";
 })
 export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
 
-  imageUrl: string = './assets/images/default-profile.jpg';
+  imageUrl: string = '';
   userID: string | null = '';
 
   sessionString = localStorage.getItem('user');
@@ -38,6 +38,10 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
     if (this.sessionString) {
       const sessionObject = JSON.parse(this.sessionString);
       this.nameToShow = sessionObject.foundRoleInfo.firstNameTitular
+      if (this.nameToShow === undefined){
+        this.nameToShow = sessionObject.foundRoleInfo.firstName
+      }
+      this.imageUrl = sessionObject.imageName
     }
   }
 

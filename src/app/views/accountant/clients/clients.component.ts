@@ -172,6 +172,18 @@ export class ClientsComponent implements OnInit {
         (consultant) => consultant.createdBy === this.sessionID
       );
 
+      // Iterar sobre la lista de clientes y reemplazar el id del consultor con su nombre
+    this.clientList.forEach((client) => {
+      const assignedConsultor = this.consultantList.find(
+        (consultant) => consultant._id === client.assignedTo
+      );
+      if (assignedConsultor) {
+        client.assignedTo = assignedConsultor.firstName;
+      } else {
+        console.log("No se encontró el assignedConsultor");
+      }
+    });
+
         this.consultantList.reverse()
       },
       error => {
@@ -185,16 +197,8 @@ export class ClientsComponent implements OnInit {
       (data: any) => {
         this.clientList = data as ClientModel[]; // Asignar los datos al arreglo clientList
 
-        // Asignar el nombre del consultor a cada cliente
-        // this.clientList.forEach(client => {
-        //   const assignedToConsultant = this.consultantList.find(consultant => consultant._id === +client.assignedTo);
-
-        //   if (assignedToConsultant) {
-        //     client.assignedTo = assignedToConsultant.firstName; // Asignar el nombre del consultor al cliente
-        //   }
-        // });
         this.clientList = this.clientList.filter(
-          (consultant) => consultant.createdAt === this.sessionID
+          (consultant) => consultant.createdBy === this.sessionID
         );
 
         this.clientList.reverse();

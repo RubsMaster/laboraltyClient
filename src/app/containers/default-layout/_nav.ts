@@ -60,18 +60,8 @@ export const navClient: INavData[] = [
 
 export const navConsultant: INavData[] = [
   {
-    name: 'Consultores',
-    url: '/consultants',
-    iconComponent: { name: 'cil-people'}
-  },
-  {
-    name: 'Clientes',
-    url: '/clients',
-    iconComponent: { name: 'cil-user'}
-  },
-  {
-    name: 'este es un test mdf',
-    url: '/consultants',
+    name: 'Dashboard',
+    url: '/consultantDashboard',
     iconComponent: { name: 'cil-people'}
   },
 ];
