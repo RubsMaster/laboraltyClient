@@ -11,6 +11,8 @@ import { ConsultantDashboardComponent } from './consultant-dashboard.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { MomentModule } from 'ngx-moment';
 
+import { IconModule } from '@coreui/icons-angular';
+
 import {
   ButtonGroupModule,
   ButtonModule,
@@ -21,7 +23,8 @@ import {
   ListGroupModule,
   SharedModule,
   AvatarModule,
-  TableModule
+  TableModule,
+  ModalModule
 } from '@coreui/angular';
 
 @NgModule({
@@ -43,7 +46,9 @@ import {
     SharedModule,
     AvatarModule,
     TableModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    IconModule,
+    ModalModule
   ]
 })
 export class ConsultantDashboardModule { }

@@ -9,6 +9,8 @@ import { ConsultantsService } from "../../../services/accountant/consultants/con
 import { formatDistanceToNowStrict } from "date-fns";
 import { es } from "date-fns/locale"; // Importa el locale en español
 
+import { cilPenNib, cilUserPlus, cilNotes } from "@coreui/icons";
+
 @Component({
   selector: 'app-consultant-dashboard',
   templateUrl: './consultant-dashboard.component.html',
@@ -26,6 +28,12 @@ export class ConsultantDashboardComponent implements OnInit {
 
   sessionString = localStorage.getItem('user');
   sessionID = ""
+
+  icons = {
+    cilPenNib,
+    cilUserPlus,
+    cilNotes
+  };
   constructor(
     private clientService: ClientsService
   ) { }
