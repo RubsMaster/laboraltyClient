@@ -13,6 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CredentialsService } from 'src/app/services/credentials.service';
 import { sessionModel } from "../../../models/credential";
 
+import { ConsultantsService } from "../../../services/accountant/consultants/consultants.service";
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -20,7 +22,10 @@ import { sessionModel } from "../../../models/credential";
 })
 export class SettingsComponent implements OnInit {
 
+  // image preview and upload
+  selectedImage: File | null = null;
   selectedFiles?: FileList;
+  previewImageUrl: string | ArrayBuffer | null = './assets/images/default-profile.jpg';
   currentFile?: File;
   progress = 0;
   message = '';
@@ -33,12 +38,17 @@ export class SettingsComponent implements OnInit {
 
   constructor(
     private uploadService: UploadService,
-    private authsvc: CredentialsService
+    private authsvc: CredentialsService,
+    private consultantService: ConsultantsService
   ) {
     this.actualUserInfo = this.authsvc.getActualUserInfo();
       const name = this.actualUserInfo.name
    }
   ngOnInit(): void {
+  }
+  saveChanges(){
+    this.consultantService.updateLogoImgName(this.actualUserInfo.relatedId, this.previewImageUrl)
+    console.log(`imageUrl: ${this.previewImageUrl}`)
   }
 
   upload(): void {
@@ -80,8 +90,17 @@ export class SettingsComponent implements OnInit {
     }
   }
 
+  
   selectFile(event: any): void {
     this.selectedFiles = event.target.files;
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      this.selectedImage = this.selectedFiles[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewImageUrl = reader.result;
+      };
+      reader.readAsDataURL(this.selectedImage);
+    }
   }
 
 }

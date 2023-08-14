@@ -11,4 +11,5 @@ export interface ConsultantModel {
     imageName: string;
     createdAt: string;
     createdBy: string;
+    logoImgName: string;
 }

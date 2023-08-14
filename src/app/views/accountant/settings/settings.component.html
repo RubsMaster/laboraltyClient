@@ -11,7 +11,7 @@
 
           <!-- input logo -->
           <c-col class="col-4" style="width: 400px;">
-            <img cCardImg="top" [src]="imageUrl" style="height: 100px;"/>
+            <img cCardImg="top" cCardImg="top" [src]="previewImageUrl" style="height: 100px;">            
             <p cCardText class="mt-2">
               Es el logotipo de su empresa. Aparecerá en la parte superior de la
               barra de navegación.
@@ -68,6 +68,7 @@
           style="float: right"
           id="btnSubmit"
           type="submit"
+          (click)="saveChanges()" 
         >
           Guardar
         </button>

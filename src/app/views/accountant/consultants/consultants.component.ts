@@ -58,7 +58,7 @@ export class ConsultantsComponent implements OnInit {
   imageName: string = ''
 
   selectedImage: File | null = null;
-previewImageUrl: string | ArrayBuffer | null = null;
+  previewImageUrl: string | ArrayBuffer | null = null;
 
 
   consultantList: ConsultantModel[] = []; // List
@@ -67,7 +67,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
   sessionID = ""
   
    //pagination 
-   paginationId = 'consultantPagination';
+  paginationId = 'consultantPagination';
   p1: number = 1;
   itemsPerPage:number = 5;
   currentPage = 1;
@@ -140,6 +140,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
       userAssigned: this.createConsultantForm.get('userAssigned')?.value,
       passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
       imageName: this.imageName,
+      logoImgName: "",
       createdAt: "",
       createdBy: this.sessionID
     }
@@ -203,7 +204,7 @@ previewImageUrl: string | ArrayBuffer | null = null;
         this.previewImageUrl = reader.result;
       };
       reader.readAsDataURL(this.selectedImage);
-      this.upload()
+      //this.upload()
     }
   }
 
