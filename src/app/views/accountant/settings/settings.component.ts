@@ -34,7 +34,11 @@ export class SettingsComponent implements OnInit {
 
   imageUrl: string = './assets/images/default-profile.jpg';
 
-  actualUserInfo: sessionModel
+  actualUserInfo
+
+  sessionString = localStorage.getItem('user');
+  nameToShow: string = "default"
+  idToUse: number = 0
 
   constructor(
     private uploadService: UploadService,
@@ -45,21 +49,49 @@ export class SettingsComponent implements OnInit {
       const name = this.actualUserInfo.name
    }
   ngOnInit(): void {
+    if (this.sessionString) {
+      const sessionObject = JSON.parse(this.sessionString);
+      console.log(`esto tiene el objeto que inicio sesión: ${JSON.stringify(sessionObject)}`)
+
+      this.nameToShow = sessionObject.foundRoleInfo.firstNameTitular
+      if (this.nameToShow === undefined){
+        this.nameToShow = sessionObject.foundRoleInfo.firstName
+      }
+
+      if (sessionObject.foundRoleInfo.imageName != undefined){
+        this.imageUrl = sessionObject.foundRoleInfo.imageName        
+      }
+
+      this.idToUse = sessionObject.foundRoleInfo._id
+    }
   }
+
   saveChanges(){
-    this.consultantService.updateLogoImgName(this.actualUserInfo.relatedId, this.previewImageUrl)
-    console.log(`imageUrl: ${this.previewImageUrl}`)
+    this.upload()
+    console.log(this.imageUrl)
+    console.log(this.previewImageUrl)
+    if (!this.idToUse){
+      console.log(`No se encontró el ID de la sesión actual.`)
+      return;
+    }
+    if (this.previewImageUrl === "./assets/images/default-profile.jpg"){
+      return alert("no se eligio una foto para el logo")
+    }
+       
+    this.consultantService.updateLogoImgName(this.idToUse, this.previewImageUrl).subscribe( data => {
+      console.log(`Si se armó, esto es lo que contiene data: ${JSON.stringify(data)}`)
+      this.ngOnInit()
+    })     
   }
 
   upload(): void {
     this.progress = 0;
-
+    console.log("Se manda llamar upload desde saveconsultant")
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
       if (file) {
         this.currentFile = file;
-
         this.uploadService.upload(this.currentFile).subscribe({
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
@@ -100,6 +132,7 @@ export class SettingsComponent implements OnInit {
         this.previewImageUrl = reader.result;
       };
       reader.readAsDataURL(this.selectedImage);
+      this.upload()
     }
   }
 

@@ -18,5 +18,6 @@ export interface UserModel {
     totalRFC: String,
     monthlyDebt: String,
     userAssigned: String,
-    passwordAssigned: String
+    passwordAssigned: String,
+    logoImgName: String
 }

@@ -171,7 +171,8 @@ export class UsersComponent implements OnInit {
         totalRFC: this.createUserForm.get('totalRFC')?.value,
         monthlyDebt: this.createUserForm.get('monthlyDebt')?.value,
         userAssigned: this.createUserForm.get('userAssigned')?.value,
-        passwordAssigned: this.createUserForm.get('passwordAssigned')?.value
+        passwordAssigned: this.createUserForm.get('passwordAssigned')?.value,
+        logoImgName: ""
       }
   
       const user = this.createUserForm.get('userAssigned')
@@ -221,7 +222,8 @@ export class UsersComponent implements OnInit {
       userAssigned: this.createUserForm.get('userAssigned')?.value ?? '',
       passwordAssigned: this.createUserForm.get('passwordAssigned')?.value ?? '',
       mobilePhoneNumber: this.createUserForm.get('mobilePhoneNumber')?.value ?? '',
-      officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value ?? ''
+      officePhoneNumber: this.createUserForm.get('officePhoneNumber')?.value ?? '',
+      logoImgName:""
     };    
 
     this.userService.updateUser(id, updatedUser).subscribe(

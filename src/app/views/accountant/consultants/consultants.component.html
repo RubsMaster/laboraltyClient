@@ -21,7 +21,6 @@
         cForm 
         class="row g-3" 
         [formGroup]="createConsultantForm" 
-        (ngSubmit)="saveConsultant()" 
         novalidate>
           <c-row>
             <!-- imagen -->
@@ -218,7 +217,8 @@
             <tr
               *ngFor="let consultant of consultantList | paginate: { itemsPerPage: 8 , currentPage: p1, id: 'consultantPagination' }">
               <td class="text-center">
-                <c-avatar size="md" src="http://localhost:4000/getFile/{{ consultant.imageName }}" status=""></c-avatar>
+                <c-avatar size="md" [src]="consultant.imageName ? 'http://localhost:4000/getFile/' + consultant.imageName : './assets/images/default-profile.jpg'" status=""></c-avatar>
+
               </td>
               <td>
                 <div>{{ consultant.firstName }} {{consultant.middleName}} {{consultant.lastName}}</div>

@@ -24,6 +24,7 @@ import { UploadService } from "../../../services/uploads/upload.service";
 
 import { formatDistanceToNowStrict } from "date-fns";
 import { es } from "date-fns/locale"; // Importa el locale en español
+import { json } from 'stream/consumers';
 
 
 @Component({
@@ -76,7 +77,6 @@ export class ConsultantsComponent implements OnInit {
   constructor(
     private _router: Router,
     public formBuilder: FormBuilder,
-    private aRouter: ActivatedRoute,
     private credService: CredentialsService,
     private consultantService: ConsultantsService,
     private uploadService: UploadService	
@@ -128,48 +128,48 @@ export class ConsultantsComponent implements OnInit {
     return formattedDate;
   }
 
-
-  saveConsultant() {
-    const consultant: ConsultantModel = {
-      jobTitle: this.createConsultantForm.get('jobTitle')?.value,
-      firstName: this.createConsultantForm.get('firstName')?.value,
-      middleName: this.createConsultantForm.get('middleName')?.value,
-      lastName: this.createConsultantForm.get('lastName')?.value,
-      officePhonenumber: this.createConsultantForm.get('officePhonenumber')?.value,
-      mobilePhonenumber: this.createConsultantForm.get('mobilePhonenumber')?.value,
-      userAssigned: this.createConsultantForm.get('userAssigned')?.value,
-      passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
-      imageName: this.imageName,
-      logoImgName: "",
-      createdAt: "",
-      createdBy: this.sessionID
-    }
-
+  async saveConsultant() {
     const user = this.createConsultantForm.get('userAssigned')
 
-    this.credService.checkCredential(user?.value).subscribe(data => {
+    this.credService.checkCredential(user?.value).subscribe(async data => {
 
       if (data) {
         return alert("El usuario ya existe, elija otro nombre")
       } else {
+        
+        await this.upload();
+        const consultant: ConsultantModel = {
+          jobTitle: this.createConsultantForm.get('jobTitle')?.value,
+          firstName: this.createConsultantForm.get('firstName')?.value,
+          middleName: this.createConsultantForm.get('middleName')?.value,
+          lastName: this.createConsultantForm.get('lastName')?.value,
+          officePhonenumber: this.createConsultantForm.get('officePhonenumber')?.value,
+          mobilePhonenumber: this.createConsultantForm.get('mobilePhonenumber')?.value,
+          userAssigned: this.createConsultantForm.get('userAssigned')?.value,
+          passwordAssigned: this.createConsultantForm.get('passwordAssigned')?.value,
+          imageName: this.imageName,
+          logoImgName: "",
+          createdAt: "",
+          createdBy: this.sessionID
+        }
+        console.log(`consultor que se crea: ${JSON.stringify(consultant)}`)
 
-        this.upload()
-        this.consultantService.createConsultant(consultant).subscribe((data: any) => {
-          const newCred: CredentialModel = {
-            user: consultant.userAssigned,
-            password: consultant.passwordAssigned,
-            role: "Consultant",
-            relatedId: data._id
-          }
-          this.credService.createCredential(newCred).subscribe(data => {
-            this.previewImageUrl="";
-            this.ngOnInit()
-          })
+         this.consultantService.createConsultant(consultant).subscribe((data: any) => {
+           const newCred: CredentialModel = {
+             user: consultant.userAssigned,
+             password: consultant.passwordAssigned,
+             role: "Consultant",
+             relatedId: data._id
+           }
+           this.credService.createCredential(newCred).subscribe(data => {
+             this.previewImageUrl="./assets/images/default-profile.jpg";
+             this.ngOnInit()
+           })
 
-        }, error => {
+         }, error => {
 
-          console.log(error)
-        })
+           console.log(error)
+         })
       }
     })
 
@@ -184,6 +184,8 @@ export class ConsultantsComponent implements OnInit {
        this.consultantList = this.consultantList.filter(
          (consultant) => consultant.createdBy === this.sessionID
        );
+
+       
 
         this.consultantList.reverse()
       },
@@ -204,14 +206,13 @@ export class ConsultantsComponent implements OnInit {
         this.previewImageUrl = reader.result;
       };
       reader.readAsDataURL(this.selectedImage);
-      //this.upload()
+      this.upload()
     }
   }
 
 
-  upload(): void {
+  async upload(): Promise<void> {
     this.progress = 0;
-
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
@@ -221,14 +222,19 @@ export class ConsultantsComponent implements OnInit {
         this.uploadService.upload(this.currentFile).subscribe({
 
           next: (event: any) => {
+
             if (event.type === HttpEventType.UploadProgress) {
+
               this.progress = Math.round(100 * event.loaded / event.total);
+
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
               this.imageName = event.body.filename;
               this.imageUrl = `http://localhost:4000/getFile/${event.body.filename}`;
               this.fileInfos = this.uploadService.getFiles();
+
             }
+
           },
 
           error: (err: any) => {

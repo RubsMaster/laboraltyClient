@@ -29,6 +29,7 @@ export class ConsultantsService {
 
   updateLogoImgName(id: number | undefined, logoImgName: string | ArrayBuffer | null): Observable<any> {
     const body = { logoImgName: logoImgName }; 
+    console.log(`esto llega al servicio, id: ${id}, url de la imagen: ${body.logoImgName}`)
     return this.http.patch(`${this.URI_API}updateLogoImg/${id}`, body);
   }
 
