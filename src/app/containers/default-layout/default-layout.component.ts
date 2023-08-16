@@ -14,8 +14,11 @@ import { Router } from '@angular/router';
   templateUrl: './default-layout.component.html',
 })
 export class DefaultLayoutComponent {
-
+  imageUrl: string = '';
+  brandFull: any;
  
+  sessionString = localStorage.getItem('user');
+
   public navItems: INavData[] = [];
 
   public perfectScrollbarConfig = {
@@ -26,6 +29,11 @@ export class DefaultLayoutComponent {
     private router: Router){ }
 
   ngOnInit() {
+    if (this.sessionString) {
+      const sessionObject = JSON.parse(this.sessionString);
+      
+      this.imageUrl = sessionObject.foundRoleInfo.logoImgName
+    }
 
     this.authsvc.role$.subscribe((userRole: Roles | null) => {
       switch(userRole) {
@@ -50,6 +58,15 @@ export class DefaultLayoutComponent {
           break;
       }
     });
+
+
+    // Construir la URL completa de la imagen aquí
+    this.brandFull = {
+      src: `http://localhost:4000/getFile/${this.imageUrl}`, // Utiliza las comillas invertidas para interpolación
+      width: 200,
+      height: 46,
+      alt: 'CoreUI Logo',
+    };
   }
   
 

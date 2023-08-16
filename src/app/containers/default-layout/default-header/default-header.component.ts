@@ -41,7 +41,7 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
       if (this.nameToShow === undefined){
         this.nameToShow = sessionObject.foundRoleInfo.firstName
       }
-      this.imageUrl = sessionObject.imageName
+      this.imageUrl = sessionObject.foundRoleInfo.imageName
     }
   }
 

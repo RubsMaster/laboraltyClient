@@ -10,6 +10,7 @@ export interface UserModel {
     outdoorNumber: String,
     zipCode: String,
     suburb: String,
+    logoImgName: String
     city: String,
     state: String,
     officePhoneNumber: String,
@@ -19,5 +20,4 @@ export interface UserModel {
     monthlyDebt: String,
     userAssigned: String,
     passwordAssigned: String,
-    logoImgName: String
 }

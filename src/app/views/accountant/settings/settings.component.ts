@@ -51,16 +51,15 @@ export class SettingsComponent implements OnInit {
   ngOnInit(): void {
     if (this.sessionString) {
       const sessionObject = JSON.parse(this.sessionString);
-      console.log(`esto tiene el objeto que inicio sesión: ${JSON.stringify(sessionObject)}`)
 
       this.nameToShow = sessionObject.foundRoleInfo.firstNameTitular
       if (this.nameToShow === undefined){
         this.nameToShow = sessionObject.foundRoleInfo.firstName
       }
 
-      if (sessionObject.foundRoleInfo.imageName != undefined){
-        this.imageUrl = sessionObject.foundRoleInfo.imageName        
-      }
+      // if (sessionObject.foundRoleInfo.logoImgName != undefined){
+      //   this.imageUrl = sessionObject.foundRoleInfo.logoImgName        
+      // }
 
       this.idToUse = sessionObject.foundRoleInfo._id
     }
@@ -68,8 +67,6 @@ export class SettingsComponent implements OnInit {
 
   saveChanges(){
     this.upload()
-    console.log(this.imageUrl)
-    console.log(this.previewImageUrl)
     if (!this.idToUse){
       console.log(`No se encontró el ID de la sesión actual.`)
       return;
@@ -78,15 +75,14 @@ export class SettingsComponent implements OnInit {
       return alert("no se eligio una foto para el logo")
     }
        
-    this.consultantService.updateLogoImgName(this.idToUse, this.previewImageUrl).subscribe( data => {
-      console.log(`Si se armó, esto es lo que contiene data: ${JSON.stringify(data)}`)
+    this.consultantService.updateLogoImgName(this.idToUse, this.imageUrl).subscribe( data => {
+      console.log(`Guardado de cambios exitoso`)
       this.ngOnInit()
     })     
   }
 
   upload(): void {
     this.progress = 0;
-    console.log("Se manda llamar upload desde saveconsultant")
     if (this.selectedFiles) {
       const file: File | null = this.selectedFiles.item(0);
 
@@ -99,7 +95,6 @@ export class SettingsComponent implements OnInit {
             } else if (event instanceof HttpResponse) {
               this.message = event.body.message;
               this.imageUrl = event.body.filename;
-              this.imageUrl = `http://localhost:4000/getFile/${event.body.filename}`;
               this.fileInfos = this.uploadService.getFiles();
             }
           },
