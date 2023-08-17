@@ -47,15 +47,40 @@ export const navAccountant: INavData[] = [
 
 export const navClient: INavData[] = [
   {
-    name: 'Dashboard',
+    name: 'Empresas',
     url: '/clients',
-    iconComponent: { name: 'cil-user'}
+    iconComponent: { name: 'cil-building'},
   },
   {
-    name: 'este es un test mdf',
+    name: 'Sucursales',
     url: '/consultants',
-    iconComponent: { name: 'cil-people'}
+    iconComponent: { name: 'cil-location-pin'},
   },
+  {
+    name: 'Perfiles de Puesto',
+    url: '/consultants',
+    iconComponent: { name: 'cil-user'},
+  },
+  {
+    name: 'Jornadas Laborales',
+    url: '/consultants',
+    iconComponent: { name: 'cil-clock'},
+  },
+  {
+    name: 'Empleados',
+    url: '/consultants',
+    iconComponent: { name: 'cil-people'},
+  },
+  {
+    name: 'Sanciones y Despidos',
+    url: '/consultants',
+    iconComponent: { name: 'cil-ban'},
+  },
+  {
+    name: 'Demandas Laborales',
+    url: '/consultants',
+    iconComponent: { name: 'cil-gavel'},
+  }
 ];
 
 export const navConsultant: INavData[] = [

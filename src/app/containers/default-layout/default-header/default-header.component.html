@@ -45,7 +45,7 @@
         cTextColor="primary"
         shape="rounded-1"
         size="md"
-        src="http://localhost:4000/getFile/{{ imageUrl }}"
+        [src]="imageUrl || './assets/images/default-profile.jpg'"
         status="success"
       >
       </c-avatar>

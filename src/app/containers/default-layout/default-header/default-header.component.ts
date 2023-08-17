@@ -38,10 +38,17 @@ export class DefaultHeaderComponent extends HeaderComponent implements OnInit {
     if (this.sessionString) {
       const sessionObject = JSON.parse(this.sessionString);
       this.nameToShow = sessionObject.foundRoleInfo.firstNameTitular
+      
       if (this.nameToShow === undefined){
         this.nameToShow = sessionObject.foundRoleInfo.firstName
       }
-      this.imageUrl = sessionObject.foundRoleInfo.imageName
+
+      if (sessionObject.foundRoleInfo.imageName === undefined){
+        this.imageUrl = "./assets/images/default-profile.jpg"  
+      } else {
+        this.imageUrl = `http://localhost:4000/getFile/${sessionObject.foundRoleInfo.imageName}`
+      }
+      
     }
   }
 
