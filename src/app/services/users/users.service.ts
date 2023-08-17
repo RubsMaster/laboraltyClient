@@ -42,7 +42,7 @@ export class UsersService {
   }
   
 
-   getUser(id: string): Observable<any>{
-    return this.http.get(this.URI_API + "getUser/" + id)
+  getAccountant(id: string): Observable<any>{
+    return this.http.get(this.URI_API + "getAccountant/" + id)
    }
 }

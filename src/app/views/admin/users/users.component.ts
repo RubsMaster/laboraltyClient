@@ -107,7 +107,7 @@ export class UsersComponent implements OnInit {
     if (this.id !== null) {
       this.Title = 'Editar Usuario';
       this.userService
-      this.userService.getUser(this.id).subscribe(data => {
+      this.userService.getAccountant(this.id).subscribe(data => {
         this.firstNameTitular = data.firstNameTitular
         this.lastNameTitular = data.lastNameTitular
         this.businessName = data.businessName
