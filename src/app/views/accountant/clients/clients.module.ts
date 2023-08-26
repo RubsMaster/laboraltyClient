@@ -6,6 +6,8 @@ import { ClientsComponent } from './clients.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NgxSelectModule } from 'ngx-select-ex';
+
 import {
   ButtonGroupModule,
   ButtonModule,
@@ -40,7 +42,8 @@ import { NgxPaginationModule } from "ngx-pagination";
     SharedModule,
     AvatarModule,
     TableModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxSelectModule
   ]
 })
 export class ClientsModule { }

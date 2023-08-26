@@ -3,16 +3,8 @@
     <c-card class="mb-4">
       <c-card-header class="d-flex justify-content-between align-items-center" style="height: 55px;">
         <h3 style="float: left">{{ Title }}</h3>
-        <button
-          class="ms-auto"
-          cButton
-          (click)="saveClient()"
-          color="dark"
-          style="float: right"
-          id="btnSubmit"
-          type="submit"
-          [disabled]="!createClientForm.valid"
-        >
+        <button class="ms-auto" cButton (click)="saveClient()" color="dark" style="float: right" id="btnSubmit"
+          type="submit" [disabled]="!createClientForm.valid">
           + Crear
         </button>
       </c-card-header>
@@ -28,21 +20,12 @@
             <!-- businessName -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="businessName"
-                  formControlName="businessName"
-                  name="businessName"
-                  placeholder="Razón social"
-                />
+                <input type="text" class="form-control" id="businessName" formControlName="businessName"
+                  name="businessName" placeholder="Razón social" />
                 <label for="businessName">{{ this.businessName }}</label>
 
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('businessName')?.errors?.['required'] && this.createClientForm.get('businessName')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('businessName')?.errors?.['required'] && this.createClientForm.get('businessName')?.touched">
                   La razón social<strong> es obligatoria</strong>
                 </div>
               </div>
@@ -51,23 +34,12 @@
             <!-- taxRegime -->
             <c-col [md]="2">
               <div class="form-floating">
-                <input
-                  cFormControl
-                  id="taxRegime"
-                  type="text"
-                  class="form-control"
-                  formControlName="taxRegime"
-                  name="taxRegime"
-                  placeholder="Regimen Fiscal"
-                />
+                <input cFormControl id="taxRegime" type="text" class="form-control" formControlName="taxRegime"
+                  name="taxRegime" placeholder="Regimen Fiscal" />
                 <label for="taxRegime">{{ this.taxRegime }}</label>
 
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('taxRegime')?.errors?.['required'] && this.createClientForm.get('taxRegime')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('taxRegime')?.errors?.['required'] && this.createClientForm.get('taxRegime')?.touched">
                   El regimen fiscal <strong> es obligatorio</strong>
                 </div>
               </div>
@@ -76,23 +48,12 @@
             <!-- RFC -->
             <c-col [md]="3" class="mb-3">
               <div class="form-floating">
-                <input
-                  cFormControl
-                  id="RFC"
-                  type="text"
-                  class="form-control"
-                  formControlName="RFC"
-                  name="RFC"
-                  placeholder="RFC"
-                />
+                <input cFormControl id="RFC" type="text" class="form-control" formControlName="RFC" name="RFC"
+                  placeholder="RFC" />
                 <label for="RFC">{{ this.RFC }}</label>
               </div>
-              <div
-                class="alert alert-danger"
-                role="alert"
-                style="margin-top: 3px"
-                *ngIf="this.createClientForm.get('RFC')?.hasError?.('required') && this.createClientForm.get('RFC')?.touched"
-              >
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createClientForm.get('RFC')?.hasError?.('required') && this.createClientForm.get('RFC')?.touched">
                 El RFC<strong> es obligatorio</strong>
               </div>
             </c-col>
@@ -100,12 +61,7 @@
             <!-- CFDI -->
             <c-col [md]="4">
               <div class="form-floating mb-3">
-                <select
-                  class="form-select"
-                  id="CFDI"
-                  formControlName="CFDI"
-                  placeholder="CFDI"
-                >
+                <select class="form-select" id="CFDI" formControlName="CFDI" placeholder="CFDI">
                   <option>Comprobante de ingreso</option>
                   <option>Comprobante de egreso</option>
                   <option>Comprobante de traslado</option>
@@ -116,20 +72,16 @@
                 </select>
                 <label for="CFDI">{{this.CFDI}}</label>
               </div>
-              <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('CFDI')?.hasError?.('required') && this.createClientForm.get('CFDI')?.touched"
-                >
-                  El uso de CFDI<strong> es obligatorio</strong>
-                </div>
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createClientForm.get('CFDI')?.hasError?.('required') && this.createClientForm.get('CFDI')?.touched">
+                El uso de CFDI<strong> es obligatorio</strong>
+              </div>
             </c-col>
 
           </c-row>
 
-<!-- ------------------------------------------------------------------------------------------------ -->
-<!-- ------------------------------------------------------------------------------------------------ -->
+          <!-- ------------------------------------------------------------------------------------------------ -->
+          <!-- ------------------------------------------------------------------------------------------------ -->
 
           <c-row>
             <hr />
@@ -141,69 +93,39 @@
             <!-- Street -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="street"
-                  placeholder="Calle"
-                  formControlName="street"
-                />
+                <input type="text" class="form-control" id="street" placeholder="Calle" formControlName="street" />
                 <label for="street">{{ this.street }}</label>
               </div>
-              <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('street')?.errors?.['required'] && this.createClientForm.get('street')?.touched"
-                >
-                  La calle <strong> es obligatoria</strong>
-                </div>
+              <div class="alert alert-danger" role="alert"
+                *ngIf="this.createClientForm.get('street')?.errors?.['required'] && this.createClientForm.get('street')?.touched">
+                La calle <strong> es obligatoria</strong>
+              </div>
             </c-col>
 
             <!-- Suburb -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="suburb"
-                  placeholder="Colonia"
-                  formControlName="suburb"
-                />
+                <input type="text" class="form-control" id="suburb" placeholder="Colonia" formControlName="suburb" />
                 <label for="suburb">{{ this.suburb }}</label>
               </div>
-              <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('suburb')?.hasError?.('required') && this.createClientForm.get('suburb')?.touched"
-                >
-                  La colonia<strong> es obligatoria</strong>
-                </div>
+              <div class="alert alert-danger" role="alert"
+                *ngIf="this.createClientForm.get('suburb')?.hasError?.('required') && this.createClientForm.get('suburb')?.touched">
+                La colonia<strong> es obligatoria</strong>
+              </div>
             </c-col>
 
             <!-- outdoorNumber input -->
             <c-col [md]="2">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="outdoorNumber"
-                  placeholder="Número exterior"
-                  formControlName="outdoorNumber"
-                />
+                <input type="number" class="form-control" id="outdoorNumber" placeholder="Número exterior"
+                  formControlName="outdoorNumber" />
                 <label for="outdoorNumber">{{ this.outdoorNumber }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('required') && this.createClientForm.get('outdoorNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('required') && this.createClientForm.get('outdoorNumber')?.touched">
                   El numero exterior<strong> es obligatorio</strong>
                 </div>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createClientForm.get('outdoorNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('outdoorNumber')?.hasError?.('maxlength') && this.createClientForm.get('outdoorNumber')?.touched">
                   El numero exterior<strong> es muy largo</strong>
                 </div>
               </div>
@@ -212,13 +134,8 @@
             <!-- innerNumber input -->
             <c-col [md]="2">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="innerNumber"
-                  placeholder="Número exterior"
-                  formControlName="innerNumber"
-                />
+                <input type="number" class="form-control" id="innerNumber" placeholder="Número exterior"
+                  formControlName="innerNumber" />
                 <label for="innerNumber">{{ this.innerNumber }}</label>
               </div>
             </c-col>
@@ -226,24 +143,16 @@
             <!-- zipCode input -->
             <c-col [md]="2">
               <div class="form-floating mb-3">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="zipCode"
-                  placeholder="Código postal"
-                  formControlName="zipCode"
-                />
+                <input type="number" class="form-control" id="zipCode" placeholder="Código postal"
+                  formControlName="zipCode" />
                 <label for="zipCode">{{ this.zipCode }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('zipCode')?.hasError?.('required') && this.createClientForm.get('zipCode')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('zipCode')?.hasError?.('required') && this.createClientForm.get('zipCode')?.touched">
                   El código postal<strong> es obligatorio</strong>
                 </div>
               </div>
             </c-col>
-            
+
           </c-row>
 
           <c-row>
@@ -255,19 +164,11 @@
             <!-- inChargeName -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inChargeName"
-                  placeholder="Nombre"
-                  formControlName="inChargeName"
-                />
+                <input type="text" class="form-control" id="inChargeName" placeholder="Nombre"
+                  formControlName="inChargeName" />
                 <label for="inChargeName">{{ this.inChargeName }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('inChargeName')?.hasError?.('required') && this.createClientForm.get('inChargeName')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('inChargeName')?.hasError?.('required') && this.createClientForm.get('inChargeName')?.touched">
                   El nombre<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -276,19 +177,11 @@
             <!-- jobTitle -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="jobTitle"
-                  placeholder="jobTitle"
-                  formControlName="jobTitle"
-                />
+                <input type="text" class="form-control" id="jobTitle" placeholder="jobTitle"
+                  formControlName="jobTitle" />
                 <label for="jobTitle">{{ this.jobTitle }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('jobTitle')?.hasError?.('required') && this.createClientForm.get('jobTitle')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('jobTitle')?.hasError?.('required') && this.createClientForm.get('jobTitle')?.touched">
                   El puesto<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -296,19 +189,11 @@
             <!-- phoneNumber -->
             <c-col [md]="2">
               <div class="form-floating mb-3">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="phoneNumber"
-                  placeholder="Numero telefonico"
-                  formControlName="phoneNumber"
-                />
+                <input type="text" class="form-control" id="phoneNumber" placeholder="Numero telefonico"
+                  formControlName="phoneNumber" />
                 <label for="phoneNumber">{{ this.phoneNumber }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('phoneNumber')?.hasError?.('required') && this.createClientForm.get('phoneNumber')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('phoneNumber')?.hasError?.('required') && this.createClientForm.get('phoneNumber')?.touched">
                   El telefono<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -317,43 +202,24 @@
             <!-- extension -->
             <c-col [md]="1">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="extension"
-                  placeholder="Extension"
-                  formControlName="extension"
-                />
-                <label for="extension">{{ this.extension }}</label>                
+                <input type="text" class="form-control" id="extension" placeholder="Extension"
+                  formControlName="extension" />
+                <label for="extension">{{ this.extension }}</label>
               </div>
             </c-col>
 
             <!-- email -->
             <c-col [md]="3">
               <div class="form-floating mb-3">
-                <input
-                  cFormControl
-                  id="email"
-                  type="text"
-                  class="form-control"
-                  name="email"
-                  formControlName="email"
-                  placeholder="email"
-                />
+                <input cFormControl id="email" type="text" class="form-control" name="email" formControlName="email"
+                  placeholder="email" />
                 <label for="email">{{ this.email }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('email')?.errors?.['required'] && this.createClientForm.get('email')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('email')?.errors?.['required'] && this.createClientForm.get('email')?.touched">
                   El email <strong> es obligatorio</strong>
                 </div>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('email')?.errors?.['email'] && this.createClientForm.get('email')?.touched"
-                >
+                <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                  *ngIf="this.createClientForm.get('email')?.errors?.['email'] && this.createClientForm.get('email')?.touched">
                   El email debe ser <strong> valido </strong>
                 </div>
               </div>
@@ -361,8 +227,8 @@
 
           </c-row>
 
-<!-- ------------------------------------------------------------------------------------------------ -->
-<!-- ------------------------------------------------------------------------------------------------ -->
+          <!-- ------------------------------------------------------------------------------------------------ -->
+          <!-- ------------------------------------------------------------------------------------------------ -->
           <c-row>
             <hr />
             <h4>Atributos en sistema</h4>
@@ -372,19 +238,11 @@
             <!-- totalRFC -->
             <c-col [md]="2">
               <div class="form-floating">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="totalRFC"
-                  placeholder="Nombre"
-                  formControlName="totalRFC"
-                />
+                <input type="number" class="form-control" id="totalRFC" placeholder="Nombre"
+                  formControlName="totalRFC" />
                 <label for="totalRFC">{{ this.totalRFC }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('totalRFC')?.hasError?.('required') && this.createClientForm.get('totalRFC')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('totalRFC')?.hasError?.('required') && this.createClientForm.get('totalRFC')?.touched">
                   La cantidad de RFC asignados<strong> es obligatoria</strong>
                 </div>
               </div>
@@ -393,19 +251,11 @@
             <!-- totalEmployees -->
             <c-col [md]="2">
               <div class="form-floating">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="totalEmployees"
-                  placeholder="totalEmployees"
-                  formControlName="totalEmployees"
-                />
+                <input type="number" class="form-control" id="totalEmployees" placeholder="totalEmployees"
+                  formControlName="totalEmployees" />
                 <label for="totalEmployees">{{ this.totalEmployees }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('totalEmployees')?.hasError?.('required') && this.createClientForm.get('totalEmployees')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('totalEmployees')?.hasError?.('required') && this.createClientForm.get('totalEmployees')?.touched">
                   La cantidad de empleados asignados<strong> es obligatoria</strong>
                 </div>
               </div>
@@ -414,19 +264,11 @@
             <!-- userAssigned -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="userAssigned"
-                  placeholder="userAssigned"
-                  formControlName="userAssigned"
-                />
+                <input type="text" class="form-control" id="userAssigned" placeholder="userAssigned"
+                  formControlName="userAssigned" />
                 <label for="userAssigned">{{ this.userAssigned }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('userAssigned')?.hasError?.('required') && this.createClientForm.get('userAssigned')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('userAssigned')?.hasError?.('required') && this.createClientForm.get('userAssigned')?.touched">
                   El nombre de usuario<strong> es obligatorio</strong>
                 </div>
               </div>
@@ -435,19 +277,11 @@
             <!-- passwordAssigned -->
             <c-col [md]="3">
               <div class="form-floating">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="passwordAssigned"
-                  placeholder="passwordAssigned"
-                  formControlName="passwordAssigned"
-                />
+                <input type="text" class="form-control" id="passwordAssigned" placeholder="passwordAssigned"
+                  formControlName="passwordAssigned" />
                 <label for="passwordAssigned">{{ this.passwordAssigned }}</label>
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="this.createClientForm.get('passwordAssigned')?.hasError?.('required') && this.createClientForm.get('passwordAssigned')?.touched"
-                >
+                <div class="alert alert-danger" role="alert"
+                  *ngIf="this.createClientForm.get('passwordAssigned')?.hasError?.('required') && this.createClientForm.get('passwordAssigned')?.touched">
                   La contrase;a<strong> es obligatoria</strong>
                 </div>
               </div>
@@ -456,31 +290,40 @@
             <!-- consultantAssigned -->
             <c-col [md]="2">
               <div class="form-floating mb-3">
-                <select
-                  class="form-select"
-                  id="consultantAssigned"
-                  formControlName="consultantAssigned"
-                  placeholder="consultantAssigned"
-                >
-                <option *ngFor="let consultant of consultantList" [value]="consultant._id">
-                  {{ consultant.firstName }}
-                </option>
+                <select class="form-select" id="consultantAssigned" formControlName="consultantAssigned"
+                  placeholder="consultantAssigned">
+                  <option *ngFor="let consultant of consultantList" [value]="consultant._id">
+                    {{ consultant.firstName }}
+                  </option>
                 </select>
                 <label for="consultantAssigned">{{this.consultantAssigned}}</label>
               </div>
-              <div
-                  class="alert alert-danger"
-                  role="alert"
-                  style="margin-top: 3px"
-                  *ngIf="this.createClientForm.get('consultantAssigned')?.hasError?.('required') && this.createClientForm.get('consultantAssigned')?.touched"
-                >
-                  Asignar un consultor<strong> es obligatorio</strong>
-                </div>
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createClientForm.get('consultantAssigned')?.hasError?.('required') && this.createClientForm.get('consultantAssigned')?.touched">
+                Asignar un consultor<strong> es obligatorio</strong>
+              </div>
+            </c-col>
+
+            <!-- servicesAssigned -->
+            <c-col [md]="2">
+              <div class="form-floating mb-3">
+                <ngx-select [formControlName]="'servicesAssigned'" [multiple]="true" [items]="servicesList">
+                  <ngx-option *ngFor="let service of servicesList" [value]="service.serviceLogName">
+                    <input type="checkbox" [checked]="createClientForm.get('servicesAssigned').value?.includes(service.serviceLogName)">
+                    {{ service.serviceLogName }}
+                  </ngx-option>
+                </ngx-select>
+                <label for="servicesAssigned">{{this.servicesAssigned}}</label>
+              </div>
+              <div class="alert alert-danger" role="alert" style="margin-top: 3px"
+                *ngIf="this.createClientForm.get('servicesAssigned')?.hasError?.('required') && this.createClientForm.get('servicesAssigned')?.touched">
+                Asignar al menos un servicio<strong> es obligatorio</strong>
+              </div>
             </c-col>
           </c-row>
 
-<!-- ------------------------------------------------------------------------------------------------ -->          
-<!-- ------------------------------------------------------------------------------------------------ -->
+          <!-- ------------------------------------------------------------------------------------------------ -->
+          <!-- ------------------------------------------------------------------------------------------------ -->
         </form>
       </c-card-body>
     </c-card>
@@ -494,66 +337,57 @@
 
       <c-card-header class="d-flex justify-content-between align-items-center" style="height: 55px;">
         <h3 style="float: left">Clientes</h3>
-        <pagination-controls 
-        (pageChange)="p1 = $event" 
-        id="clientPagination" 
-        previousLabel="" 
-        nextLabel=""
-        style="float: right;" 
-        class="ms-auto">
-      </pagination-controls>
+        <pagination-controls (pageChange)="p1 = $event" id="clientPagination" previousLabel="" nextLabel=""
+          style="float: right;" class="ms-auto">
+        </pagination-controls>
       </c-card-header>
 
       <c-card-body>
 
-        <table
-          [hover]="true"
-          [responsive]="true"
-          [striped]="true"
-          cTable
-        >
+        <table [hover]="true" [responsive]="true" [striped]="true" cTable>
           <thead cTableColor="dark">
-          <tr>
-            <th>Nombre</th>
-            <th>RFC</th>
-            <th>Usuario</th>
-            <th>Responsable del servicio</th>
-            <th>RFC Asignados</th>
-            <th>Empleados Asignados</th>
-            <th>Consultor asignado</th>
-          </tr>
+            <tr>
+              <th>Nombre</th>
+              <th>RFC</th>
+              <th>Usuario</th>
+              <th>Responsable del servicio</th>
+              <th>RFC Asignados</th>
+              <th>Empleados Asignados</th>
+              <th>Consultor asignado</th>
+            </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let client of clientList | paginate: { itemsPerPage: 9, currentPage: p1, id: 'clientPagination' }; index as i">
-            <td>
-              <div>{{ client.businessName }}</div>
-              <div class="small text-medium-emphasis">
-                <span>{{ client.taxRegime }}</span> | Registrado:
-                {{ client.createdAt  }}
-              </div> 
-            </td>
-            <td>
-              <div>{{ client.RFC}}</div>
-            </td>
-            <td>
-              <div>{{ client.userAssigned}}</div>
-            </td>
-            <td>
-              <div>{{ client.inChargeName}}</div>
-              <div class="small text-medium-emphasis">
-                <span>puesto</span>
-              </div> 
-            </td>
-            <td>
-              <div>{{ client.totalRFC}}</div>
-            </td>
-            <td>
-              <div>{{ client.totalEmployees}}</div>
-            </td>
-            <td>
-              <div>{{ client.assignedTo }}</div>
-            </td>
-          </tr>
+            <tr
+              *ngFor="let client of clientList | paginate: { itemsPerPage: 9, currentPage: p1, id: 'clientPagination' }; index as i">
+              <td>
+                <div>{{ client.businessName }}</div>
+                <div class="small text-medium-emphasis">
+                  <span>{{ client.taxRegime }}</span> | Registrado:
+                  {{ client.createdAt }}
+                </div>
+              </td>
+              <td>
+                <div>{{ client.RFC}}</div>
+              </td>
+              <td>
+                <div>{{ client.userAssigned}}</div>
+              </td>
+              <td>
+                <div>{{ client.inChargeName}}</div>
+                <div class="small text-medium-emphasis">
+                  <span>puesto</span>
+                </div>
+              </td>
+              <td>
+                <div>{{ client.totalRFC}}</div>
+              </td>
+              <td>
+                <div>{{ client.totalEmployees}}</div>
+              </td>
+              <td>
+                <div>{{ client.assignedTo }}</div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </c-card-body>

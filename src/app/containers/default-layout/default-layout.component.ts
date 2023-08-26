@@ -50,6 +50,7 @@ export class DefaultLayoutComponent {
           this.fatherID = sessionObject.foundRoleInfo.createdBy;
           try {
             const data = await this.accountantSvc.getAccountant(this.fatherID).toPromise();
+            console.log(JSON.stringify(sessionObject.foundRoleInfo))
             this.logoRoute = `http://localhost:4000/getFile/${data.logoImgName}`;
           } catch (error) {
             console.error("Error getting accountant data:", error);

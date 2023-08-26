@@ -21,4 +21,5 @@ export interface ClientModel {
     createdAt: string;
     createdBy: string,
     assignedTo?: any;
+    servicesAssigned: any;
 }

@@ -6,10 +6,6 @@ import {
   Validators
 } from "@angular/forms";
 
-import { Router, ActivatedRoute } from '@angular/router';
-
-import { switchMap } from 'rxjs/operators';
-
 import { ClientModel } from "../../../models/client";
 import { ClientsService } from "../../../services/accountant/clients/clients.service";
 
@@ -18,10 +14,9 @@ import { CredentialModel } from 'src/app/models/credential';
 
 import { ConsultantModel } from 'src/app/models/consultant';
 import { ConsultantsService } from "../../../services/accountant/consultants/consultants.service";
-import { sessionModel } from "../../../models/credential";
 
-import { ConsultantsModule } from '../consultants/consultants.module';
-import { error } from 'console';
+import { ServiceLog } from "src/app/models/serviceLog";
+import { ServiceLogService } from "src/app/services/accountant/service-log/service-log.service";
 
 @Component({
   selector: 'app-clients',
@@ -40,6 +35,7 @@ export class ClientsComponent implements OnInit {
   // Arrays to display
   clientList: ClientModel[] = [];
   consultantList: ConsultantModel[] = [];
+  servicesList: ServiceLog[] = []
 
   // Variables to display
   businessName: string = "Razón Social"
@@ -61,6 +57,7 @@ export class ClientsComponent implements OnInit {
   userAssigned: string = "Usuario"
   passwordAssigned: string = "Contraseña"
   consultantAssigned: string = "Consultor asignado"
+  servicesAssigned: string = "Servicios asignados"
 
   //spagination 
   paginationId = 'clientPagination';
@@ -75,6 +72,7 @@ export class ClientsComponent implements OnInit {
     private formBuilder: FormBuilder,
     private clientService: ClientsService,
     private credService: CredentialsService,
+    private serviceLogSvc: ServiceLogService,
     private consultantService : ConsultantsService
   ) { 
 
@@ -97,7 +95,8 @@ export class ClientsComponent implements OnInit {
       totalEmployees: new FormControl("", [Validators.required]),
       userAssigned: new FormControl("", [Validators.required]),
       passwordAssigned: new FormControl("", [Validators.required]),
-      consultantAssigned:new FormControl("", [Validators.required])
+      consultantAssigned:new FormControl("", [Validators.required]),
+      servicesAssigned:new FormControl("", [Validators.required])
     });
   
   }
@@ -105,10 +104,12 @@ export class ClientsComponent implements OnInit {
   ngOnInit(): void {
     this.getAllClients()
     this.getAllConsultants()
+    this.getAllServices()
     if (this.sessionString) {
       const sessionObject = JSON.parse(this.sessionString);
       this.sessionID = sessionObject.foundRoleInfo._id
     }
+    console.log(`Services: ${this.servicesList}`)
   }
 
 
@@ -134,7 +135,8 @@ export class ClientsComponent implements OnInit {
       passwordAssigned: this.createClientForm.get('passwordAssigned')?.value,
       createdAt:"",
       createdBy:this.sessionID,
-      assignedTo: this.createClientForm.get('consultantAssigned')?.value
+      assignedTo: this.createClientForm.get('consultantAssigned')?.value,
+      servicesAssigned: ""
     }
     const user = this.createClientForm.get('userAssigned')
     
@@ -209,7 +211,23 @@ export class ClientsComponent implements OnInit {
     );
   }
 
+  getAllServices() {
+    this.serviceLogSvc.getAllServiceLogs().subscribe(
+      (data: any) => {
+        console.log("Data: " + JSON.stringify(data))
+        this.servicesList = data as ServiceLog[];
 
+        // this.clientList = this.clientList.filter(
+        //   (serviceLog) => serviceLog.createdBy === this.sessionID
+        // );
+
+        this.servicesList.reverse
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 
 
 }
