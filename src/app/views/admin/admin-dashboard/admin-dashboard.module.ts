@@ -23,7 +23,6 @@ import { ChartjsModule } from '@coreui/angular-chartjs';
 import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { AdminDashboardComponent } from './admin-dashboard.component';
 import { WidgetsModule } from "../../widgets/widgets.module";
-import { EmployeesModule } from "../../employees/employees.module";
 import {NgxPaginationModule} from 'ngx-pagination';
 
 interface IUser {
@@ -63,7 +62,6 @@ import { FormsRoutingModule } from '../../../views/forms/forms-routing.module';
     CommonModule,
     AdminDashboardRoutingModule,
     WidgetsModule,
-    EmployeesModule,
     // DashboardRoutingModule,
     CardModule,
     NavModule,

@@ -31,13 +31,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: "employees",
-        loadChildren: () =>
-          import("./views/employees/employees.module").then(
-            (m) => m.EmployeesModule
-          ),
-      },
-      {
         path: "documents",
         loadChildren: () =>
           import("./views/documents/documents.module").then(
@@ -113,13 +106,6 @@ const routes: Routes = [
           ),
       },
       {
-        path: "companies",
-        loadChildren: () =>
-          import("./views/admin/companies/companies.module").then(
-            (m) => m.CompaniesModule
-          ),
-      },
-      {
         path: "users",
         loadChildren: () =>
           import("./views/admin/users/users.module").then((m) => m.UsersModule),
@@ -145,7 +131,7 @@ const routes: Routes = [
       title: "Page 404",
     },
   },
-
+  // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
   {
     path: "500",
     component: Page500Component,
@@ -168,7 +154,7 @@ const routes: Routes = [
       title: "Register Page",
     },
   },
-
+  // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -213,6 +199,7 @@ const routes: Routes = [
       },
     ],
   },
+  // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
   {
     path: "",
     component: DefaultLayoutComponent,
@@ -226,6 +213,65 @@ const routes: Routes = [
           import(
             "./views/consultant/consultant-dashboard/consultant-dashboard.module"
           ).then((m) => m.ConsultantDashboardModule),
+      },
+    ],
+  },
+  // -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
+  {
+    path: "",
+    component: DefaultLayoutComponent,
+    data: {
+      title: "Cliente",
+    },
+    children: [
+      {
+        path: "companies",
+        loadChildren: () =>
+          import("./views/client/companies/companies.module").then(
+            (m) => m.CompaniesModule
+          ),
+      },
+      {
+        path: "branches",
+        loadChildren: () =>
+          import("./views/client/branches/branches.module").then(
+            (m) => m.BranchesModule
+          ),
+      },
+      {
+        path: "jobProfile",
+        loadChildren: () =>
+          import("./views/client/job-profile/job-profile.module").then(
+            (m) => m.JobProfileModule
+          ),
+      },
+      {
+        path: "laborJourneys",
+        loadChildren: () =>
+          import("./views/client/labor-journeys/labor-journeys.module").then(
+            (m) => m.LaborJourneysModule
+          ),
+      },
+      {
+        path: "employees",
+        loadChildren: () =>
+          import("./views/client/employees/employees.module").then(
+            (m) => m.EmployeesModule
+          ),
+      },
+      {
+        path: "sanctionsDismissals",
+        loadChildren: () =>
+          import(
+            "./views/client/sanctions-dismissals/sanctions-dismissals.module"
+          ).then((m) => m.SanctionsDismissalsModule),
+      },
+      {
+        path: "lawsuit",
+        loadChildren: () =>
+          import("./views/client/lawsuit/lawsuit.module").then(
+            (m) => m.LawsuitModule
+          ),
       },
     ],
   },

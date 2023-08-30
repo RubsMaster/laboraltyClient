@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
       'Admin': '/adminDashboard',
       'Accountant': '/settings',
       'Consultant': '/consultantDashboard',
-      'Client': '/clients'
+      'Client': '/companies'
     };
 
     // Suscribirse al servicio de login

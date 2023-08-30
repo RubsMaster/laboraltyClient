@@ -48,38 +48,38 @@ export const navAccountant: INavData[] = [
 export const navClient: INavData[] = [
   {
     name: 'Empresas',
-    url: '/clients',
+    url: '/companies',
     iconComponent: { name: 'cil-building'},
   },
   {
     name: 'Sucursales',
-    url: '/consultants',
+    url: '/branches',
     iconComponent: { name: 'cil-location-pin'},
   },
   {
     name: 'Perfiles de Puesto',
-    url: '/consultants',
+    url: '/jobProfile',
     iconComponent: { name: 'cil-user'},
   },
   {
     name: 'Jornadas Laborales',
-    url: '/consultants',
+    url: '/laborJourneys',
     iconComponent: { name: 'cil-clock'},
   },
   {
     name: 'Empleados',
-    url: '/consultants',
+    url: '/employees',
     iconComponent: { name: 'cil-people'},
   },
   {
     name: 'Sanciones y Despidos',
-    url: '/consultants',
-    iconComponent: { name: 'cil-ban'},
+    url: '/sanctionsDismissals',
+    iconComponent: { name: 'cil-clock'},
   },
   {
     name: 'Demandas Laborales',
-    url: '/consultants',
-    iconComponent: { name: 'cil-gavel'},
+    url: '/lawsuit',
+    iconComponent: { name: 'cil-clock'},
   }
 ];
 

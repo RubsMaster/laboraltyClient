@@ -305,21 +305,29 @@
             </c-col>
 
             <!-- servicesAssigned -->
-            <c-col [md]="2">
+            <!-- <c-col [md]="2">
               <div class="form-floating mb-3">
-                <ngx-select [formControlName]="'servicesAssigned'" [multiple]="true" [items]="servicesList">
-                  <ngx-option *ngFor="let service of servicesList" [value]="service.serviceLogName">
-                    <input type="checkbox" [checked]="createClientForm.get('servicesAssigned').value?.includes(service.serviceLogName)">
-                    {{ service.serviceLogName }}
-                  </ngx-option>
-                </ngx-select>
-                <label for="servicesAssigned">{{this.servicesAssigned}}</label>
+                <c-dropdown>
+                  <button cButton cDropdownToggle color="secondary">
+                    Dropdown button
+                  </button>
+                  <ul cDropdownMenu>
+                    <ul cListGroup>
+                      <li cListGroupItem>Cras justo odio</li><input type="checkbox" name="" id="">
+                      <li cListGroupItem>Dapibus ac facilisis in</li>
+                      <li cListGroupItem>Morbi leo risus</li>
+                      <li cListGroupItem>Porta ac consectetur ac</li>
+                      <li cListGroupItem>Vestibulum at eros</li>
+                    </ul>
+                  </ul>
+                </c-dropdown>
+                
               </div>
               <div class="alert alert-danger" role="alert" style="margin-top: 3px"
                 *ngIf="this.createClientForm.get('servicesAssigned')?.hasError?.('required') && this.createClientForm.get('servicesAssigned')?.touched">
                 Asignar al menos un servicio<strong> es obligatorio</strong>
               </div>
-            </c-col>
+            </c-col> -->
           </c-row>
 
           <!-- ------------------------------------------------------------------------------------------------ -->

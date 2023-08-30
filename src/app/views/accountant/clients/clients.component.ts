@@ -96,7 +96,7 @@ export class ClientsComponent implements OnInit {
       userAssigned: new FormControl("", [Validators.required]),
       passwordAssigned: new FormControl("", [Validators.required]),
       consultantAssigned:new FormControl("", [Validators.required]),
-      servicesAssigned:new FormControl("", [Validators.required])
+      servicesAssigned:new FormControl("")
     });
   
   }
@@ -110,6 +110,8 @@ export class ClientsComponent implements OnInit {
       this.sessionID = sessionObject.foundRoleInfo._id
     }
     console.log(`Services: ${this.servicesList}`)
+
+    
   }
 
 
